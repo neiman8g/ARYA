@@ -6,6 +6,7 @@ export type CheckoutItem = {
   name: string;
   price: string; // e.g. "$118"
   size: string;
+  color?: string;
   qty: number;
 };
 
@@ -55,7 +56,7 @@ export async function POST(request: NextRequest) {
           unit_amount: unitAmount,
           product_data: {
             name: item.name,
-            description: `Size: ${item.size}`,
+            description: [item.size && `Size: ${item.size}`, item.color && `Color: ${item.color}`].filter(Boolean).join(" · ") || "Pre-order",
           },
         },
         quantity: item.qty,

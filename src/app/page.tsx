@@ -1,5 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
+import Link from "next/link";
+import { PRODUCTS } from "@/lib/products";
 
 // ─── Brand SVG Components ────────────────────────────────────────────────────
 
@@ -77,94 +79,80 @@ type CartItem = {
   name: string;
   price: string;
   size: string;
+  color: string;
   qty: number;
 };
 
-const PRODUCTS = [
-  {
-    id: "noble-legging", gender: "Women's", name: "The Noble Legging", price: "$118",
-    desc: "The legging built for the body that does everything — from morning movement to the rest of your day.",
-    specs: ["Extended thigh room — no restriction, no pulling", "High-rise waistband built for the hips that move", "Persian cotton, silk, and nylon blend", "Persian geometric detail woven into waistband"],
-    sizes: ["XS", "S", "M", "L", "XL", "2XL", "3XL"],
-  },
-  {
-    id: "noble-short", gender: "Men's", name: "The Noble Short", price: "$98",
-    desc: "The short that finally fits the way you move through the world — without restriction, without compromise.",
-    specs: ["Extended thigh circumference — no pulling", "Persian cotton, silk, and nylon blend", "Persian geometric detail on interior waistband", "Deep side pockets — built for movement"],
-    sizes: ["S", "M", "L", "XL", "2XL", "3XL"],
-  },
-  {
-    id: "noble-bra", gender: "Women's", name: "The Noble Sports Bra", price: "$68",
-    desc: "Support that moves with you. Built for every part of your day, not just the workout.",
-    specs: ["Encapsulation + compression hybrid", "Persian cotton, silk, and nylon blend", "Adjustable straps, hook-free", "Persian-inspired seam detail"],
-    sizes: ["XS", "S", "M", "L", "XL", "2XL", "3XL"],
-  },
-  {
-    id: "noble-tee", gender: "Men's", name: "The Noble Tee", price: "$78",
-    desc: "Cut for the way you're actually built. Soft, breathable, and made to go everywhere you do.",
-    specs: ["Extended shoulder and sleeve room", "Persian cotton, silk, and nylon blend", "Minimal seam construction"],
-    sizes: ["S", "M", "L", "XL", "2XL", "3XL"],
-  },
-];
 
 // ─── Product Card ─────────────────────────────────────────────────────────────
 
 type ProductCardProps = {
-  p: typeof PRODUCTS[0];
+  p: (typeof PRODUCTS)[0];
   addedProductId: string | null;
   selectedSizes: Record<string, string>;
+  selectedColors: Record<string, string>;
   setSize: (productId: string, size: string) => void;
-  addToCart: (p: typeof PRODUCTS[0]) => void;
+  setColor: (productId: string, colorName: string) => void;
+  addToCart: (p: (typeof PRODUCTS)[0]) => void;
 };
 
-function ProductCard({ p, addedProductId, selectedSizes, setSize, addToCart }: ProductCardProps) {
+function ProductCard({ p, addedProductId, selectedSizes, selectedColors, setSize, setColor, addToCart }: ProductCardProps) {
   const isAdded = addedProductId === p.id;
   const selectedSize = selectedSizes[p.id];
+  const selectedColor = selectedColors[p.id] ?? p.colors[0]?.name;
   return (
     <div className="p-card">
-      <div className="p-visual">
-        <ProductPlaceholder name={p.name} patternId={`p-place-${p.id}`} />
-        {/* Hover quick-add — desktop only */}
-        <div className="p-card-quickadd" aria-hidden>
-          <div className="p-quickadd-title">Quick Add</div>
-          <div className="p-quickadd-sizes">
-            {p.sizes.map(sz => (
-              <button key={sz} type="button"
-                className={selectedSize === sz ? "selected" : ""}
-                onClick={() => setSize(p.id, sz)}>{sz}</button>
-            ))}
-          </div>
-          <button type="button" className="p-quickadd-add"
-            onClick={() => addToCart(p)}
-            disabled={!selectedSize}>
-            {isAdded ? "Added ✓" : "Add to Cart"}
-          </button>
+      <Link href={`/products/${p.slug}`} className="p-visual-link">
+        <div className="p-visual">
+          <ProductPlaceholder name={p.name} patternId={`p-place-${p.id}`} />
+          <div className="p-tag">Pre-Order</div>
         </div>
-        <div className="p-tag">Pre-Order</div>
-      </div>
+      </Link>
       <div className="p-info">
         <div className="p-cat">{p.gender}</div>
-        <div className="p-name">{p.name}</div>
-        <p className="p-desc">{p.desc}</p>
-        <ul className="p-specs">{p.specs.map((s, j) => <li key={j}>{s}</li>)}</ul>
-        {/* Mobile-friendly size selector — visible on all screens */}
+        <Link href={`/products/${p.slug}`} className="p-name">{p.name}</Link>
+        {p.colors?.length > 0 && (
+          <div className="p-color-row">
+            <span className="p-opt-label">Color</span>
+            <div className="p-color-swatches">
+              {p.colors.map((c) => (
+                <button
+                  key={c.name}
+                  type="button"
+                  className={`p-color-swatch ${selectedColor === c.name ? "selected" : ""}`}
+                  style={{ background: c.hex }}
+                  onClick={(e) => { e.preventDefault(); setColor(p.id, c.name); }}
+                  title={c.name}
+                  aria-label={`Color ${c.name}`}
+                />
+              ))}
+            </div>
+          </div>
+        )}
         <div className="p-size-row">
-          <span className="p-size-label">Size</span>
+          <span className="p-opt-label">Size</span>
           <div className="p-size-btns">
-            {p.sizes.map(sz => (
-              <button key={sz} type="button"
+            {p.sizes.map((sz) => (
+              <button
+                key={sz}
+                type="button"
                 className={`p-size-btn ${selectedSize === sz ? "selected" : ""}`}
-                onClick={() => setSize(p.id, sz)}>{sz}</button>
+                onClick={() => setSize(p.id, sz)}
+              >
+                {sz}
+              </button>
             ))}
           </div>
         </div>
         <div className="p-foot">
           <div className="p-price">{p.price}<small>USD</small></div>
-          <button type="button"
+          <button
+            type="button"
             className={`btn-p ${isAdded ? "btn-p-added" : ""}`}
             onClick={() => addToCart(p)}
-            disabled={!selectedSize}>
-            {!selectedSize ? "Select Size" : isAdded ? "Added ✓" : "Pre-Order"}
+            disabled={!selectedSize}
+          >
+            {!selectedSize ? "Size" : isAdded ? "Added ✓" : "Pre-Order"}
           </button>
         </div>
       </div>
@@ -183,6 +171,7 @@ export default function AryaPage() {
   const [cart, setCart] = useState<CartItem[]>([]);
   const [cartOpen, setCartOpen] = useState(false);
   const [selectedSizes, setSelectedSizes] = useState<Record<string, string>>({});
+  const [selectedColors, setSelectedColors] = useState<Record<string, string>>({});
   const [collectionFilter, setCollectionFilter] = useState<"all" | "women" | "men">("all");
   const [fitTab, setFitTab] = useState<"women" | "men">("women");
   const [addedProductId, setAddedProductId] = useState<string | null>(null);
@@ -208,6 +197,19 @@ export default function AryaPage() {
     document.body.style.overflow = (menuOpen || cartOpen) ? "hidden" : "";
     return () => { document.body.style.overflow = ""; };
   }, [menuOpen, cartOpen]);
+
+  // Section fade-in on scroll
+  useEffect(() => {
+    const sections = document.querySelectorAll(".fade-section");
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => e.isIntersecting && e.target.classList.add("visible"));
+      },
+      { threshold: 0.12, rootMargin: "0px 0px -5% 0px" }
+    );
+    sections.forEach((s) => observer.observe(s));
+    return () => observer.disconnect();
+  }, []);
 
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -237,13 +239,17 @@ export default function AryaPage() {
   const setSize = (productId: string, size: string) =>
     setSelectedSizes(prev => ({ ...prev, [productId]: size }));
 
+  const setColor = (productId: string, colorName: string) =>
+    setSelectedColors(prev => ({ ...prev, [productId]: colorName }));
+
   const addToCart = (p: typeof PRODUCTS[0]) => {
     const size = selectedSizes[p.id];
+    const color = selectedColors[p.id] ?? p.colors?.[0]?.name ?? "";
     if (!size) return;
     setCart(prev => {
-      const existing = prev.find(i => i.productId === p.id && i.size === size);
-      if (existing) return prev.map(i => i.productId === p.id && i.size === size ? { ...i, qty: i.qty + 1 } : i);
-      return [...prev, { id: `${p.id}-${size}-${Date.now()}`, productId: p.id, name: p.name, price: p.price, size, qty: 1 }];
+      const existing = prev.find(i => i.productId === p.id && i.size === size && i.color === color);
+      if (existing) return prev.map(i => i.productId === p.id && i.size === size && i.color === color ? { ...i, qty: i.qty + 1 } : i);
+      return [...prev, { id: `${p.id}-${size}-${color}-${Date.now()}`, productId: p.id, name: p.name, price: p.price, size, color, qty: 1 }];
     });
     setAddedProductId(p.id);
     setTimeout(() => setAddedProductId(null), 1800);
@@ -268,7 +274,7 @@ export default function AryaPage() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          items: cart.map(({ id, name, price, size, qty }) => ({ id, name, price, size, qty })),
+          items: cart.map(({ id, name, price, size, color, qty }) => ({ id, name, price, size, color, qty })),
         }),
       });
       const data = await res.json().catch(() => ({}));
@@ -296,6 +302,13 @@ export default function AryaPage() {
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
         html { scroll-behavior: smooth; }
 
+        .fade-section {
+          opacity: 0; transform: translateY(20px);
+          transition: opacity 0.65s cubic-bezier(.16,1,.3,1), transform 0.65s cubic-bezier(.16,1,.3,1);
+        }
+        .fade-section.visible { opacity: 1; transform: translateY(0); }
+        .hero.fade-section { opacity: 1; transform: none; }
+
         :root {
           --sand:    #F5EFE4;
           --sand-2:  #EEE6D8;
@@ -320,7 +333,12 @@ export default function AryaPage() {
           overflow-x: hidden;
           font-size: 16px;
           line-height: 1.6;
+          cursor: url("data:image/svg+xml,%3Csvg width='32' height='32' viewBox='0 0 100 100' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpolygon points='50,7 93,87 7,87' stroke='%237A5A2F' stroke-width='4.5' fill='none' stroke-linejoin='miter'/%3E%3Cline x1='27' y1='63' x2='73' y2='63' stroke='%237A5A2F' stroke-width='4.5'/%3E%3C/svg%3E") 16 2, auto;
         }
+        a, button, [role="button"], [type="button"], [type="submit"], .nav-cart-btn, .hamburger, .fit-tab, .coll-tab, .p-quickadd-add, .p-quickadd-sizes button, .p-size-btn, .btn-p, .qty-btn, .wl-submit, .cart-drawer-close {
+          cursor: url("data:image/svg+xml,%3Csvg width='32' height='32' viewBox='0 0 100 100' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpolygon points='50,7 93,87 7,87' stroke='%237A5A2F' stroke-width='5' fill='none' stroke-linejoin='miter'/%3E%3Cline x1='27' y1='63' x2='73' y2='63' stroke='%237A5A2F' stroke-width='5'/%3E%3C/svg%3E") 16 2, pointer;
+        }
+        input, textarea { cursor: text; }
 
         a:focus-visible, button:focus-visible, input:focus-visible {
           outline: 2px solid var(--cognac);
@@ -386,7 +404,8 @@ export default function AryaPage() {
 
         .hamburger {
           display: none; flex-direction: column; justify-content: center; gap: 5px;
-          background: none; border: none; cursor: pointer; padding: 8px; width: 36px; height: 36px;
+          background: none; border: none; cursor: pointer; padding: 14px; width: 44px; height: 44px;
+          min-width: 44px; min-height: 44px;
         }
         .hamburger span {
           display: block; height: 1.5px; background: var(--ink);
@@ -481,14 +500,6 @@ export default function AryaPage() {
           display: inline-block; transition: all .3s; font-family: 'Jost', sans-serif; font-weight: 500;
         }
         .btn-outline:hover { border-color: var(--cognac); color: var(--cognac); }
-
-        .hero-scroll {
-          position: absolute; bottom: 48px; left: 64px; z-index: 2;
-          display: flex; align-items: center; gap: 14px;
-          animation: riseIn 1s .7s both;
-        }
-        .scroll-rule { width: 40px; height: 1px; background: linear-gradient(to right, var(--cognac), transparent); }
-        .scroll-txt { font-size: 13px; letter-spacing: .38em; text-transform: uppercase; color: var(--ink-80); }
 
         /* ── TICKER ── */
         .ticker { background: var(--ink); padding: 12px 0; overflow: hidden; white-space: nowrap; }
@@ -605,19 +616,25 @@ export default function AryaPage() {
         .fspec-t { font-size: 11px; letter-spacing: .38em; text-transform: uppercase; color: var(--cognac); margin-bottom: 8px; font-weight: 600; }
         .fspec-b { font-size: 15px; line-height: 1.65; color: var(--ink-80); font-weight: 400; }
 
-        .fit-visual { display: flex; flex-direction: column; gap: 2px; }
+        .fit-visual { display: flex; flex-direction: column; gap: 12px; }
         .fit-main {
           background: var(--sand-3); border: 1px solid var(--sand-4);
           aspect-ratio: 3/4; position: relative; overflow: hidden;
         }
         .fit-main img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-        .fit-minis { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
+        .fit-minis { display: flex; flex-wrap: wrap; gap: 12px; }
         .fit-mini {
+          display: flex; align-items: center; gap: 14px;
+          padding: 14px 20px; border-radius: 999px;
           background: var(--sand-2); border: 1px solid var(--sand-4);
-          padding: 22px; display: flex; align-items: center; gap: 14px;
         }
-        .mini-n { font-family: 'Cormorant Garamond', serif; font-size: 30px; color: var(--cognac); line-height: 1; }
-        .mini-l { font-size: 14px; color: var(--ink-80); font-weight: 400; line-height: 1.4; }
+        .mini-n {
+          width: 44px; height: 44px; min-width: 44px; min-height: 44px;
+          border-radius: 50%; background: var(--ink); color: var(--sand);
+          font-family: 'Cormorant Garamond', serif; font-size: 18px; font-weight: 500;
+          display: inline-flex; align-items: center; justify-content: center; line-height: 1;
+        }
+        .mini-l { font-size: 14px; color: var(--ink-80); font-weight: 400; line-height: 1.35; }
 
         /* ── COLLECTION ── */
         .collection { padding: 160px 64px; background: var(--sand-2); }
@@ -645,45 +662,17 @@ export default function AryaPage() {
 
         .product-grid {
           display: grid; grid-template-columns: repeat(2, 1fr);
-          gap: 16px; max-width: 980px; margin: 0 auto;
+          gap: 12px; max-width: 720px; margin: 0 auto;
         }
 
         .p-card {
           background: var(--sand); overflow: hidden;
-          transition: transform .4s cubic-bezier(.16,1,.3,1), box-shadow .4s;
+          transition: transform .3s, box-shadow .3s;
           border: 1px solid var(--sand-3); position: relative;
         }
-        .p-card:hover { transform: translateY(-3px); box-shadow: 0 10px 32px rgba(30,24,16,.07); }
+        .p-card:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(30,24,16,.06); }
 
-        /* Hover quick-add — desktop only */
-        .p-card-quickadd {
-          position: absolute; inset: 0;
-          background: rgba(245,239,228,.97); z-index: 10;
-          display: flex; flex-direction: column; align-items: center; justify-content: center;
-          padding: 16px; opacity: 0; visibility: hidden; transition: opacity .3s, visibility .3s;
-        }
-        .p-card:hover .p-card-quickadd { opacity: 1; visibility: visible; }
-        .p-quickadd-title {
-          font-family: 'Cormorant Garamond', serif; font-size: 15px; font-weight: 500;
-          color: var(--ink); margin-bottom: 12px;
-        }
-        .p-quickadd-sizes { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; margin-bottom: 12px; }
-        .p-quickadd-sizes button {
-          width: 38px; height: 38px; border: 1px solid var(--sand-4);
-          background: var(--sand); font-family: 'Jost', sans-serif; font-size: 11px;
-          font-weight: 500; color: var(--ink-80); cursor: pointer; transition: all .2s;
-        }
-        .p-quickadd-sizes button:hover,
-        .p-quickadd-sizes button.selected { border-color: var(--cognac); background: var(--ink); color: var(--sand); }
-        .p-quickadd-add {
-          font-size: 10px; letter-spacing: .26em; text-transform: uppercase;
-          background: var(--ink); color: var(--sand); border: none; padding: 10px 24px;
-          cursor: pointer; font-family: 'Jost', sans-serif; font-weight: 500;
-          transition: all .3s; clip-path: polygon(0 0, 100% 0, 100% 68%, 92% 100%, 0 100%);
-        }
-        .p-quickadd-add:hover:not(:disabled) { background: var(--cognac); }
-        .p-quickadd-add:disabled { opacity: .45; cursor: not-allowed; }
-
+        .p-visual-link { display: block; text-decoration: none; }
         .p-visual {
           aspect-ratio: 3/4; background: var(--sand-3);
           position: relative; overflow: hidden;
@@ -698,54 +687,58 @@ export default function AryaPage() {
         }
         .p-placeholder-content {
           position: relative; z-index: 2;
-          display: flex; flex-direction: column; align-items: center; gap: 14px;
+          display: flex; flex-direction: column; align-items: center; gap: 10px;
         }
         .p-placeholder-name {
-          font-family: 'Cormorant Garamond', serif; font-size: 13px;
+          font-family: 'Cormorant Garamond', serif; font-size: 12px;
           font-style: italic; color: var(--ink-60); letter-spacing: .06em;
         }
         .p-tag {
-          position: absolute; top: 12px; left: 0;
+          position: absolute; top: 8px; left: 0;
           background: var(--ink); color: var(--sand);
-          font-size: 9px; letter-spacing: .28em; text-transform: uppercase;
-          font-weight: 500; padding: 5px 12px;
+          font-size: 8px; letter-spacing: .24em; text-transform: uppercase;
+          font-weight: 500; padding: 4px 10px;
         }
 
-        .p-info { padding: 20px 22px 24px; }
-        .p-cat { font-size: 11px; letter-spacing: .38em; text-transform: uppercase; color: var(--cognac); font-weight: 600; margin-bottom: 6px; }
-        .p-name { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 500; color: var(--ink); margin-bottom: 10px; }
-        .p-desc { font-size: 15px; line-height: 1.65; color: var(--ink-80); font-weight: 400; margin-bottom: 14px; }
-        .p-specs { list-style: none; margin-bottom: 18px; }
-        .p-specs li {
-          font-size: 14px; color: var(--ink-80); font-weight: 400;
-          padding: 7px 0; border-bottom: 1px solid var(--sand-3);
-          display: flex; align-items: flex-start; gap: 10px; line-height: 1.5;
+        .p-info { padding: 14px 16px 18px; }
+        .p-cat { font-size: 10px; letter-spacing: .36em; text-transform: uppercase; color: var(--cognac); font-weight: 600; margin-bottom: 4px; }
+        .p-name {
+          font-family: 'Cormorant Garamond', serif; font-size: 17px; font-weight: 500; color: var(--ink);
+          margin-bottom: 10px; text-decoration: none; display: block; transition: color .2s;
         }
-        .p-specs li::before { content: '—'; color: var(--cognac); font-size: 9px; flex-shrink: 0; margin-top: 4px; }
-
-        /* Mobile-friendly size selector */
-        .p-size-row { margin-bottom: 16px; }
-        .p-size-label { font-size: 11px; letter-spacing: .35em; text-transform: uppercase; color: var(--ink-60); font-weight: 500; display: block; margin-bottom: 8px; }
+        .p-name:hover { color: var(--cognac); }
+        .p-opt-label { font-size: 10px; letter-spacing: .32em; text-transform: uppercase; color: var(--ink-60); font-weight: 500; display: block; margin-bottom: 6px; }
+        .p-color-row { margin-bottom: 10px; }
+        .p-color-swatches { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+        .p-color-swatch {
+          width: 24px; height: 24px; border-radius: 50%;
+          border: 2px solid var(--sand-4); padding: 0; cursor: pointer;
+          transition: transform .2s, border-color .2s; flex-shrink: 0;
+        }
+        .p-color-swatch:hover { transform: scale(1.08); border-color: var(--sand-5); }
+        .p-color-swatch.selected { border-color: var(--ink); border-width: 2px; box-shadow: 0 0 0 1px var(--sand); }
+        .p-size-row { margin-bottom: 10px; }
         .p-size-btns { display: flex; flex-wrap: wrap; gap: 6px; }
         .p-size-btn {
-          min-width: 38px; height: 34px; padding: 0 8px;
+          width: 32px; height: 32px; min-width: 32px; min-height: 32px;
+          border-radius: 50%; padding: 0; font-size: 10px; font-weight: 500;
           border: 1px solid var(--sand-4); background: var(--sand-2);
-          font-family: 'Jost', sans-serif; font-size: 11px; font-weight: 500;
-          color: var(--ink-80); cursor: pointer; transition: all .2s;
+          font-family: 'Jost', sans-serif; color: var(--ink-80);
+          cursor: pointer; transition: all .2s; display: inline-flex; align-items: center; justify-content: center;
         }
         .p-size-btn:hover { border-color: var(--sand-5); color: var(--ink); }
         .p-size-btn.selected { border-color: var(--cognac); background: var(--ink); color: var(--sand); }
 
         .p-foot {
           display: flex; justify-content: space-between; align-items: center;
-          padding-top: 14px; border-top: 1px solid var(--sand-3);
+          padding-top: 10px; border-top: 1px solid var(--sand-3);
         }
-        .p-price { font-family: 'Cormorant Garamond', serif; font-size: 22px; color: var(--ink); }
+        .p-price { font-family: 'Cormorant Garamond', serif; font-size: 18px; color: var(--ink); }
         .p-price small { font-size: 10px; color: var(--ink-60); letter-spacing: .1em; margin-left: 3px; }
 
         .btn-p {
-          font-size: 10px; letter-spacing: .24em; text-transform: uppercase;
-          background: var(--ink); color: var(--sand); border: none; padding: 9px 18px;
+          font-size: 9px; letter-spacing: .22em; text-transform: uppercase;
+          background: var(--ink); color: var(--sand); border: none; padding: 8px 14px;
           cursor: pointer; transition: all .3s; font-family: 'Jost', sans-serif; font-weight: 500;
           clip-path: polygon(0 0, 100% 0, 100% 68%, 88% 100%, 0 100%);
         }
@@ -902,52 +895,119 @@ export default function AryaPage() {
         .foot-bottom-mark { display: flex; align-items: center; gap: 10px; }
         .foot-bottom-mark span { font-size: 11px; letter-spacing: .26em; text-transform: uppercase; color: rgba(245,239,228,.45); font-weight: 500; }
 
-        /* ── RESPONSIVE ── */
+        /* ── RESPONSIVE: Tablet ── */
         @media (max-width: 960px) {
           .hamburger { display: flex; }
           .nav-links { display: none; }
-          .nav, .nav.stuck { padding: 16px 24px; }
+          .nav, .nav.stuck { padding: 16px 32px; }
           .nav-btn { display: none; }
 
-          .hero { grid-template-columns: 1fr; }
-          .hero-right { display: none; }
-          .hero-left { padding: 72px 24px 48px; }
-          .hero-scroll { left: 24px; bottom: 36px; }
+          .hero {
+            grid-template-columns: 1fr;
+            grid-template-rows: minmax(50vh, 1fr) auto;
+          }
+          .hero-right { display: flex !important; order: 1; min-height: 50vh; }
+          .hero-right img { object-position: center 30%; }
+          .hero-right-overlay { background: linear-gradient(180deg, transparent 40%, rgba(245,239,228,.6) 100%); }
+          .hero-left { order: 2; padding: 48px 32px 56px; }
+          .hero-sub { font-size: 18px; }
+          .btn-dark, .btn-outline { padding: 16px 28px; min-height: 48px; display: inline-flex; align-items: center; }
 
-          .ethos, .problem, .founder { grid-template-columns: 1fr; gap: 56px; padding: 80px 24px; }
-          .fit { padding: 80px 24px; }
+          .ethos, .problem, .founder { grid-template-columns: 1fr; gap: 48px; padding: 72px 32px; }
+          .ethos-card { aspect-ratio: 16/10; }
+          .ethos-card-img { opacity: .65; }
+          .founder { gap: 48px; }
+          .founder > div:first-child { order: 2; }
+          .founder > div:last-child { order: 1; }
+          .founder .f-photo { aspect-ratio: 4/5; }
+          .f-photo-mark { opacity: .25; }
+
+          .fit { padding: 72px 32px; }
           .fit-grid { grid-template-columns: 1fr; gap: 48px; }
+          .fit-grid > div:first-child { order: 2; }
+          .fit-grid > div:last-child { order: 1; }
+          .fit-main { aspect-ratio: 4/5; }
           .fit-specs { grid-template-columns: 1fr; }
+          .fit-tabs { margin-bottom: 24px; }
+          .fit-tab { padding: 14px 24px; min-height: 44px; }
           .fit-minis { grid-template-columns: 1fr; }
 
-          .collection { padding: 80px 24px; }
+          .collection { padding: 72px 32px; }
           .coll-header { grid-template-columns: 1fr; gap: 20px; }
-          .product-grid { grid-template-columns: 1fr; max-width: none; }
-          /* Hide hover quick-add on mobile since we have the inline size selector */
-          .p-card-quickadd { display: none; }
+          .coll-section { overflow: hidden; }
+          .product-grid {
+            display: flex; flex-direction: row; gap: 16px;
+            overflow-x: auto; overflow-y: hidden;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none; padding-bottom: 8px;
+            margin: 0 -32px; padding-left: 32px; padding-right: 32px;
+            mask-image: linear-gradient(to right, transparent 0, black 24px, black calc(100% - 24px), transparent 100%);
+            -webkit-mask-image: linear-gradient(to right, transparent 0, black 24px, black calc(100% - 24px), transparent 100%);
+          }
+          .product-grid::-webkit-scrollbar { display: none; }
+          .product-grid .p-card {
+            flex: 0 0 calc(50% - 8px); min-width: 260px;
+            scroll-snap-align: start;
+          }
+          .coll-tab { padding: 14px 20px; min-height: 44px; }
 
-          .craft { padding: 80px 24px; }
+          .craft { padding: 72px 32px; }
           .craft-pillars { grid-template-columns: 1fr; }
 
-          .waitlist { padding: 80px 24px; }
+          .waitlist { padding: 72px 32px; }
           .wl-form { flex-direction: column; }
           .wl-input { border-right: 1px solid var(--sand-4); border-bottom: none; }
-          .wl-submit { clip-path: none; }
+          .wl-submit { clip-path: none; min-height: 52px; }
+          .wl-submit, .wl-input { min-height: 52px; }
 
-          footer { padding: 56px 24px 32px; }
+          footer { padding: 48px 32px 28px; }
           .foot-grid { grid-template-columns: 1fr 1fr; gap: 36px; }
           .foot-bottom { flex-direction: column; gap: 14px; text-align: center; }
+
+          .nav-cart-btn { padding: 12px 20px; min-height: 44px; }
+          .qty-btn { width: 36px; height: 36px; min-width: 36px; min-height: 36px; }
+          .p-quickadd-add, .btn-p { min-height: 44px; padding: 12px 20px; }
+          .p-size-btn { width: 36px; height: 36px; min-width: 36px; min-height: 36px; }
+        }
+
+        /* ── RESPONSIVE: Mobile (phones) ── */
+        @media (max-width: 480px) {
+          .nav, .nav.stuck { padding: 14px 20px; }
+          .hero-right { min-height: 45vh; }
+          .hero-left { padding: 36px 20px 44px; }
+          .hero-h1 { font-size: clamp(36px, 10vw, 48px) !important; }
+          .hero-ctas { flex-direction: column; width: 100%; }
+          .hero-ctas a { width: 100%; justify-content: center; }
+
+          .ethos, .problem, .founder { padding: 56px 20px; gap: 40px; }
+          .ethos-card { aspect-ratio: 4/3; }
+          .ethos-card-img { opacity: .7; }
+          .display { font-size: clamp(28px, 7vw, 42px) !important; }
+
+          .fit { padding: 56px 20px; }
+          .fit-main { aspect-ratio: 3/4; }
+
+          .collection { padding: 56px 20px; }
+          .product-grid { margin: 0 -20px; padding-left: 20px; padding-right: 20px; }
+          .product-grid .p-card { min-width: 240px; flex: 0 0 calc(50% - 8px); }
+          .craft { padding: 56px 20px; }
+          .waitlist { padding: 56px 20px; }
+          .waitlist .display { font-size: clamp(32px, 8vw, 48px) !important; }
+
+          footer { padding: 40px 20px 24px; }
+          .foot-grid { grid-template-columns: 1fr; gap: 28px; }
         }
       `}</style>
 
       {/* ── MOBILE MENU ── */}
       <div className={`mobile-menu ${menuOpen ? "open" : ""}`} aria-hidden={!menuOpen}>
-        <a href="#ethos" onClick={() => setMenuOpen(false)}>Story</a>
-        <a href="#mission" onClick={() => setMenuOpen(false)}>Mission</a>
-        <a href="#fit" onClick={() => setMenuOpen(false)}>Fit</a>
-        <a href="#collection" onClick={() => setMenuOpen(false)}>Collection</a>
+        <Link href="/story" onClick={() => setMenuOpen(false)}>Story</Link>
+        <Link href="/mission" onClick={() => setMenuOpen(false)}>Mission</Link>
+        <Link href="/fit" onClick={() => setMenuOpen(false)}>Fit</Link>
+        <Link href="/collection" onClick={() => setMenuOpen(false)}>Collection</Link>
         <div className="mobile-menu-divider" />
-        <a href="#waitlist" onClick={() => setMenuOpen(false)}>Join Waitlist</a>
+        <Link href="/#waitlist" onClick={() => setMenuOpen(false)}>Join Waitlist</Link>
       </div>
 
       {/* ── CART DRAWER ── */}
@@ -972,7 +1032,7 @@ export default function AryaPage() {
                   </div>
                   <div className="cart-item-details">
                     <div className="cart-item-name">{item.name}</div>
-                    <div className="cart-item-meta">Size {item.size}</div>
+                    <div className="cart-item-meta">Size {item.size}{item.color ? ` · ${item.color}` : ""}</div>
                     <div className="cart-item-qty">
                       <button type="button" className="qty-btn" onClick={() => updateQty(item.id, -1)}>−</button>
                       <span className="qty-num">{item.qty}</span>
@@ -1009,18 +1069,18 @@ export default function AryaPage() {
           <AryaLogo size={32} markColor="#8B6A3E" textColor="#1E1810" />
         </a>
         <ul className="nav-links">
-          <li><a href="#ethos">Story</a></li>
-          <li><a href="#mission">Mission</a></li>
-          <li><a href="#fit">Fit</a></li>
-          <li><a href="#collection" onClick={() => setCollectionFilter("women")}>Women&apos;s</a></li>
-          <li><a href="#collection" onClick={() => setCollectionFilter("men")}>Men&apos;s</a></li>
+          <li><Link href="/story">Story</Link></li>
+          <li><Link href="/mission">Mission</Link></li>
+          <li><Link href="/fit">Fit</Link></li>
+          <li><Link href="/collection">Collection</Link></li>
+          <li><a href="#waitlist">Join Waitlist</a></li>
         </ul>
         <div className="nav-actions">
           <button type="button" className="nav-cart-btn" onClick={() => setCartOpen(true)} aria-label="Open cart">
             Bag
             {cartCount > 0 && <span className="nav-cart-count">{cartCount}</span>}
           </button>
-          <a href="#waitlist" className="nav-btn">Join Waitlist</a>
+          <a href="/#waitlist" className="nav-btn">Join Waitlist</a>
           <button
             type="button"
             className={`hamburger ${menuOpen ? "open" : ""}`}
@@ -1033,7 +1093,7 @@ export default function AryaPage() {
       </nav>
 
       {/* ── HERO ── */}
-      <section className="hero">
+      <section className="hero fade-section">
         <div className="hero-left">
           <div className="hero-content">
             <div className="eyebrow">
@@ -1048,15 +1108,11 @@ export default function AryaPage() {
             </p>
             <div className="hero-ctas">
               <a href="#waitlist" className="btn-dark">Join Waitlist</a>
-              <a href="#collection" className="btn-outline">Preview Collection</a>
+              <Link href="/collection" className="btn-outline">Preview Collection</Link>
             </div>
             <p className="hero-cta-note">
               Every purchase helps build schools and community spaces in Iran.
             </p>
-          </div>
-          <div className="hero-scroll">
-            <div className="scroll-rule" />
-            <span className="scroll-txt">Scroll to explore</span>
           </div>
         </div>
         <div className="hero-right">
@@ -1067,7 +1123,7 @@ export default function AryaPage() {
       </section>
 
       {/* ── TICKER ── */}
-      <div className="ticker">
+      <div className="ticker fade-section">
         <div className="ticker-track">
           {[...Array(2)].map((_, i) => (
             <span key={i} style={{ display: "inline-flex" }}>
@@ -1080,7 +1136,7 @@ export default function AryaPage() {
       </div>
 
       {/* ── ETHOS (Our Story) — builds brand before products ── */}
-      <section className="ethos" id="ethos">
+      <section className="ethos fade-section" id="ethos">
         <div>
           <div className="ethos-card">
             <img src="/arya-story.jpg" alt="Arya brand story — texture and craft" className="ethos-card-img" loading="lazy" />
@@ -1116,7 +1172,7 @@ export default function AryaPage() {
       </section>
 
       {/* ── PROBLEM — validates the need ── */}
-      <section className="problem" id="problem">
+      <section className="problem fade-section" id="problem">
         <div>
           <div className="label">The Gap We&apos;re Filling</div>
           <h2 className="display" style={{ marginBottom: 30 }}>Premium athleisure was never built for the body that <em>moves.</em></h2>
@@ -1143,7 +1199,7 @@ export default function AryaPage() {
       </section>
 
       {/* ── FIT — earns trust before asking for purchase ── */}
-      <section className="fit" id="fit">
+      <section className="fit fade-section" id="fit">
         <div className="label">Fit Philosophy</div>
         <div className="fit-grid">
           <div>
@@ -1173,14 +1229,14 @@ export default function AryaPage() {
             </div>
             <div className="fit-minis">
               <div className="fit-mini"><div className="mini-n">4×</div><div className="mini-l">Stretch in all directions</div></div>
-              <div className="fit-mini"><div className="mini-n">XS–3XL</div><div className="mini-l">Inclusive sizing, XS–3XL</div></div>
+              <div className="fit-mini"><div className="mini-n">XS–2XL</div><div className="mini-l">Inclusive sizing, XS–2XL</div></div>
             </div>
           </div>
         </div>
       </section>
 
       {/* ── COLLECTION — shop after trust is built ── */}
-      <section className="collection" id="collection">
+      <section className="collection fade-section" id="collection">
         <div className="coll-header">
           <div>
             <div className="label">Launch Collection</div>
@@ -1197,20 +1253,20 @@ export default function AryaPage() {
         <div className={`coll-section ${collectionFilter === "men" ? "hide-by-filter" : ""}`} id="women">
           <h3 className="coll-section-title">Women&apos;s</h3>
           <div className="product-grid">
-            {womenProducts.map(p => <ProductCard key={p.id} p={p} addedProductId={addedProductId} selectedSizes={selectedSizes} setSize={setSize} addToCart={addToCart} />)}
+            {womenProducts.map(p => <ProductCard key={p.id} p={p} addedProductId={addedProductId} selectedSizes={selectedSizes} selectedColors={selectedColors} setSize={setSize} setColor={setColor} addToCart={addToCart} />)}
           </div>
         </div>
 
         <div className={`coll-section ${collectionFilter === "women" ? "hide-by-filter" : ""}`} id="men">
           <h3 className="coll-section-title">Men&apos;s</h3>
           <div className="product-grid">
-            {menProducts.map(p => <ProductCard key={p.id} p={p} addedProductId={addedProductId} selectedSizes={selectedSizes} setSize={setSize} addToCart={addToCart} />)}
+            {menProducts.map(p => <ProductCard key={p.id} p={p} addedProductId={addedProductId} selectedSizes={selectedSizes} selectedColors={selectedColors} setSize={setSize} setColor={setColor} addToCart={addToCart} />)}
           </div>
         </div>
       </section>
 
       {/* ── CRAFT / MISSION ── */}
-      <section className="craft" id="mission">
+      <section className="craft fade-section" id="mission">
         <WeavePattern id="craft-p" opacity={0.04} color="#C9A96E" />
         <div className="craft-inner">
           <div className="label">Mission</div>
@@ -1234,7 +1290,7 @@ export default function AryaPage() {
       </section>
 
       {/* ── FOUNDER — flipped layout for visual variety ── */}
-      <section className="founder" id="founder">
+      <section className="founder fade-section" id="founder">
         <div>
           <div className="label">The Founder</div>
           <h2 className="display" style={{ marginBottom: 28 }}>I built what I couldn&apos;t <em>find.</em></h2>
@@ -1259,7 +1315,7 @@ export default function AryaPage() {
       </section>
 
       {/* ── WAITLIST ── */}
-      <section className="waitlist" id="waitlist">
+      <section className="waitlist fade-section" id="waitlist">
         <WeavePattern id="wl-p" opacity={0.05} color="#8B6A3E" />
         <div className="wl-inner">
           <div className="label" style={{ justifyContent: "center" }}>Early Access</div>
@@ -1288,7 +1344,7 @@ export default function AryaPage() {
       </section>
 
       {/* ── FOOTER ── */}
-      <footer>
+      <footer className="fade-section">
         <div className="foot-grid">
           <div>
             <AryaLogo size={30} markColor="#8B6A3E" textColor="#F5EFE4" />
@@ -1302,16 +1358,15 @@ export default function AryaPage() {
           <div className="foot-col">
             <h5>Collection</h5>
             <ul>
-              <li><a href="#collection" onClick={() => setCollectionFilter("women")}>Women&apos;s</a></li>
-              <li><a href="#collection" onClick={() => setCollectionFilter("men")}>Men&apos;s</a></li>
+              <li><Link href="/collection">Collection</Link></li>
             </ul>
           </div>
           <div className="foot-col">
             <h5>Brand</h5>
             <ul>
-              <li><a href="#ethos">Our Story</a></li>
-              <li><a href="#mission">Mission</a></li>
-              <li><a href="#founder">Founder</a></li>
+              <li><Link href="/story">Our Story</Link></li>
+              <li><Link href="/mission">Mission</Link></li>
+              <li><Link href="/founder">Founder</Link></li>
             </ul>
           </div>
           <div className="foot-col">

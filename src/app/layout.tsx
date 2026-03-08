@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
@@ -12,11 +12,33 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+};
+
+// Canonical URL for OG/Twitter previews when shared. Set NEXT_PUBLIC_SITE_URL in production (e.g. https://www.arya.clothing).
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ||
+  (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : null) ||
+  "http://localhost:3000";
+
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: "Arya — Noble by nature",
   description: "Premium athleisure where Persian craft tradition meets the California coast. Built for every body. Made to last.",
-  icons: {
-    icon: "/icon.png",
+  openGraph: {
+    title: "Arya — Noble by nature",
+    description: "Premium athleisure where Persian craft tradition meets the California coast. Built for every body. Made to last.",
+    type: "website",
+    images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "Arya — Noble by nature" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Arya — Noble by nature",
+    description: "Premium athleisure where Persian craft tradition meets the California coast. Built for every body. Made to last.",
+    images: ["/opengraph-image"],
   },
 };
 

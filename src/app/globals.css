@@ -3,6 +3,15 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --arya-sand: #F5EFE4;
+  --arya-sand-2: #EEE6D8;
+  --arya-sand-3: #E6DCC9;
+  --arya-sand-4: #D4C9B4;
+  --arya-sand-5: #B8A98F;
+  --arya-cognac: #7A5A2F;
+  --arya-ink: #1E1810;
+  --arya-ink-80: rgba(30,24,16,.82);
+  --arya-ink-60: rgba(30,24,16,.62);
 }
 
 @theme inline {
@@ -24,3 +33,6 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+@import "./section-pages.css";
+@import "./product-page.css";
