@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 
 // ─── Brand SVG Components ────────────────────────────────────────────────────
 
@@ -107,6 +107,71 @@ const PRODUCTS = [
   },
 ];
 
+// ─── Product Card ─────────────────────────────────────────────────────────────
+
+type ProductCardProps = {
+  p: typeof PRODUCTS[0];
+  addedProductId: string | null;
+  selectedSizes: Record<string, string>;
+  setSize: (productId: string, size: string) => void;
+  addToCart: (p: typeof PRODUCTS[0]) => void;
+};
+
+function ProductCard({ p, addedProductId, selectedSizes, setSize, addToCart }: ProductCardProps) {
+  const isAdded = addedProductId === p.id;
+  const selectedSize = selectedSizes[p.id];
+  return (
+    <div className="p-card">
+      <div className="p-visual">
+        <ProductPlaceholder name={p.name} patternId={`p-place-${p.id}`} />
+        {/* Hover quick-add — desktop only */}
+        <div className="p-card-quickadd" aria-hidden>
+          <div className="p-quickadd-title">Quick Add</div>
+          <div className="p-quickadd-sizes">
+            {p.sizes.map(sz => (
+              <button key={sz} type="button"
+                className={selectedSize === sz ? "selected" : ""}
+                onClick={() => setSize(p.id, sz)}>{sz}</button>
+            ))}
+          </div>
+          <button type="button" className="p-quickadd-add"
+            onClick={() => addToCart(p)}
+            disabled={!selectedSize}>
+            {isAdded ? "Added ✓" : "Add to Cart"}
+          </button>
+        </div>
+        <div className="p-tag">Pre-Order</div>
+      </div>
+      <div className="p-info">
+        <div className="p-cat">{p.gender}</div>
+        <div className="p-name">{p.name}</div>
+        <p className="p-desc">{p.desc}</p>
+        <ul className="p-specs">{p.specs.map((s, j) => <li key={j}>{s}</li>)}</ul>
+        {/* Mobile-friendly size selector — visible on all screens */}
+        <div className="p-size-row">
+          <span className="p-size-label">Size</span>
+          <div className="p-size-btns">
+            {p.sizes.map(sz => (
+              <button key={sz} type="button"
+                className={`p-size-btn ${selectedSize === sz ? "selected" : ""}`}
+                onClick={() => setSize(p.id, sz)}>{sz}</button>
+            ))}
+          </div>
+        </div>
+        <div className="p-foot">
+          <div className="p-price">{p.price}<small>USD</small></div>
+          <button type="button"
+            className={`btn-p ${isAdded ? "btn-p-added" : ""}`}
+            onClick={() => addToCart(p)}
+            disabled={!selectedSize}>
+            {!selectedSize ? "Select Size" : isAdded ? "Added ✓" : "Pre-Order"}
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 // ─── Main Page ────────────────────────────────────────────────────────────────
 
 export default function AryaPage() {
@@ -123,6 +188,7 @@ export default function AryaPage() {
   const [addedProductId, setAddedProductId] = useState<string | null>(null);
   const [checkoutLoading, setCheckoutLoading] = useState(false);
   const [checkoutError, setCheckoutError] = useState<string | null>(null);
+  const [waitlistError, setWaitlistError] = useState<string | null>(null);
 
   const womenProducts = PRODUCTS.filter(p => p.gender === "Women's");
   const menProducts = PRODUCTS.filter(p => p.gender === "Men's");
@@ -146,11 +212,26 @@ export default function AryaPage() {
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email) return;
+    setWaitlistError(null);
     setSubmitting(true);
-    await new Promise(r => setTimeout(r, 900)); // simulate async
-    setSubmitted(true);
+    try {
+      const res = await fetch("/api/waitlist", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: email.trim() }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) {
+        setWaitlistError(data.error || "Something went wrong. Please try again.");
+        setSubmitting(false);
+        return;
+      }
+      setSubmitted(true);
+      setEmail("");
+    } catch {
+      setWaitlistError("Something went wrong. Please try again.");
+    }
     setSubmitting(false);
-    setEmail("");
   };
 
   const setSize = (productId: string, size: string) =>
@@ -205,61 +286,6 @@ export default function AryaPage() {
       setCheckoutError("Something went wrong");
     }
     setCheckoutLoading(false);
-  };
-
-  const ProductCard = ({ p }: { p: typeof PRODUCTS[0] }) => {
-    const isAdded = addedProductId === p.id;
-    const selectedSize = selectedSizes[p.id];
-    return (
-      <div className="p-card">
-        <div className="p-visual">
-          <ProductPlaceholder name={p.name} patternId={`p-place-${p.id}`} />
-          {/* Hover quick-add — desktop only */}
-          <div className="p-card-quickadd" aria-hidden>
-            <div className="p-quickadd-title">Quick Add</div>
-            <div className="p-quickadd-sizes">
-              {p.sizes.map(sz => (
-                <button key={sz} type="button"
-                  className={selectedSize === sz ? "selected" : ""}
-                  onClick={() => setSize(p.id, sz)}>{sz}</button>
-              ))}
-            </div>
-            <button type="button" className="p-quickadd-add"
-              onClick={() => addToCart(p)}
-              disabled={!selectedSize}>
-              {isAdded ? "Added ✓" : "Add to Cart"}
-            </button>
-          </div>
-          <div className="p-tag">Pre-Order</div>
-        </div>
-        <div className="p-info">
-          <div className="p-cat">{p.gender}</div>
-          <div className="p-name">{p.name}</div>
-          <p className="p-desc">{p.desc}</p>
-          <ul className="p-specs">{p.specs.map((s, j) => <li key={j}>{s}</li>)}</ul>
-          {/* Mobile-friendly size selector — visible on all screens */}
-          <div className="p-size-row">
-            <span className="p-size-label">Size</span>
-            <div className="p-size-btns">
-              {p.sizes.map(sz => (
-                <button key={sz} type="button"
-                  className={`p-size-btn ${selectedSize === sz ? "selected" : ""}`}
-                  onClick={() => setSize(p.id, sz)}>{sz}</button>
-              ))}
-            </div>
-          </div>
-          <div className="p-foot">
-            <div className="p-price">{p.price}<small>USD</small></div>
-            <button type="button"
-              className={`btn-p ${isAdded ? "btn-p-added" : ""}`}
-              onClick={() => addToCart(p)}
-              disabled={!selectedSize}>
-              {!selectedSize ? "Select Size" : isAdded ? "Added ✓" : "Pre-Order"}
-            </button>
-          </div>
-        </div>
-      </div>
-    );
   };
 
   return (
@@ -758,6 +784,7 @@ export default function AryaPage() {
           aspect-ratio: 3/4; position: relative; overflow: hidden;
           display: flex; align-items: center; justify-content: center;
         }
+        .f-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; }
         .f-photo-mark { position: relative; z-index: 2; opacity: .3; }
         .f-corner { position: absolute; bottom: 0; right: 0; width: 35%; height: 3px; background: var(--cognac); }
         .f-sig { margin-top: 48px; padding-top: 28px; border-top: 1px solid var(--sand-4); display: flex; align-items: center; gap: 18px; }
@@ -786,6 +813,7 @@ export default function AryaPage() {
         }
         .wl-submit:hover:not(:disabled) { background: var(--cognac); }
         .wl-submit:disabled { background: var(--sand-5); cursor: not-allowed; }
+        .wl-error { font-size: 14px; color: var(--cognac); margin-bottom: 12px; }
         .wl-note { font-size: 13px; letter-spacing: .08em; color: var(--ink-60); }
         .wl-success {
           padding: 28px 44px; border: 1px solid var(--sand-5); background: var(--sand); display: inline-block;
@@ -1023,7 +1051,7 @@ export default function AryaPage() {
               <a href="#collection" className="btn-outline" style={{ fontSize: "18px" }}>Preview Collection</a>
             </div>
             <p className="hero-cta-note">
-              Every purchase helps build schools in Iran.
+              Every purchase helps build schools and community spaces in Iran.
             </p>
           </div>
           <div className="hero-scroll">
@@ -1055,7 +1083,7 @@ export default function AryaPage() {
       <section className="ethos" id="ethos">
         <div>
           <div className="ethos-card">
-            <img src="/arya-story.jpg" alt="Arya brand story — texture and craft" className="ethos-card-img" />
+            <img src="/arya-story.jpg" alt="Arya brand story — texture and craft" className="ethos-card-img" loading="lazy" />
             <WeavePattern id="ethos-p" opacity={0.12} color="#8B6A3E" />
             <div className="ethos-card-content">
               <AryaMark size={96} color="#8B6A3E" />
@@ -1137,9 +1165,9 @@ export default function AryaPage() {
           </div>
           <div className="fit-visual">
             <div className="fit-main">
-              <img src="/arya-fit.jpg" alt="Fit and movement" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }} />
+              <img src="/arya-fit.jpg" alt="Fit and movement" loading="lazy" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }} />
               <WeavePattern id="fit-p" opacity={0.06} color="#8B6A3E" />
-              <div style={{ position: "relative", zIndex: 2, display: "flex", alignItems: "center", justifyContent: "center", height: "100%" }}>
+              <div style={{ position: "absolute", inset: 0, zIndex: 2, display: "flex", alignItems: "center", justifyContent: "center" }}>
                 <AryaMark size={80} color="#8B6A3E" />
               </div>
             </div>
@@ -1169,14 +1197,14 @@ export default function AryaPage() {
         <div className={`coll-section ${collectionFilter === "men" ? "hide-by-filter" : ""}`} id="women">
           <h3 className="coll-section-title">Women&apos;s</h3>
           <div className="product-grid">
-            {womenProducts.map(p => <ProductCard key={p.id} p={p} />)}
+            {womenProducts.map(p => <ProductCard key={p.id} p={p} addedProductId={addedProductId} selectedSizes={selectedSizes} setSize={setSize} addToCart={addToCart} />)}
           </div>
         </div>
 
         <div className={`coll-section ${collectionFilter === "women" ? "hide-by-filter" : ""}`} id="men">
           <h3 className="coll-section-title">Men&apos;s</h3>
           <div className="product-grid">
-            {menProducts.map(p => <ProductCard key={p.id} p={p} />)}
+            {menProducts.map(p => <ProductCard key={p.id} p={p} addedProductId={addedProductId} selectedSizes={selectedSizes} setSize={setSize} addToCart={addToCart} />)}
           </div>
         </div>
       </section>
@@ -1217,12 +1245,13 @@ export default function AryaPage() {
           <div className="f-sig">
             <AryaMark size={36} color="#8B6A3E" />
             <div>
-              <div className="f-name">The Founder</div>
-              <div className="f-role">Founder & Creative Director, Arya</div>
+              <div className="f-name">Nima G.</div>
+              <div className="f-role">Founder & Creative Director</div>
             </div>
           </div>
         </div>
         <div className="f-photo">
+          <img src="/arya-founder.png" alt="Nima G., Founder & Creative Director of Arya" loading="lazy" />
           <WeavePattern id="f-p" opacity={0.06} color="#8B6A3E" />
           <div className="f-photo-mark"><AryaMark size={72} color="#8B6A3E" /></div>
           <div className="f-corner" />
@@ -1239,17 +1268,20 @@ export default function AryaPage() {
           {submitted ? (
             <div className="wl-success"><p>You&apos;re on the list. We&apos;ll be in touch.</p></div>
           ) : (
-            <form className="wl-form" onSubmit={onSubmit}>
-              <input
-                type="email" className="wl-input"
-                placeholder="Your email address"
-                value={email} onChange={e => setEmail(e.target.value)}
-                required
-              />
-              <button type="submit" className="wl-submit" disabled={submitting}>
-                {submitting ? "Joining…" : "Join Waitlist"}
-              </button>
-            </form>
+            <>
+              {waitlistError && <p className="wl-error">{waitlistError}</p>}
+              <form className="wl-form" onSubmit={onSubmit}>
+                <input
+                  type="email" className="wl-input"
+                  placeholder="Your email address"
+                  value={email} onChange={e => setEmail(e.target.value)}
+                  required
+                />
+                <button type="submit" className="wl-submit" disabled={submitting}>
+                  {submitting ? "Joining…" : "Join Waitlist"}
+                </button>
+              </form>
+            </>
           )}
           <p className="wl-note">No spam. No noise. Just Arya.</p>
         </div>
