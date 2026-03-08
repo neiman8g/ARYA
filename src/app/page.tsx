@@ -461,7 +461,7 @@ export default function AryaPage() {
 
         .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; }
         .hero-cta-note {
-          font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 24px;
+          font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 17px;
           color: var(--ink-80); font-weight: 400; margin-top: 16px;
         }
 
@@ -1036,19 +1036,19 @@ export default function AryaPage() {
       <section className="hero">
         <div className="hero-left">
           <div className="hero-content">
-            <div className="eyebrow" style={{ fontSize: "20px" }}>
+            <div className="eyebrow">
               <span className="eyebrow-rule" />
               Persian Craft · California Soul
             </div>
-            <h1 className="hero-h1" style={{ fontSize: "clamp(60px, 8vw, 112px)" }}>
+            <h1 className="hero-h1" style={{ fontSize: "clamp(48px, 6.5vw, 88px)" }}>
               Noble by<br /><em>nature.</em>
             </h1>
-            <p className="hero-sub" style={{ fontSize: "24px" }}>
+            <p className="hero-sub">
               Premium athleisure where Persian craft tradition meets the California coast. Built for every body. Made to last.
             </p>
-            <div className="hero-ctas" style={{ fontSize: "24px" }}>
-              <a href="#waitlist" className="btn-dark" style={{ fontSize: "18px" }}>Join Waitlist</a>
-              <a href="#collection" className="btn-outline" style={{ fontSize: "18px" }}>Preview Collection</a>
+            <div className="hero-ctas">
+              <a href="#waitlist" className="btn-dark">Join Waitlist</a>
+              <a href="#collection" className="btn-outline">Preview Collection</a>
             </div>
             <p className="hero-cta-note">
               Every purchase helps build schools and community spaces in Iran.
