@@ -28,7 +28,7 @@ export async function POST(request: NextRequest) {
     );
   }
 
-  const notifyTo = process.env.WAITLIST_NOTIFY_EMAIL || "hello@weararya.com";
+  const notifyTo = process.env.WAITLIST_NOTIFY_EMAIL || "hello@arya.clothing";
   const from = process.env.RESEND_FROM || "Arya Waitlist <onboarding@resend.dev>";
 
   try {

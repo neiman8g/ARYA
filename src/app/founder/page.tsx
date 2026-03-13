@@ -1,8 +1,8 @@
 import Link from "next/link";
 
 export const metadata = {
-  title: "The Founder — Arya",
-  description: "I built what I couldn't find. Nima G., Founder & Creative Director of Arya.",
+  title: "The Founders — Arya",
+  description: "We built what didn't exist. Nima & Lucy, Founders of Arya.",
 };
 
 export default function FounderPage() {
@@ -24,24 +24,28 @@ export default function FounderPage() {
       <main className="sp-main">
         <div className="fit-layout">
           <div className="fit-content">
-            <span className="sp-label">The Founder</span>
-            <h1>I built what I couldn&apos;t <em>find.</em></h1>
-            <p>I&apos;m Persian-American, born and raised in Los Angeles. I&apos;ve always been drawn to movement. The ocean. The mountains. The trail. Anywhere the body is meant to work.</p>
-            <p>The people around me lived actively — but the clothing available to us rarely did. Most brands were built for one kind of space, not for the full life lived around it.</p>
-            <p>I grew up visiting Iran as a child. The colors of Isfahan&apos;s architecture. The warmth of the people. The care in everything they made. In that culture, quality was a form of respect for both the maker and the wearer.</p>
-            <p>Arya was born where those two worlds meet. The movement and energy of California, and the deep tradition of Persian craft.</p>
+            <span className="sp-label">The Founders</span>
+            <h1>We built what didn&apos;t <em>exist.</em></h1>
+            <p>Arya was born between two people, two worlds, and one shared belief: that clothing should make you feel like yourself.</p>
+            <p>Nima grew up bigger than the clothes that were supposed to fit him. A state wrestler and football player, he lived in his body in a way most brands never accounted for. Joggers that fit his waist turned into skinny jeans at the thigh. Shirts that fit his shoulders billowed everywhere else. He&apos;d go for a run and come back with chafing. The fabrics weren&apos;t right either. Synthetic polymers that didn&apos;t breathe, didn&apos;t last, and didn&apos;t respect the body wearing them.</p>
+            <p>But it was more than fit. Sport gave him his confidence. At his lowest points, athletics gave him his mental strength and his sense of self. He knows what it means when your body and your clothes finally work together. That feeling is what Arya is built to give everyone.</p>
+            <p>Lucy came to Southern California from Florida in 2022 and found a life built around movement, wellness, and intention. Her first Persian New Year with Nima&apos;s family changed something in her. She was taught about the Haft Seen, each element on the table carrying a meaning, a wish, an intention. A culture that treated everything it touched as worth doing beautifully.</p>
+            <p>Studying to become a family therapist, Lucy&apos;s life work is helping people overcome anxiety and rebuild their self worth. She knows the specific discomfort of women&apos;s activewear that rides up, pulls, and makes you self-conscious mid-movement when you should feel free. That problem is personal to her. Fixing it is personal to Arya.</p>
+            <p>They share a belief that people are too complex for brands that speak to only one sport, one body, one image. Clothing doesn&apos;t have to choose between performance and beauty. Between function and intention.</p>
+            <p>And they believe building something real means giving something back. A portion of every Arya purchase goes toward building schools and community spaces in Iran because the culture that shaped this brand deserves to see what its next generation can become.</p>
+            <p>Together they built Arya. A meeting point between two worlds. The California coast that inspires the lifestyle, and the ancient Persian heritage that shaped the craft.</p>
             <div className="founder-sig">
               <AryaMark size={36} color="#8B6A3E" />
               <div>
-                <div className="f-name">Nima G.</div>
-                <div className="f-role">Founder & Creative Director</div>
+                <div className="f-name">Nima & Lucy</div>
+                <div className="f-role">Founders of Arya</div>
               </div>
             </div>
             <Link href="/collection" className="sp-btn">View Collection</Link>
           </div>
           <div className="fit-visual">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/arya-founder.png" alt="Nima G., Founder & Creative Director of Arya" />
+            <img src="/arya-founder.png" alt="Nima and Lucy, Founders of Arya" />
           </div>
         </div>
       </main>

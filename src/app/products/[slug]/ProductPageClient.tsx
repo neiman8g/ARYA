@@ -93,7 +93,6 @@ export default function ProductPageClient({ product }: { product: Product }) {
         >
           {!selectedSize ? "Select Size" : added ? "Added ✓" : "Pre-Order"}
         </button>
-        <p className="pp-note">Every purchase helps build schools and community spaces in Iran.</p>
       </div>
     </div>
   );

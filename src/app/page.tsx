@@ -1110,9 +1110,6 @@ export default function AryaPage() {
               <a href="#waitlist" className="btn-dark">Join Waitlist</a>
               <Link href="/collection" className="btn-outline">Preview Collection</Link>
             </div>
-            <p className="hero-cta-note">
-              Every purchase helps build schools and community spaces in Iran.
-            </p>
           </div>
         </div>
         <div className="hero-right">
@@ -1229,7 +1226,7 @@ export default function AryaPage() {
             </div>
             <div className="fit-minis">
               <div className="fit-mini"><div className="mini-n">4×</div><div className="mini-l">Stretch in all directions</div></div>
-              <div className="fit-mini"><div className="mini-n">XS–2XL</div><div className="mini-l">Inclusive sizing, XS–2XL</div></div>
+              <div className="fit-mini"><div className="mini-n">Women&apos;s XS–3XL · Men&apos;s S–3XL</div><div className="mini-l">Inclusive sizing</div></div>
             </div>
           </div>
         </div>
@@ -1292,22 +1289,26 @@ export default function AryaPage() {
       {/* ── FOUNDER — flipped layout for visual variety ── */}
       <section className="founder fade-section" id="founder">
         <div>
-          <div className="label">The Founder</div>
-          <h2 className="display" style={{ marginBottom: 28 }}>I built what I couldn&apos;t <em>find.</em></h2>
-          <p className="body-txt">I&apos;m Persian-American, born and raised in Los Angeles. I&apos;ve always been drawn to movement. The ocean. The mountains. The trail. Anywhere the body is meant to work.</p>
-          <p className="body-txt">The people around me lived actively — but the clothing available to us rarely did. Most brands were built for one kind of space, not for the full life lived around it.</p>
-          <p className="body-txt">I grew up visiting Iran as a child. The colors of Isfahan&apos;s architecture. The warmth of the people. The care in everything they made. In that culture, quality was a form of respect for both the maker and the wearer.</p>
-          <p className="body-txt">Arya was born where those two worlds meet. The movement and energy of California, and the deep tradition of Persian craft.</p>
+          <div className="label">The Founders</div>
+          <h2 className="display" style={{ marginBottom: 28 }}>We built what didn&apos;t <em>exist.</em></h2>
+          <p className="body-txt">Arya was born between two people, two worlds, and one shared belief: that clothing should make you feel like yourself.</p>
+          <p className="body-txt">Nima grew up bigger than the clothes that were supposed to fit him. A state wrestler and football player, he lived in his body in a way most brands never accounted for. Joggers that fit his waist turned into skinny jeans at the thigh. Shirts that fit his shoulders billowed everywhere else. He&apos;d go for a run and come back with chafing. The fabrics weren&apos;t right either. Synthetic polymers that didn&apos;t breathe, didn&apos;t last, and didn&apos;t respect the body wearing them.</p>
+          <p className="body-txt">But it was more than fit. Sport gave him his confidence. At his lowest points, athletics gave him his mental strength and his sense of self. He knows what it means when your body and your clothes finally work together. That feeling is what Arya is built to give everyone.</p>
+          <p className="body-txt">Lucy came to Southern California from Florida in 2022 and found a life built around movement, wellness, and intention. Her first Persian New Year with Nima&apos;s family changed something in her. She was taught about the Haft Seen, each element on the table carrying a meaning, a wish, an intention. A culture that treated everything it touched as worth doing beautifully.</p>
+          <p className="body-txt">Studying to become a family therapist, Lucy&apos;s life work is helping people overcome anxiety and rebuild their self worth. She knows the specific discomfort of women&apos;s activewear that rides up, pulls, and makes you self-conscious mid-movement when you should feel free. That problem is personal to her. Fixing it is personal to Arya.</p>
+          <p className="body-txt">They share a belief that people are too complex for brands that speak to only one sport, one body, one image. Clothing doesn&apos;t have to choose between performance and beauty. Between function and intention.</p>
+          <p className="body-txt">And they believe building something real means giving something back. A portion of every Arya purchase goes toward building schools and community spaces in Iran because the culture that shaped this brand deserves to see what its next generation can become.</p>
+          <p className="body-txt">Together they built Arya. A meeting point between two worlds. The California coast that inspires the lifestyle, and the ancient Persian heritage that shaped the craft.</p>
           <div className="f-sig">
             <AryaMark size={36} color="#8B6A3E" />
             <div>
-              <div className="f-name">Nima G.</div>
-              <div className="f-role">Founder & Creative Director</div>
+              <div className="f-name">Nima & Lucy</div>
+              <div className="f-role">Founders of Arya</div>
             </div>
           </div>
         </div>
         <div className="f-photo">
-          <img src="/arya-founder.png" alt="Nima G., Founder & Creative Director of Arya" loading="lazy" />
+          <img src="/arya-founder.png" alt="Nima and Lucy, Founders of Arya" loading="lazy" />
           <WeavePattern id="f-p" opacity={0.06} color="#8B6A3E" />
           <div className="f-photo-mark"><AryaMark size={72} color="#8B6A3E" /></div>
           <div className="f-corner" />
@@ -1350,9 +1351,9 @@ export default function AryaPage() {
             <AryaLogo size={30} markColor="#8B6A3E" textColor="#F5EFE4" />
             <p className="foot-tagline">Noble materials. Noble fit.<br />Noble purpose.</p>
             <div className="foot-social">
-              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">Instagram</a>
-              <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer">TikTok</a>
-              <a href="mailto:hello@wearARYA.com">Email</a>
+              <a href="https://instagram.com/wear_arya" target="_blank" rel="noopener noreferrer">Instagram</a>
+              <a href="https://tiktok.com/@wear_arya" target="_blank" rel="noopener noreferrer">TikTok</a>
+              <a href="mailto:hello@arya.clothing">Email</a>
             </div>
           </div>
           <div className="foot-col">
@@ -1372,9 +1373,9 @@ export default function AryaPage() {
           <div className="foot-col">
             <h5>Contact</h5>
             <ul>
-              <li><a href="mailto:hello@wearARYA.com">hello@wearARYA.com</a></li>
-              <li><a href="mailto:press@wearARYA.com">Press</a></li>
-              <li><a href="mailto:wholesale@wearARYA.com">Wholesale</a></li>
+              <li><a href="mailto:hello@arya.clothing">hello@arya.clothing</a></li>
+              <li><a href="mailto:press@arya.clothing">Press</a></li>
+              <li><a href="mailto:wholesale@arya.clothing">Wholesale</a></li>
             </ul>
           </div>
         </div>
