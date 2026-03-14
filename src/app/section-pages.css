@@ -26,6 +26,7 @@
 .sp-values div { font-family: 'Cormorant Garamond', serif; font-size: 19px; font-style: italic; color: var(--arya-ink); padding: 16px 24px; border-left: 2px solid var(--arya-sand-4); background: var(--arya-sand-2); margin-bottom: 8px; }
 .sp-btn { display: inline-block; padding: 14px 32px; background: var(--arya-ink); color: var(--arya-sand); font-size: 11px; letter-spacing: .26em; text-transform: uppercase; text-decoration: none; font-weight: 500; transition: background .3s; clip-path: polygon(0 0, 100% 0, 100% 75%, 95% 100%, 0 100%); }
 .sp-btn:hover { background: var(--arya-cognac); }
+.sp-btn-secondary { margin-top: 12px; margin-left: 0; }
 
 /* Mission page */
 .mission { background: var(--arya-ink); color: var(--arya-sand); }
@@ -60,15 +61,22 @@
 .fspec { padding: 20px 24px; border-left: 2px solid transparent; background: var(--arya-sand-2); margin-bottom: 4px; transition: border-color .3s; }
 .fspec:hover { border-color: var(--arya-cognac); }
 .fspec span { font-size: 11px; letter-spacing: .36em; text-transform: uppercase; color: var(--arya-cognac); font-weight: 600; display: block; margin-bottom: 6px; }
-.fit-minis { display: flex; flex-wrap: wrap; gap: 12px; margin: 32px 0 40px; }
+.fit-minis { display: flex; flex-direction: column; gap: 16px; margin: 32px 0 40px; }
 .fit-minis div { display: flex; align-items: center; gap: 14px; padding: 14px 20px; border-radius: 999px; background: var(--arya-sand-2); border: 1px solid var(--arya-sand-4); font-size: 14px; color: var(--arya-ink-80); }
 .fit-minis strong { width: 44px; height: 44px; min-width: 44px; min-height: 44px; border-radius: 50%; background: var(--arya-ink); color: var(--arya-sand); font-family: 'Cormorant Garamond', serif; font-size: 18px; font-weight: 500; display: inline-flex; align-items: center; justify-content: center; line-height: 1; flex-shrink: 0; }
 .fit-visual { aspect-ratio: 3/4; background: var(--arya-sand-3); overflow: hidden; }
 .fit-visual img { width: 100%; height: 100%; object-fit: cover; }
 
-/* Collection page - h1 */
+/* Collection page - h1, tabs, sections */
 .sp-main h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(36px, 4vw, 48px); font-weight: 400; margin: 0 0 12px; }
 .sp-main h1 em { font-style: italic; color: var(--arya-cognac); }
+.coll-section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(26px, 3vw, 38px); font-weight: 500; color: var(--arya-ink); margin-bottom: 24px; }
+.coll-tabs { display: flex; gap: 2px; margin-bottom: 32px; }
+.coll-tab { font-size: 11px; letter-spacing: .26em; text-transform: uppercase; padding: 12px 24px; border: 1px solid var(--arya-sand-4); background: var(--arya-sand); color: var(--arya-ink-80); font-family: 'Jost', sans-serif; font-weight: 500; cursor: pointer; transition: all .3s; }
+.coll-tab:hover { color: var(--arya-ink); border-color: var(--arya-cognac); }
+.coll-tab.active { background: var(--arya-ink); color: var(--arya-sand); border-color: var(--arya-ink); }
+.coll-section { margin-bottom: 48px; }
+.coll-section.hide-by-filter { display: none; }
 
 /* Collection page */
 .coll-note { font-size: 16px; color: var(--arya-ink-80); margin: 0 0 40px; }
@@ -89,6 +97,9 @@
 .f-name { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 22px; color: var(--arya-ink); margin-bottom: 2px; }
 .f-role { font-size: 11px; letter-spacing: .34em; text-transform: uppercase; color: var(--arya-cognac); font-weight: 600; }
 
+@media (min-width: 769px) {
+  .fit-minis { flex-direction: row; flex-wrap: wrap; gap: 12px; }
+}
 @media (max-width: 768px) {
   .sp-nav { padding: 18px 24px; flex-direction: column; align-items: center; gap: 0; }
   .sp-links { display: flex; flex-direction: column; align-items: center; gap: 4px; width: 100%; padding-top: 16px; margin-top: 12px; border-top: 1px solid var(--arya-sand-4); }

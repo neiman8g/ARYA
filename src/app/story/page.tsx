@@ -32,14 +32,16 @@ export default function StoryPage() {
             <span className="sp-label">Our Story</span>
             <h1>Where the Pacific Coast<br />meets <em>Persian craft.</em></h1>
             <p>Arya was born between two worlds: the salt air of Southern California and the ancient textile traditions of Persia. One shaped by movement, the other by centuries of craft.</p>
-            <p>The name Arya comes from the ancient Persian word for noble and honorable — the very root of the name Iran itself. The way you move through the world should be matched by what you wear.</p>
+            <p>The name Arya comes from the ancient Persian word for noble and honorable, the very root of the word Iran itself. It is not just a name. It is a standard. A commitment to doing things with precision, care, and intention, the way Persian artisans have approached their craft for thousands of years.</p>
+            <p>California gave this brand its energy. Persia gave it its soul. Together they form something that has never existed in athleisure before. Clothing built with the craft philosophy of the ancient world and the movement culture of the modern one.</p>
             <p>At Arya, we build garments with care. Materials chosen with intention. Fit refined through movement. Craft without shortcuts.</p>
             <div className="sp-values">
-              <div>Craft without compromise.</div>
-              <div>Garments that move with every part of your life.</div>
-              <div>Purpose that extends beyond the garment.</div>
+              <div>Built with intention.</div>
+              <div>Made to move with you.</div>
+              <div>Rooted in something real.</div>
             </div>
             <Link href="/collection" className="sp-btn">View Collection</Link>
+            <Link href="/founder" className="sp-btn sp-btn-secondary">Meet the Founders</Link>
           </div>
         </div>
       </main>

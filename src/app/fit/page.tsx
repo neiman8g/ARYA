@@ -27,7 +27,7 @@ export default function FitPage() {
           <div className="fit-content">
             <span className="sp-label">Fit Philosophy</span>
             <h1>Every pattern starts with<br />the body that <em>moves.</em></h1>
-            <p>Standard sizing was built for a standard body. Arya&apos;s patterns start from scratch — with real movement data and the belief that a body that surfs, moves, rides, and lives fully deserves fabric that keeps up.</p>
+            <p>Standard sizing was built for a standard body. Arya&apos;s patterns start from scratch, with real bodies and real movement in mind, and the belief that a body that surfs, moves, rides, and lives fully deserves fabric that keeps up.</p>
             <p>Our Women&apos;s and Men&apos;s cuts share the same philosophy: engineered separately for each form, so everyone gets the same standard of fit.</p>
             <div className="fit-specs">
               <h3>Women&apos;s</h3>
@@ -42,8 +42,9 @@ export default function FitPage() {
               ))}
             </div>
             <div className="fit-minis">
-              <div><strong>4×</strong> Stretch in all directions</div>
-              <div><strong>Women&apos;s XS–3XL · Men&apos;s S–3XL</strong> Inclusive sizing</div>
+              <div><strong>4-way</strong> Stretch in all directions</div>
+              <div><strong>XS–3XL</strong> Women&apos;s inclusive sizing</div>
+              <div><strong>S–3XL</strong> Men&apos;s inclusive sizing</div>
             </div>
             <Link href="/collection" className="sp-btn">View Collection</Link>
           </div>

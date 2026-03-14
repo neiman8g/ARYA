@@ -1,5 +1,5 @@
 import Link from "next/link";
-import "@/app/arya-standard/arya-standard.css";
+import "./arya-standard.css";
 
 export const metadata = {
   title: "The Arya Standard | Arya",

@@ -633,6 +633,12 @@ export default function AryaPage() {
           aspect-ratio: 3/4; position: relative; overflow: hidden;
         }
         .fit-main img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+        .fit-stats-row {
+          display: flex; flex-direction: column; gap: 16px;
+        }
+        @media (min-width: 961px) {
+          .fit-stats-row { flex-direction: row; gap: 12px; flex-wrap: wrap; }
+        }
         .fit-minis { display: flex; flex-wrap: wrap; gap: 12px; }
         .fit-mini {
           display: flex; align-items: center; gap: 14px;
@@ -943,6 +949,7 @@ export default function AryaPage() {
           .fit-tabs { margin-bottom: 24px; }
           .fit-tab { padding: 14px 24px; min-height: 44px; }
           .fit-minis { grid-template-columns: 1fr; }
+          .fit-stats-row { gap: 20px; }
 
           .collection { padding: 60px 24px; }
           .coll-header { grid-template-columns: 1fr; gap: 20px; }
@@ -999,6 +1006,7 @@ export default function AryaPage() {
 
           .fit { padding: 60px 20px; }
           .fit-main { aspect-ratio: 3/4; }
+          .fit-stats-row { gap: 18px; }
 
           .collection { padding: 60px 20px; }
           .product-grid { margin: 0 -20px; padding-left: 20px; padding-right: 20px; }
@@ -1270,9 +1278,10 @@ export default function AryaPage() {
                 <AryaMark size={80} color="#8B6A3E" />
               </div>
             </div>
-            <div className="fit-minis">
-              <div className="fit-mini"><div className="mini-n">4×</div><div className="mini-l">Stretch in all directions</div></div>
-              <div className="fit-mini"><div className="mini-n">Women&apos;s XS–3XL · Men&apos;s S–3XL</div><div className="mini-l">Inclusive sizing</div></div>
+            <div className="fit-stats-row">
+              <div className="fit-mini"><div className="mini-n">4-way</div><div className="mini-l">Stretch in all directions</div></div>
+              <div className="fit-mini"><div className="mini-n">XS–3XL</div><div className="mini-l">Women&apos;s inclusive sizing</div></div>
+              <div className="fit-mini"><div className="mini-n">S–3XL</div><div className="mini-l">Men&apos;s inclusive sizing</div></div>
             </div>
           </div>
         </div>
