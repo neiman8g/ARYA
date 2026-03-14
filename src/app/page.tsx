@@ -99,22 +99,16 @@ type CartItem = {
 
 type ProductCardProps = {
   p: (typeof PRODUCTS)[0];
-  addedProductId: string | null;
-  selectedSizes: Record<string, string>;
   selectedColors: Record<string, string>;
-  setSize: (productId: string, size: string) => void;
   setColor: (productId: string, colorName: string) => void;
-  addToCart: (p: (typeof PRODUCTS)[0]) => void;
 };
 
-function ProductCard({ p, addedProductId, selectedSizes, selectedColors, setSize, setColor, addToCart }: ProductCardProps) {
-  const isAdded = addedProductId === p.id;
-  const selectedSize = selectedSizes[p.id];
-  const selectedColor = selectedColors[p.id] ?? p.colors[0]?.name;
+function ProductCard({ p, selectedColors, setColor }: ProductCardProps) {
+  const selectedColor = selectedColors[p.id] ?? p.colors?.[0]?.name;
   return (
     <div className="p-card">
       <Link href={`/products/${p.slug}`} className="p-visual-link">
-        <div className="p-visual">
+        <div className="p-visual" data-color={selectedColor}>
           <ProductPlaceholder name={p.name} patternId={`p-place-${p.id}`} />
           <div className="p-tag">Pre-Order</div>
         </div>
@@ -133,7 +127,7 @@ function ProductCard({ p, addedProductId, selectedSizes, selectedColors, setSize
                   type="button"
                   className={`p-color-swatch ${selectedColor === c.name ? "selected" : ""}`}
                   style={{ background: c.hex }}
-                  onClick={(e) => { e.preventDefault(); setColor(p.id, c.name); }}
+                  onClick={(e) => { e.preventDefault(); e.stopPropagation(); setColor(p.id, c.name); }}
                   title={c.name}
                   aria-label={`Color ${c.name}`}
                 />
@@ -141,31 +135,11 @@ function ProductCard({ p, addedProductId, selectedSizes, selectedColors, setSize
             </div>
           </div>
         )}
-        <div className="p-size-row">
-          <span className="p-opt-label">Size</span>
-          <div className="p-size-btns">
-            {p.sizes.map((sz) => (
-              <button
-                key={sz}
-                type="button"
-                className={`p-size-btn ${selectedSize === sz ? "selected" : ""}`}
-                onClick={() => setSize(p.id, sz)}
-              >
-                {sz}
-              </button>
-            ))}
-          </div>
-        </div>
         <div className="p-foot">
           <div className="p-price">{p.price}<small>USD</small></div>
-          <button
-            type="button"
-            className={`btn-p ${isAdded ? "btn-p-added" : ""}`}
-            onClick={() => addToCart(p)}
-            disabled={!selectedSize}
-          >
-            {!selectedSize ? "Size" : isAdded ? "Added ✓" : "Pre-Order"}
-          </button>
+          <Link href={`/products/${p.slug}`} className="btn-p">
+            Select size
+          </Link>
         </div>
       </div>
     </div>
@@ -182,11 +156,9 @@ export default function AryaPage() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [cart, setCart] = useState<CartItem[]>([]);
   const [cartOpen, setCartOpen] = useState(false);
-  const [selectedSizes, setSelectedSizes] = useState<Record<string, string>>({});
   const [selectedColors, setSelectedColors] = useState<Record<string, string>>({});
   const [collectionFilter, setCollectionFilter] = useState<"all" | "women" | "men">("all");
   const [fitTab, setFitTab] = useState<"women" | "men">("women");
-  const [addedProductId, setAddedProductId] = useState<string | null>(null);
   const [checkoutLoading, setCheckoutLoading] = useState(false);
   const [checkoutError, setCheckoutError] = useState<string | null>(null);
   const [waitlistError, setWaitlistError] = useState<string | null>(null);
@@ -298,25 +270,8 @@ export default function AryaPage() {
     setSubmitting(false);
   };
 
-  const setSize = (productId: string, size: string) =>
-    setSelectedSizes(prev => ({ ...prev, [productId]: size }));
-
   const setColor = (productId: string, colorName: string) =>
     setSelectedColors(prev => ({ ...prev, [productId]: colorName }));
-
-  const addToCart = (p: typeof PRODUCTS[0]) => {
-    const size = selectedSizes[p.id];
-    const color = selectedColors[p.id] ?? p.colors?.[0]?.name ?? "";
-    if (!size) return;
-    setCart(prev => {
-      const existing = prev.find(i => i.productId === p.id && i.size === size && i.color === color);
-      if (existing) return prev.map(i => i.productId === p.id && i.size === size && i.color === color ? { ...i, qty: i.qty + 1 } : i);
-      return [...prev, { id: `${p.id}-${size}-${color}-${Date.now()}`, productId: p.id, name: p.name, price: p.price, size, color, qty: 1 }];
-    });
-    setAddedProductId(p.id);
-    setTimeout(() => setAddedProductId(null), 1800);
-    setCartOpen(true);
-  };
 
   const updateQty = (id: string, delta: number) =>
     setCart(prev => prev.map(i => i.id === id ? { ...i, qty: Math.max(1, i.qty + delta) } : i));
@@ -840,14 +795,14 @@ export default function AryaPage() {
         .p-price small { font-size: 10px; color: var(--ink-60); letter-spacing: .1em; margin-left: 3px; }
 
         .btn-p {
+          display: inline-block; text-decoration: none;
           font-size: 9px; letter-spacing: .22em; text-transform: uppercase;
           background: var(--ink); color: var(--sand); border: none; padding: 8px 14px;
           cursor: pointer; transition: all .3s; font-family: 'Jost', sans-serif; font-weight: 500;
           clip-path: polygon(0 0, 100% 0, 100% 68%, 88% 100%, 0 100%);
         }
-        .btn-p:hover:not(:disabled) { background: var(--cognac); }
+        .btn-p:hover { background: var(--cognac); color: var(--sand); }
         .btn-p:disabled { background: var(--sand-5); cursor: not-allowed; }
-        .btn-p-added { background: var(--cognac) !important; }
 
         /* ── CRAFT / MISSION ── */
         .craft { padding: 160px 64px; background: var(--ink); position: relative; overflow: hidden; }
@@ -1324,7 +1279,7 @@ export default function AryaPage() {
             <div className="label">Launch Collection</div>
             <h2 className="display">The <em>foundation</em> pieces.</h2>
           </div>
-          <p className="coll-note">Engineered from scratch for the body that moves. Select your size directly on each product card.</p>
+          <p className="coll-note">Engineered from scratch for the body that moves.</p>
         </div>
         <div className="coll-tabs">
           <button type="button" className={`coll-tab ${collectionFilter === "all" ? "active" : ""}`} onClick={() => setCollectionFilter("all")}>All</button>
@@ -1335,14 +1290,14 @@ export default function AryaPage() {
         <div className={`coll-section ${collectionFilter === "men" ? "hide-by-filter" : ""}`} id="women">
           <h3 className="coll-section-title">Women&apos;s</h3>
           <div className="product-grid">
-            {womenProducts.map(p => <ProductCard key={p.id} p={p} addedProductId={addedProductId} selectedSizes={selectedSizes} selectedColors={selectedColors} setSize={setSize} setColor={setColor} addToCart={addToCart} />)}
+            {womenProducts.map(p => <ProductCard key={p.id} p={p} selectedColors={selectedColors} setColor={setColor} />)}
           </div>
         </div>
 
         <div className={`coll-section ${collectionFilter === "women" ? "hide-by-filter" : ""}`} id="men">
           <h3 className="coll-section-title">Men&apos;s</h3>
           <div className="product-grid">
-            {menProducts.map(p => <ProductCard key={p.id} p={p} addedProductId={addedProductId} selectedSizes={selectedSizes} selectedColors={selectedColors} setSize={setSize} setColor={setColor} addToCart={addToCart} />)}
+            {menProducts.map(p => <ProductCard key={p.id} p={p} selectedColors={selectedColors} setColor={setColor} />)}
           </div>
         </div>
       </section>
