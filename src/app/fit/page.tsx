@@ -17,6 +17,7 @@ export default function FitPage() {
           <Link href="/fit" className="active">Fit</Link>
           <Link href="/collection">Collection</Link>
           <Link href="/founder">Founder</Link>
+          <Link href="/arya-standard">The Standard</Link>
           <Link href="/#waitlist" className="sp-cta">Join Waitlist</Link>
         </div>
       </nav>
@@ -59,6 +60,8 @@ export default function FitPage() {
           <Link href="/story">Story</Link>
           <Link href="/mission">Mission</Link>
           <Link href="/collection">Collection</Link>
+          <Link href="/founder">Founder</Link>
+          <Link href="/arya-standard">The Standard</Link>
           <Link href="/#waitlist">Waitlist</Link>
         </div>
         <p>© 2026 Arya · Noble by nature.</p>

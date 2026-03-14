@@ -12,7 +12,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const product = getProductBySlug(slug);
   if (!product) return {};
   return {
-    title: `${product.name} — Arya`,
+    title: `${product.name} | Arya`,
     description: product.desc,
   };
 }
@@ -35,6 +35,8 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
           <Link href="/mission">Mission</Link>
           <Link href="/fit">Fit</Link>
           <Link href="/collection">Collection</Link>
+          <Link href="/founder">Founder</Link>
+          <Link href="/arya-standard">The Standard</Link>
           <Link href="/#waitlist" className="p-nav-cta">Join Waitlist</Link>
         </div>
       </nav>
@@ -53,6 +55,8 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
           <Link href="/story">Story</Link>
           <Link href="/mission">Mission</Link>
           <Link href="/collection">Collection</Link>
+          <Link href="/founder">Founder</Link>
+          <Link href="/arya-standard">The Standard</Link>
           <Link href="/#waitlist">Waitlist</Link>
         </div>
         <p>© 2026 Arya · Noble by nature.</p>

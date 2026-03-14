@@ -28,12 +28,17 @@
 .pp-detail { padding-top: 0; }
 .pp-cat { font-size: 11px; letter-spacing: .4em; text-transform: uppercase; color: var(--arya-cognac); font-weight: 600; margin-bottom: 8px; }
 .pp-title { font-family: 'Cormorant Garamond', serif; font-size: 32px; font-weight: 500; color: var(--arya-ink); margin: 0 0 8px; line-height: 1.2; }
+.pp-oneline { font-size: 15px; line-height: 1.5; color: var(--arya-ink-80); margin: 0 0 16px; font-weight: 500; }
 .pp-price { font-family: 'Cormorant Garamond', serif; font-size: 24px; color: var(--arya-ink); margin: 0 0 20px; }
 .pp-price small { font-size: 11px; color: var(--arya-ink-60); letter-spacing: .1em; margin-left: 4px; }
 .pp-desc { font-size: 16px; line-height: 1.7; color: var(--arya-ink-80); margin: 0 0 24px; }
+.pp-fabric { font-size: 16px; line-height: 1.75; color: var(--arya-ink-80); margin: 0 0 24px; }
+.pp-features { list-style: none; margin: 0 0 28px; padding: 0; }
+.pp-features li { font-size: 14px; color: var(--arya-ink-80); padding: 6px 0; border-bottom: 1px solid var(--arya-sand-3); display: flex; align-items: flex-start; gap: 8px; line-height: 1.5; }
+.pp-features li::before { content: ''; width: 4px; height: 4px; border-radius: 50%; background: var(--arya-cognac); flex-shrink: 0; margin-top: 8px; }
 .pp-specs { list-style: none; margin: 0 0 28px; padding: 0; }
 .pp-specs li { font-size: 14px; color: var(--arya-ink-80); padding: 6px 0; border-bottom: 1px solid var(--arya-sand-3); display: flex; align-items: center; gap: 8px; }
-.pp-specs li::before { content: '—'; color: var(--arya-cognac); font-size: 8px; }
+.pp-specs li::before { content: ''; width: 4px; height: 4px; border-radius: 50%; background: var(--arya-cognac); flex-shrink: 0; }
 .pp-opt-label { font-size: 10px; letter-spacing: .35em; text-transform: uppercase; color: var(--arya-ink-60); font-weight: 500; display: block; margin-bottom: 10px; }
 .pp-color { margin-bottom: 20px; }
 .pp-color-swatches { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }

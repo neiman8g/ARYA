@@ -1,0 +1,361 @@
+/* Arya Standard page: mobile first (390px), then desktop */
+
+.std-hero {
+  padding: 0 0 48px;
+  margin-bottom: 48px;
+  border-bottom: 1px solid var(--arya-sand-4);
+}
+.std-eyebrow {
+  font-size: 11px;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--arya-cognac);
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+.std-hero h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(32px, 8vw, 52px);
+  font-weight: 400;
+  line-height: 1.12;
+  color: var(--arya-ink);
+  margin: 0 0 20px;
+}
+.std-hero .std-subhead {
+  font-size: 16px;
+  line-height: 1.75;
+  color: var(--arya-ink-80);
+  margin: 0;
+  max-width: 56ch;
+}
+
+.std-section {
+  margin-bottom: 56px;
+}
+.std-section:last-of-type { margin-bottom: 0; }
+.std-section-heading {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(28px, 5vw, 40px);
+  font-weight: 500;
+  color: var(--arya-ink);
+  margin: 0 0 12px;
+}
+.std-section-intro {
+  font-size: 16px;
+  line-height: 1.75;
+  color: var(--arya-ink-80);
+  margin: 0 0 32px;
+  max-width: 52ch;
+}
+
+/* Noble Blends cards: stack on mobile */
+.std-blends {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.std-blend-card {
+  background: var(--arya-sand-2);
+  border: 1px solid var(--arya-sand-4);
+  padding: 24px 20px;
+  transition: border-color 0.25s;
+}
+.std-blend-card:hover {
+  border-color: var(--arya-cognac);
+}
+.std-blend-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 26px;
+  font-weight: 500;
+  color: var(--arya-ink);
+  margin: 0 0 8px;
+}
+.std-blend-feel {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 17px;
+  font-style: italic;
+  color: var(--arya-cognac);
+  margin: 0 0 16px;
+  line-height: 1.45;
+}
+.std-blend-desc {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--arya-ink-80);
+  margin: 0 0 20px;
+}
+.std-blend-replaced-heading {
+  font-size: 12px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--arya-cognac);
+  font-weight: 600;
+  margin: 0 0 10px;
+}
+.std-blend-replaced-body {
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--arya-ink-80);
+  margin: 0 0 20px;
+}
+.std-blend-skin {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--arya-ink);
+  padding: 14px 18px;
+  background: rgba(139, 106, 62, 0.08);
+  border-left: 3px solid var(--arya-cognac);
+  margin: 0;
+}
+
+/* Refusal grid: 2 cols mobile, 3 desktop */
+.std-refusal-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+.std-refusal-card {
+  background: var(--arya-sand-2);
+  border: 1px solid var(--arya-sand-4);
+  padding: 20px 16px;
+  transition: border-color 0.25s;
+}
+.std-refusal-card:hover {
+  border-color: var(--arya-sand-5);
+}
+.std-refusal-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--arya-ink);
+  margin: 0 0 8px;
+  letter-spacing: 0.02em;
+}
+.std-refusal-reason {
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--arya-ink-80);
+  margin: 0;
+}
+
+/* Skin philosophy: body copy */
+.std-skin-body p {
+  font-size: 16px;
+  line-height: 1.8;
+  color: var(--arya-ink-80);
+  margin: 0 0 20px;
+  max-width: 56ch;
+}
+.std-skin-body p:last-child {
+  margin-bottom: 0;
+}
+
+/* Giving back: body + stat callouts */
+.std-giving-body p {
+  font-size: 16px;
+  line-height: 1.8;
+  color: var(--arya-ink-80);
+  margin: 0 0 20px;
+  max-width: 56ch;
+}
+.std-giving-body p:last-of-type {
+  margin-bottom: 32px;
+}
+.std-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.std-stat {
+  background: var(--arya-sand-2);
+  border: 1px solid var(--arya-sand-4);
+  padding: 24px 20px;
+}
+.std-stat-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 32px;
+  font-weight: 500;
+  color: var(--arya-cognac);
+  margin: 0 0 8px;
+  line-height: 1.1;
+}
+.std-stat-label {
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--arya-ink-80);
+  margin: 0;
+}
+
+/* Bottom CTA */
+.std-cta {
+  padding: 48px 0 0;
+  margin-top: 48px;
+  border-top: 1px solid var(--arya-sand-4);
+  text-align: center;
+}
+.std-cta h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(28px, 5vw, 40px);
+  font-weight: 500;
+  color: var(--arya-ink);
+  margin: 0 0 12px;
+}
+.std-cta .std-cta-sub {
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--arya-ink-80);
+  margin: 0 0 28px;
+  max-width: 44ch;
+  margin-left: auto;
+  margin-right: auto;
+}
+.std-cta-btns {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: stretch;
+}
+.std-cta-btns a {
+  display: block;
+  width: 100%;
+  padding: 16px 24px;
+  font-size: 11px;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  font-weight: 500;
+  text-decoration: none;
+  text-align: center;
+  transition: background 0.3s;
+  font-family: 'Jost', sans-serif;
+  box-sizing: border-box;
+}
+.std-cta-btn-primary {
+  background: var(--arya-ink);
+  color: var(--arya-sand);
+  border: none;
+  clip-path: polygon(0 0, 100% 0, 100% 85%, 96% 100%, 0 100%);
+}
+.std-cta-btn-primary:hover {
+  background: var(--arya-cognac);
+}
+.std-cta-btn-secondary {
+  background: transparent;
+  color: var(--arya-ink);
+  border: 1px solid var(--arya-sand-4);
+}
+.std-cta-btn-secondary:hover {
+  border-color: var(--arya-cognac);
+  color: var(--arya-cognac);
+}
+
+/* Arya Standard nav + footer active state */
+.std-page .sp-links a[href="/arya-standard"],
+.std-page .sp-foot a[href="/arya-standard"] {
+  color: var(--arya-ink);
+}
+
+/* Desktop */
+@media (min-width: 769px) {
+  .std-hero {
+    padding: 0 0 64px;
+    margin-bottom: 64px;
+  }
+  .std-hero h1 {
+    font-size: clamp(40px, 4vw, 52px);
+  }
+  .std-hero .std-subhead {
+    font-size: 17px;
+  }
+  .std-section {
+    margin-bottom: 80px;
+  }
+  .std-section-heading {
+    font-size: clamp(32px, 4vw, 40px);
+  }
+  .std-section-intro {
+    font-size: 17px;
+    margin-bottom: 40px;
+  }
+  .std-blends {
+    flex-direction: row;
+    gap: 24px;
+    align-items: stretch;
+  }
+  .std-blend-card {
+    flex: 1;
+    padding: 32px 28px;
+    min-width: 0;
+  }
+  .std-blend-name {
+    font-size: 28px;
+  }
+  .std-blend-feel {
+    font-size: 18px;
+  }
+  .std-blend-desc,
+  .std-blend-replaced-body {
+    font-size: 15px;
+  }
+  .std-refusal-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  .std-refusal-card {
+    padding: 24px 20px;
+  }
+  .std-refusal-name {
+    font-size: 14px;
+  }
+  .std-refusal-reason {
+    font-size: 14px;
+  }
+  .std-stats {
+    flex-direction: row;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .std-stat {
+    flex: 1;
+    min-width: 200px;
+    padding: 28px 24px;
+  }
+  .std-stat-num {
+    font-size: 36px;
+  }
+  .std-cta {
+    padding: 64px 0 0;
+    margin-top: 64px;
+  }
+  .std-cta-btns {
+    flex-direction: row;
+    justify-content: center;
+    gap: 16px;
+  }
+  .std-cta-btns a {
+    width: auto;
+    min-width: 200px;
+  }
+}
+
+/* Tight mobile (390px and below) */
+@media (max-width: 480px) {
+  .std-page .sp-main {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  .std-hero {
+    padding: 0 0 40px;
+    margin-bottom: 40px;
+  }
+  .std-section {
+    margin-bottom: 44px;
+  }
+  .std-blend-card {
+    padding: 20px 16px;
+  }
+  .std-refusal-grid {
+    grid-template-columns: 1fr;
+  }
+  .std-cta-btns a {
+    padding: 18px 24px;
+  }
+}

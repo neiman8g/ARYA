@@ -17,6 +17,7 @@ export default function FounderPage() {
           <Link href="/fit">Fit</Link>
           <Link href="/collection">Collection</Link>
           <Link href="/founder" className="active">Founder</Link>
+          <Link href="/arya-standard">The Standard</Link>
           <Link href="/#waitlist" className="sp-cta">Join Waitlist</Link>
         </div>
       </nav>
@@ -56,6 +57,8 @@ export default function FounderPage() {
           <Link href="/story">Story</Link>
           <Link href="/mission">Mission</Link>
           <Link href="/collection">Collection</Link>
+          <Link href="/founder">Founder</Link>
+          <Link href="/arya-standard">The Standard</Link>
           <Link href="/#waitlist">Waitlist</Link>
         </div>
         <p>© 2026 Arya · Noble by nature.</p>

@@ -1006,6 +1006,8 @@ export default function AryaPage() {
         <Link href="/mission" onClick={() => setMenuOpen(false)}>Mission</Link>
         <Link href="/fit" onClick={() => setMenuOpen(false)}>Fit</Link>
         <Link href="/collection" onClick={() => setMenuOpen(false)}>Collection</Link>
+        <Link href="/founder" onClick={() => setMenuOpen(false)}>Founder</Link>
+        <Link href="/arya-standard" onClick={() => setMenuOpen(false)}>The Standard</Link>
         <div className="mobile-menu-divider" />
         <Link href="/#waitlist" onClick={() => setMenuOpen(false)}>Join Waitlist</Link>
       </div>
@@ -1073,6 +1075,8 @@ export default function AryaPage() {
           <li><Link href="/mission">Mission</Link></li>
           <li><Link href="/fit">Fit</Link></li>
           <li><Link href="/collection">Collection</Link></li>
+          <li><Link href="/founder">Founder</Link></li>
+          <li><Link href="/arya-standard">The Standard</Link></li>
           <li><a href="#waitlist">Join Waitlist</a></li>
         </ul>
         <div className="nav-actions">
@@ -1368,6 +1372,7 @@ export default function AryaPage() {
               <li><Link href="/story">Our Story</Link></li>
               <li><Link href="/mission">Mission</Link></li>
               <li><Link href="/founder">Founder</Link></li>
+              <li><Link href="/arya-standard">The Standard</Link></li>
             </ul>
           </div>
           <div className="foot-col">
