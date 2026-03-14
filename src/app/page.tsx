@@ -601,11 +601,12 @@ export default function AryaPage() {
         .stat {
           padding: 28px 24px; background: var(--sand); border: 1px solid var(--sand-4);
           border-radius: 8px; transition: border-color .25s;
+          text-align: center;
         }
         .stat:hover { border-color: var(--cognac); }
         .stat-n {
-          font-family: 'Cormorant Garamond', serif; font-size: clamp(36px, 4vw, 48px); font-weight: 600;
-          color: var(--cognac); line-height: 1; margin-bottom: 12px;
+          font-family: 'Cormorant Garamond', serif; font-size: clamp(28px, 3vw, 34px); font-weight: 500;
+          color: var(--cognac); line-height: 1; margin-bottom: 10px;
         }
         .stat-l { font-size: 14px; line-height: 1.6; color: var(--ink-80); font-weight: 400; }
         @media (min-width: 769px) {
@@ -943,7 +944,7 @@ export default function AryaPage() {
 
           .ethos, .problem, .founder { grid-template-columns: 1fr; gap: 48px; padding: 60px 24px; }
           .problem .stats { grid-template-columns: 1fr 1fr; gap: 24px; }
-          .problem .stat-n { font-size: clamp(32px, 6vw, 44px); }
+          .problem .stat-n { font-size: clamp(26px, 4vw, 30px); }
           .ethos-card { aspect-ratio: 16/10; }
           .ethos-card-img { opacity: .65; }
           .founder { gap: 48px; }
@@ -1014,7 +1015,7 @@ export default function AryaPage() {
           .ethos, .problem, .founder { padding: 60px 20px; gap: 40px; }
           .problem .stats { gap: 20px; }
           .problem .stat { padding: 24px 20px; }
-          .problem .stat-n { font-size: 32px; }
+          .problem .stat-n { font-size: 26px; }
           .ethos-card { aspect-ratio: 4/3; }
           .ethos-card-img { opacity: .7; }
           .display { font-size: clamp(28px, 7vw, 42px) !important; }
