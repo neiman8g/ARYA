@@ -8,14 +8,15 @@
 .sp-cta { background: var(--arya-ink) !important; color: var(--arya-sand) !important; padding: 10px 24px !important; }
 .sp-cta:hover { background: var(--arya-cognac) !important; }
 
-/* Section nav: hamburger + overlay on mobile (SectionNav component) */
-.sp-hamburger { display: none; flex-direction: column; justify-content: center; gap: 6px; width: 32px; height: 32px; padding: 0; border: 0; background: none; cursor: pointer; color: inherit; }
+/* Section nav: hamburger + overlay on mobile (SectionNav component). Breakpoint 960px matches homepage. */
+.sp-hamburger { display: none; flex-direction: column; justify-content: center; gap: 6px; width: 44px; height: 44px; min-width: 44px; min-height: 44px; padding: 0; border: 0; background: none; cursor: pointer; color: inherit; position: relative; z-index: 101; }
 .sp-hamburger span { display: block; width: 22px; height: 2px; background: currentColor; transition: transform .25s, opacity .25s; }
 .sp-hamburger.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
 .sp-hamburger.open span:nth-child(2) { opacity: 0; }
 .sp-hamburger.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
 .sp-mobile-menu { display: flex; align-items: center; }
 .sp-mobile-menu .sp-links { margin: 0; border: none; padding: 0; }
+.mission .sp-hamburger { color: rgba(245,239,228,.95); }
 .sp-main { padding: 140px 48px 80px; max-width: 1100px; margin: 0 auto; }
 .sp-label { font-size: 11px; letter-spacing: .45em; text-transform: uppercase; color: var(--arya-cognac); font-weight: 600; display: block; margin-bottom: 20px; }
 .sp-foot { padding: 48px; border-top: 1px solid var(--arya-sand-4); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 24px; }
@@ -111,9 +112,9 @@
   .fit-minis { flex-direction: row; flex-wrap: wrap; gap: 20px; }
   .fit-minis div { flex: 1; min-width: 140px; max-width: 220px; }
 }
-@media (max-width: 768px) {
-  .sp-nav { padding: 18px 24px; padding-top: max(18px, var(--safe-top)); }
-  .sp-hamburger { display: flex; }
+/* 960px: show hamburger + overlay (match homepage breakpoint so 3 bars stay visible after navigation) */
+@media (max-width: 960px) {
+  .sp-hamburger { display: flex !important; }
   .sp-mobile-menu {
     position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 99;
     background: rgba(245,239,228,.98);
@@ -125,6 +126,9 @@
   .sp-mobile-menu .sp-links { display: flex; flex-direction: column; align-items: center; gap: 4px; width: 100%; max-width: 280px; }
   .sp-mobile-menu .sp-links a { padding: 14px 20px; min-height: 48px; width: 100%; display: inline-flex; align-items: center; justify-content: center; }
   .mission .sp-mobile-menu { background: rgba(30,24,16,.98); }
+}
+@media (max-width: 768px) {
+  .sp-nav { padding: 18px 24px; padding-top: max(18px, var(--safe-top)); }
   .sp-main { padding: 120px 24px 60px; padding-bottom: max(60px, var(--safe-bottom)); }
   .sp-hero, .fit-layout { grid-template-columns: 1fr; gap: 48px; }
   .fit-visual { order: -1; }
@@ -143,4 +147,6 @@
   .pillar { padding: 28px 20px; }
   .pillar-n { font-size: 40px; }
   .sp-foot { padding: 28px 20px; padding-bottom: max(28px, var(--safe-bottom)); }
+  .coll-tab { min-height: 48px; display: inline-flex; align-items: center; justify-content: center; }
+  .sp-btn { min-height: 48px; display: inline-flex; align-items: center; justify-content: center; }
 }

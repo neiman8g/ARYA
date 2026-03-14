@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { SectionNav } from "@/components/SectionNav";
 
 export const metadata = {
   title: "Our Story | Arya | Where Persian Craft Meets California Soul",
@@ -22,18 +23,7 @@ export default function StoryPage() {
   return (
     <div className="section-page">
       <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Jost:wght@400;500;600&display=swap" rel="stylesheet" />
-      <nav className="sp-nav">
-        <Link href="/" className="sp-logo">ARYA</Link>
-        <div className="sp-links">
-          <Link href="/story" className="active">Story</Link>
-          <Link href="/mission">Mission</Link>
-          <Link href="/fit">Fit</Link>
-          <Link href="/collection">Collection</Link>
-          <Link href="/founder">Founder</Link>
-          <Link href="/arya-standard">The Standard</Link>
-          <Link href="/#waitlist" className="sp-cta">Join Waitlist</Link>
-        </div>
-      </nav>
+      <SectionNav activeLink="story" />
 
       <main className="sp-main">
         <div className="sp-hero">
