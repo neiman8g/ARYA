@@ -1,8 +1,21 @@
 import Link from "next/link";
 
 export const metadata = {
-  title: "Our Story — Arya",
-  description: "Where the Pacific Coast meets Persian craft. Arya was born between two worlds.",
+  title: "Our Story | Arya | Where Persian Craft Meets California Soul",
+  description: "Arya was born between two worlds. The salt air of Southern California and the ancient craft traditions of Persia. A brand built with intention, made to move with you, rooted in something real.",
+  keywords: "Persian American athleisure brand, sustainable luxury athleisure story, California athleisure brand, Persian craft clothing, noble by nature brand story",
+  openGraph: {
+    title: "Our Story | Arya | Where Persian Craft Meets California Soul",
+    description: "Arya was born between two worlds. The salt air of Southern California and the ancient craft traditions of Persia. A brand built with intention, made to move with you, rooted in something real.",
+    images: ["/arya-hero.jpg"],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Our Story | Arya | Where Persian Craft Meets California Soul",
+    description: "Arya was born between two worlds. The salt air of Southern California and the ancient craft traditions of Persia. A brand built with intention, made to move with you, rooted in something real.",
+    images: ["/arya-hero.jpg"],
+  },
 };
 
 export default function StoryPage() {

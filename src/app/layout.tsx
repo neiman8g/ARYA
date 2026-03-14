@@ -26,19 +26,20 @@ const siteUrl =
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: "Arya — Noble by nature",
-  description: "Where Persian craft meets California living. Engineered for the body that moves, built for every version of your life.",
+  title: "Arya — Noble by nature | Premium Sustainable Athleisure",
+  description: "Arya is a premium sustainable athleisure brand engineered for the body that moves. Persian craft philosophy meets California living. Skin-conscious fabrics, athletic fit, and giving back. Shop the Noble Collection.",
+  keywords: "sustainable athleisure, premium activewear, athletic fit leggings, skin conscious activewear, sustainable luxury athleisure, Persian American brand, eco friendly athleisure, activewear for athletic bodies, NobleFlex fabric, noble by nature",
   openGraph: {
-    title: "Arya — Noble by nature",
-    description: "Where Persian craft meets California living. Engineered for the body that moves, built for every version of your life.",
+    title: "Arya — Noble by nature | Premium Sustainable Athleisure",
+    description: "Arya is a premium sustainable athleisure brand engineered for the body that moves. Persian craft philosophy meets California living. Skin-conscious fabrics, athletic fit, and giving back. Shop the Noble Collection.",
+    images: ["/arya-hero.jpg"],
     type: "website",
-    images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "Arya — Noble by nature" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Arya — Noble by nature",
-    description: "Where Persian craft meets California living. Engineered for the body that moves, built for every version of your life.",
-    images: ["/opengraph-image"],
+    title: "Arya — Noble by nature | Premium Sustainable Athleisure",
+    description: "Arya is a premium sustainable athleisure brand engineered for the body that moves. Persian craft philosophy meets California living. Skin-conscious fabrics, athletic fit, and giving back. Shop the Noble Collection.",
+    images: ["/arya-hero.jpg"],
   },
 };
 

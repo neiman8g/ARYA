@@ -1,8 +1,21 @@
 import Link from "next/link";
 
 export const metadata = {
-  title: "Fit Philosophy — Arya",
-  description: "Every pattern starts with the body that moves. Arya's fit philosophy.",
+  title: "Fit Philosophy | Arya | Engineered for the Body That Moves",
+  description: "Arya's fit philosophy starts with the body that moves. Extended thigh room, shoulder room, and waistbands that hold. Engineered separately for women and men. XS to 3XL.",
+  keywords: "athletic fit activewear, leggings for muscular thighs, activewear for strong shoulders, engineered athleisure fit, activewear for athletic body, inclusive sizing activewear",
+  openGraph: {
+    title: "Fit Philosophy | Arya | Engineered for the Body That Moves",
+    description: "Arya's fit philosophy starts with the body that moves. Extended thigh room, shoulder room, and waistbands that hold. Engineered separately for women and men. XS to 3XL.",
+    images: ["/arya-hero.jpg"],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Fit Philosophy | Arya | Engineered for the Body That Moves",
+    description: "Arya's fit philosophy starts with the body that moves. Extended thigh room, shoulder room, and waistbands that hold. Engineered separately for women and men. XS to 3XL.",
+    images: ["/arya-hero.jpg"],
+  },
 };
 
 export default function FitPage() {

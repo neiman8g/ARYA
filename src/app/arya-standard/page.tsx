@@ -2,9 +2,21 @@ import Link from "next/link";
 import "./arya-standard.css";
 
 export const metadata = {
-  title: "The Arya Standard | Arya",
-  description:
-    "Noble materials. Noble purpose. Our fabric and quality standards. NobleFlex, NobleSoft, NobleDry.",
+  title: "The Arya Standard | Skin Conscious Sustainable Luxury Athleisure",
+  description: "The Arya Standard explains every fabric decision, what we refuse to use, and why skin health is a luxury pillar. NobleFlex, NobleSoft, NobleDry and the harmful alternatives they replace.",
+  keywords: "skin conscious activewear, sustainable luxury athleisure fabrics, NobleFlex fabric, NobleSoft fabric, NobleDry fabric, no PFAS activewear, no harmful dyes sportswear, eco friendly performance fabric, safe activewear materials",
+  openGraph: {
+    title: "The Arya Standard | Skin Conscious Sustainable Luxury Athleisure",
+    description: "The Arya Standard explains every fabric decision, what we refuse to use, and why skin health is a luxury pillar. NobleFlex, NobleSoft, NobleDry and the harmful alternatives they replace.",
+    images: ["/arya-hero.jpg"],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "The Arya Standard | Skin Conscious Sustainable Luxury Athleisure",
+    description: "The Arya Standard explains every fabric decision, what we refuse to use, and why skin health is a luxury pillar. NobleFlex, NobleSoft, NobleDry and the harmful alternatives they replace.",
+    images: ["/arya-hero.jpg"],
+  },
 };
 
 const BLENDS = [

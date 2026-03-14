@@ -1,8 +1,21 @@
 import Link from "next/link";
 
 export const metadata = {
-  title: "The Founders | Arya",
-  description: "We built what didn't exist. Nima & Lucy, Founders of Arya.",
+  title: "The Founders | Arya | Nima and Lucy",
+  description: "Meet Nima and Lucy, founders of Arya. A Persian-American engineer and a future family therapist who built the premium sustainable athleisure brand they couldn't find anywhere else.",
+  keywords: "Arya founders, Persian American brand founder, sustainable athleisure founders, Nima Arya clothing, noble by nature founders",
+  openGraph: {
+    title: "The Founders | Arya | Nima and Lucy",
+    description: "Meet Nima and Lucy, founders of Arya. A Persian-American engineer and a future family therapist who built the premium sustainable athleisure brand they couldn't find anywhere else.",
+    images: ["/arya-hero.jpg"],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "The Founders | Arya | Nima and Lucy",
+    description: "Meet Nima and Lucy, founders of Arya. A Persian-American engineer and a future family therapist who built the premium sustainable athleisure brand they couldn't find anywhere else.",
+    images: ["/arya-hero.jpg"],
+  },
 };
 
 export default function FounderPage() {

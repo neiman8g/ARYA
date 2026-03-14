@@ -1,8 +1,21 @@
 import Link from "next/link";
 
 export const metadata = {
-  title: "Mission | Arya",
-  description: "Built with purpose. Rooted in nobility. Arya is a brand with a conscience.",
+  title: "Our Mission | Arya | Persian Craft. Skin Conscious. Giving Back.",
+  description: "Arya's mission is built on four pillars: Persian craft philosophy, skin-conscious materials, active community, and giving back. A portion of every purchase builds schools and athletic centers for children.",
+  keywords: "sustainable athleisure mission, Persian craft philosophy, skin conscious activewear brand, giving back athleisure, eco friendly activewear brand values",
+  openGraph: {
+    title: "Our Mission | Arya | Persian Craft. Skin Conscious. Giving Back.",
+    description: "Arya's mission is built on four pillars: Persian craft philosophy, skin-conscious materials, active community, and giving back. A portion of every purchase builds schools and athletic centers for children.",
+    images: ["/arya-hero.jpg"],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Our Mission | Arya | Persian Craft. Skin Conscious. Giving Back.",
+    description: "Arya's mission is built on four pillars: Persian craft philosophy, skin-conscious materials, active community, and giving back. A portion of every purchase builds schools and athletic centers for children.",
+    images: ["/arya-hero.jpg"],
+  },
 };
 
 export default function MissionPage() {
