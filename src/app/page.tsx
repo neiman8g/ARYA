@@ -1014,10 +1014,10 @@ export default function AryaPage() {
 
       {/* ── MOBILE MENU ── */}
       <div className={`mobile-menu ${menuOpen ? "open" : ""}`} aria-hidden={!menuOpen}>
-        <Link href="/story" onClick={() => setMenuOpen(false)}>Story</Link>
-        <Link href="/mission" onClick={() => setMenuOpen(false)}>Mission</Link>
-        <Link href="/fit" onClick={() => setMenuOpen(false)}>Fit</Link>
         <Link href="/collection" onClick={() => setMenuOpen(false)}>Collection</Link>
+        <Link href="/story" onClick={() => setMenuOpen(false)}>Story</Link>
+        <Link href="/fit" onClick={() => setMenuOpen(false)}>Fit</Link>
+        <Link href="/mission" onClick={() => setMenuOpen(false)}>Mission</Link>
         <Link href="/founder" onClick={() => setMenuOpen(false)}>Founder</Link>
         <Link href="/arya-standard" onClick={() => setMenuOpen(false)}>The Standard</Link>
         <div className="mobile-menu-divider" />
@@ -1083,13 +1083,12 @@ export default function AryaPage() {
           <AryaLogo size={32} markColor="#8B6A3E" textColor="#1E1810" />
         </a>
         <ul className="nav-links">
-          <li><Link href="/story">Story</Link></li>
-          <li><Link href="/mission">Mission</Link></li>
-          <li><Link href="/fit">Fit</Link></li>
           <li><Link href="/collection">Collection</Link></li>
+          <li><Link href="/story">Story</Link></li>
+          <li><Link href="/fit">Fit</Link></li>
+          <li><Link href="/mission">Mission</Link></li>
           <li><Link href="/founder">Founder</Link></li>
           <li><Link href="/arya-standard">The Standard</Link></li>
-          <li><a href="#waitlist">Join Waitlist</a></li>
         </ul>
         <div className="nav-actions">
           <button type="button" className="nav-cart-btn" onClick={() => setCartOpen(true)} aria-label="Open cart">
