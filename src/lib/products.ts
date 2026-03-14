@@ -82,8 +82,8 @@ export const PRODUCTS: Product[] = [
     gender: "Women's",
     name: "The Noble Long Crop",
     price: "$88",
-    desc: "A long crop built for movement and everyday wear.",
-    specs: ["Extended length crop", "Persian cotton, silk, nylon blend", "Comfortable fit", "Versatile layering piece"],
+    desc: "NobleFlex fabric. Designed to move with you and pair with the Noble Sports Bra.",
+    specs: [],
     sizes: ["XS", "S", "M", "L", "XL", "2XL", "3XL"],
     colors: [
       { name: "Ink", hex: "#1E1810" },
@@ -91,6 +91,19 @@ export const PRODUCTS: Product[] = [
       { name: "Sand", hex: "#E6DCC9" },
       { name: "Slate", hex: "#3A5A6E" },
     ],
+    oneLine: "NobleFlex fabric. Designed to move with you and pair with the Noble Sports Bra.",
+    fabricStory:
+      "The Noble Long Crop is built from the same NobleFlex fabric as the Noble Legging and Noble Sports Bra. Designed as the third piece of the Noble Set, it pairs with the Sports Bra for a complete coordinated look, or wears on its own as a versatile long sleeve top. Four-way stretch, moisture management, and a length that covers and flatters through every movement. From the studio to the street without a second thought.",
+    features: [
+      "NobleFlex proprietary fabric linked to /arya-standard",
+      "Designed to pair with the Noble Sports Bra as a complete set",
+      "Four-way stretch with full range of motion",
+      "Moisture management built in",
+      "Skin certified and free from harmful substances",
+      "Flattering length that moves with you",
+      "Sizes XS to 3XL",
+    ],
+    fabric: "NobleFlex",
   },
   {
     id: "noble-short",
@@ -107,7 +120,7 @@ export const PRODUCTS: Product[] = [
       { name: "Sand", hex: "#E6DCC9" },
       { name: "Slate", hex: "#3A5A6E" },
     ],
-    oneLine: "Recycled materials. Engineered thigh room. Built for real movement.",
+    oneLine: "Noble fabric. Engineered thigh room. Built for real movement.",
     fabricStory:
       "The Noble Short is built from NobleDry, Arya's performance short fabric. Durable, quick-dry, and engineered with extended thigh room for the body that actually trains. Four-way stretch that follows every movement without pulling or bunching. Reinforced seams that hold up to real use. A waistband that stays in place whether you are running, lifting, or sitting down to eat. Built for the full day, not just the workout.",
     features: [
@@ -156,8 +169,8 @@ export const PRODUCTS: Product[] = [
     gender: "Men's",
     name: "The Noble Pant",
     price: "$128",
-    desc: "The pant built for the body that moves, from studio to street.",
-    specs: ["Extended thigh room", "Persian cotton, silk, nylon blend", "Geometric waistband detail", "Deep pockets"],
+    desc: "NobleDry fabric. Five pocket design. Built for the body that moves from the trail to the table.",
+    specs: [],
     sizes: ["S", "M", "L", "XL", "2XL", "3XL"],
     colors: [
       { name: "Ink", hex: "#1E1810" },
@@ -165,6 +178,19 @@ export const PRODUCTS: Product[] = [
       { name: "Sand", hex: "#E6DCC9" },
       { name: "Slate", hex: "#3A5A6E" },
     ],
+    oneLine: "Noble fabric. Five pocket design. Built for the body that moves from the trail to the table.",
+    fabricStory:
+      "The Noble Pant is built from NobleDry, Arya's performance fabric. Engineered to live between a jogger and a tailored trouser. Five pocket construction with extended thigh room that accommodates the athletic body without sacrificing the clean lines of a well-made pant. Four-way stretch that moves with you. A waistband that holds without digging. Built for the full day from a morning run to a dinner table without changing.",
+    features: [
+      "NobleDry proprietary performance fabric linked to /arya-standard",
+      "Five pocket construction",
+      "Four-way stretch with full range of motion",
+      "Extended thigh room with no restriction",
+      "Waistband that holds through every activity",
+      "Transitions from movement to lifestyle without compromise",
+      "Sizes S to 3XL",
+    ],
+    fabric: "NobleDry",
   },
 ];
 

@@ -948,7 +948,7 @@ export default function AryaPage() {
 
         /* ── ARYA STANDARD TEASER ── */
         .std-teaser {
-          padding: 80px 64px; background: var(--ink);
+          padding: 80px 64px; background: #2C2418;
           text-align: center;
         }
         .std-teaser .label { justify-content: center; color: rgba(245,239,228,.6); }
@@ -1366,11 +1366,11 @@ export default function AryaPage() {
           <h2 className="display" style={{ marginBottom: 30 }}>The clothes never kept up.</h2>
           <p className="body-txt">Most brands built their patterns around one body and called it standard. If you have strong quads, broad shoulders, a chest that moves, you already know. The waistband gaps. The fabric pulls. You leave the changing room feeling like the problem.</p>
           <p className="body-txt">You were never the problem. The clothes were.</p>
-          <p className="body-txt">But fit is only one part of what the industry got wrong. The fabrics most brands use are loaded with synthetic polymers, chemical dyes, and PFAS coatings that sit against your skin all day. And almost every premium brand ignores it.</p>
+          <p className="body-txt">But fit is only one part of what the industry got wrong. The fabrics most brands use are loaded with synthetic polymers, chemical dyes, and PFAS coatings that sit against your skin all day. Nobody talks about this. Nobody fixes it.</p>
           <p className="body-txt">The sustainable options exist. But they sacrifice luxury, fit, and performance to get there.</p>
           <p className="body-txt">Arya was built to close all three gaps at once. Engineered fit for the body that actually moves. Skin conscious materials that respect what they touch. A standard of craft that refuses to compromise any of it.</p>
           <div className="pullquote">
-            <p>&ldquo;The industry told you your body was the problem. Your fabrics were fine. Your fit was fine. None of it was fine. And we built the alternative.&rdquo;</p>
+            <p>&ldquo;The industry told you your body was the problem. It wasn&apos;t. The clothes were.&rdquo;</p>
           </div>
         </div>
         <div className="stats">

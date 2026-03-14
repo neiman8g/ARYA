@@ -61,7 +61,18 @@
 .pp-add:hover:not(:disabled) { background: var(--arya-cognac); }
 .pp-add:disabled { background: var(--arya-sand-5); cursor: not-allowed; }
 .pp-add.added { background: var(--arya-cognac); }
+.pp-waitlist-cta { margin-top: 20px; font-size: 14px; color: var(--arya-ink-80); }
+.pp-waitlist-link { color: #8B6A3E; text-decoration: underline; text-underline-offset: 3px; font-weight: 500; }
+.pp-waitlist-link:hover { color: var(--arya-cognac); }
 .pp-note { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 14px; color: var(--arya-ink-60); margin-top: 20px; line-height: 1.5; }
+.pp-crosssell { margin-top: 56px; padding-top: 40px; border-top: 1px solid var(--arya-sand-4); }
+.pp-crosssell-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(22px, 3vw, 28px); font-weight: 500; color: var(--arya-ink); margin: 0 0 24px; }
+.pp-crosssell-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+.pp-crosssell-card { display: flex; flex-direction: column; text-decoration: none; color: inherit; border: 1px solid var(--arya-sand-4); background: var(--arya-sand-2); padding: 20px; transition: border-color .25s, box-shadow .25s; }
+.pp-crosssell-card:hover { border-color: var(--arya-cognac); box-shadow: 0 4px 16px rgba(30,24,16,.06); }
+.pp-crosssell-visual { aspect-ratio: 3/4; background: var(--arya-sand-3); display: flex; align-items: center; justify-content: center; margin-bottom: 12px; }
+.pp-crosssell-name { font-family: 'Cormorant Garamond', serif; font-size: 18px; font-weight: 500; color: var(--arya-ink); }
+.pp-crosssell-price { font-size: 14px; color: var(--arya-ink-80); margin-top: 4px; }
 
 @media (max-width: 768px) {
   .p-nav { padding: 16px 20px; flex-direction: column; align-items: center; gap: 0; }
@@ -73,6 +84,9 @@
   .pp-image-options { position: static; }
   .pp-options-stack { padding: 20px 0 0; }
   .pp-add { min-height: 52px; }
+  .pp-crosssell-grid { grid-template-columns: 1fr; }
+  .pp-crosssell-card { min-height: 48px; padding: 16px; display: flex; flex-direction: row; align-items: center; gap: 16px; }
+  .pp-crosssell-visual { aspect-ratio: 1; width: 72px; min-width: 72px; margin-bottom: 0; }
 }
 
 @media (max-width: 480px) {

@@ -2,7 +2,16 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import type { Product } from "@/lib/products";
+import { getProductBySlug, type Product } from "@/lib/products";
+
+const CROSS_SELL: Record<string, [string, string]> = {
+  "noble-legging": ["noble-bra", "noble-long-crop"],
+  "noble-bra": ["noble-legging", "noble-long-crop"],
+  "noble-long-crop": ["noble-bra", "noble-legging"],
+  "noble-short": ["noble-tee", "noble-pant"],
+  "noble-tee": ["noble-short", "noble-pant"],
+  "noble-pant": ["noble-short", "noble-tee"],
+};
 
 function textWithFabricLinks(text: string): React.ReactNode {
   const regex = /(NobleFlex|NobleSoft|NobleDry)/g;
@@ -110,6 +119,9 @@ export default function ProductPageClient({ product }: { product: Product }) {
             >
               {!selectedSize ? "Select Size" : added ? "Added ✓" : "Pre-Order"}
             </button>
+            <p className="pp-waitlist-cta">
+              Not ready? <Link href="/#waitlist" className="pp-waitlist-link">Join the waitlist for launch updates.</Link>
+            </p>
           </div>
         </div>
         <div className="pp-detail">
@@ -140,6 +152,27 @@ export default function ProductPageClient({ product }: { product: Product }) {
           )}
         </div>
       </div>
+
+      {CROSS_SELL[product.slug] && (
+        <section className="pp-crosssell">
+          <h2 className="pp-crosssell-title">Complete the look</h2>
+          <div className="pp-crosssell-grid">
+            {CROSS_SELL[product.slug].map((slug) => {
+              const p = getProductBySlug(slug);
+              if (!p) return null;
+              return (
+                <Link key={p.id} href={`/products/${p.slug}`} className="pp-crosssell-card">
+                  <div className="pp-crosssell-visual">
+                    <AryaMark size={40} color="#8B6A3E" />
+                  </div>
+                  <span className="pp-crosssell-name">{p.name}</span>
+                  <span className="pp-crosssell-price">{p.price}</span>
+                </Link>
+              );
+            })}
+          </div>
+        </section>
+      )}
     </>
   );
 }
