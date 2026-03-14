@@ -757,7 +757,7 @@ export default function AryaPage() {
         }
         .craft-h em { font-style: italic; color: #C9A96E; }
         .craft-body { font-size: 17px; line-height: 1.9; color: rgba(245,239,228,.8); font-weight: 400; margin-bottom: 16px; }
-        .craft-pillars { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-top: 80px; }
+        .craft-pillars { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2px; margin-top: 80px; }
         .pillar {
           background: rgba(245,239,228,.04); padding: 52px 40px;
           text-align: left; border-top: 2px solid transparent; transition: border-color .3s;
@@ -1108,7 +1108,7 @@ export default function AryaPage() {
               Noble by<br /><em>nature.</em>
             </h1>
             <p className="hero-sub">
-              Premium athleisure where Persian craft tradition meets the California coast. Built for every body. Made to last.
+              Where Persian craft meets California living. Engineered for the body that moves, built for every version of your life.
             </p>
             <div className="hero-ctas">
               <a href="#waitlist" className="btn-dark">Join Waitlist</a>
@@ -1128,7 +1128,7 @@ export default function AryaPage() {
         <div className="ticker-track">
           {[...Array(2)].map((_, i) => (
             <span key={i} style={{ display: "inline-flex" }}>
-              {["Persian Craft Heritage", "Built in Los Angeles", "For the Body That Moves", "Persian Cotton · Silk · Nylon", "Noble by Nature", "Pre-Order Open", "California Roots", "Built for Every Body"].map((t, j) => (
+              {["Luxury Materials", "Skin Conscious", "Sustainably Minded", "Noble by Nature", "Built for Every Body", "Persian Craft", "California Soul"].map((t, j) => (
                 <span key={j} className="ticker-item">{t}</span>
               ))}
             </span>
@@ -1189,8 +1189,8 @@ export default function AryaPage() {
             <div className="stat-l">Of athleisure buyers lead active lives — yet almost no premium brands engineer for the body that moves. Until now.</div>
           </div>
           <div className="stat">
-            <div className="stat-n">$431B</div>
-            <div className="stat-l">Global athleisure market in 2025. Growing to $731B by 2033. The category is real. The gap is real.</div>
+            <div className="stat-n">$450B</div>
+            <div className="stat-l">Global athleisure market in 2026. Growing to $731B by 2033. The category is real. The gap is real.</div>
           </div>
           <div className="stat">
             <div className="stat-n">3,000+</div>
@@ -1271,14 +1271,14 @@ export default function AryaPage() {
         <WeavePattern id="craft-p" opacity={0.04} color="#C9A96E" />
         <div className="craft-inner">
           <div className="label">Mission</div>
-          <h2 className="craft-h">Built in Los Angeles.<br /><em>Rooted in Persia.</em></h2>
-          <p className="craft-body">Arya is a bridge between two worlds — the California coast where this founder was born, and the ancient land that gave him his culture, his values, and his name. Persian craft philosophy holds that doing something with complete precision is itself a form of art. Every stitch, every seam, every fit spec is held to that standard.</p>
-          <p className="craft-body">A portion of every Arya purchase goes toward building schools and community spaces in Iran — because the land that gave this brand its soul deserves to see what its children can become.</p>
+          <h2 className="craft-h">Built with purpose.<br /><em>Rooted in nobility.</em></h2>
+          <p className="craft-body">Arya was built on a simple belief: that what you put on your body matters as much as what you put in it. Every decision we make, from the fabrics we choose to the communities we invest in, is held to the same standard that has guided Persian craft for thousands of years. Precision as a form of respect. For the wearer. For the maker. For the world we all share.</p>
           <div className="craft-pillars">
             {[
-              { n: "01", t: "Persian Craft", b: "Every garment held to the Persian artisan standard. No shortcuts, no compromises. Built to outlast trends by decades." },
-              { n: "02", t: "Active Community", b: "For everyone who lives fully and moves often — and deserves clothing that keeps up with every part of that life." },
-              { n: "03", t: "Giving Back", b: "Every purchase helps build schools and community spaces in Iran — the ancient land at the root of this brand." },
+              { n: "01", t: "Persian Craft", b: "Persian craft philosophy holds that doing something with complete precision is itself a form of art. Every stitch, every seam, every fit decision at Arya is held to that standard. No shortcuts. No compromises. Built to outlast trends by decades." },
+              { n: "02", t: "Skin Conscious", b: "Every Arya fabric is chosen with your health in mind. No harmful dyes. No toxic synthetics against your body. Materials that feel as good as they perform. Because luxury should never come at the cost of your wellbeing." },
+              { n: "03", t: "Active Community", b: "For everyone who lives fully and moves often. Not one sport. Not one body type. Not one image. Clothing that crosses every terrain, every ritual, every version of you." },
+              { n: "04", t: "Giving Back", b: "A portion of every Arya purchase goes toward building schools and athletic centers for children in underserved communities, starting with Iran and growing wherever the need exists. Sport gave our founder his confidence and his mental strength. We believe every child deserves that same opportunity." },
             ].map((p, i) => (
               <div key={i} className="pillar">
                 <div className="pil-n">{p.n}</div>
@@ -1296,18 +1296,17 @@ export default function AryaPage() {
           <div className="label">The Founders</div>
           <h2 className="display" style={{ marginBottom: 28 }}>We built what didn&apos;t <em>exist.</em></h2>
           <p className="body-txt">Arya was born between two people, two worlds, and one shared belief: that clothing should make you feel like yourself.</p>
-          <p className="body-txt">Nima grew up bigger than the clothes that were supposed to fit him. A state wrestler and football player, he lived in his body in a way most brands never accounted for. Joggers that fit his waist turned into skinny jeans at the thigh. Shirts that fit his shoulders billowed everywhere else. He&apos;d go for a run and come back with chafing. The fabrics weren&apos;t right either. Synthetic polymers that didn&apos;t breathe, didn&apos;t last, and didn&apos;t respect the body wearing them.</p>
+          <p className="body-txt">Nima grew up bigger than the clothes that were supposed to fit him. A state wrestler and football player, he lived in his body in a way most brands never accounted for. Joggers that fit his waist turned into skinny jeans at the thigh. Shirts that fit his shoulders billowed everywhere else. He would go for a run and come back with chafing. The fabrics were not right either. Synthetic polymers that did not breathe, did not last, and did not respect the body wearing them.</p>
           <p className="body-txt">But it was more than fit. Sport gave him his confidence. At his lowest points, athletics gave him his mental strength and his sense of self. He knows what it means when your body and your clothes finally work together. That feeling is what Arya is built to give everyone.</p>
           <p className="body-txt">Lucy came to Southern California from Florida in 2022 and found a life built around movement, wellness, and intention. Her first Persian New Year with Nima&apos;s family changed something in her. She was taught about the Haft Seen, each element on the table carrying a meaning, a wish, an intention. A culture that treated everything it touched as worth doing beautifully.</p>
           <p className="body-txt">Studying to become a family therapist, Lucy&apos;s life work is helping people overcome anxiety and rebuild their self worth. She knows the specific discomfort of women&apos;s activewear that rides up, pulls, and makes you self-conscious mid-movement when you should feel free. That problem is personal to her. Fixing it is personal to Arya.</p>
-          <p className="body-txt">They share a belief that people are too complex for brands that speak to only one sport, one body, one image. Clothing doesn&apos;t have to choose between performance and beauty. Between function and intention.</p>
-          <p className="body-txt">And they believe building something real means giving something back. A portion of every Arya purchase goes toward building schools and community spaces in Iran because the culture that shaped this brand deserves to see what its next generation can become.</p>
+          <p className="body-txt">They share a belief that people are too complex for brands that speak to only one sport, one body, one image. Clothing does not have to choose between performance and beauty. Between function and intention.</p>
+          <p className="body-txt">And they believe building something real means giving something back. A portion of every Arya purchase goes toward building schools and athletic centers for children in underserved communities because the culture that shaped this brand deserves to see what its next generation can become.</p>
           <p className="body-txt">Together they built Arya. A meeting point between two worlds. The California coast that inspires the lifestyle, and the ancient Persian heritage that shaped the craft.</p>
           <div className="f-sig">
             <AryaMark size={36} color="#8B6A3E" />
             <div>
-              <div className="f-name">Nima & Lucy</div>
-              <div className="f-role">Founders of Arya</div>
+              <div className="f-name">Nima and Lucy, Founders of Arya</div>
             </div>
           </div>
         </div>
