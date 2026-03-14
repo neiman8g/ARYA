@@ -695,6 +695,9 @@ export default function AryaPage() {
 
         /* ── COLLECTION ── */
         .collection { padding: 160px 64px; background: var(--sand-2); }
+        .coll-sections { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+        .coll-sections .coll-section { margin-bottom: 0; }
+        .coll-sections:has(.hide-by-filter) .coll-section:not(.hide-by-filter) { grid-column: 1 / -1; }
         .coll-header {
           display: grid; grid-template-columns: 1fr 1fr;
           gap: 60px; align-items: flex-end; margin-bottom: 48px;
@@ -1023,6 +1026,9 @@ export default function AryaPage() {
           .fit-mini { min-width: 0; }
 
           .collection { padding: 60px 24px; }
+          .coll-sections { grid-template-columns: 1fr; gap: 32px; }
+          .coll-sections .coll-section { margin-bottom: 48px; }
+          .coll-sections .coll-section:last-child { margin-bottom: 0; }
           .coll-header { grid-template-columns: 1fr; gap: 20px; }
           .coll-section { overflow: visible; }
           .product-grid {
@@ -1287,17 +1293,19 @@ export default function AryaPage() {
           <button type="button" className={`coll-tab ${collectionFilter === "men" ? "active" : ""}`} onClick={() => setCollectionFilter("men")}>Men&apos;s</button>
         </div>
 
-        <div className={`coll-section ${collectionFilter === "men" ? "hide-by-filter" : ""}`} id="women">
-          <h3 className="coll-section-title">Women&apos;s</h3>
-          <div className="product-grid">
-            {womenProducts.map(p => <ProductCard key={p.id} p={p} selectedColors={selectedColors} setColor={setColor} />)}
+        <div className="coll-sections">
+          <div className={`coll-section ${collectionFilter === "men" ? "hide-by-filter" : ""}`} id="women">
+            <h3 className="coll-section-title">Women&apos;s</h3>
+            <div className="product-grid">
+              {womenProducts.map(p => <ProductCard key={p.id} p={p} selectedColors={selectedColors} setColor={setColor} />)}
+            </div>
           </div>
-        </div>
 
-        <div className={`coll-section ${collectionFilter === "women" ? "hide-by-filter" : ""}`} id="men">
-          <h3 className="coll-section-title">Men&apos;s</h3>
-          <div className="product-grid">
-            {menProducts.map(p => <ProductCard key={p.id} p={p} selectedColors={selectedColors} setColor={setColor} />)}
+          <div className={`coll-section ${collectionFilter === "women" ? "hide-by-filter" : ""}`} id="men">
+            <h3 className="coll-section-title">Men&apos;s</h3>
+            <div className="product-grid">
+              {menProducts.map(p => <ProductCard key={p.id} p={p} selectedColors={selectedColors} setColor={setColor} />)}
+            </div>
           </div>
         </div>
       </section>
