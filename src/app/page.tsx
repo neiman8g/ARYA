@@ -73,12 +73,12 @@ function ProductPlaceholder({ name, patternId }: { name: string; patternId: stri
 
 // ─── Collection card short descriptions (homepage) ───────────────────────────
 const CARD_DESCRIPTIONS: Record<string, string> = {
-  "noble-legging": "NobleFlex fabric. Four-way stretch, muscle compression, and extended thigh room. XS to 3XL.",
-  "noble-bra": "NobleFlex fabric. Medium to high support, skin conscious construction. XS to 3XL.",
-  "noble-long-crop": "NobleFlex fabric. Pairs as a set with the Noble Sports Bra. XS to 3XL.",
-  "noble-short": "NobleDry fabric. Extended thigh room, four-way stretch, built for real movement. S to 3XL.",
-  "noble-tee": "NobleSoft fabric. Silk-like feel, no synthetics against your skin. S to 3XL.",
-  "noble-pant": "NobleDry fabric. Performance trouser engineered for the body that moves. S to 3XL.",
+  "noble-legging": "NobleFlex fabric. Four-way stretch, muscle compression, and extended thigh room.",
+  "noble-bra": "NobleFlex fabric. Medium to high support, skin conscious construction.",
+  "noble-long-crop": "NobleFlex fabric. Pairs as a set with the Noble Sports Bra.",
+  "noble-short": "NobleDry fabric. Extended thigh room, four-way stretch, built for real movement.",
+  "noble-tee": "NobleSoft fabric. Silk-like feel, no synthetics against your skin.",
+  "noble-pant": "NobleDry fabric. Performance trouser engineered for the body that moves.",
 };
 
 // ─── Types & Data ─────────────────────────────────────────────────────────────
@@ -938,6 +938,34 @@ export default function AryaPage() {
         .cart-empty { padding: 48px 20px; text-align: center; }
         .cart-empty p { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 18px; color: var(--ink-60); }
 
+        /* ── ARYA STANDARD TEASER ── */
+        .std-teaser {
+          padding: 80px 64px; background: var(--ink);
+          text-align: center;
+        }
+        .std-teaser .label { justify-content: center; color: rgba(245,239,228,.6); }
+        .std-teaser .label::after { background: rgba(245,239,228,.6); }
+        .std-teaser .std-teaser-h {
+          font-family: 'Cormorant Garamond', serif; font-weight: 400;
+          font-size: clamp(32px, 4vw, 48px); line-height: 1.2; color: var(--sand);
+          margin: 0 auto 24px; max-width: 20ch;
+        }
+        .std-teaser .std-teaser-p {
+          font-size: 17px; line-height: 1.75; color: rgba(245,239,228,.82);
+          margin: 0 auto 36px; max-width: 44ch;
+        }
+        .std-teaser .std-teaser-btn {
+          display: inline-block; padding: 14px 32px;
+          font-size: 11px; letter-spacing: .26em; text-transform: uppercase;
+          color: var(--ink); background: var(--sand); text-decoration: none;
+          font-family: 'Jost', sans-serif; font-weight: 500;
+          clip-path: polygon(0 0, 100% 0, 100% 75%, 95% 100%, 0 100%);
+          transition: background .3s, color .3s;
+        }
+        .std-teaser .std-teaser-btn:hover { background: #C9A96E; color: var(--ink); }
+        @media (max-width: 960px) { .std-teaser { padding: 60px 24px; } }
+        @media (max-width: 480px) { .std-teaser { padding: 56px 20px; } .std-teaser .std-teaser-btn { min-height: 52px; display: inline-flex; align-items: center; justify-content: center; } }
+
         /* ── FOOTER ── */
         footer { padding: 72px 64px 40px; background: var(--ink); }
         .foot-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 60px; margin-bottom: 64px; }
@@ -1175,7 +1203,7 @@ export default function AryaPage() {
               </div>
               {checkoutError && <p className="cart-checkout-error">{checkoutError}</p>}
               <button type="button" className="cart-checkout" onClick={goToCheckout} disabled={checkoutLoading}>
-                {checkoutLoading ? "Redirecting to payment…" : "Checkout — Pre-Order"}
+                {checkoutLoading ? "Redirecting to payment…" : "Checkout Pre-Order"}
               </button>
             </div>
           )}
@@ -1325,10 +1353,9 @@ export default function AryaPage() {
           <h2 className="display" style={{ marginBottom: 30 }}>The clothes never kept up.</h2>
           <p className="body-txt">Most brands built their patterns around one body and called it standard. If you have strong quads, broad shoulders, a chest that moves, you already know. The waistband gaps. The fabric pulls. You leave the changing room feeling like the problem.</p>
           <p className="body-txt">You were never the problem. The clothes were.</p>
-          <p className="body-txt">But fit is only one part of what the industry got wrong.</p>
-          <p className="body-txt">The fabrics most brands use are loaded with synthetic polymers, chemical dyes, and coatings that sit against your skin all day. Nobody talks about this. Nobody fixes it. And almost every premium brand in the market is built from the same materials.</p>
-          <p className="body-txt">The sustainable options exist but they sacrifice luxury, fit, and performance to get there.</p>
-          <p className="body-txt">Arya was built to close all three gaps at once. Engineered fit for the body that actually moves. Skin conscious materials that respect what they touch. And a standard of craft that refuses to compromise any of it.</p>
+          <p className="body-txt">But fit is only one part of what the industry got wrong. The fabrics most brands use are loaded with synthetic polymers, chemical dyes, and PFAS coatings that sit against your skin all day. And almost every premium brand ignores it.</p>
+          <p className="body-txt">The sustainable options exist. But they sacrifice luxury, fit, and performance to get there.</p>
+          <p className="body-txt">Arya was built to close all three gaps at once. Engineered fit for the body that actually moves. Skin conscious materials that respect what they touch. A standard of craft that refuses to compromise any of it.</p>
           <div className="pullquote">
             <p>&ldquo;The industry told you your body was the problem. Your fabrics were fine. Your fit was fine. None of it was fine. And we built the alternative.&rdquo;</p>
           </div>
@@ -1344,7 +1371,7 @@ export default function AryaPage() {
           </div>
           <div className="stat">
             <div className="stat-n">$415B</div>
-            <div className="stat-l">Total athleisure market in 2026. Premium sustainable is the fastest growing segment.</div>
+            <div className="stat-l">Total athleisure market in 2026, premium sustainable is the fastest growing segment</div>
           </div>
           <div className="stat">
             <div className="stat-n">3</div>
@@ -1449,7 +1476,7 @@ export default function AryaPage() {
         <div className="wl-inner">
           <div className="label" style={{ justifyContent: "center" }}>Early Access</div>
           <h2 className="display" style={{ marginBottom: 16, fontSize: "clamp(42px,5vw,68px)" }}>Be first.<br /><em>Be noble.</em></h2>
-          <p className="wl-sub">Join the Arya waitlist for early access to the launch collection, founder updates, and pre-order pricing. Men&apos;s and women&apos;s — dropping together.</p>
+          <p className="wl-sub">Join the Arya waitlist for early access to the launch collection, founder updates, and pre-order pricing. Men&apos;s and women&apos;s dropping together.</p>
           {submitted ? (
             <div className="wl-success"><p>You&apos;re on the list. We&apos;ll be in touch.</p></div>
           ) : (
@@ -1470,6 +1497,14 @@ export default function AryaPage() {
           )}
           <p className="wl-note">No spam. No noise. Just Arya.</p>
         </div>
+      </section>
+
+      {/* ── ARYA STANDARD TEASER ── */}
+      <section className="std-teaser fade-section">
+        <div className="label">THE ARYA STANDARD</div>
+        <h2 className="std-teaser-h">There is a standard behind every decision we make.</h2>
+        <p className="std-teaser-p">Every fabric. Every seam. Every fit decision. Held to the same standard that has guided Persian craft for thousands of years. We have nothing to hide and everything to share.</p>
+        <Link href="/arya-standard" className="std-teaser-btn">Discover the Standard</Link>
       </section>
 
       {/* ── FOOTER ── */}

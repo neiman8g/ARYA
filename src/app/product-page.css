@@ -33,6 +33,8 @@
 .pp-price small { font-size: 11px; color: var(--arya-ink-60); letter-spacing: .1em; margin-left: 4px; }
 .pp-desc { font-size: 16px; line-height: 1.7; color: var(--arya-ink-80); margin: 0 0 24px; }
 .pp-fabric { font-size: 16px; line-height: 1.75; color: var(--arya-ink-80); margin: 0 0 24px; }
+.fabric-link { color: #8B6A3E; text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; font-weight: 500; }
+.fabric-link:hover { color: var(--arya-cognac); }
 .pp-features { list-style: none; margin: 0 0 28px; padding: 0; }
 .pp-features li { font-size: 14px; color: var(--arya-ink-80); padding: 6px 0; border-bottom: 1px solid var(--arya-sand-3); display: flex; align-items: flex-start; gap: 8px; line-height: 1.5; }
 .pp-features li::before { content: ''; width: 4px; height: 4px; border-radius: 50%; background: var(--arya-cognac); flex-shrink: 0; margin-top: 8px; }

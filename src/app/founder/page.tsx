@@ -55,6 +55,7 @@ export default function FounderPage() {
               </div>
             </div>
             <Link href="/collection" className="sp-btn">View Collection</Link>
+            <Link href="/#waitlist" className="sp-btn sp-btn-secondary">Join Waitlist</Link>
           </div>
           <div className="fit-visual">
             {/* eslint-disable-next-line @next/next/no-img-element */}

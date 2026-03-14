@@ -3,36 +3,28 @@
 import { useState } from "react";
 import Link from "next/link";
 import type { Product } from "@/lib/products";
-import MaterialDrawer, { type FabricType } from "@/components/MaterialDrawer";
-import "@/components/MaterialDrawer.css";
 
-function textWithFabricTrigger(
-  text: string,
-  fabric: FabricType,
-  onOpen: () => void
-): React.ReactNode {
-  const parts = text.split(fabric);
-  if (parts.length < 2) return text;
-  const nodes: React.ReactNode[] = [];
-  parts.forEach((part, i) => {
-    nodes.push(part);
-    if (i < parts.length - 1) {
-      nodes.push(
-        <button
-          key={`${fabric}-${i}`}
-          type="button"
-          className="fabric-trigger"
-          onClick={(e) => {
-            e.preventDefault();
-            onOpen();
-          }}
-        >
-          {fabric}
-        </button>
-      );
-    }
-  });
-  return <>{nodes}</>;
+function textWithFabricLinks(text: string): React.ReactNode {
+  const regex = /(NobleFlex|NobleSoft|NobleDry)/g;
+  const parts: React.ReactNode[] = [];
+  let lastIndex = 0;
+  let match;
+  let key = 0;
+  while ((match = regex.exec(text)) !== null) {
+    parts.push(text.slice(lastIndex, match.index));
+    parts.push(
+      <Link
+        key={`fabric-${key++}`}
+        href="/arya-standard"
+        className="fabric-link"
+      >
+        {match[0]}
+      </Link>
+    );
+    lastIndex = regex.lastIndex;
+  }
+  parts.push(text.slice(lastIndex));
+  return <>{parts}</>;
 }
 
 function AryaMark({ size = 40, color = "#8B6A3E" }: { size?: number; color?: string }) {
@@ -60,9 +52,6 @@ export default function ProductPageClient({ product }: { product: Product }) {
   const [selectedSize, setSelectedSize] = useState<string | null>(null);
   const [selectedColor, setSelectedColor] = useState<string>(product.colors?.[0]?.name ?? "");
   const [added, setAdded] = useState(false);
-  const [drawerFabric, setDrawerFabric] = useState<FabricType | null>(null);
-
-  const openDrawer = product.fabric ? () => setDrawerFabric(product.fabric!) : undefined;
 
   const handleAddToCart = () => {
     if (!selectedSize) return;
@@ -72,11 +61,6 @@ export default function ProductPageClient({ product }: { product: Product }) {
 
   return (
     <>
-      <MaterialDrawer
-        isOpen={!!drawerFabric}
-        onClose={() => setDrawerFabric(null)}
-        fabric={drawerFabric}
-      />
       <div className="pp-layout">
       <div className="pp-visual-wrap">
         <ProductPlaceholder name={product.name} />
@@ -85,31 +69,25 @@ export default function ProductPageClient({ product }: { product: Product }) {
       <div className="pp-detail">
         <div className="pp-cat">{product.gender}</div>
         <h1 className="pp-title">{product.name}</h1>
-        {product.oneLine && <p className="pp-oneline">{product.oneLine}</p>}
+        {product.oneLine && <p className="pp-oneline">{textWithFabricLinks(product.oneLine)}</p>}
         <p className="pp-price">{product.price} <small>USD</small></p>
         {product.fabricStory && product.features ? (
           <>
             <p className="pp-fabric">
-              {product.fabric && openDrawer
-                ? textWithFabricTrigger(product.fabricStory, product.fabric, openDrawer)
-                : product.fabricStory}
+              {textWithFabricLinks(product.fabricStory)}
             </p>
             <ul className="pp-features">
               {product.features.map((f, i) => (
-                <li key={i}>
-                  {product.fabric && openDrawer
-                    ? textWithFabricTrigger(f, product.fabric, openDrawer)
-                    : f}
-                </li>
+                <li key={i}>{textWithFabricLinks(f)}</li>
               ))}
             </ul>
           </>
         ) : (
           <>
-            <p className="pp-desc">{product.desc}</p>
+            <p className="pp-desc">{textWithFabricLinks(product.desc)}</p>
             <ul className="pp-specs">
               {product.specs.map((s, i) => (
-                <li key={i}>{s}</li>
+                <li key={i}>{textWithFabricLinks(s)}</li>
               ))}
             </ul>
           </>
