@@ -71,6 +71,16 @@ function ProductPlaceholder({ name, patternId }: { name: string; patternId: stri
   );
 }
 
+// ─── Collection card short descriptions (homepage) ───────────────────────────
+const CARD_DESCRIPTIONS: Record<string, string> = {
+  "noble-legging": "NobleFlex fabric. Four-way stretch, muscle compression, and extended thigh room. XS to 3XL.",
+  "noble-bra": "NobleFlex fabric. Medium to high support, skin conscious construction. XS to 3XL.",
+  "noble-long-crop": "NobleFlex fabric. Pairs as a set with the Noble Sports Bra. XS to 3XL.",
+  "noble-short": "NobleDry fabric. Extended thigh room, four-way stretch, built for real movement. S to 3XL.",
+  "noble-tee": "NobleSoft fabric. Silk-like feel, no synthetics against your skin. S to 3XL.",
+  "noble-pant": "NobleDry fabric. Performance trouser engineered for the body that moves. S to 3XL.",
+};
+
 // ─── Types & Data ─────────────────────────────────────────────────────────────
 
 type CartItem = {
@@ -111,6 +121,7 @@ function ProductCard({ p, addedProductId, selectedSizes, selectedColors, setSize
       <div className="p-info">
         <div className="p-cat">{p.gender}</div>
         <Link href={`/products/${p.slug}`} className="p-name">{p.name}</Link>
+        {CARD_DESCRIPTIONS[p.id] && <p className="p-card-desc">{CARD_DESCRIPTIONS[p.id]}</p>}
         {p.colors?.length > 0 && (
           <div className="p-color-row">
             <span className="p-opt-label">Color</span>
@@ -707,6 +718,7 @@ export default function AryaPage() {
           margin-bottom: 10px; text-decoration: none; display: block; transition: color .2s;
         }
         .p-name:hover { color: var(--cognac); }
+        .p-card-desc { font-size: 13px; line-height: 1.5; color: var(--ink-80); margin: 0 0 12px; font-weight: 400; }
         .p-opt-label { font-size: 10px; letter-spacing: .32em; text-transform: uppercase; color: var(--ink-60); font-weight: 500; display: block; margin-bottom: 6px; }
         .p-color-row { margin-bottom: 10px; }
         .p-color-swatches { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
@@ -909,11 +921,11 @@ export default function AryaPage() {
           .hero-right { display: flex !important; order: 1; min-height: 50vh; }
           .hero-right img { object-position: center 30%; }
           .hero-right-overlay { background: linear-gradient(180deg, transparent 40%, rgba(245,239,228,.6) 100%); }
-          .hero-left { order: 2; padding: 48px 32px 56px; }
+          .hero-left { order: 2; padding: 60px 24px 60px; }
           .hero-sub { font-size: 18px; }
           .btn-dark, .btn-outline { padding: 16px 28px; min-height: 48px; display: inline-flex; align-items: center; }
 
-          .ethos, .problem, .founder { grid-template-columns: 1fr; gap: 48px; padding: 72px 32px; }
+          .ethos, .problem, .founder { grid-template-columns: 1fr; gap: 48px; padding: 60px 24px; }
           .ethos-card { aspect-ratio: 16/10; }
           .ethos-card-img { opacity: .65; }
           .founder { gap: 48px; }
@@ -922,7 +934,7 @@ export default function AryaPage() {
           .founder .f-photo { aspect-ratio: 4/5; }
           .f-photo-mark { opacity: .25; }
 
-          .fit { padding: 72px 32px; }
+          .fit { padding: 60px 24px; }
           .fit-grid { grid-template-columns: 1fr; gap: 48px; }
           .fit-grid > div:first-child { order: 2; }
           .fit-grid > div:last-child { order: 1; }
@@ -932,7 +944,7 @@ export default function AryaPage() {
           .fit-tab { padding: 14px 24px; min-height: 44px; }
           .fit-minis { grid-template-columns: 1fr; }
 
-          .collection { padding: 72px 32px; }
+          .collection { padding: 60px 24px; }
           .coll-header { grid-template-columns: 1fr; gap: 20px; }
           .coll-section { overflow: hidden; }
           .product-grid {
@@ -952,16 +964,16 @@ export default function AryaPage() {
           }
           .coll-tab { padding: 14px 20px; min-height: 44px; }
 
-          .craft { padding: 72px 32px; }
+          .craft { padding: 60px 24px; }
           .craft-pillars { grid-template-columns: 1fr; }
 
-          .waitlist { padding: 72px 32px; }
+          .waitlist { padding: 60px 24px; }
           .wl-form { flex-direction: column; }
           .wl-input { border-right: 1px solid var(--sand-4); border-bottom: none; }
           .wl-submit { clip-path: none; min-height: 52px; }
           .wl-submit, .wl-input { min-height: 52px; }
 
-          footer { padding: 48px 32px 28px; }
+          footer { padding: 60px 24px 40px; }
           .foot-grid { grid-template-columns: 1fr 1fr; gap: 36px; }
           .foot-bottom { flex-direction: column; gap: 14px; text-align: center; }
 
@@ -975,27 +987,27 @@ export default function AryaPage() {
         @media (max-width: 480px) {
           .nav, .nav.stuck { padding: 14px 20px; }
           .hero-right { min-height: 45vh; }
-          .hero-left { padding: 36px 20px 44px; }
+          .hero-left { padding: 60px 20px 60px; }
           .hero-h1 { font-size: clamp(36px, 10vw, 48px) !important; }
           .hero-ctas { flex-direction: column; width: 100%; }
           .hero-ctas a { width: 100%; justify-content: center; }
 
-          .ethos, .problem, .founder { padding: 56px 20px; gap: 40px; }
+          .ethos, .problem, .founder { padding: 60px 20px; gap: 40px; }
           .ethos-card { aspect-ratio: 4/3; }
           .ethos-card-img { opacity: .7; }
           .display { font-size: clamp(28px, 7vw, 42px) !important; }
 
-          .fit { padding: 56px 20px; }
+          .fit { padding: 60px 20px; }
           .fit-main { aspect-ratio: 3/4; }
 
-          .collection { padding: 56px 20px; }
+          .collection { padding: 60px 20px; }
           .product-grid { margin: 0 -20px; padding-left: 20px; padding-right: 20px; }
           .product-grid .p-card { min-width: 240px; flex: 0 0 calc(50% - 8px); }
-          .craft { padding: 56px 20px; }
-          .waitlist { padding: 56px 20px; }
+          .craft { padding: 60px 20px; }
+          .waitlist { padding: 60px 20px; }
           .waitlist .display { font-size: clamp(32px, 8vw, 48px) !important; }
 
-          footer { padding: 40px 20px 24px; }
+          footer { padding: 60px 20px 32px; }
           .foot-grid { grid-template-columns: 1fr; gap: 28px; }
         }
       `}</style>
@@ -1136,107 +1148,7 @@ export default function AryaPage() {
         </div>
       </div>
 
-      {/* ── ETHOS (Our Story) — builds brand before products ── */}
-      <section className="ethos fade-section" id="ethos">
-        <div>
-          <div className="ethos-card">
-            <img src="/arya-story.jpg" alt="Arya brand story — texture and craft" className="ethos-card-img" loading="lazy" />
-            <WeavePattern id="ethos-p" opacity={0.12} color="#8B6A3E" />
-            <div className="ethos-card-content">
-              <AryaMark size={96} color="#8B6A3E" />
-              <div className="ethos-card-label">A &nbsp; R &nbsp; Y &nbsp; A</div>
-              <div className="ethos-card-meaning">Noble · Honorable · Pure</div>
-            </div>
-            <div className="ethos-corner" />
-          </div>
-          <div className="swatches">
-            <div className="sw" style={{ background: "#1E1810" }} />
-            <div className="sw" style={{ background: "#7A5A2F" }} />
-            <div className="sw" style={{ background: "#E6DCC9" }} />
-            <div className="sw" style={{ background: "#3A5A6E" }} />
-            <div className="sw" style={{ background: "#F5EFE4" }} />
-          </div>
-        </div>
-        <div>
-          <div className="label">Our Story</div>
-          <h2 className="display" style={{ marginBottom: 30 }}>Where the Pacific Coast<br />meets <em>Persian craft.</em></h2>
-          <p className="body-txt">Arya was born between two worlds: the salt air of Southern California and the ancient textile traditions of Persia. One shaped by movement, the other by centuries of craft.</p>
-          <p className="body-txt">The name Arya comes from the ancient Persian word for noble and honorable — the very root of the name Iran itself. It reflects a simple belief: the way you move through the world should be matched by what you wear.</p>
-          <p className="body-txt">At Arya, we build garments with care. Materials chosen with intention. Fit refined through movement. Craft without shortcuts.</p>
-          <div className="ethos-divider" />
-          <div className="values">
-            <div className="val"><div className="val-b">Craft without compromise.</div></div>
-            <div className="val"><div className="val-b">Garments that move with every part of your life.</div></div>
-            <div className="val"><div className="val-b">Purpose that extends beyond the garment.</div></div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── PROBLEM — validates the need ── */}
-      <section className="problem fade-section" id="problem">
-        <div>
-          <div className="label">The Gap We&apos;re Filling</div>
-          <h2 className="display" style={{ marginBottom: 30 }}>Premium athleisure was never built for the body that <em>moves.</em></h2>
-          <p className="body-txt">Most brands were designed for one silhouette — lean, narrow, and unchallenging. If you have strong quads, broad shoulders, or a chest that moves — you know the problem. The waistband gaps. The fabric pulls. The cut assumes a body that doesn&apos;t move, paddle, or ride.</p>
-          <p className="body-txt">The active body has been an afterthought for every premium brand. Arya was built to change that. For everyone who lives fully and moves often.</p>
-          <div className="pullquote">
-            <p>&ldquo;The industry told you your body was the problem. It wasn&apos;t. The clothes were.&rdquo;</p>
-          </div>
-        </div>
-        <div className="stats">
-          <div className="stat">
-            <div className="stat-n">60%+</div>
-            <div className="stat-l">Of athleisure buyers lead active lives — yet almost no premium brands engineer for the body that moves. Until now.</div>
-          </div>
-          <div className="stat">
-            <div className="stat-n">$450B</div>
-            <div className="stat-l">Global athleisure market in 2026. Growing to $731B by 2033. The category is real. The gap is real.</div>
-          </div>
-          <div className="stat">
-            <div className="stat-n">3,000+</div>
-            <div className="stat-l">Years of Persian textile craft tradition informing every Arya fit and fabric decision.</div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── FIT — earns trust before asking for purchase ── */}
-      <section className="fit fade-section" id="fit">
-        <div className="label">Fit Philosophy</div>
-        <div className="fit-grid">
-          <div>
-            <h2 className="display" style={{ marginBottom: 28 }}>Every pattern starts with<br />the body that <em>moves.</em></h2>
-            <p className="body-txt">Standard sizing was built for a standard body. Arya&apos;s patterns start from scratch — with real movement data and the belief that a body that surfs, moves, rides, and lives fully deserves fabric that keeps up.</p>
-            <p className="body-txt" style={{ marginBottom: 32 }}>Our Women&apos;s and Men&apos;s cuts share the same philosophy: engineered separately for each form, so everyone gets the same standard of fit.</p>
-            <div className="fit-tabs">
-              <button type="button" className={`fit-tab ${fitTab === "women" ? "active" : ""}`} onClick={() => setFitTab("women")}>Women&apos;s</button>
-              <button type="button" className={`fit-tab ${fitTab === "men" ? "active" : ""}`} onClick={() => setFitTab("men")}>Men&apos;s</button>
-            </div>
-            <div className="fit-specs">
-              {(fitTab === "women"
-                ? [{ t: "Thighs", b: "Extended room. No pulling at any depth." }, { t: "Hips", b: "Built for the hips that move — no squeezing, no gapping." }, { t: "Waistband", b: "High-rise hold without digging or rolling." }, { t: "Inseam", b: "True to movement, wherever your day takes you." }]
-                : [{ t: "Thighs", b: "Extended circumference. No restriction through your full range." }, { t: "Shoulders", b: "Wider yoke, sits at the true shoulder point." }, { t: "Waist", b: "Tapered without restriction." }, { t: "Chest", b: "Room to breathe. Structured, not boxy." }]
-              ).map((s, i) => (
-                <div key={i} className="fspec"><div className="fspec-t">{s.t}</div><div className="fspec-b">{s.b}</div></div>
-              ))}
-            </div>
-          </div>
-          <div className="fit-visual">
-            <div className="fit-main">
-              <img src="/arya-fit.jpg" alt="Fit and movement" loading="lazy" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }} />
-              <WeavePattern id="fit-p" opacity={0.06} color="#8B6A3E" />
-              <div style={{ position: "absolute", inset: 0, zIndex: 2, display: "flex", alignItems: "center", justifyContent: "center" }}>
-                <AryaMark size={80} color="#8B6A3E" />
-              </div>
-            </div>
-            <div className="fit-minis">
-              <div className="fit-mini"><div className="mini-n">4×</div><div className="mini-l">Stretch in all directions</div></div>
-              <div className="fit-mini"><div className="mini-n">Women&apos;s XS–3XL · Men&apos;s S–3XL</div><div className="mini-l">Inclusive sizing</div></div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── COLLECTION — shop after trust is built ── */}
+      {/* ── COLLECTION ── */}
       <section className="collection fade-section" id="collection">
         <div className="coll-header">
           <div>
@@ -1262,6 +1174,107 @@ export default function AryaPage() {
           <h3 className="coll-section-title">Men&apos;s</h3>
           <div className="product-grid">
             {menProducts.map(p => <ProductCard key={p.id} p={p} addedProductId={addedProductId} selectedSizes={selectedSizes} selectedColors={selectedColors} setSize={setSize} setColor={setColor} addToCart={addToCart} />)}
+          </div>
+        </div>
+      </section>
+
+      {/* ── ETHOS (Our Story) ── */}
+      <section className="ethos fade-section" id="ethos">
+        <div>
+          <div className="ethos-card">
+            <img src="/arya-story.jpg" alt="Arya brand story, texture and craft" className="ethos-card-img" loading="lazy" />
+            <WeavePattern id="ethos-p" opacity={0.12} color="#8B6A3E" />
+            <div className="ethos-card-content">
+              <AryaMark size={96} color="#8B6A3E" />
+              <div className="ethos-card-label">A &nbsp; R &nbsp; Y &nbsp; A</div>
+              <div className="ethos-card-meaning">Noble · Honorable · Pure</div>
+            </div>
+            <div className="ethos-corner" />
+          </div>
+          <div className="swatches">
+            <div className="sw" style={{ background: "#1E1810" }} />
+            <div className="sw" style={{ background: "#7A5A2F" }} />
+            <div className="sw" style={{ background: "#E6DCC9" }} />
+            <div className="sw" style={{ background: "#3A5A6E" }} />
+            <div className="sw" style={{ background: "#F5EFE4" }} />
+          </div>
+        </div>
+        <div>
+          <div className="label">Our Story</div>
+          <h2 className="display" style={{ marginBottom: 30 }}>Where the Pacific Coast<br />meets <em>Persian craft.</em></h2>
+          <p className="body-txt">Arya was born between two worlds: the salt air of Southern California and the ancient textile traditions of Persia. One shaped by movement, the other by centuries of craft.</p>
+          <p className="body-txt">The name Arya comes from the ancient Persian word for noble and honorable, the very root of the name Iran itself. It reflects a simple belief: the way you move through the world should be matched by what you wear.</p>
+          <p className="body-txt">At Arya, we build garments with care. Materials chosen with intention. Fit refined through movement. Craft without shortcuts.</p>
+          <div className="ethos-divider" />
+          <div className="values">
+            <div className="val"><div className="val-b">Built with intention.</div></div>
+            <div className="val"><div className="val-b">Made to move with you.</div></div>
+            <div className="val"><div className="val-b">Rooted in something real.</div></div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── THE GAP ── */}
+      <section className="problem fade-section" id="problem">
+        <div>
+          <div className="label">The Gap We&apos;re Filling</div>
+          <h2 className="display" style={{ marginBottom: 30 }}>The clothes never <em>kept up.</em></h2>
+          <p className="body-txt">Most brands built their patterns around one body and called it standard. If you have strong quads, broad shoulders, a chest that moves, you already know. The waistband gaps. The fabric pulls. You leave the changing room feeling like the problem.</p>
+          <p className="body-txt">You were never the problem. The clothes were.</p>
+          <p className="body-txt">Arya was built to end that. For every body that lives fully and moves often.</p>
+          <div className="pullquote">
+            <p>&ldquo;The industry told you your body was the problem. It wasn&apos;t. The clothes were.&rdquo;</p>
+          </div>
+        </div>
+        <div className="stats">
+          <div className="stat">
+            <div className="stat-n">60%+</div>
+            <div className="stat-l">Of athleisure buyers lead active lives, yet almost no premium brands engineer for the body that moves. Until now.</div>
+          </div>
+          <div className="stat">
+            <div className="stat-n">$450B</div>
+            <div className="stat-l">Global athleisure market in 2026. Growing to $731B by 2033. The category is real. The gap is real.</div>
+          </div>
+          <div className="stat">
+            <div className="stat-n">3,000+</div>
+            <div className="stat-l">Years of Persian craft philosophy informing the Arya standard.</div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── FIT PHILOSOPHY ── */}
+      <section className="fit fade-section" id="fit">
+        <div className="label">Fit Philosophy</div>
+        <div className="fit-grid">
+          <div>
+            <h2 className="display" style={{ marginBottom: 28 }}>Every pattern starts with<br />the body that <em>moves.</em></h2>
+            <p className="body-txt">Standard sizing was built for a standard body. Arya&apos;s patterns start from scratch, with real bodies and real movement in mind, and the belief that a body that surfs, moves, rides, and lives fully deserves fabric that keeps up.</p>
+            <p className="body-txt" style={{ marginBottom: 32 }}>Our Women&apos;s and Men&apos;s cuts share the same philosophy: engineered separately for each form, so everyone gets the same standard of fit.</p>
+            <div className="fit-tabs">
+              <button type="button" className={`fit-tab ${fitTab === "women" ? "active" : ""}`} onClick={() => setFitTab("women")}>Women&apos;s</button>
+              <button type="button" className={`fit-tab ${fitTab === "men" ? "active" : ""}`} onClick={() => setFitTab("men")}>Men&apos;s</button>
+            </div>
+            <div className="fit-specs">
+              {(fitTab === "women"
+                ? [{ t: "Thighs", b: "Extended room. No pulling at any depth." }, { t: "Hips", b: "Built for the hips that move. No squeezing, no gapping." }, { t: "Waistband", b: "High-rise hold without digging or rolling." }, { t: "Inseam", b: "True to movement, wherever your day takes you." }]
+                : [{ t: "Thighs", b: "Extended circumference. No restriction through your full range." }, { t: "Shoulders", b: "Wider yoke, sits at the true shoulder point." }, { t: "Waist", b: "Tapered without restriction." }, { t: "Chest", b: "Room to breathe. Structured, not boxy." }]
+              ).map((s, i) => (
+                <div key={i} className="fspec"><div className="fspec-t">{s.t}</div><div className="fspec-b">{s.b}</div></div>
+              ))}
+            </div>
+          </div>
+          <div className="fit-visual">
+            <div className="fit-main">
+              <img src="/arya-fit.jpg" alt="Fit and movement" loading="lazy" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }} />
+              <WeavePattern id="fit-p" opacity={0.06} color="#8B6A3E" />
+              <div style={{ position: "absolute", inset: 0, zIndex: 2, display: "flex", alignItems: "center", justifyContent: "center" }}>
+                <AryaMark size={80} color="#8B6A3E" />
+              </div>
+            </div>
+            <div className="fit-minis">
+              <div className="fit-mini"><div className="mini-n">4×</div><div className="mini-l">Stretch in all directions</div></div>
+              <div className="fit-mini"><div className="mini-n">Women&apos;s XS–3XL · Men&apos;s S–3XL</div><div className="mini-l">Inclusive sizing</div></div>
+            </div>
           </div>
         </div>
       </section>
