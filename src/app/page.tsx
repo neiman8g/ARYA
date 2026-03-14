@@ -191,6 +191,7 @@ export default function AryaPage() {
   const [checkoutError, setCheckoutError] = useState<string | null>(null);
   const [waitlistError, setWaitlistError] = useState<string | null>(null);
   const [showStickyBar, setShowStickyBar] = useState(false);
+  const [activeSection, setActiveSection] = useState<string>("");
 
   const womenProducts = PRODUCTS.filter(p => p.gender === "Women's");
   const menProducts = PRODUCTS.filter(p => p.gender === "Men's");
@@ -222,6 +223,37 @@ export default function AryaPage() {
 
   // Close mobile menu when route changes (e.g. hash change for #waitlist)
   const pathname = usePathname();
+
+  // Scroll spy: highlight nav link for the section in view (homepage only)
+  const sectionIds = ["collection", "ethos", "problem", "fit", "mission", "founder", "waitlist", "arya-standard"];
+  useEffect(() => {
+    if (pathname !== "/") return;
+    const onScroll = () => {
+      const scrollY = window.scrollY;
+      const viewportMid = scrollY + window.innerHeight * 0.35;
+      let current = "";
+      for (const id of sectionIds) {
+        const el = document.getElementById(id);
+        if (!el) continue;
+        const top = el.offsetTop;
+        const height = el.offsetHeight;
+        if (top <= viewportMid && top + height >= viewportMid) {
+          current = id;
+          break;
+        }
+        if (top < viewportMid) current = id;
+      }
+      setActiveSection((prev) => (current !== prev ? current : prev));
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, [pathname]);
+
   useEffect(() => {
     setMenuOpen(false);
   }, [pathname]);
@@ -408,6 +440,8 @@ export default function AryaPage() {
         }
         .nav-links a:hover { color: var(--ink); }
         .nav-links a:hover::after { right: 0; }
+        .nav-links a.active { color: var(--ink); }
+        .nav-links a.active::after { right: 0; }
 
         .nav-actions { display: flex; align-items: center; gap: 10px; }
 
@@ -1229,12 +1263,12 @@ export default function AryaPage() {
           <AryaLogo size={32} markColor="#8B6A3E" textColor="#1E1810" />
         </a>
         <ul className="nav-links">
-          <li><Link href="/collection">Collection</Link></li>
-          <li><Link href="/story">Story</Link></li>
-          <li><Link href="/fit">Fit</Link></li>
-          <li><Link href="/mission">Mission</Link></li>
-          <li><Link href="/founder">Founders</Link></li>
-          <li><Link href="/arya-standard">The Standard</Link></li>
+          <li><Link href="/collection" className={activeSection === "collection" ? "active" : ""} data-section="collection">Collection</Link></li>
+          <li><Link href="/story" className={activeSection === "ethos" || activeSection === "problem" ? "active" : ""} data-section="ethos">Story</Link></li>
+          <li><Link href="/fit" className={activeSection === "fit" ? "active" : ""} data-section="fit">Fit</Link></li>
+          <li><Link href="/mission" className={activeSection === "mission" ? "active" : ""} data-section="mission">Mission</Link></li>
+          <li><Link href="/founder" className={activeSection === "founder" ? "active" : ""} data-section="founder">Founders</Link></li>
+          <li><Link href="/arya-standard" className={activeSection === "arya-standard" ? "active" : ""} data-section="arya-standard">The Standard</Link></li>
         </ul>
         <div className="nav-actions">
           <button type="button" className="nav-cart-btn" onClick={() => setCartOpen(true)} aria-label="Open cart">
@@ -1513,7 +1547,7 @@ export default function AryaPage() {
       </section>
 
       {/* ── ARYA STANDARD TEASER ── */}
-      <section className="std-teaser fade-section">
+      <section className="std-teaser fade-section" id="arya-standard">
         <div className="label">THE ARYA STANDARD</div>
         <h2 className="std-teaser-h">There is a standard behind every decision we make.</h2>
         <p className="std-teaser-p">Every fabric. Every seam. Every fit decision. Held to the same standard that has guided Persian craft for thousands of years. We have nothing to hide and everything to share.</p>
