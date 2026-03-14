@@ -595,14 +595,23 @@ export default function AryaPage() {
           font-family: 'Cormorant Garamond', serif; font-style: italic;
           font-size: 22px; font-weight: 500; color: var(--ink); line-height: 1.55;
         }
-        .stats { display: flex; flex-direction: column; }
-        .stat { padding: 36px 0; border-bottom: 1px solid var(--sand-4); }
-        .stat:first-child { border-top: 1px solid var(--sand-4); }
-        .stat-n {
-          font-family: 'Cormorant Garamond', serif; font-size: 58px; font-weight: 400;
-          color: var(--cognac); line-height: 1; margin-bottom: 10px;
+        .stats {
+          display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
         }
-        .stat-l { font-size: 16px; line-height: 1.7; color: var(--ink-80); font-weight: 400; max-width: 280px; }
+        .stat {
+          padding: 28px 24px; background: var(--sand); border: 1px solid var(--sand-4);
+          border-radius: 8px; transition: border-color .25s;
+        }
+        .stat:hover { border-color: var(--cognac); }
+        .stat-n {
+          font-family: 'Cormorant Garamond', serif; font-size: clamp(36px, 4vw, 48px); font-weight: 600;
+          color: var(--cognac); line-height: 1; margin-bottom: 12px;
+        }
+        .stat-l { font-size: 14px; line-height: 1.6; color: var(--ink-80); font-weight: 400; }
+        @media (min-width: 769px) {
+          .stats { display: flex; flex-direction: row; flex-wrap: wrap; gap: 20px; }
+          .stat { flex: 1; min-width: 160px; max-width: 240px; }
+        }
 
         /* ── FIT ── */
         .fit { padding: 160px 64px; background: var(--sand); }
@@ -634,24 +643,25 @@ export default function AryaPage() {
         }
         .fit-main img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
         .fit-stats-row {
-          display: flex; flex-direction: column; gap: 16px;
+          display: flex; flex-direction: column; gap: 20px;
         }
         @media (min-width: 961px) {
-          .fit-stats-row { flex-direction: row; gap: 12px; flex-wrap: wrap; }
+          .fit-stats-row { flex-direction: row; gap: 20px; flex-wrap: wrap; align-items: stretch; }
+          .fit-mini { flex: 1; min-width: 140px; max-width: 220px; }
         }
-        .fit-minis { display: flex; flex-wrap: wrap; gap: 12px; }
         .fit-mini {
-          display: flex; align-items: center; gap: 14px;
-          padding: 14px 20px; border-radius: 999px;
-          background: var(--sand-2); border: 1px solid var(--sand-4);
+          display: flex; flex-direction: column; gap: 10px;
+          padding: 20px 24px; border-radius: 8px;
+          background: var(--sand); border: 1px solid var(--sand-4);
+          flex: 1; min-width: 0;
+          transition: border-color .25s, box-shadow .25s;
         }
+        .fit-mini:hover { border-color: var(--cognac); box-shadow: 0 4px 16px rgba(30,24,16,.06); }
         .mini-n {
-          width: 44px; height: 44px; min-width: 44px; min-height: 44px;
-          border-radius: 50%; background: var(--ink); color: var(--sand);
-          font-family: 'Cormorant Garamond', serif; font-size: 18px; font-weight: 500;
-          display: inline-flex; align-items: center; justify-content: center; line-height: 1;
+          font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 500;
+          color: var(--cognac); letter-spacing: .02em; line-height: 1.2;
         }
-        .mini-l { font-size: 14px; color: var(--ink-80); font-weight: 400; line-height: 1.35; }
+        .mini-l { font-size: 14px; color: var(--ink-80); font-weight: 400; line-height: 1.5; }
 
         /* ── COLLECTION ── */
         .collection { padding: 160px 64px; background: var(--sand-2); }
@@ -932,6 +942,8 @@ export default function AryaPage() {
           .btn-dark, .btn-outline { padding: 16px 28px; min-height: 48px; display: inline-flex; align-items: center; }
 
           .ethos, .problem, .founder { grid-template-columns: 1fr; gap: 48px; padding: 60px 24px; }
+          .problem .stats { grid-template-columns: 1fr 1fr; gap: 24px; }
+          .problem .stat-n { font-size: clamp(32px, 6vw, 44px); }
           .ethos-card { aspect-ratio: 16/10; }
           .ethos-card-img { opacity: .65; }
           .founder { gap: 48px; }
@@ -948,8 +960,8 @@ export default function AryaPage() {
           .fit-specs { grid-template-columns: 1fr; }
           .fit-tabs { margin-bottom: 24px; }
           .fit-tab { padding: 14px 24px; min-height: 44px; }
-          .fit-minis { grid-template-columns: 1fr; }
           .fit-stats-row { gap: 20px; }
+          .fit-mini { min-width: 0; }
 
           .collection { padding: 60px 24px; }
           .coll-header { grid-template-columns: 1fr; gap: 20px; }
@@ -1000,6 +1012,9 @@ export default function AryaPage() {
           .hero-ctas a { width: 100%; justify-content: center; }
 
           .ethos, .problem, .founder { padding: 60px 20px; gap: 40px; }
+          .problem .stats { gap: 20px; }
+          .problem .stat { padding: 24px 20px; }
+          .problem .stat-n { font-size: 32px; }
           .ethos-card { aspect-ratio: 4/3; }
           .ethos-card-img { opacity: .7; }
           .display { font-size: clamp(28px, 7vw, 42px) !important; }
@@ -1007,6 +1022,7 @@ export default function AryaPage() {
           .fit { padding: 60px 20px; }
           .fit-main { aspect-ratio: 3/4; }
           .fit-stats-row { gap: 18px; }
+          .fit-mini { padding: 18px 20px; }
 
           .collection { padding: 60px 20px; }
           .product-grid { margin: 0 -20px; padding-left: 20px; padding-right: 20px; }
@@ -1224,27 +1240,34 @@ export default function AryaPage() {
       {/* ── THE GAP ── */}
       <section className="problem fade-section" id="problem">
         <div>
-          <div className="label">The Gap We&apos;re Filling</div>
-          <h2 className="display" style={{ marginBottom: 30 }}>The clothes never <em>kept up.</em></h2>
+          <div className="label">THREE GAPS. ONE BRAND.</div>
+          <h2 className="display" style={{ marginBottom: 30 }}>The clothes never kept up.</h2>
           <p className="body-txt">Most brands built their patterns around one body and called it standard. If you have strong quads, broad shoulders, a chest that moves, you already know. The waistband gaps. The fabric pulls. You leave the changing room feeling like the problem.</p>
           <p className="body-txt">You were never the problem. The clothes were.</p>
-          <p className="body-txt">Arya was built to end that. For every body that lives fully and moves often.</p>
+          <p className="body-txt">But fit is only one part of what the industry got wrong.</p>
+          <p className="body-txt">The fabrics most brands use are loaded with synthetic polymers, chemical dyes, and coatings that sit against your skin all day. Nobody talks about this. Nobody fixes it. And almost every premium brand in the market is built from the same materials.</p>
+          <p className="body-txt">The sustainable options exist but they sacrifice luxury, fit, and performance to get there.</p>
+          <p className="body-txt">Arya was built to close all three gaps at once. Engineered fit for the body that actually moves. Skin conscious materials that respect what they touch. And a standard of craft that refuses to compromise any of it.</p>
           <div className="pullquote">
-            <p>&ldquo;The industry told you your body was the problem. It wasn&apos;t. The clothes were.&rdquo;</p>
+            <p>&ldquo;The industry told you your body was the problem. Your fabrics were fine. Your fit was fine. None of it was fine. And we built the alternative.&rdquo;</p>
           </div>
         </div>
         <div className="stats">
           <div className="stat">
-            <div className="stat-n">60%+</div>
-            <div className="stat-l">Of athleisure buyers lead active lives, yet almost no premium brands engineer for the body that moves. Until now.</div>
+            <div className="stat-n">65%</div>
+            <div className="stat-l">Of athleisure products still made from conventional synthetic materials in 2026</div>
           </div>
           <div className="stat">
-            <div className="stat-n">$450B</div>
-            <div className="stat-l">Global athleisure market in 2026. Growing to $731B by 2033. The category is real. The gap is real.</div>
+            <div className="stat-n">$176B</div>
+            <div className="stat-l">Sustainable athleisure market by 2030, doubling in six years</div>
           </div>
           <div className="stat">
-            <div className="stat-n">3,000+</div>
-            <div className="stat-l">Years of Persian craft philosophy informing the Arya standard.</div>
+            <div className="stat-n">$415B</div>
+            <div className="stat-l">Total athleisure market in 2026. Premium sustainable is the fastest growing segment.</div>
+          </div>
+          <div className="stat">
+            <div className="stat-n">3</div>
+            <div className="stat-l">Gaps Arya closes simultaneously. Fit, skin health, and sustainable luxury.</div>
           </div>
         </div>
       </section>

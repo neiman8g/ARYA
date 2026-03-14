@@ -42,9 +42,9 @@ export default function FitPage() {
               ))}
             </div>
             <div className="fit-minis">
-              <div><strong>4-way</strong> Stretch in all directions</div>
-              <div><strong>XS–3XL</strong> Women&apos;s inclusive sizing</div>
-              <div><strong>S–3XL</strong> Men&apos;s inclusive sizing</div>
+              <div><strong>4-way</strong><span>Stretch in all directions</span></div>
+              <div><strong>XS–3XL</strong><span>Women&apos;s inclusive sizing</span></div>
+              <div><strong>S–3XL</strong><span>Men&apos;s inclusive sizing</span></div>
             </div>
             <Link href="/collection" className="sp-btn">View Collection</Link>
           </div>
