@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { PRODUCTS } from "@/lib/products";
 
 // ─── Brand SVG Components ────────────────────────────────────────────────────
@@ -218,6 +219,14 @@ export default function AryaPage() {
     document.body.style.overflow = (menuOpen || cartOpen) ? "hidden" : "";
     return () => { document.body.style.overflow = ""; };
   }, [menuOpen, cartOpen]);
+
+  // Close mobile menu when route changes (e.g. hash change for #waitlist)
+  const pathname = usePathname();
+  useEffect(() => {
+    setMenuOpen(false);
+  }, [pathname]);
+
+  const closeMenu = () => setMenuOpen(false);
 
   // Section fade-in on scroll
   useEffect(() => {
@@ -1146,15 +1155,15 @@ export default function AryaPage() {
       {/* ── MOBILE MENU ── */}
       <div className={`mobile-menu ${menuOpen ? "open" : ""}`} aria-hidden={!menuOpen}>
         <div className="mobile-menu-primaries">
-          <Link href="/collection" className="mobile-menu-cta mobile-menu-cta-primary" onClick={() => setMenuOpen(false)}>Shop Collection</Link>
-          <a href="/#waitlist" className="mobile-menu-cta mobile-menu-cta-secondary" onClick={() => setMenuOpen(false)}>Join Waitlist</a>
+          <Link href="/collection" className="mobile-menu-cta mobile-menu-cta-primary" onClick={closeMenu} onTouchStart={closeMenu}>Shop Collection</Link>
+          <a href="/#waitlist" className="mobile-menu-cta mobile-menu-cta-secondary" onClick={closeMenu} onTouchStart={closeMenu}>Join Waitlist</a>
         </div>
         <div className="mobile-menu-divider" />
-        <Link href="/story" onClick={() => setMenuOpen(false)}>Story</Link>
-        <Link href="/fit" onClick={() => setMenuOpen(false)}>Fit</Link>
-        <Link href="/mission" onClick={() => setMenuOpen(false)}>Mission</Link>
-        <Link href="/founder" onClick={() => setMenuOpen(false)}>Founder</Link>
-        <Link href="/arya-standard" onClick={() => setMenuOpen(false)}>The Standard</Link>
+        <Link href="/story" onClick={closeMenu} onTouchStart={closeMenu}>Story</Link>
+        <Link href="/fit" onClick={closeMenu} onTouchStart={closeMenu}>Fit</Link>
+        <Link href="/mission" onClick={closeMenu} onTouchStart={closeMenu}>Mission</Link>
+        <Link href="/founder" onClick={closeMenu} onTouchStart={closeMenu}>Founder</Link>
+        <Link href="/arya-standard" onClick={closeMenu} onTouchStart={closeMenu}>The Standard</Link>
       </div>
 
       {/* ── CART DRAWER ── */}
