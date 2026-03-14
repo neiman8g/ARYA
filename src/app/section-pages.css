@@ -1,6 +1,6 @@
 /* Shared section page styles - imported by story, mission, fit, collection, founder */
 .section-page { min-height: 100vh; background: var(--arya-sand); color: var(--arya-ink); font-family: 'Jost', sans-serif; }
-.sp-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 24px 48px; background: rgba(245,239,228,.97); border-bottom: 1px solid var(--arya-sand-4); }
+.sp-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 24px 48px; padding-top: max(24px, var(--safe-top)); background: rgba(245,239,228,.97); border-bottom: 1px solid var(--arya-sand-4); }
 .sp-logo { font-size: 14px; letter-spacing: .3em; font-weight: 600; color: var(--arya-ink); text-decoration: none; }
 .sp-links { display: flex; align-items: center; gap: 40px; }
 .sp-links a { font-size: 12px; letter-spacing: .22em; text-transform: uppercase; color: var(--arya-ink-80); text-decoration: none; font-weight: 500; }
@@ -103,24 +103,25 @@
   .fit-minis div { flex: 1; min-width: 140px; max-width: 220px; }
 }
 @media (max-width: 768px) {
-  .sp-nav { padding: 18px 24px; flex-direction: column; align-items: center; gap: 0; }
+  .sp-nav { padding: 18px 24px; padding-top: max(18px, var(--safe-top)); flex-direction: column; align-items: center; gap: 0; }
   .sp-links { display: flex; flex-direction: column; align-items: center; gap: 4px; width: 100%; padding-top: 16px; margin-top: 12px; border-top: 1px solid var(--arya-sand-4); }
-  .sp-links a { padding: 10px 0; }
-  .sp-main { padding: 120px 24px 60px; }
+  .sp-links a { padding: 14px 20px; min-height: 48px; display: inline-flex; align-items: center; justify-content: center; }
+  .sp-main { padding: 120px 24px 60px; padding-bottom: max(60px, var(--safe-bottom)); }
   .sp-hero, .fit-layout { grid-template-columns: 1fr; gap: 48px; }
   .fit-visual { order: -1; }
   .mission-pillars { grid-template-columns: 1fr; }
   .coll-grid { grid-template-columns: 1fr; }
-  .sp-foot { flex-direction: column; text-align: center; padding: 36px 24px; }
+  .sp-foot { flex-direction: column; text-align: center; padding: 36px 24px; padding-bottom: max(36px, var(--safe-bottom)); }
 }
 
 @media (max-width: 480px) {
-  .sp-nav { padding: 14px 20px; gap: 12px; }
-  .sp-main { padding: 100px 20px 48px; }
+  .sp-nav { padding: 14px 20px; padding-top: max(14px, var(--safe-top)); gap: 12px; }
+  .sp-main { padding: 100px 20px 48px; padding-bottom: max(48px, var(--safe-bottom)); }
   .sp-hero-content h1, .fit-content h1 { font-size: clamp(28px, 8vw, 36px) !important; }
+  .sp-hero-content p, .fit-content p { font-size: 18px; line-height: 1.75; }
   .sp-hero, .fit-layout { gap: 32px; }
   .mission-main h1 { font-size: clamp(32px, 8vw, 40px) !important; }
   .pillar { padding: 28px 20px; }
   .pillar-n { font-size: 40px; }
-  .sp-foot { padding: 28px 20px; }
+  .sp-foot { padding: 28px 20px; padding-bottom: max(28px, var(--safe-bottom)); }
 }

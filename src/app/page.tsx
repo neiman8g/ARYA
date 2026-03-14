@@ -189,6 +189,7 @@ export default function AryaPage() {
   const [checkoutLoading, setCheckoutLoading] = useState(false);
   const [checkoutError, setCheckoutError] = useState<string | null>(null);
   const [waitlistError, setWaitlistError] = useState<string | null>(null);
+  const [showStickyBar, setShowStickyBar] = useState(false);
 
   const womenProducts = PRODUCTS.filter(p => p.gender === "Women's");
   const menProducts = PRODUCTS.filter(p => p.gender === "Men's");
@@ -201,6 +202,15 @@ export default function AryaPage() {
     };
     window.addEventListener("scroll", h, { passive: true });
     return () => window.removeEventListener("scroll", h);
+  }, []);
+
+  // Sticky CTA bar: show on phone after scrolling past hero (~400px)
+  useEffect(() => {
+    const onScroll = () => setShowStickyBar(window.scrollY > 400 && window.innerWidth <= 768);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => { window.removeEventListener("scroll", onScroll); window.removeEventListener("resize", onScroll); };
   }, []);
 
   // Lock body scroll when mobile menu or cart is open
@@ -364,11 +374,13 @@ export default function AryaPage() {
         .nav {
           position: fixed; top: 0; left: 0; right: 0; z-index: 200;
           padding: 26px 64px;
+          padding-top: max(26px, env(safe-area-inset-top));
           display: flex; align-items: center; justify-content: space-between;
           transition: all .45s cubic-bezier(.16,1,.3,1);
         }
         .nav.stuck {
           padding: 14px 64px;
+          padding-top: max(14px, env(safe-area-inset-top));
           background: rgba(245,239,228,.97);
           backdrop-filter: blur(16px);
           border-bottom: 1px solid var(--sand-4);
@@ -429,18 +441,33 @@ export default function AryaPage() {
         .mobile-menu {
           position: fixed; inset: 0; z-index: 190;
           background: var(--sand); display: flex; flex-direction: column;
-          align-items: center; justify-content: center; gap: 10px;
+          align-items: center; justify-content: center; gap: 4px;
           opacity: 0; visibility: hidden;
           transition: opacity .35s cubic-bezier(.16,1,.3,1), visibility .35s;
+          padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
         }
         .mobile-menu.open { opacity: 1; visibility: visible; }
         .mobile-menu a {
-          font-family: 'Cormorant Garamond', serif; font-size: clamp(32px, 6vw, 48px);
+          font-family: 'Cormorant Garamond', serif; font-size: clamp(28px, 6vw, 44px);
           font-weight: 400; color: var(--ink); text-decoration: none;
-          letter-spacing: .04em; transition: color .25s; padding: 8px 0;
+          letter-spacing: .04em; transition: color .25s;
+          padding: 16px 32px; min-height: 48px; display: inline-flex; align-items: center; justify-content: center;
+          border-radius: 8px; min-width: 200px;
         }
-        .mobile-menu a:hover { color: var(--cognac); }
-        .mobile-menu-divider { width: 40px; height: 1px; background: var(--sand-4); margin: 16px 0; }
+        .mobile-menu a:hover { color: var(--cognac); background: rgba(30,24,16,.04); }
+        .mobile-menu-primaries { display: flex; flex-direction: column; gap: 12px; width: 100%; max-width: 280px; margin-bottom: 8px; }
+        .mobile-menu-cta {
+          font-family: 'Jost', sans-serif !important; font-size: 12px !important;
+          letter-spacing: .24em; text-transform: uppercase; font-weight: 500;
+          padding: 18px 28px !important; min-height: 54px;
+          display: inline-flex !important; align-items: center; justify-content: center;
+          border-radius: 8px; min-width: auto; text-align: center;
+        }
+        .mobile-menu-cta-primary { background: var(--ink); color: var(--sand) !important; }
+        .mobile-menu-cta-primary:hover { background: var(--cognac) !important; color: var(--sand) !important; }
+        .mobile-menu-cta-secondary { background: transparent; border: 2px solid var(--ink); color: var(--ink) !important; }
+        .mobile-menu-cta-secondary:hover { border-color: var(--cognac); color: var(--cognac) !important; background: transparent !important; }
+        .mobile-menu-divider { width: 40px; height: 1px; background: var(--sand-4); margin: 20px 0; }
 
         /* ── HERO ── */
         .hero {
@@ -465,6 +492,10 @@ export default function AryaPage() {
           pointer-events: none; z-index: 1;
         }
         .hero-content { animation: riseIn 1s cubic-bezier(.16,1,.3,1) .1s both; }
+        @media (prefers-reduced-motion: reduce) {
+          .hero-content { animation: none; opacity: 1; }
+          .ticker-track { animation: none; }
+        }
 
         @keyframes riseIn { from { opacity:0; transform:translateY(22px) } to { opacity:1; transform:translateY(0) } }
         @keyframes scaleFade { from { opacity:0; transform:scale(.9) } to { opacity:1; transform:scale(1) } }
@@ -850,7 +881,9 @@ export default function AryaPage() {
         .cart-overlay.open { opacity: 1; visibility: visible; }
         .cart-drawer {
           position: fixed; top: 0; right: 0; width: 100%; max-width: 420px;
-          height: 100vh; background: var(--sand); z-index: 301;
+          height: 100vh; height: 100dvh;
+          padding-bottom: env(safe-area-inset-bottom);
+          background: var(--sand); z-index: 301;
           box-shadow: -8px 0 40px rgba(30,24,16,.12);
           transform: translateX(100%); transition: transform .35s cubic-bezier(.16,1,.3,1);
           overflow: hidden; display: flex; flex-direction: column;
@@ -928,7 +961,7 @@ export default function AryaPage() {
         @media (max-width: 960px) {
           .hamburger { display: flex; }
           .nav-links { display: none; }
-          .nav, .nav.stuck { padding: 16px 32px; }
+          .nav, .nav.stuck { padding: 16px 32px; padding-top: max(16px, env(safe-area-inset-top)); }
           .nav-btn { display: none; }
 
           .hero {
@@ -972,6 +1005,7 @@ export default function AryaPage() {
             overflow-x: auto; overflow-y: hidden;
             scroll-snap-type: x mandatory;
             -webkit-overflow-scrolling: touch;
+            touch-action: pan-x;
             scrollbar-width: none; padding-bottom: 8px;
             margin: 0 -32px; padding-left: 32px; padding-right: 32px;
             mask-image: linear-gradient(to right, transparent 0, black 24px, black calc(100% - 24px), transparent 100%);
@@ -1005,14 +1039,19 @@ export default function AryaPage() {
 
         /* ── RESPONSIVE: Mobile (phones) ── */
         @media (max-width: 480px) {
-          .nav, .nav.stuck { padding: 14px 20px; }
-          .hero-right { min-height: 45vh; }
-          .hero-left { padding: 60px 20px 60px; }
+          .nav, .nav.stuck { padding: 14px 20px; padding-top: max(14px, env(safe-area-inset-top)); }
+          .hero-right { min-height: 52vh; }
+          .hero-left { padding: 48px 20px 56px; padding-bottom: max(56px, env(safe-area-inset-bottom)); }
           .hero-h1 { font-size: clamp(36px, 10vw, 48px) !important; }
-          .hero-ctas { flex-direction: column; width: 100%; }
-          .hero-ctas a { width: 100%; justify-content: center; }
+          .hero-ctas { flex-direction: column; width: 100%; gap: 14px; }
+          .hero-ctas a { width: 100%; justify-content: center; min-height: 52px; padding: 16px 24px; }
+          .body-txt { font-size: 18px; line-height: 1.75; }
 
           .ethos, .problem, .founder { padding: 60px 20px; gap: 40px; }
+          .ethos, .problem, .fit, .collection, .craft, .founder, .waitlist { margin-bottom: 0; }
+          section.fade-section { scroll-margin-top: 80px; }
+          section.fade-section + section.fade-section { border-top: 1px solid var(--sand-4); }
+          .label { font-size: 12px; letter-spacing: .4em; }
           .problem .stats { gap: 20px; }
           .problem .stat { padding: 24px 20px; }
           .problem .stat-n { font-size: 26px; }
@@ -1032,21 +1071,62 @@ export default function AryaPage() {
           .waitlist { padding: 60px 20px; }
           .waitlist .display { font-size: clamp(32px, 8vw, 48px) !important; }
 
-          footer { padding: 60px 20px 32px; }
+          footer { padding: 60px 20px 32px; padding-bottom: max(32px, calc(80px + env(safe-area-inset-bottom))); }
           .foot-grid { grid-template-columns: 1fr; gap: 28px; }
         }
+        @media (max-width: 768px) {
+          footer { padding-bottom: max(32px, calc(80px + env(safe-area-inset-bottom))); }
+        }
+
+        /* ── STRONG MOBILE: sticky CTA bar (phones only) ── */
+        .sticky-cta-bar {
+          display: none;
+          position: fixed; bottom: 0; left: 0; right: 0; z-index: 180;
+          padding: 14px 20px; padding-bottom: max(14px, env(safe-area-inset-bottom));
+          background: rgba(245,239,228,.98);
+          backdrop-filter: blur(16px);
+          border-top: 1px solid var(--sand-4);
+          box-shadow: 0 -4px 24px rgba(30,24,16,.08);
+          gap: 12px; align-items: stretch;
+        }
+        .sticky-cta-bar.visible { display: flex; }
+        .sticky-cta-bar a {
+          flex: 1; min-height: 52px; display: inline-flex; align-items: center; justify-content: center;
+          font-size: 11px; letter-spacing: .26em; text-transform: uppercase;
+          font-family: 'Jost', sans-serif; font-weight: 500; text-decoration: none;
+          transition: background .25s, color .25s;
+        }
+        .sticky-cta-bar .sticky-cta-primary {
+          background: var(--ink); color: var(--sand);
+          clip-path: polygon(0 0, 100% 0, 100% 85%, 96% 100%, 0 100%);
+        }
+        .sticky-cta-bar .sticky-cta-primary:hover { background: var(--cognac); }
+        .sticky-cta-bar .sticky-cta-secondary {
+          background: transparent; color: var(--ink);
+          border: 1px solid var(--sand-4);
+        }
+        .sticky-cta-bar .sticky-cta-secondary:hover { border-color: var(--cognac); color: var(--cognac); }
+        @media (min-width: 769px) { .sticky-cta-bar { display: none !important; } }
       `}</style>
+
+      {/* ── STICKY MOBILE CTA BAR (phones, after scroll) ── */}
+      <div className={`sticky-cta-bar ${showStickyBar ? "visible" : ""}`} aria-hidden={!showStickyBar}>
+        <a href="#waitlist" className="sticky-cta-primary">Join Waitlist</a>
+        <Link href="/collection" className="sticky-cta-secondary">Shop Collection</Link>
+      </div>
 
       {/* ── MOBILE MENU ── */}
       <div className={`mobile-menu ${menuOpen ? "open" : ""}`} aria-hidden={!menuOpen}>
-        <Link href="/collection" onClick={() => setMenuOpen(false)}>Collection</Link>
+        <div className="mobile-menu-primaries">
+          <Link href="/collection" className="mobile-menu-cta mobile-menu-cta-primary" onClick={() => setMenuOpen(false)}>Shop Collection</Link>
+          <a href="/#waitlist" className="mobile-menu-cta mobile-menu-cta-secondary" onClick={() => setMenuOpen(false)}>Join Waitlist</a>
+        </div>
+        <div className="mobile-menu-divider" />
         <Link href="/story" onClick={() => setMenuOpen(false)}>Story</Link>
         <Link href="/fit" onClick={() => setMenuOpen(false)}>Fit</Link>
         <Link href="/mission" onClick={() => setMenuOpen(false)}>Mission</Link>
         <Link href="/founder" onClick={() => setMenuOpen(false)}>Founder</Link>
         <Link href="/arya-standard" onClick={() => setMenuOpen(false)}>The Standard</Link>
-        <div className="mobile-menu-divider" />
-        <Link href="/#waitlist" onClick={() => setMenuOpen(false)}>Join Waitlist</Link>
       </div>
 
       {/* ── CART DRAWER ── */}
