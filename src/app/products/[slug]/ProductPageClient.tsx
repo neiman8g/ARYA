@@ -62,79 +62,84 @@ export default function ProductPageClient({ product }: { product: Product }) {
   return (
     <>
       <div className="pp-layout">
-      <div className="pp-visual-wrap">
-        <ProductPlaceholder name={product.name} />
-        <div className="pp-tag">Pre-Order</div>
-      </div>
-      <div className="pp-detail">
-        <div className="pp-cat">{product.gender}</div>
-        <h1 className="pp-title">{product.name}</h1>
-        {product.oneLine && <p className="pp-oneline">{textWithFabricLinks(product.oneLine)}</p>}
-        <p className="pp-price">{product.price} <small>USD</small></p>
-        {product.fabricStory && product.features ? (
-          <>
-            <p className="pp-fabric">
-              {textWithFabricLinks(product.fabricStory)}
-            </p>
-            <ul className="pp-features">
-              {product.features.map((f, i) => (
-                <li key={i}>{textWithFabricLinks(f)}</li>
-              ))}
-            </ul>
-          </>
-        ) : (
-          <>
-            <p className="pp-desc">{textWithFabricLinks(product.desc)}</p>
-            <ul className="pp-specs">
-              {product.specs.map((s, i) => (
-                <li key={i}>{textWithFabricLinks(s)}</li>
-              ))}
-            </ul>
-          </>
-        )}
-        {product.colors?.length > 0 && (
-          <div className="pp-color">
-            <span className="pp-opt-label">Color</span>
-            <div className="pp-color-swatches">
-              {product.colors.map((c) => (
-                <button
-                  key={c.name}
-                  type="button"
-                  className={`pp-color-swatch ${selectedColor === c.name ? "selected" : ""}`}
-                  style={{ background: c.hex }}
-                  onClick={() => setSelectedColor(c.name)}
-                  title={c.name}
-                  aria-label={`Color ${c.name}`}
-                />
-              ))}
-            </div>
+        {/* Image + options (color, size, pre-order) together so image can update with color when photos are added */}
+        <div className="pp-image-options">
+          <div className="pp-visual-wrap">
+            <ProductPlaceholder name={product.name} />
+            <div className="pp-tag">Pre-Order</div>
           </div>
-        )}
-        <div className="pp-size">
-          <span className="pp-opt-label">Size</span>
-          <div className="pp-size-btns">
-            {product.sizes.map((sz) => (
-              <button
-                key={sz}
-                type="button"
-                className={`pp-size-btn ${selectedSize === sz ? "selected" : ""}`}
-                onClick={() => setSelectedSize(sz)}
-              >
-                {sz}
-              </button>
-            ))}
+          <div className="pp-options-stack">
+            {product.colors?.length > 0 && (
+              <div className="pp-color">
+                <span className="pp-opt-label">Color</span>
+                <div className="pp-color-swatches">
+                  {product.colors.map((c) => (
+                    <button
+                      key={c.name}
+                      type="button"
+                      className={`pp-color-swatch ${selectedColor === c.name ? "selected" : ""}`}
+                      style={{ background: c.hex }}
+                      onClick={() => setSelectedColor(c.name)}
+                      title={c.name}
+                      aria-label={`Color ${c.name}`}
+                    />
+                  ))}
+                </div>
+              </div>
+            )}
+            <div className="pp-size">
+              <span className="pp-opt-label">Size</span>
+              <div className="pp-size-btns">
+                {product.sizes.map((sz) => (
+                  <button
+                    key={sz}
+                    type="button"
+                    className={`pp-size-btn ${selectedSize === sz ? "selected" : ""}`}
+                    onClick={() => setSelectedSize(sz)}
+                  >
+                    {sz}
+                  </button>
+                ))}
+              </div>
+            </div>
+            <button
+              type="button"
+              className={`pp-add ${added ? "added" : ""}`}
+              onClick={handleAddToCart}
+              disabled={!selectedSize}
+            >
+              {!selectedSize ? "Select Size" : added ? "Added ✓" : "Pre-Order"}
+            </button>
           </div>
         </div>
-        <button
-          type="button"
-          className={`pp-add ${added ? "added" : ""}`}
-          onClick={handleAddToCart}
-          disabled={!selectedSize}
-        >
-          {!selectedSize ? "Select Size" : added ? "Added ✓" : "Pre-Order"}
-        </button>
+        <div className="pp-detail">
+          <div className="pp-cat">{product.gender}</div>
+          <h1 className="pp-title">{product.name}</h1>
+          {product.oneLine && <p className="pp-oneline">{textWithFabricLinks(product.oneLine)}</p>}
+          <p className="pp-price">{product.price} <small>USD</small></p>
+          {product.fabricStory && product.features ? (
+            <>
+              <p className="pp-fabric">
+                {textWithFabricLinks(product.fabricStory)}
+              </p>
+              <ul className="pp-features">
+                {product.features.map((f, i) => (
+                  <li key={i}>{textWithFabricLinks(f)}</li>
+                ))}
+              </ul>
+            </>
+          ) : (
+            <>
+              <p className="pp-desc">{textWithFabricLinks(product.desc)}</p>
+              <ul className="pp-specs">
+                {product.specs.map((s, i) => (
+                  <li key={i}>{textWithFabricLinks(s)}</li>
+                ))}
+              </ul>
+            </>
+          )}
+        </div>
       </div>
-    </div>
     </>
   );
 }

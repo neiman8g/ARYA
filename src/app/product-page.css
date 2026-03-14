@@ -17,8 +17,13 @@
 .p-foot-links a { font-size: 12px; letter-spacing: .18em; text-transform: uppercase; color: var(--arya-ink-60); text-decoration: none; }
 .p-foot-links a:hover { color: var(--arya-ink); }
 .p-foot p { font-size: 11px; letter-spacing: .1em; color: var(--arya-ink-60); margin: 0; }
-/* Product detail client component */
+/* Product detail client component: image + options (color, size, pre-order) together for best UX */
 .pp-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+.pp-image-options { display: flex; flex-direction: column; gap: 0; position: sticky; top: 100px; }
+.pp-options-stack { padding: 24px 0 0; border-top: 1px solid var(--arya-sand-4); margin-top: 0; }
+.pp-options-stack .pp-color { margin-bottom: 20px; }
+.pp-options-stack .pp-size { margin-bottom: 20px; }
+.pp-options-stack .pp-add { margin-top: 4px; }
 .pp-visual-wrap { position: relative; }
 .pp-visual { aspect-ratio: 3/4; background: var(--arya-sand-3); position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; }
 .pp-bg { position: absolute; inset: 0; background: linear-gradient(165deg, var(--arya-sand-2) 0%, var(--arya-sand-3) 40%, #D4C4A8 100%); }
@@ -65,6 +70,8 @@
   .p-main { padding: 100px 20px 60px; }
   .p-foot { flex-direction: column; text-align: center; padding: 32px 20px; }
   .pp-layout { grid-template-columns: 1fr; gap: 32px; }
+  .pp-image-options { position: static; }
+  .pp-options-stack { padding: 20px 0 0; }
   .pp-add { min-height: 52px; }
 }
 
