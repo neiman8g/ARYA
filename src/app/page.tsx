@@ -1069,22 +1069,13 @@ export default function AryaPage() {
 
           .collection { padding: 60px 24px; }
           .coll-header { grid-template-columns: 1fr; gap: 20px; }
-          .coll-section { overflow: hidden; }
+          .coll-section { overflow: visible; }
           .product-grid {
-            display: flex; flex-direction: row; gap: 16px;
-            overflow-x: auto; overflow-y: hidden;
-            scroll-snap-type: x mandatory;
-            -webkit-overflow-scrolling: touch;
-            touch-action: pan-x;
-            scrollbar-width: none; padding-bottom: 8px;
-            margin: 0 -32px; padding-left: 32px; padding-right: 32px;
-            mask-image: linear-gradient(to right, transparent 0, black 24px, black calc(100% - 24px), transparent 100%);
-            -webkit-mask-image: linear-gradient(to right, transparent 0, black 24px, black calc(100% - 24px), transparent 100%);
+            display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px;
+            overflow: visible; margin: 0; padding: 0;
           }
-          .product-grid::-webkit-scrollbar { display: none; }
           .product-grid .p-card {
-            flex: 0 0 calc(50% - 8px); min-width: 260px;
-            scroll-snap-align: start;
+            min-width: 0;
           }
           .coll-tab { padding: 14px 20px; min-height: 44px; }
 
@@ -1135,8 +1126,7 @@ export default function AryaPage() {
           .fit-mini { padding: 18px 20px; }
 
           .collection { padding: 60px 20px; }
-          .product-grid { margin: 0 -20px; padding-left: 20px; padding-right: 20px; }
-          .product-grid .p-card { min-width: 240px; flex: 0 0 calc(50% - 8px); }
+          .product-grid .p-card { min-width: 0; }
           .craft { padding: 60px 20px; }
           .waitlist { padding: 60px 20px; }
           .waitlist .display { font-size: clamp(32px, 8vw, 48px) !important; }
