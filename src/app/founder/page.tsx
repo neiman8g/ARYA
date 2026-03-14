@@ -44,8 +44,10 @@ export default function FounderPage() {
                 <div className="f-name">Nima and Lucy, Founders of Arya</div>
               </div>
             </div>
-            <Link href="/collection" className="sp-btn">View Collection</Link>
-            <Link href="/#waitlist" className="sp-btn sp-btn-secondary">Join Waitlist</Link>
+            <div className="sp-btn-group">
+              <Link href="/collection" className="sp-btn">View Collection</Link>
+              <Link href="/#waitlist" className="btn-waitlist">Join Waitlist</Link>
+            </div>
           </div>
           <div className="fit-visual">
             {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -60,7 +62,7 @@ export default function FounderPage() {
           <Link href="/story">Story</Link>
           <Link href="/mission">Mission</Link>
           <Link href="/collection">Collection</Link>
-          <Link href="/founder">Founder</Link>
+          <Link href="/founder">Founders</Link>
           <Link href="/arya-standard">The Standard</Link>
           <Link href="/#waitlist">Waitlist</Link>
         </div>

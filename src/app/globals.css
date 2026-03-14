@@ -38,5 +38,30 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+/* Waitlist button: light beige, thin warm border, dark text (used for Join Waitlist CTAs) */
+.btn-waitlist {
+  background: var(--arya-sand);
+  color: var(--arya-ink);
+  border: 1px solid #A08C78;
+  padding: 14px 32px;
+  font-size: 11px;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  text-decoration: none;
+  font-weight: 500;
+  font-family: 'Jost', sans-serif;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.25s, color 0.25s, background 0.25s;
+  clip-path: none;
+  border-radius: 0;
+}
+.btn-waitlist:hover {
+  border-color: var(--arya-cognac);
+  color: var(--arya-ink);
+  background: var(--arya-sand-2);
+}
+
 @import "./section-pages.css";
 @import "./product-page.css";

@@ -64,7 +64,7 @@ export default function FitPage() {
           <Link href="/story">Story</Link>
           <Link href="/mission">Mission</Link>
           <Link href="/collection">Collection</Link>
-          <Link href="/founder">Founder</Link>
+          <Link href="/founder">Founders</Link>
           <Link href="/arya-standard">The Standard</Link>
           <Link href="/#waitlist">Waitlist</Link>
         </div>

@@ -43,8 +43,10 @@ export default function StoryPage() {
               <div>Made to move with you.</div>
               <div>Rooted in something real.</div>
             </div>
-            <Link href="/collection" className="sp-btn">View Collection</Link>
-            <Link href="/founder" className="sp-btn sp-btn-secondary">Meet the Founders</Link>
+            <div className="sp-btn-group">
+              <Link href="/collection" className="sp-btn">View Collection</Link>
+              <Link href="/founder" className="sp-btn sp-btn-secondary">Meet the Founders</Link>
+            </div>
           </div>
         </div>
       </main>
@@ -55,7 +57,7 @@ export default function StoryPage() {
           <Link href="/story">Story</Link>
           <Link href="/mission">Mission</Link>
           <Link href="/collection">Collection</Link>
-          <Link href="/founder">Founder</Link>
+          <Link href="/founder">Founders</Link>
           <Link href="/arya-standard">The Standard</Link>
           <Link href="/#waitlist">Waitlist</Link>
         </div>

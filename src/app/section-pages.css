@@ -7,6 +7,7 @@
 .sp-links a:hover, .sp-links a.active { color: var(--arya-ink); }
 .sp-cta { background: var(--arya-ink) !important; color: var(--arya-sand) !important; padding: 10px 24px !important; }
 .sp-cta:hover { background: var(--arya-cognac) !important; }
+.sp-nav .btn-waitlist { padding: 10px 24px; }
 
 /* Section nav: hamburger + overlay on mobile (SectionNav component). Breakpoint 960px matches homepage. */
 .sp-hamburger { display: none; flex-direction: column; justify-content: center; gap: 6px; width: 44px; height: 44px; min-width: 44px; min-height: 44px; padding: 0; border: 0; background: none; cursor: pointer; color: inherit; position: relative; z-index: 101; }
@@ -34,9 +35,11 @@
 .sp-hero-content p { font-size: 17px; line-height: 1.85; color: var(--arya-ink-80); margin: 0 0 18px; }
 .sp-values { margin: 36px 0 40px; }
 .sp-values div { font-family: 'Cormorant Garamond', serif; font-size: 19px; font-style: italic; color: var(--arya-ink); padding: 16px 24px; border-left: 2px solid var(--arya-sand-4); background: var(--arya-sand-2); margin-bottom: 8px; }
+.sp-btn-group { display: flex; flex-wrap: wrap; align-items: center; gap: 16px; }
 .sp-btn { display: inline-block; padding: 14px 32px; background: var(--arya-ink); color: var(--arya-sand); font-size: 11px; letter-spacing: .26em; text-transform: uppercase; text-decoration: none; font-weight: 500; transition: background .3s; clip-path: polygon(0 0, 100% 0, 100% 75%, 95% 100%, 0 100%); }
 .sp-btn:hover { background: var(--arya-cognac); }
-.sp-btn-secondary { margin-top: 12px; margin-left: 0; }
+.sp-btn-secondary { margin-top: 0; margin-left: 0; }
+@media (max-width: 480px) { .sp-btn-group { flex-direction: column; align-items: stretch; } .sp-btn-group .sp-btn { text-align: center; } }
 
 /* Mission page */
 .mission { background: var(--arya-ink); color: var(--arya-sand); }

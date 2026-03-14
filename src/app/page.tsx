@@ -428,11 +428,9 @@ export default function AryaPage() {
 
         .nav-btn {
           font-size: 11px; letter-spacing: .26em; text-transform: uppercase;
-          color: var(--sand); background: var(--ink); padding: 10px 26px;
-          text-decoration: none; transition: all .25s; font-weight: 500;
-          clip-path: polygon(0 0, 100% 0, 100% 68%, 92% 100%, 0 100%);
+          padding: 10px 26px; text-decoration: none; transition: all .25s; font-weight: 500;
         }
-        .nav-btn:hover { background: var(--cognac); }
+        .nav .btn-waitlist { padding: 10px 24px; }
 
         .hamburger {
           display: none; flex-direction: column; justify-content: center; gap: 5px;
@@ -476,6 +474,8 @@ export default function AryaPage() {
         .mobile-menu-cta-primary:hover { background: var(--cognac) !important; color: var(--sand) !important; }
         .mobile-menu-cta-secondary { background: transparent; border: 2px solid var(--ink); color: var(--ink) !important; }
         .mobile-menu-cta-secondary:hover { border-color: var(--cognac); color: var(--cognac) !important; background: transparent !important; }
+        .mobile-menu .btn-waitlist { background: var(--sand) !important; border: 1px solid #A08C78 !important; color: var(--ink) !important; padding: 18px 28px; min-height: 54px; }
+        .mobile-menu .btn-waitlist:hover { border-color: var(--cognac) !important; background: var(--sand-2) !important; color: var(--ink) !important; }
         .mobile-menu-divider { width: 40px; height: 1px; background: var(--sand-4); margin: 20px 0; }
 
         /* ── HERO ── */
@@ -866,15 +866,14 @@ export default function AryaPage() {
         .wl-input::placeholder { color: var(--ink-60); }
         .wl-input:focus { border-color: var(--cognac); }
         .wl-submit {
-          background: var(--ink); border: none; color: var(--sand);
+          background: var(--sand); border: 1px solid #A08C78; color: var(--ink);
           font-family: 'Jost', sans-serif; font-weight: 500; font-size: 11px;
           letter-spacing: .26em; text-transform: uppercase; padding: 15px 28px;
-          cursor: pointer; white-space: nowrap; transition: background .3s;
-          clip-path: polygon(0 0, 100% 0, 100% 68%, 88% 100%, 0 100%);
-          min-width: 140px;
+          cursor: pointer; white-space: nowrap; transition: border-color .25s, background .25s, color .25s;
+          clip-path: none; min-width: 140px;
         }
-        .wl-submit:hover:not(:disabled) { background: var(--cognac); }
-        .wl-submit:disabled { background: var(--sand-5); cursor: not-allowed; }
+        .wl-submit:hover:not(:disabled) { border-color: var(--cognac); background: var(--sand-2); }
+        .wl-submit:disabled { background: var(--sand-5); border-color: var(--sand-5); cursor: not-allowed; }
         .wl-error { font-size: 14px; color: var(--cognac); margin-bottom: 12px; }
         .wl-note { font-size: 13px; letter-spacing: .08em; color: var(--ink-60); }
         .wl-success {
@@ -1138,6 +1137,11 @@ export default function AryaPage() {
           clip-path: polygon(0 0, 100% 0, 100% 85%, 96% 100%, 0 100%);
         }
         .sticky-cta-bar .sticky-cta-primary:hover { background: var(--cognac); }
+        .sticky-cta-bar .btn-waitlist {
+          background: var(--sand) !important; color: var(--ink) !important;
+          border: 1px solid #A08C78 !important; clip-path: none !important;
+        }
+        .sticky-cta-bar .btn-waitlist:hover { border-color: var(--cognac) !important; background: var(--sand-2) !important; color: var(--ink) !important; }
         .sticky-cta-bar .sticky-cta-secondary {
           background: transparent; color: var(--ink);
           border: 1px solid var(--sand-4);
@@ -1148,7 +1152,7 @@ export default function AryaPage() {
 
       {/* ── STICKY MOBILE CTA BAR (phones, after scroll) ── */}
       <div className={`sticky-cta-bar ${showStickyBar ? "visible" : ""}`} aria-hidden={!showStickyBar}>
-        <a href="#waitlist" className="sticky-cta-primary">Join Waitlist</a>
+        <a href="#waitlist" className="sticky-cta-primary btn-waitlist">Join Waitlist</a>
         <Link href="/collection" className="sticky-cta-secondary">Shop Collection</Link>
       </div>
 
@@ -1156,13 +1160,13 @@ export default function AryaPage() {
       <div className={`mobile-menu ${menuOpen ? "open" : ""}`} aria-hidden={!menuOpen}>
         <div className="mobile-menu-primaries">
           <Link href="/collection" className="mobile-menu-cta mobile-menu-cta-primary" onClick={closeMenu} onTouchStart={closeMenu}>Shop Collection</Link>
-          <a href="/#waitlist" className="mobile-menu-cta mobile-menu-cta-secondary" onClick={closeMenu} onTouchStart={closeMenu}>Join Waitlist</a>
+          <a href="/#waitlist" className="mobile-menu-cta btn-waitlist" onClick={closeMenu} onTouchStart={closeMenu}>Join Waitlist</a>
         </div>
         <div className="mobile-menu-divider" />
         <Link href="/story" onClick={closeMenu} onTouchStart={closeMenu}>Story</Link>
         <Link href="/fit" onClick={closeMenu} onTouchStart={closeMenu}>Fit</Link>
         <Link href="/mission" onClick={closeMenu} onTouchStart={closeMenu}>Mission</Link>
-        <Link href="/founder" onClick={closeMenu} onTouchStart={closeMenu}>Founder</Link>
+        <Link href="/founder" onClick={closeMenu} onTouchStart={closeMenu}>Founders</Link>
         <Link href="/arya-standard" onClick={closeMenu} onTouchStart={closeMenu}>The Standard</Link>
       </div>
 
@@ -1229,7 +1233,7 @@ export default function AryaPage() {
           <li><Link href="/story">Story</Link></li>
           <li><Link href="/fit">Fit</Link></li>
           <li><Link href="/mission">Mission</Link></li>
-          <li><Link href="/founder">Founder</Link></li>
+          <li><Link href="/founder">Founders</Link></li>
           <li><Link href="/arya-standard">The Standard</Link></li>
         </ul>
         <div className="nav-actions">
@@ -1237,7 +1241,7 @@ export default function AryaPage() {
             Bag
             {cartCount > 0 && <span className="nav-cart-count">{cartCount}</span>}
           </button>
-          <a href="/#waitlist" className="nav-btn">Join Waitlist</a>
+          <a href="/#waitlist" className="nav-btn btn-waitlist">Join Waitlist</a>
           <button
             type="button"
             className={`hamburger ${menuOpen ? "open" : ""}`}
@@ -1539,7 +1543,7 @@ export default function AryaPage() {
             <ul>
               <li><Link href="/story">Our Story</Link></li>
               <li><Link href="/mission">Mission</Link></li>
-              <li><Link href="/founder">Founder</Link></li>
+              <li><Link href="/founder">Founders</Link></li>
               <li><Link href="/arya-standard">The Standard</Link></li>
             </ul>
           </div>

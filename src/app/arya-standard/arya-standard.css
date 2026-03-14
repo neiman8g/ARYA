@@ -238,13 +238,14 @@
   background: var(--arya-cognac);
 }
 .std-cta-btn-secondary {
-  background: transparent;
+  background: var(--arya-sand);
   color: var(--arya-ink);
-  border: 1px solid var(--arya-sand-4);
+  border: 1px solid #A08C78;
 }
 .std-cta-btn-secondary:hover {
   border-color: var(--arya-cognac);
-  color: var(--arya-cognac);
+  color: var(--arya-ink);
+  background: var(--arya-sand-2);
 }
 
 /* Arya Standard nav + footer active state */

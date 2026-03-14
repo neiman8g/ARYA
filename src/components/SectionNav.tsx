@@ -47,12 +47,12 @@ export function SectionNav({ activeLink }: { activeLink?: ActiveLink }) {
             Collection
           </Link>
           <Link href="/founder" className={activeLink === "founder" ? "active" : ""} onClick={closeMenu} onTouchStart={closeMenu}>
-            Founder
+            Founders
           </Link>
           <Link href="/arya-standard" className={activeLink === "arya-standard" ? "active" : ""} onClick={closeMenu} onTouchStart={closeMenu}>
             The Standard
           </Link>
-          <Link href="/#waitlist" className="sp-cta" onClick={closeMenu} onTouchStart={closeMenu}>
+          <Link href="/#waitlist" className="btn-waitlist" onClick={closeMenu} onTouchStart={closeMenu}>
             Join Waitlist
           </Link>
         </div>
