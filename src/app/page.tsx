@@ -161,7 +161,7 @@ export default function AryaPage() {
   const [fitTab, setFitTab] = useState<"women" | "men">("women");
   const [checkoutLoading, setCheckoutLoading] = useState(false);
   const [checkoutError, setCheckoutError] = useState<string | null>(null);
-  const [waitlistError, setWaitlistError] = useState<string | null>(null);
+  const [error, setError] = useState('');
   const [showStickyBar, setShowStickyBar] = useState(false);
   const [activeSection, setActiveSection] = useState<string>("");
 
@@ -245,29 +245,54 @@ export default function AryaPage() {
     return () => observer.disconnect();
   }, []);
 
-  const onSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!email) return;
-    setWaitlistError(null);
-    setSubmitting(true);
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setSubmitting(true)
+    setError('')
+
     try {
-      const res = await fetch("/api/waitlist", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email: email.trim() }),
-      });
-      const data = await res.json().catch(() => ({}));
-      if (!res.ok) {
-        setWaitlistError(data.error || "Something went wrong. Please try again.");
-        setSubmitting(false);
-        return;
+      const response = await fetch('https://a.klaviyo.com/client/subscriptions/?company_id=RkkP9u', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'revision': '2023-12-15'
+        },
+        body: JSON.stringify({
+          data: {
+            type: 'subscription',
+            attributes: {
+              profile: {
+                data: {
+                  type: 'profile',
+                  attributes: {
+                    email: email
+                  }
+                }
+              }
+            },
+            relationships: {
+              list: {
+                data: {
+                  type: 'list',
+                  id: 'YxmBfA'
+                }
+              }
+            }
+          }
+        })
+      })
+
+      if (response.ok || response.status === 202) {
+        setSubmitted(true)
+        setEmail('')
+      } else {
+        setError('Something went wrong. Please try again.')
       }
-      setSubmitted(true);
-      setEmail("");
-    } catch {
-      setWaitlistError("Something went wrong. Please try again.");
+    } catch (err) {
+      setError('Something went wrong. Please try again.')
+    } finally {
+      setSubmitting(false)
     }
-    setSubmitting(false);
   };
 
   const setColor = (productId: string, colorName: string) =>
@@ -1478,11 +1503,11 @@ export default function AryaPage() {
           <h2 className="display" style={{ marginBottom: 16, fontSize: "clamp(42px,5vw,68px)" }}>Be first.<br /><em>Be noble.</em></h2>
           <p className="wl-sub">Join the Arya waitlist for early access to the launch collection, founder updates, and pre-order pricing. Men&apos;s and women&apos;s dropping together.</p>
           {submitted ? (
-            <div className="wl-success"><p>You&apos;re on the list. We&apos;ll be in touch.</p></div>
+            <div className="wl-success"><p>You are on the list. We will be in touch.</p></div>
           ) : (
             <>
-              {waitlistError && <p className="wl-error">{waitlistError}</p>}
-              <form className="wl-form" onSubmit={onSubmit}>
+              {error && <p className="wl-error">{error}</p>}
+              <form className="wl-form" onSubmit={handleSubmit}>
                 <input
                   type="email" className="wl-input"
                   placeholder="Your email address"
