@@ -110,6 +110,8 @@
 /* Collection page */
 .coll-note { font-size: 16px; color: var(--arya-ink-80); margin: 0 0 40px; }
 .coll-launch-banner { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 15px; color: #8B6A3E; text-align: center; margin: -10px 0 34px; }
+.coll-mission-link { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 14px; color: #8B6A3E; text-align: center; margin: -10px 0 16px; }
+.coll-mission-link a { color: #8B6A3E; text-decoration: underline; text-underline-offset: 3px; }
 .coll-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
 .coll-card { text-decoration: none; color: inherit; display: block; border: 1px solid var(--arya-sand-3); background: var(--arya-sand); overflow: hidden; transition: transform .3s, box-shadow .3s; }
 .coll-card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(30,24,16,.06); }
@@ -144,6 +146,7 @@
     padding: 80px 24px 24px; padding-top: max(80px, calc(60px + var(--safe-top)));
     opacity: 0; visibility: hidden; transition: opacity .25s, visibility .25s;
     flex-direction: column; align-items: center; justify-content: flex-start;
+    overflow-y: auto; -webkit-overflow-scrolling: touch;
   }
   .sp-mobile-menu.open { opacity: 1; visibility: visible; }
   .sp-mobile-menu .sp-links { display: flex; flex-direction: column; align-items: center; gap: 4px; width: 100%; max-width: 280px; }

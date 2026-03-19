@@ -168,6 +168,7 @@ function ProductCard({ p, selectedColors, setColor }: ProductCardProps) {
 
 export default function AryaPage() {
   const [email, setEmail] = useState("");
+  const [emailInputError, setEmailInputError] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [navStuck, setNavStuck] = useState(false);
@@ -267,6 +268,15 @@ export default function AryaPage() {
     e.preventDefault()
     setSubmitting(true)
     setError('')
+    setEmailInputError("")
+
+    const emailValue = email.trim()
+    const validEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailValue)
+    if (!validEmail) {
+      setEmailInputError("Please enter a valid email address.")
+      setSubmitting(false)
+      return
+    }
 
     try {
       const response = await fetch('https://a.klaviyo.com/client/subscriptions/?company_id=RkkP9u', {
@@ -283,7 +293,7 @@ export default function AryaPage() {
                 data: {
                   type: 'profile',
                   attributes: {
-                    email: email
+                    email: emailValue
                   }
                 }
               }
@@ -498,10 +508,11 @@ export default function AryaPage() {
         .mobile-menu {
           position: fixed; inset: 0; z-index: 190;
           background: var(--sand); display: flex; flex-direction: column;
-          align-items: center; justify-content: center; gap: 4px;
+          align-items: center; justify-content: flex-start; gap: 4px;
           opacity: 0; visibility: hidden;
           transition: opacity .35s cubic-bezier(.16,1,.3,1), visibility .35s;
-          padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+          overflow-y: auto; -webkit-overflow-scrolling: touch;
+          padding: max(88px, calc(64px + env(safe-area-inset-top))) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
         }
         .mobile-menu.open { opacity: 1; visibility: visible; }
         .mobile-menu a {
@@ -509,7 +520,7 @@ export default function AryaPage() {
           font-weight: 400; color: var(--ink); text-decoration: none;
           letter-spacing: .04em; transition: color .25s;
           padding: 16px 32px; min-height: 48px; display: inline-flex; align-items: center; justify-content: center;
-          border-radius: 8px; min-width: 200px;
+          border-radius: 8px; min-width: 200px; width: 100%; max-width: 320px;
         }
         .mobile-menu a:hover { color: var(--cognac); background: rgba(30,24,16,.04); }
         .mobile-menu-primaries { display: flex; flex-direction: column; gap: 12px; width: 100%; max-width: 280px; margin-bottom: 8px; }
@@ -917,7 +928,7 @@ export default function AryaPage() {
         .wl-inner { position: relative; z-index: 2; max-width: 560px; margin: 0 auto; }
         .wl-sub { font-size: 17px; line-height: 1.85; color: var(--ink-80); font-weight: 400; margin-bottom: 52px; }
         .wl-launch { font-size: 15px; }
-        .wl-form { display: flex; max-width: 480px; margin: 0 auto 16px; }
+        .wl-form { display: flex; flex-wrap: wrap; max-width: 480px; margin: 0 auto 16px; }
         .wl-input {
           flex: 1; background: var(--sand); border: 1px solid var(--sand-4); border-right: none;
           padding: 15px 22px; font-family: 'Jost', sans-serif; font-weight: 400;
@@ -935,11 +946,13 @@ export default function AryaPage() {
         .wl-submit:hover:not(:disabled) { border-color: var(--cognac); background: var(--sand-2); }
         .wl-submit:disabled { background: var(--sand-5); border-color: var(--sand-5); cursor: not-allowed; }
         .wl-error { font-size: 14px; color: var(--cognac); margin-bottom: 12px; }
+        .wl-input-error { font-size: 13px; color: #B04343; margin-top: 8px; text-align: left; width: 100%; }
         .wl-note { font-size: 13px; letter-spacing: .08em; color: var(--ink-60); }
         .wl-success {
           padding: 28px 44px; border: 1px solid var(--sand-5); background: var(--sand); display: inline-block;
         }
         .wl-success p { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 22px; color: var(--cognac); }
+        .wl-priority { font-size: 14px; font-style: italic; color: #8B6A3E; text-align: center; margin: 0 0 14px; }
 
         /* ── CART DRAWER ── */
         .cart-overlay {
@@ -1165,6 +1178,21 @@ export default function AryaPage() {
           .foot-grid { grid-template-columns: 1fr; gap: 28px; }
         }
         @media (max-width: 768px) {
+          .nav .btn-waitlist {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 20px;
+            min-height: 48px;
+            font-size: 12px;
+            letter-spacing: .24em;
+            background: var(--ink);
+            color: var(--sand);
+            border: 1px solid var(--ink);
+          }
+          .nav .btn-waitlist:hover { background: var(--cognac); border-color: var(--cognac); color: var(--sand); }
+          .nav-cart-btn { display: none; }
+          .nav-actions { gap: 8px; }
           footer { padding-bottom: max(32px, calc(80px + env(safe-area-inset-bottom))); }
         }
 
@@ -1202,7 +1230,38 @@ export default function AryaPage() {
         }
         .sticky-cta-bar .sticky-cta-secondary:hover { border-color: var(--cognac); color: var(--cognac); }
         @media (min-width: 769px) { .sticky-cta-bar { display: none !important; } }
+
+        .sr-only {
+          position: absolute;
+          width: 1px;
+          height: 1px;
+          padding: 0;
+          margin: -1px;
+          overflow: hidden;
+          clip: rect(0, 0, 0, 0);
+          white-space: nowrap;
+          border: 0;
+        }
+        .skip-link {
+          position: absolute;
+          top: -100px;
+          left: 12px;
+          z-index: 1000;
+          background: var(--ink);
+          color: var(--sand);
+          padding: 10px 14px;
+          text-decoration: none;
+          font-size: 12px;
+          letter-spacing: .18em;
+          text-transform: uppercase;
+          border: 1px solid var(--cognac);
+        }
+        .skip-link:focus {
+          top: calc(max(8px, env(safe-area-inset-top)));
+        }
       `}</style>
+
+      <a href="#main-content" className="skip-link">Skip to main content</a>
 
       {/* ── STICKY MOBILE CTA BAR (phones, after scroll) ── */}
       <div className={`sticky-cta-bar ${showStickyBar ? "visible" : ""}`} aria-hidden={!showStickyBar}>
@@ -1211,7 +1270,7 @@ export default function AryaPage() {
       </div>
 
       {/* ── MOBILE MENU ── */}
-      <div className={`mobile-menu ${menuOpen ? "open" : ""}`} aria-hidden={!menuOpen}>
+      <div className={`mobile-menu ${menuOpen ? "open" : ""}`}>
         <div className="mobile-menu-primaries">
           <Link href="/collection" className="mobile-menu-cta mobile-menu-cta-primary" onClick={closeMenu} onTouchStart={closeMenu}>Shop Collection</Link>
           <a href="/#waitlist" className="mobile-menu-cta btn-waitlist" onClick={closeMenu} onTouchStart={closeMenu}>Join Waitlist</a>
@@ -1234,12 +1293,12 @@ export default function AryaPage() {
         onClick={() => setCartOpen(false)}
         aria-hidden={!cartOpen}
       >
-        <div className="cart-drawer" onClick={e => e.stopPropagation()} role="dialog" aria-label="Shopping cart">
-          <div className="cart-drawer-header">
+        <div className="cart-drawer" onClick={e => e.stopPropagation()} role="dialog" aria-labelledby="shopping-bag-heading" aria-describedby="shopping-bag-content">
+          <div className="cart-drawer-header" id="shopping-bag-heading">
             Bag {cartCount > 0 && `(${cartCount})`}
-            <button type="button" className="cart-drawer-close" onClick={() => setCartOpen(false)} aria-label="Close cart">×</button>
+            <button type="button" className="cart-drawer-close" onClick={() => setCartOpen(false)} aria-label="Close shopping bag">×</button>
           </div>
-          <div className="cart-drawer-body">
+          <div className="cart-drawer-body" id="shopping-bag-content">
             {cart.length === 0 ? (
               <div className="cart-empty"><p>Your bag is empty.</p></div>
             ) : (
@@ -1282,7 +1341,7 @@ export default function AryaPage() {
       </div>
 
       {/* ── NAV ── */}
-      <nav className={`nav ${navStuck ? "stuck" : ""}`}>
+      <nav className={`nav ${navStuck ? "stuck" : ""}`} role="navigation" aria-label="Main navigation">
         <a href="#" className="nav-logo-link" aria-label="Arya home">
           <AryaLogo size={32} markColor="#8B6A3E" textColor="#1E1810" />
         </a>
@@ -1321,7 +1380,7 @@ export default function AryaPage() {
       </nav>
 
       {/* ── HERO ── */}
-      <section className="hero fade-section">
+      <section className="hero fade-section" id="main-content">
         <div className="hero-left">
           <div className="hero-content">
             <div className="eyebrow">
@@ -1564,13 +1623,21 @@ export default function AryaPage() {
           ) : (
             <>
               {error && <p className="wl-error">{error}</p>}
+              <p className="wl-priority">Waitlist members get first access and exclusive pre-order pricing before the public.</p>
               <form className="wl-form" onSubmit={handleSubmit}>
+                <label htmlFor="waitlist-email" className="sr-only">Your email address</label>
                 <input
+                  id="waitlist-email"
                   type="email" className="wl-input"
                   placeholder="Your email address"
-                  value={email} onChange={e => setEmail(e.target.value)}
+                  value={email}
+                  onChange={e => {
+                    setEmail(e.target.value)
+                    if (emailInputError) setEmailInputError("")
+                  }}
                   required
                 />
+                {emailInputError && <p className="wl-input-error" role="alert">{emailInputError}</p>}
                 <button type="submit" className="wl-submit" disabled={submitting}>
                   {submitting ? "Joining…" : "Join Waitlist"}
                 </button>
@@ -1590,7 +1657,7 @@ export default function AryaPage() {
       </section>
 
       {/* ── FOOTER ── */}
-      <footer className="fade-section">
+      <footer className="fade-section" aria-label="Footer navigation">
         <div className="foot-grid">
           <div>
             <AryaLogo size={30} markColor="#8B6A3E" textColor="#F5EFE4" />
@@ -1617,7 +1684,7 @@ export default function AryaPage() {
               <li><Link href="/faq">FAQ</Link></li>
               <li><Link href="/fit-guide">Fit Guide</Link></li>
               <li><Link href="/sustainability">Sustainability</Link></li>
-              <li><Link href="/blog">Blog</Link></li>
+              <li><Link href="/blog">The Journal</Link></li>
             </ul>
           </div>
           <div className="foot-col">

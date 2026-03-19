@@ -106,17 +106,18 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
         <ProductPageClient product={product} />
       </main>
 
-      <footer className="p-foot">
+      <footer className="p-foot" aria-label="Footer navigation">
         <Link href="/" className="p-foot-logo">
           <AryaMark size={20} color="#8B6A3E" />
           <span>Arya</span>
         </Link>
         <div className="p-foot-links">
-          <Link href="/story">Story</Link>
+          <Link href="/story">Our Story</Link>
           <Link href="/mission">Mission</Link>
           <Link href="/collection">Collection</Link>
           <Link href="/founder">Founders</Link>
           <Link href="/arya-standard">The Standard</Link>
+          <Link href="/blog">The Journal</Link>
           <Link href="/#waitlist">Waitlist</Link>
         </div>
         <p>© 2026 Arya · Noble by nature.</p>

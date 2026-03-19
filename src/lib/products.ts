@@ -34,7 +34,7 @@ export const PRODUCTS: Product[] = [
     ],
     oneLine: "Engineered fit. Skin conscious fabric. Built for the body that moves.",
     fabricStory:
-      "The Noble Legging is built from NobleFlex, Arya's proprietary performance fabric. Designed from scratch for the athletic body. Four-way stretch in every direction. Muscle compression that supports without restricting. A high-rise waistband that holds without digging or rolling. Extended thigh and hip room that finally fits the body that surfs, trains, rides, and lives fully. Skin certified and free from harmful chemicals. Noble from the inside out.",
+      "The Noble Legging is built from NobleFlex, Arya's proprietary performance fabric. Designed from scratch for the athletic body. Four-way stretch in every direction. Muscle compression that supports without restricting. A high-rise waistband that holds without digging or rolling. Extended thigh and hip room that finally fits the body that surfs, trains, rides, and lives fully. Learn how we engineer for the athletic body in our fit guide. Skin certified and free from harmful chemicals. Noble from the inside out.",
     features: [
       "NobleFlex proprietary fabric",
       "Four-way stretch with full range of motion",

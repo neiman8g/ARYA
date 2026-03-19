@@ -14,7 +14,7 @@ const CROSS_SELL: Record<string, [string, string]> = {
 };
 
 function textWithFabricLinks(text: string): React.ReactNode {
-  const regex = /(NobleFlex|NobleSoft|NobleDry)/g;
+  const regex = /(NobleFlex|NobleSoft|NobleDry|fit guide)/g;
   const parts: React.ReactNode[] = [];
   let lastIndex = 0;
   let match;
@@ -24,7 +24,7 @@ function textWithFabricLinks(text: string): React.ReactNode {
     parts.push(
       <Link
         key={`fabric-${key++}`}
-        href="/arya-standard"
+        href={match[0] === "fit guide" ? "/fit-guide" : "/arya-standard"}
         className="fabric-link"
       >
         {match[0]}
@@ -110,6 +110,7 @@ export default function ProductPageClient({ product }: { product: Product }) {
                   </button>
                 ))}
               </div>
+              <p className="pp-fit-help">Not sure about sizing? See our <Link href="/fit-guide">fit philosophy</Link>.</p>
             </div>
             <button
               type="button"
@@ -173,6 +174,11 @@ export default function ProductPageClient({ product }: { product: Product }) {
             })}
           </div>
         </section>
+      )}
+      {product.slug === "noble-legging" && (
+        <p className="pp-legging-mission">
+          Arya is built on a <Link href="/mission">higher standard</Link>. <Link href="/sustainability">Skin conscious</Link>. Sustainably minded. Giving back.
+        </p>
       )}
 
       <section className="pp-know">

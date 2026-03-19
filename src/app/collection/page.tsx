@@ -19,6 +19,7 @@ export default function CollectionPage() {
         <span className="sp-label">Launch Collection</span>
         <h1>The <em>foundation</em> pieces.</h1>
         <div className="coll-launch-banner">Launching Fall 2026 · Early access available now for waitlist members</div>
+        <p className="coll-mission-link">What drives Arya&apos;s sustainable luxury? <Link href="/mission">Read our mission.</Link></p>
         <p className="coll-note">Engineered from scratch for the body that moves.</p>
         <div className="coll-tabs">
           <button type="button" className={`coll-tab ${collectionFilter === "all" ? "active" : ""}`} onClick={() => setCollectionFilter("all")}>All</button>
@@ -71,7 +72,7 @@ export default function CollectionPage() {
         </div>
       </main>
 
-      <footer className="sp-foot">
+      <footer className="sp-foot" aria-label="Footer navigation">
         <Link href="/">Arya</Link>
         <div>
           <Link href="/story">Story</Link>
@@ -79,6 +80,7 @@ export default function CollectionPage() {
           <Link href="/collection">Collection</Link>
           <Link href="/founder">Founders</Link>
           <Link href="/arya-standard">The Standard</Link>
+          <Link href="/blog">The Journal</Link>
           <Link href="/#waitlist">Waitlist</Link>
         </div>
         <p>© 2026 Arya · Noble by nature.</p>

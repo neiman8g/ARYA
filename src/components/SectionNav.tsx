@@ -17,7 +17,7 @@ export function SectionNav({ activeLink }: { activeLink?: ActiveLink }) {
   }, [menuOpen]);
 
   return (
-    <nav className={`sp-nav ${menuOpen ? "sp-nav-menu-open" : ""}`}>
+    <nav className={`sp-nav ${menuOpen ? "sp-nav-menu-open" : ""}`} role="navigation" aria-label="Main navigation">
       <Link href="/" className="sp-logo" onClick={closeMenu} aria-label="Arya home">
         <span className="sp-logo-word">ARYA</span>
       </Link>
@@ -66,7 +66,7 @@ export function SectionNav({ activeLink }: { activeLink?: ActiveLink }) {
         <span />
         <span />
       </button>
-      <div className={`sp-mobile-menu ${menuOpen ? "open" : ""}`} aria-hidden={!menuOpen}>
+      <div className={`sp-mobile-menu ${menuOpen ? "open" : ""}`}>
         <div className="sp-mobile-menu-primaries">
           <Link href="/collection" className="sp-mobile-menu-cta sp-mobile-menu-cta-primary" onClick={closeMenu} onTouchStart={closeMenu}>
             Shop Collection

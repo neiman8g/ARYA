@@ -47,7 +47,7 @@ export default function MissionPage() {
         <Link href="/collection" className="sp-btn">View Collection</Link>
       </main>
 
-      <footer className="sp-foot mission-foot">
+      <footer className="sp-foot mission-foot" aria-label="Footer navigation">
         <Link href="/">Arya</Link>
         <div>
           <Link href="/story">Story</Link>

@@ -84,7 +84,7 @@ export default function SustainabilityPage() {
         </section>
       </main>
 
-      <footer className="sp-foot">
+      <footer className="sp-foot" aria-label="Footer navigation">
         <Link href="/">Arya</Link>
         <div>
           <Link href="/story">Story</Link>
