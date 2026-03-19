@@ -10,14 +10,21 @@ function AryaMark({ size = 40, color = "#8B6A3E" }: { size?: number; color?: str
 }
 
 function AryaWordmark({ height = 20, color = "#2C2418" }: { height?: number; color?: string }) {
-  /* Wide viewBox + overflow hidden: letterSpacing on text must not widen past box (iOS layout/scroll bugs). */
+  /* Scales down with maxWidth so full “ARYA” stays visible in narrow nav (section pages + home). */
   return (
     <svg
-      height={height}
       viewBox="0 0 220 32"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      style={{ flexShrink: 1, minWidth: 0, maxWidth: "100%", overflow: "hidden" }}
+      preserveAspectRatio="xMidYMid meet"
+      style={{
+        height: `${height}px`,
+        width: "auto",
+        maxWidth: "100%",
+        flexShrink: 1,
+        minWidth: 0,
+        display: "block",
+      }}
     >
       <text
         x="110"

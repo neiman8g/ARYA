@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { SectionNav } from "@/components/SectionNav";
+import { SiteFooter } from "@/components/SiteFooter";
 
 export const metadata = {
   title: "Fit Guide | Arya | Engineered for the Body That Moves",
@@ -81,18 +82,7 @@ export default function FitGuidePage() {
         </section>
       </main>
 
-      <footer className="sp-foot" aria-label="Footer navigation">
-        <Link href="/">Arya</Link>
-        <div>
-          <Link href="/story">Story</Link>
-          <Link href="/mission">Mission</Link>
-          <Link href="/collection">Collection</Link>
-          <Link href="/founder">Founders</Link>
-          <Link href="/arya-standard">The Standard</Link>
-          <Link href="/#waitlist">Waitlist</Link>
-        </div>
-        <p>© 2026 Arya · Noble by nature.</p>
-      </footer>
+      <SiteFooter />
     </div>
   );
 }

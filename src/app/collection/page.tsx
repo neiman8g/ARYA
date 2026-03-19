@@ -2,6 +2,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { SectionNav } from "@/components/SectionNav";
+import { SiteFooter } from "@/components/SiteFooter";
 import { PRODUCTS } from "@/lib/products";
 
 const womenProducts = PRODUCTS.filter((p) => p.gender === "Women's");
@@ -72,19 +73,7 @@ export default function CollectionPage() {
         </div>
       </main>
 
-      <footer className="sp-foot" aria-label="Footer navigation">
-        <Link href="/">Arya</Link>
-        <div>
-          <Link href="/story">Story</Link>
-          <Link href="/mission">Mission</Link>
-          <Link href="/collection">Collection</Link>
-          <Link href="/founder">Founders</Link>
-          <Link href="/arya-standard">The Standard</Link>
-          <Link href="/blog">The Journal</Link>
-          <Link href="/#waitlist">Waitlist</Link>
-        </div>
-        <p>© 2026 Arya · Noble by nature.</p>
-      </footer>
+      <SiteFooter />
     </div>
   );
 }

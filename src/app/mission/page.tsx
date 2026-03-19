@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { SectionNav } from "@/components/SectionNav";
+import { SiteFooter } from "@/components/SiteFooter";
 
 export const metadata = {
   title: "Our Mission | Arya | Persian Craft. Skin Conscious. Giving Back.",
@@ -47,18 +48,7 @@ export default function MissionPage() {
         <Link href="/collection" className="sp-btn">View Collection</Link>
       </main>
 
-      <footer className="sp-foot mission-foot" aria-label="Footer navigation">
-        <Link href="/">Arya</Link>
-        <div>
-          <Link href="/story">Story</Link>
-          <Link href="/mission">Mission</Link>
-          <Link href="/collection">Collection</Link>
-          <Link href="/founder">Founders</Link>
-          <Link href="/arya-standard">The Standard</Link>
-          <Link href="/#waitlist">Waitlist</Link>
-        </div>
-        <p>© 2026 Arya · Noble by nature.</p>
-      </footer>
+      <SiteFooter className="mission-foot" />
     </div>
   );
 }

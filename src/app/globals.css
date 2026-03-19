@@ -32,10 +32,22 @@
   }
 }
 
+/* Readable text scaling; contain overflow on narrow viewports */
 html {
   width: 100%;
   max-width: 100%;
   overflow-x: hidden;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+/* iOS Safari: inputs smaller than 16px trigger zoom on focus */
+@media (max-width: 480px) {
+  input:not([type="checkbox"]):not([type="radio"]):not([type="range"]),
+  textarea,
+  select {
+    font-size: 16px !important;
+  }
 }
 
 body {
@@ -59,7 +71,7 @@ body {
   text-transform: uppercase;
   text-decoration: none;
   font-weight: 500;
-  font-family: 'Jost', sans-serif;
+  font-family: var(--font-jost), sans-serif;
   display: inline-flex;
   align-items: center;
   justify-content: center;

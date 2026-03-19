@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useId } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { AryaLogo } from "@/components/AryaLogo";
 
 type ActiveLink = "story" | "mission" | "fit" | "collection" | "founder" | "arya-standard";
@@ -14,6 +15,7 @@ type SectionNavProps = {
 
 export function SectionNav({ activeLink, theme = "light" }: SectionNavProps) {
   const mobileMenuId = useId();
+  const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
   const [navStuck, setNavStuck] = useState(false);
   const closeMenu = () => setMenuOpen(false);
@@ -34,6 +36,22 @@ export function SectionNav({ activeLink, theme = "light" }: SectionNavProps) {
       document.body.style.overflow = "";
     };
   }, [menuOpen]);
+
+  /* Client navigation: always close the mobile sheet so it cannot appear “stuck” on the next page. */
+  useEffect(() => {
+    setMenuOpen(false);
+  }, [pathname]);
+
+  /* BFCache restore: clear sheet + scroll lock (same bug class as homepage). */
+  useEffect(() => {
+    const onPageShow = () => {
+      setMenuOpen(false);
+      document.body.style.overflow = "";
+      setNavStuck(window.scrollY > 60);
+    };
+    window.addEventListener("pageshow", onPageShow);
+    return () => window.removeEventListener("pageshow", onPageShow);
+  }, []);
 
   const logoMark = "#8B6A3E";
   const logoText = theme === "dark" ? "#F5EFE4" : "#1E1810";

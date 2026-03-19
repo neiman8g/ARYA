@@ -248,9 +248,8 @@
   background: var(--arya-sand-2);
 }
 
-/* Arya Standard nav + footer active state */
-.std-page .sp-links a[href="/arya-standard"],
-.std-page .sp-foot a[href="/arya-standard"] {
+/* Arya Standard nav active state */
+.std-page .sp-links a[href="/arya-standard"] {
   color: var(--arya-ink);
 }
 
