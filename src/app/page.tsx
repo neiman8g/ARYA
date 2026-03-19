@@ -507,37 +507,40 @@ export default function AryaPage() {
 
         .mobile-menu {
           position: fixed; inset: 0; z-index: 190;
-          background: var(--sand); display: flex; flex-direction: column;
+          background: rgba(245,239,228,.98); display: flex; flex-direction: column;
           align-items: center; justify-content: flex-start; gap: 4px;
           opacity: 0; visibility: hidden;
-          transition: opacity .35s cubic-bezier(.16,1,.3,1), visibility .35s;
+          transition: opacity .25s, visibility .25s;
           overflow-y: auto; -webkit-overflow-scrolling: touch;
           overscroll-behavior-y: contain; touch-action: pan-y;
-          padding: max(88px, calc(64px + env(safe-area-inset-top))) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+          padding: max(80px, calc(60px + env(safe-area-inset-top))) max(24px, env(safe-area-inset-right)) max(24px, env(safe-area-inset-bottom)) max(24px, env(safe-area-inset-left));
         }
         .mobile-menu.open { opacity: 1; visibility: visible; }
-        .mobile-menu a {
-          font-family: 'Cormorant Garamond', serif; font-size: clamp(28px, 6vw, 44px);
-          font-weight: 400; color: var(--ink); text-decoration: none;
-          letter-spacing: .04em; transition: color .25s;
-          padding: 16px 32px; min-height: 48px; display: inline-flex; align-items: center; justify-content: center;
-          border-radius: 8px; min-width: 200px; width: 100%; max-width: 320px;
+        .mobile-menu-links {
+          display: flex; flex-direction: column; align-items: center; gap: 4px;
+          width: 100%; max-width: 280px; margin: 0; padding: 0; border: none;
         }
-        .mobile-menu a:hover { color: var(--cognac); background: rgba(30,24,16,.04); }
+        .mobile-menu-links a {
+          font-family: 'Jost', sans-serif; font-size: 12px; letter-spacing: .22em; text-transform: uppercase;
+          font-weight: 500; color: var(--ink-80); text-decoration: none;
+          padding: 14px 20px; min-height: 48px; width: 100%;
+          display: inline-flex; align-items: center; justify-content: center;
+          border-radius: 8px; transition: color .25s, background .25s;
+        }
+        .mobile-menu-links a:hover { color: var(--ink); background: rgba(30,24,16,.04); }
+        .mobile-menu-links a.active { color: var(--ink); }
         .mobile-menu-primaries { display: flex; flex-direction: column; gap: 12px; width: 100%; max-width: 280px; margin-bottom: 8px; }
         .mobile-menu-cta {
           font-family: 'Jost', sans-serif !important; font-size: 12px !important;
           letter-spacing: .24em; text-transform: uppercase; font-weight: 500;
           padding: 18px 28px !important; min-height: 54px;
           display: inline-flex !important; align-items: center; justify-content: center;
-          border-radius: 8px; min-width: auto; text-align: center;
+          border-radius: 8px; min-width: auto; text-align: center; text-decoration: none;
         }
         .mobile-menu-cta-primary { background: var(--ink); color: var(--sand) !important; }
         .mobile-menu-cta-primary:hover { background: var(--cognac) !important; color: var(--sand) !important; }
-        .mobile-menu-cta-secondary { background: transparent; border: 2px solid var(--ink); color: var(--ink) !important; }
-        .mobile-menu-cta-secondary:hover { border-color: var(--cognac); color: var(--cognac) !important; background: transparent !important; }
-        .mobile-menu .btn-waitlist { background: var(--sand) !important; border: 1px solid #A08C78 !important; color: var(--ink) !important; padding: 18px 28px; min-height: 54px; }
-        .mobile-menu .btn-waitlist:hover { border-color: var(--cognac) !important; background: var(--sand-2) !important; color: var(--ink) !important; }
+        .mobile-menu-cta-secondary { background: var(--sand); border: 1px solid #A08C78; color: var(--ink) !important; }
+        .mobile-menu-cta-secondary:hover { border-color: var(--cognac); background: var(--sand-2) !important; color: var(--ink) !important; }
         .mobile-menu-divider { width: 40px; height: 1px; background: var(--sand-4); margin: 20px 0; }
 
         /* ── HERO ── */
@@ -1179,20 +1182,6 @@ export default function AryaPage() {
           .foot-grid { grid-template-columns: 1fr; gap: 28px; }
         }
         @media (max-width: 768px) {
-          .nav .btn-waitlist {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 12px 20px;
-            min-height: 48px;
-            font-size: 12px;
-            letter-spacing: .24em;
-            background: var(--ink);
-            color: var(--sand);
-            border: 1px solid var(--ink);
-          }
-          .nav .btn-waitlist:hover { background: var(--cognac); border-color: var(--cognac); color: var(--sand); }
-          .nav-cart-btn { display: none; }
           .nav-actions { gap: 8px; }
           footer { padding-bottom: max(32px, calc(80px + env(safe-area-inset-bottom))); }
         }
@@ -1216,15 +1205,11 @@ export default function AryaPage() {
           transition: background .25s, color .25s;
         }
         .sticky-cta-bar .sticky-cta-primary {
-          background: var(--ink); color: var(--sand);
+          background: #0d0d0d; color: var(--sand);
+          border: 1px solid #0d0d0d;
           clip-path: polygon(0 0, 100% 0, 100% 85%, 96% 100%, 0 100%);
         }
-        .sticky-cta-bar .sticky-cta-primary:hover { background: var(--cognac); }
-        .sticky-cta-bar .btn-waitlist {
-          background: var(--sand) !important; color: var(--ink) !important;
-          border: 1px solid #A08C78 !important; clip-path: none !important;
-        }
-        .sticky-cta-bar .btn-waitlist:hover { border-color: var(--cognac) !important; background: var(--sand-2) !important; color: var(--ink) !important; }
+        .sticky-cta-bar .sticky-cta-primary:hover { background: var(--cognac); border-color: var(--cognac); color: var(--sand); }
         .sticky-cta-bar .sticky-cta-secondary {
           background: transparent; color: var(--ink);
           border: 1px solid var(--sand-4);
@@ -1273,26 +1258,28 @@ export default function AryaPage() {
 
       {/* ── STICKY MOBILE CTA BAR (phones, after scroll) ── */}
       <div className={`sticky-cta-bar ${showStickyBar ? "visible" : ""}`} aria-hidden={!showStickyBar}>
-        <a href="#waitlist" className="sticky-cta-primary btn-waitlist">Join Waitlist</a>
+        <a href="#waitlist" className="sticky-cta-primary">Join Waitlist</a>
         <Link href="/collection" className="sticky-cta-secondary">Shop Collection</Link>
       </div>
 
-      {/* ── MOBILE MENU ── */}
+      {/* ── MOBILE MENU (match SectionNav on other pages) ── */}
       <div className={`mobile-menu ${menuOpen ? "open" : ""}`}>
         <div className="mobile-menu-primaries">
           <Link href="/collection" className="mobile-menu-cta mobile-menu-cta-primary" onClick={closeMenu}>Shop Collection</Link>
-          <a href="/#waitlist" className="mobile-menu-cta btn-waitlist" onClick={closeMenu}>Join Waitlist</a>
         </div>
         <div className="mobile-menu-divider" />
-        <Link href="/story" onClick={closeMenu}>Story</Link>
-        <Link href="/fit" onClick={closeMenu}>Fit</Link>
-        <Link href="/mission" onClick={closeMenu}>Mission</Link>
-        <Link href="/founder" onClick={closeMenu}>Founders</Link>
-        <Link href="/arya-standard" onClick={closeMenu}>The Standard</Link>
-        <Link href="/blog" onClick={closeMenu}>Journal</Link>
-        <Link href="/fit-guide" onClick={closeMenu}>Fit Guide</Link>
-        <Link href="/faq" onClick={closeMenu}>FAQ</Link>
-        <Link href="/sustainability" onClick={closeMenu}>Sustainability</Link>
+        <div className="mobile-menu-links">
+          <Link href="/collection" className={activeSection === "collection" ? "active" : ""} onClick={closeMenu}>Collection</Link>
+          <Link href="/story" className={activeSection === "ethos" || activeSection === "problem" ? "active" : ""} onClick={closeMenu}>Story</Link>
+          <Link href="/mission" className={activeSection === "mission" ? "active" : ""} onClick={closeMenu}>Mission</Link>
+          <Link href="/fit" className={activeSection === "fit" ? "active" : ""} onClick={closeMenu}>Fit</Link>
+          <Link href="/founder" className={activeSection === "founder" ? "active" : ""} onClick={closeMenu}>Founders</Link>
+          <Link href="/arya-standard" className={activeSection === "arya-standard" ? "active" : ""} onClick={closeMenu}>The Standard</Link>
+          <Link href="/blog" onClick={closeMenu}>Journal</Link>
+          <Link href="/fit-guide" onClick={closeMenu}>Fit Guide</Link>
+          <Link href="/faq" onClick={closeMenu}>FAQ</Link>
+          <Link href="/sustainability" onClick={closeMenu}>Sustainability</Link>
+        </div>
       </div>
 
       {/* ── CART DRAWER ── */}
