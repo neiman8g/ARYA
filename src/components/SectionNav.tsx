@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useId } from "react";
 import Link from "next/link";
 import { AryaLogo } from "@/components/AryaLogo";
 
@@ -13,6 +13,7 @@ type SectionNavProps = {
 };
 
 export function SectionNav({ activeLink, theme = "light" }: SectionNavProps) {
+  const mobileMenuId = useId();
   const [menuOpen, setMenuOpen] = useState(false);
   const [navStuck, setNavStuck] = useState(false);
   const closeMenu = () => setMenuOpen(false);
@@ -37,67 +38,18 @@ export function SectionNav({ activeLink, theme = "light" }: SectionNavProps) {
   const logoMark = "#8B6A3E";
   const logoText = theme === "dark" ? "#F5EFE4" : "#1E1810";
 
+  /* Mobile sheet must NOT live inside .sp-nav: .stuck uses backdrop-filter, which makes
+     position:fixed descendants paint inside the nav bar only (broken full-screen menu). */
   return (
-    <nav
-      className={`sp-nav ${navStuck ? "stuck" : ""} ${menuOpen ? "sp-nav-menu-open" : ""}`}
-      role="navigation"
-      aria-label="Main navigation"
-    >
-      <Link href="/" className="sp-logo" onClick={closeMenu} aria-label="Arya home">
-        <AryaLogo size={32} markColor={logoMark} textColor={logoText} />
-      </Link>
-      <div className="sp-links">
-        <Link href="/collection" className={activeLink === "collection" ? "active" : ""}>
-          Collection
-        </Link>
-        <Link href="/story" className={activeLink === "story" ? "active" : ""}>
-          Story
-        </Link>
-        <Link href="/mission" className={activeLink === "mission" ? "active" : ""}>
-          Mission
-        </Link>
-        <Link href="/fit" className={activeLink === "fit" ? "active" : ""}>
-          Fit
-        </Link>
-        <Link href="/founder" className={activeLink === "founder" ? "active" : ""}>
-          Founders
-        </Link>
-        <Link href="/arya-standard" className={activeLink === "arya-standard" ? "active" : ""}>
-          The Standard
-        </Link>
-        <div className="sp-explore">
-          <button type="button" className="sp-explore-btn">Explore</button>
-          <div className="sp-explore-menu">
-            <Link href="/blog">Journal</Link>
-            <Link href="/fit-guide">Fit Guide</Link>
-            <Link href="/faq">FAQ</Link>
-            <Link href="/sustainability">Sustainability</Link>
-          </div>
-        </div>
-      </div>
-      <div className="sp-actions">
-        <Link href="/#waitlist" className="sp-waitlist-btn" onClick={closeMenu}>
-          Join Waitlist
-        </Link>
-      </div>
-      <button
-        type="button"
-        className={`sp-hamburger ${menuOpen ? "open" : ""}`}
-        onClick={() => setMenuOpen((v) => !v)}
-        aria-label={menuOpen ? "Close menu" : "Open menu"}
-        aria-expanded={menuOpen}
+    <>
+      <div
+        id={mobileMenuId}
+        className={`sp-mobile-menu ${menuOpen ? "open" : ""}`}
+        aria-hidden={!menuOpen}
       >
-        <span />
-        <span />
-        <span />
-      </button>
-      <div className={`sp-mobile-menu ${menuOpen ? "open" : ""}`}>
         <div className="sp-mobile-menu-primaries">
           <Link href="/collection" className="sp-mobile-menu-cta sp-mobile-menu-cta-primary" onClick={closeMenu}>
             Shop Collection
-          </Link>
-          <Link href="/#waitlist" className="sp-mobile-menu-cta sp-mobile-menu-cta-secondary" onClick={closeMenu}>
-            Join Waitlist
           </Link>
         </div>
         <div className="sp-mobile-menu-divider" />
@@ -134,6 +86,61 @@ export function SectionNav({ activeLink, theme = "light" }: SectionNavProps) {
           </Link>
         </div>
       </div>
-    </nav>
+      <nav
+        className={`sp-nav ${navStuck ? "stuck" : ""}`}
+        role="navigation"
+        aria-label="Main navigation"
+      >
+        <Link href="/" className="sp-logo" onClick={closeMenu} aria-label="Arya home">
+          <AryaLogo size={32} markColor={logoMark} textColor={logoText} />
+        </Link>
+        <div className="sp-links">
+          <Link href="/collection" className={activeLink === "collection" ? "active" : ""}>
+            Collection
+          </Link>
+          <Link href="/story" className={activeLink === "story" ? "active" : ""}>
+            Story
+          </Link>
+          <Link href="/mission" className={activeLink === "mission" ? "active" : ""}>
+            Mission
+          </Link>
+          <Link href="/fit" className={activeLink === "fit" ? "active" : ""}>
+            Fit
+          </Link>
+          <Link href="/founder" className={activeLink === "founder" ? "active" : ""}>
+            Founders
+          </Link>
+          <Link href="/arya-standard" className={activeLink === "arya-standard" ? "active" : ""}>
+            The Standard
+          </Link>
+          <div className="sp-explore">
+            <button type="button" className="sp-explore-btn">Explore</button>
+            <div className="sp-explore-menu">
+              <Link href="/blog">Journal</Link>
+              <Link href="/fit-guide">Fit Guide</Link>
+              <Link href="/faq">FAQ</Link>
+              <Link href="/sustainability">Sustainability</Link>
+            </div>
+          </div>
+        </div>
+        <div className="sp-actions">
+          <Link href="/#waitlist" className="sp-waitlist-btn" onClick={closeMenu}>
+            Join Waitlist
+          </Link>
+        </div>
+        <button
+          type="button"
+          className={`sp-hamburger ${menuOpen ? "open" : ""}`}
+          onClick={() => setMenuOpen((v) => !v)}
+          aria-label={menuOpen ? "Close menu" : "Open menu"}
+          aria-expanded={menuOpen}
+          aria-controls={mobileMenuId}
+        >
+          <span />
+          <span />
+          <span />
+        </button>
+      </nav>
+    </>
   );
 }

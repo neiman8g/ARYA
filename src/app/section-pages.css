@@ -163,12 +163,29 @@
   .fit-minis { flex-direction: row; flex-wrap: wrap; gap: 20px; }
   .fit-minis div { flex: 1; min-width: 140px; max-width: 220px; }
 }
-/* 960px: show hamburger + overlay (match homepage breakpoint so 3 bars stay visible after navigation) */
-@media (max-width: 960px) {
-  .sp-nav, .sp-nav.stuck { padding: 16px 32px; padding-top: max(16px, var(--safe-top)); }
+/* Tablet/small laptop: hamburger + sheet (1024px: iPad portrait + consistent with home) */
+@media (max-width: 1024px) {
+  .sp-nav, .sp-nav.stuck {
+    padding: 16px 32px; padding-top: max(16px, var(--safe-top));
+    gap: 10px;
+    align-items: center;
+    min-width: 0;
+  }
+  .sp-logo {
+    min-width: 0;
+    flex: 1 1 auto;
+    overflow: hidden;
+    max-width: min(100%, calc(100vw - 44px - 80px));
+  }
+  .sp-hamburger {
+    display: flex !important;
+    flex-shrink: 0;
+    margin-left: auto;
+    color: var(--arya-ink);
+  }
+  .mission .sp-hamburger { color: rgba(245,239,228,.95); }
   .sp-nav > .sp-links { display: none; }
   .sp-nav > .sp-actions { display: none; }
-  .sp-hamburger { display: flex !important; }
   .sp-mobile-menu {
     display: flex;
     position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 190;
@@ -178,8 +195,13 @@
     flex-direction: column; align-items: center; justify-content: flex-start;
     overflow-y: auto; -webkit-overflow-scrolling: touch;
     overscroll-behavior-y: contain; touch-action: pan-y;
+    /* Closed sheet must not intercept taps (iOS often still hit-tests invisible fixed layers). */
+    pointer-events: none;
   }
-  .sp-mobile-menu.open { opacity: 1; visibility: visible; }
+  .sp-mobile-menu.open {
+    opacity: 1; visibility: visible;
+    pointer-events: auto;
+  }
   .sp-mobile-menu .sp-links { display: flex; flex-direction: column; align-items: center; gap: 4px; width: 100%; max-width: 280px; }
   .sp-mobile-menu .sp-links a { padding: 14px 20px; min-height: 48px; width: 100%; display: inline-flex; align-items: center; justify-content: center; }
   .mission .sp-mobile-menu { background: rgba(30,24,16,.98); }

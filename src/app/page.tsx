@@ -480,8 +480,9 @@ export default function AryaPage() {
           overflow-y: auto; -webkit-overflow-scrolling: touch;
           overscroll-behavior-y: contain; touch-action: pan-y;
           padding: max(80px, calc(60px + env(safe-area-inset-top))) max(24px, env(safe-area-inset-right)) max(24px, env(safe-area-inset-bottom)) max(24px, env(safe-area-inset-left));
+          pointer-events: none;
         }
-        .mobile-menu.open { opacity: 1; visibility: visible; }
+        .mobile-menu.open { opacity: 1; visibility: visible; pointer-events: auto; }
         .mobile-menu-links {
           display: flex; flex-direction: column; align-items: center; gap: 4px;
           width: 100%; max-width: 280px; margin: 0; padding: 0; border: none;
@@ -1036,11 +1037,19 @@ export default function AryaPage() {
         .foot-bottom-mark { display: flex; align-items: center; gap: 10px; }
         .foot-bottom-mark span { font-size: 11px; letter-spacing: .26em; text-transform: uppercase; color: rgba(245,239,228,.45); font-weight: 500; }
 
-        /* ── RESPONSIVE: Tablet ── */
-        @media (max-width: 960px) {
-          .hamburger { display: flex; }
+        /* ── RESPONSIVE: Tablet / phone nav (1024px aligns with SectionNav) ── */
+        @media (max-width: 1024px) {
+          .hamburger { display: flex; flex-shrink: 0; margin-left: auto; }
           .nav-links { display: none; }
-          .nav, .nav.stuck { padding: 16px 32px; padding-top: max(16px, env(safe-area-inset-top)); }
+          .nav, .nav.stuck {
+            padding: 16px 32px; padding-top: max(16px, env(safe-area-inset-top));
+            gap: 10px; min-width: 0; align-items: center;
+          }
+          .nav-logo-link {
+            min-width: 0; flex: 1 1 auto; overflow: hidden;
+            max-width: min(100%, calc(100vw - 44px - 80px));
+          }
+          .nav-actions { flex-shrink: 0; }
           .nav-btn { display: none; }
 
           .hero {
