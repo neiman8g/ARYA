@@ -18,9 +18,43 @@ export function SectionNav({ activeLink }: { activeLink?: ActiveLink }) {
 
   return (
     <nav className={`sp-nav ${menuOpen ? "sp-nav-menu-open" : ""}`}>
-      <Link href="/" className="sp-logo" onClick={closeMenu}>
-        ARYA
+      <Link href="/" className="sp-logo" onClick={closeMenu} aria-label="Arya home">
+        <span className="sp-logo-word">ARYA</span>
       </Link>
+      <div className="sp-links">
+        <Link href="/collection" className={activeLink === "collection" ? "active" : ""}>
+          Collection
+        </Link>
+        <Link href="/story" className={activeLink === "story" ? "active" : ""}>
+          Story
+        </Link>
+        <Link href="/mission" className={activeLink === "mission" ? "active" : ""}>
+          Mission
+        </Link>
+        <Link href="/fit" className={activeLink === "fit" ? "active" : ""}>
+          Fit
+        </Link>
+        <Link href="/founder" className={activeLink === "founder" ? "active" : ""}>
+          Founders
+        </Link>
+        <Link href="/arya-standard" className={activeLink === "arya-standard" ? "active" : ""}>
+          The Standard
+        </Link>
+        <div className="sp-explore">
+          <button type="button" className="sp-explore-btn">Explore</button>
+          <div className="sp-explore-menu">
+            <Link href="/blog">Journal</Link>
+            <Link href="/fit-guide">Fit Guide</Link>
+            <Link href="/faq">FAQ</Link>
+            <Link href="/sustainability">Sustainability</Link>
+          </div>
+        </div>
+      </div>
+      <div className="sp-actions">
+        <Link href="/#waitlist" className="sp-waitlist-btn" onClick={closeMenu}>
+          Join Waitlist
+        </Link>
+      </div>
       <button
         type="button"
         className={`sp-hamburger ${menuOpen ? "open" : ""}`}
@@ -33,7 +67,19 @@ export function SectionNav({ activeLink }: { activeLink?: ActiveLink }) {
         <span />
       </button>
       <div className={`sp-mobile-menu ${menuOpen ? "open" : ""}`} aria-hidden={!menuOpen}>
+        <div className="sp-mobile-menu-primaries">
+          <Link href="/collection" className="sp-mobile-menu-cta sp-mobile-menu-cta-primary" onClick={closeMenu} onTouchStart={closeMenu}>
+            Shop Collection
+          </Link>
+          <Link href="/#waitlist" className="sp-mobile-menu-cta sp-mobile-menu-cta-secondary" onClick={closeMenu} onTouchStart={closeMenu}>
+            Join Waitlist
+          </Link>
+        </div>
+        <div className="sp-mobile-menu-divider" />
         <div className="sp-links">
+          <Link href="/collection" className={activeLink === "collection" ? "active" : ""} onClick={closeMenu} onTouchStart={closeMenu}>
+            Collection
+          </Link>
           <Link href="/story" className={activeLink === "story" ? "active" : ""} onClick={closeMenu} onTouchStart={closeMenu}>
             Story
           </Link>
@@ -43,17 +89,23 @@ export function SectionNav({ activeLink }: { activeLink?: ActiveLink }) {
           <Link href="/fit" className={activeLink === "fit" ? "active" : ""} onClick={closeMenu} onTouchStart={closeMenu}>
             Fit
           </Link>
-          <Link href="/collection" className={activeLink === "collection" ? "active" : ""} onClick={closeMenu} onTouchStart={closeMenu}>
-            Collection
-          </Link>
           <Link href="/founder" className={activeLink === "founder" ? "active" : ""} onClick={closeMenu} onTouchStart={closeMenu}>
             Founders
           </Link>
           <Link href="/arya-standard" className={activeLink === "arya-standard" ? "active" : ""} onClick={closeMenu} onTouchStart={closeMenu}>
             The Standard
           </Link>
-          <Link href="/#waitlist" className="btn-waitlist" onClick={closeMenu} onTouchStart={closeMenu}>
-            Join Waitlist
+          <Link href="/blog" onClick={closeMenu} onTouchStart={closeMenu}>
+            Journal
+          </Link>
+          <Link href="/fit-guide" onClick={closeMenu} onTouchStart={closeMenu}>
+            Fit Guide
+          </Link>
+          <Link href="/faq" onClick={closeMenu} onTouchStart={closeMenu}>
+            FAQ
+          </Link>
+          <Link href="/sustainability" onClick={closeMenu} onTouchStart={closeMenu}>
+            Sustainability
           </Link>
         </div>
       </div>

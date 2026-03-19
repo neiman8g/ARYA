@@ -82,6 +82,21 @@ const CARD_DESCRIPTIONS: Record<string, string> = {
   "noble-pant": "NobleDry fabric. Performance trouser engineered for the body that moves.",
 };
 
+function withNobleflexLink(text: string) {
+  const parts = text.split("NobleFlex");
+  if (parts.length === 1) return text;
+  return (
+    <>
+      {parts.map((part, index) => (
+        <span key={index}>
+          {index > 0 && <Link href="/arya-standard">NobleFlex</Link>}
+          {part}
+        </span>
+      ))}
+    </>
+  );
+}
+
 // ─── Types & Data ─────────────────────────────────────────────────────────────
 
 type CartItem = {
@@ -116,7 +131,7 @@ function ProductCard({ p, selectedColors, setColor }: ProductCardProps) {
       <div className="p-info">
         <div className="p-cat">{p.gender}</div>
         <Link href={`/products/${p.slug}`} className="p-name">{p.name}</Link>
-        {CARD_DESCRIPTIONS[p.id] && <p className="p-card-desc">{CARD_DESCRIPTIONS[p.id]}</p>}
+        {CARD_DESCRIPTIONS[p.id] && <p className="p-card-desc">{withNobleflexLink(CARD_DESCRIPTIONS[p.id])}</p>}
         {p.colors?.length > 0 && (
           <div className="p-color-row">
             <span className="p-opt-label">Color</span>
@@ -425,6 +440,24 @@ export default function AryaPage() {
         .nav-links a:hover::after { right: 0; }
         .nav-links a.active { color: var(--ink); }
         .nav-links a.active::after { right: 0; }
+        .nav-explore { position: relative; }
+        .nav-explore-btn {
+          background: transparent; border: none; cursor: pointer;
+          font-size: 11px; letter-spacing: .22em; text-transform: uppercase; color: var(--ink-60);
+          font-family: 'Jost', sans-serif; font-weight: 500;
+        }
+        .nav-explore-menu {
+          position: absolute; top: 100%; right: 0; min-width: 220px;
+          background: var(--sand); border: 1px solid var(--sand-4);
+          padding: 10px; display: none; flex-direction: column; gap: 2px; z-index: 120;
+        }
+        .nav-explore:hover .nav-explore-menu,
+        .nav-explore:focus-within .nav-explore-menu { display: flex; }
+        .nav-explore-menu a {
+          font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: var(--ink-80);
+          text-decoration: none; padding: 10px 12px; min-height: 40px; display: flex; align-items: center;
+        }
+        .nav-explore-menu a:hover { color: var(--ink); background: var(--sand-2); }
 
         .nav-actions { display: flex; align-items: center; gap: 10px; }
 
@@ -530,6 +563,7 @@ export default function AryaPage() {
           display: flex; align-items: center; gap: 14px;
           font-size: 12px; letter-spacing: .42em; text-transform: uppercase;
           color: var(--cognac); font-weight: 600; margin-bottom: 22px;
+          line-height: 1.5; flex-wrap: wrap;
         }
         .eyebrow-rule { width: 28px; height: 1px; background: var(--cognac); flex-shrink: 0; }
 
@@ -857,7 +891,8 @@ export default function AryaPage() {
         }
         .pillar:hover { border-top-color: #C9A96E; }
         .pil-n { font-family: 'Cormorant Garamond', serif; font-size: 48px; color: #C9A96E; line-height: 1; margin-bottom: 18px; }
-        .pil-t { font-size: 11px; letter-spacing: .34em; text-transform: uppercase; color: rgba(245,239,228,.75); font-weight: 500; margin-bottom: 12px; }
+        .pil-t { font-size: 11px; letter-spacing: .34em; text-transform: uppercase; color: rgba(245,239,228,.75); font-weight: 500; margin-bottom: 12px; text-decoration: none; display: block; }
+        .pil-t:hover { color: #C9A96E; }
         .pil-b { font-size: 15px; line-height: 1.75; color: rgba(245,239,228,.68); font-weight: 400; }
 
         /* ── FOUNDER ── */
@@ -1098,6 +1133,7 @@ export default function AryaPage() {
           .hero-right { min-height: 52vh; }
           .hero-left { padding: 48px 20px 56px; padding-bottom: max(56px, env(safe-area-inset-bottom)); }
           .hero-h1 { font-size: clamp(36px, 10vw, 48px) !important; }
+          .eyebrow { font-size: 10px; letter-spacing: .28em; gap: 10px; margin-bottom: 16px; }
           .hero-ctas { flex-direction: column; width: 100%; gap: 14px; }
           .hero-ctas a { width: 100%; justify-content: center; min-height: 52px; padding: 16px 24px; }
           .body-txt { font-size: 18px; line-height: 1.75; }
@@ -1186,6 +1222,10 @@ export default function AryaPage() {
         <Link href="/mission" onClick={closeMenu} onTouchStart={closeMenu}>Mission</Link>
         <Link href="/founder" onClick={closeMenu} onTouchStart={closeMenu}>Founders</Link>
         <Link href="/arya-standard" onClick={closeMenu} onTouchStart={closeMenu}>The Standard</Link>
+        <Link href="/blog" onClick={closeMenu} onTouchStart={closeMenu}>Journal</Link>
+        <Link href="/fit-guide" onClick={closeMenu} onTouchStart={closeMenu}>Fit Guide</Link>
+        <Link href="/faq" onClick={closeMenu} onTouchStart={closeMenu}>FAQ</Link>
+        <Link href="/sustainability" onClick={closeMenu} onTouchStart={closeMenu}>Sustainability</Link>
       </div>
 
       {/* ── CART DRAWER ── */}
@@ -1253,6 +1293,15 @@ export default function AryaPage() {
           <li><Link href="/mission" className={activeSection === "mission" ? "active" : ""} data-section="mission">Mission</Link></li>
           <li><Link href="/founder" className={activeSection === "founder" ? "active" : ""} data-section="founder">Founders</Link></li>
           <li><Link href="/arya-standard" className={activeSection === "arya-standard" ? "active" : ""} data-section="arya-standard">The Standard</Link></li>
+          <li className="nav-explore">
+            <button type="button" className="nav-explore-btn">Explore</button>
+            <div className="nav-explore-menu">
+              <Link href="/blog">Journal</Link>
+              <Link href="/fit-guide">Fit Guide</Link>
+              <Link href="/faq">FAQ</Link>
+              <Link href="/sustainability">Sustainability</Link>
+            </div>
+          </li>
         </ul>
         <div className="nav-actions">
           <button type="button" className="nav-cart-btn" onClick={() => setCartOpen(true)} aria-label="Open cart">
@@ -1369,7 +1418,7 @@ export default function AryaPage() {
           <h2 className="display" style={{ marginBottom: 30 }}>Where the Pacific Coast<br />meets <em>Persian craft.</em></h2>
           <p className="body-txt">Arya was born between two worlds: the salt air of Southern California and the ancient textile traditions of Persia. One shaped by movement, the other by centuries of craft.</p>
           <p className="body-txt">The name Arya comes from the ancient Persian word for noble and honorable, the very root of the name Iran itself. It reflects a simple belief: the way you move through the world should be matched by what you wear.</p>
-          <p className="body-txt">At Arya, we build garments with care. Materials chosen with intention. Fit refined through movement. Craft without shortcuts.</p>
+          <p className="body-txt">At Arya, we build garments with care. Materials chosen with intention. <Link href="/fit-guide">Fit</Link> refined through movement. <Link href="/sustainability">Craft</Link> without shortcuts. From <Link href="/arya-standard">NobleFlex</Link> to the final seam, every detail is intentional.</p>
           <div className="ethos-divider" />
           <div className="values">
             <div className="val"><div className="val-b">Built with intention.</div></div>
@@ -1388,7 +1437,7 @@ export default function AryaPage() {
           <p className="body-txt">You were never the problem. The clothes were.</p>
           <p className="body-txt">But fit is only one part of what the industry got wrong. The fabrics most brands use are loaded with synthetic polymers, chemical dyes, and PFAS coatings that sit against your skin all day. Nobody talks about this. Nobody fixes it.</p>
           <p className="body-txt">The sustainable options exist. But they sacrifice luxury, fit, and performance to get there.</p>
-          <p className="body-txt">Arya was built to close all three gaps at once. Engineered fit for the body that actually moves. Skin conscious materials that respect what they touch. A standard of craft that refuses to compromise any of it.</p>
+          <p className="body-txt">Arya was built to close all three gaps at once. Engineered fit for the body that actually moves. <Link href="/sustainability">Skin conscious materials</Link> that respect what they touch. <Link href="/arya-standard">The Arya Standard</Link> refuses to compromise any of it.</p>
           <div className="pullquote">
             <p>&ldquo;The industry told you your body was the problem. It wasn&apos;t. The clothes were.&rdquo;</p>
           </div>
@@ -1460,14 +1509,14 @@ export default function AryaPage() {
           <p className="craft-body">Arya was built on a simple belief: that what you put on your body matters as much as what you put in it. Every decision we make, from the fabrics we choose to the communities we invest in, is held to the same standard that has guided Persian craft for thousands of years. Precision as a form of respect. For the wearer. For the maker. For the world we all share.</p>
           <div className="craft-pillars">
             {[
-              { n: "01", t: "Persian Craft", b: "Persian craft philosophy holds that doing something with complete precision is itself a form of art. Every stitch, every seam, every fit decision at Arya is held to that standard. No shortcuts. No compromises. Built to outlast trends by decades." },
-              { n: "02", t: "Skin Conscious", b: "Every Arya fabric is chosen with your health in mind. No harmful dyes. No toxic synthetics against your body. Materials that feel as good as they perform. Because luxury should never come at the cost of your wellbeing." },
-              { n: "03", t: "Active Community", b: "For everyone who lives fully and moves often. Not one sport. Not one body type. Not one image. Clothing that crosses every terrain, every ritual, every version of you." },
-              { n: "04", t: "Giving Back", b: "A portion of every Arya purchase goes toward building schools and athletic centers for children in underserved communities, starting with Iran and growing wherever the need exists. Sport gave our founder his confidence and his mental strength. We believe every child deserves that same opportunity." },
+              { n: "01", t: "Persian Craft", href: "/story", b: "Persian craft philosophy holds that doing something with complete precision is itself a form of art. Every stitch, every seam, every fit decision at Arya is held to that standard. No shortcuts. No compromises. Built to outlast trends by decades." },
+              { n: "02", t: "Skin Conscious", href: "/sustainability", b: "Every Arya fabric is chosen with your health in mind. No harmful dyes. No toxic synthetics against your body. Materials that feel as good as they perform. Because luxury should never come at the cost of your wellbeing." },
+              { n: "03", t: "Active Community", href: "/collection", b: "For everyone who lives fully and moves often. Not one sport. Not one body type. Not one image. Clothing that crosses every terrain, every ritual, every version of you." },
+              { n: "04", t: "Giving Back", href: "/arya-standard", b: "A portion of every Arya purchase goes toward building schools and athletic centers for children in underserved communities, starting with Iran and growing wherever the need exists. Sport gave our founder his confidence and his mental strength. We believe every child deserves that same opportunity." },
             ].map((p, i) => (
               <div key={i} className="pillar">
                 <div className="pil-n">{p.n}</div>
-                <div className="pil-t">{p.t}</div>
+                <Link href={p.href} className="pil-t">{p.t}</Link>
                 <p className="pil-b">{p.b}</p>
               </div>
             ))}
@@ -1565,6 +1614,10 @@ export default function AryaPage() {
               <li><Link href="/mission">Mission</Link></li>
               <li><Link href="/founder">Founders</Link></li>
               <li><Link href="/arya-standard">The Standard</Link></li>
+              <li><Link href="/faq">FAQ</Link></li>
+              <li><Link href="/fit-guide">Fit Guide</Link></li>
+              <li><Link href="/sustainability">Sustainability</Link></li>
+              <li><Link href="/blog">Blog</Link></li>
             </ul>
           </div>
           <div className="foot-col">

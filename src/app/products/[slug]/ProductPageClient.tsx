@@ -174,6 +174,15 @@ export default function ProductPageClient({ product }: { product: Product }) {
           </div>
         </section>
       )}
+
+      <section className="pp-know">
+        <h2 className="pp-know-title">You might also want to know</h2>
+        <div className="pp-know-links">
+          <Link href="/arya-standard">How NobleFlex is made</Link>
+          <Link href="/fit-guide">Our fit philosophy</Link>
+          <Link href="/faq">Frequently asked questions</Link>
+        </div>
+      </section>
     </>
   );
 }

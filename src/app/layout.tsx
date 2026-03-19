@@ -61,6 +61,22 @@ export default function RootLayout({
           src="https://www.googletagmanager.com/gtag/js?id=G-0JCSYYDXMC"
           strategy="afterInteractive"
         />
+        <Script id="organization-schema" type="application/ld+json" strategy="afterInteractive">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            name: "Arya",
+            url: "https://www.arya.clothing",
+            logo: "https://www.arya.clothing/arya-hero.jpg",
+            description:
+              "Premium sustainable athleisure engineered for the body that moves. Persian craft philosophy meets California living.",
+            foundingLocation: "Los Angeles, California",
+            sameAs: [
+              "https://instagram.com/wear_arya",
+              "https://tiktok.com/@wear_arya",
+            ],
+          })}
+        </Script>
         <Script id="google-analytics" strategy="afterInteractive">
           {`
     window.dataLayer = window.dataLayer || [];

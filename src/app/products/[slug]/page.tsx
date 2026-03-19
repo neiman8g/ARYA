@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Script from "next/script";
 import { notFound } from "next/navigation";
 import { getProductBySlug, PRODUCTS } from "@/lib/products";
 import { SectionNav } from "@/components/SectionNav";
@@ -77,6 +78,31 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
 
       <main className="p-main">
         <Link href="/collection" className="p-back">← Collection</Link>
+        {product.slug === "noble-legging" && (
+          <Script
+            id="noble-legging-product-schema"
+            type="application/ld+json"
+            strategy="afterInteractive"
+          >
+            {JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Product",
+              name: "The Noble Legging",
+              description:
+                "NobleFlex proprietary fabric. Four-way stretch, muscle compression, and extended thigh room engineered for the body that moves. XS to 3XL.",
+              brand: {
+                "@type": "Brand",
+                name: "Arya",
+              },
+              offers: {
+                "@type": "Offer",
+                price: "118",
+                priceCurrency: "USD",
+                availability: "https://schema.org/PreOrder",
+              },
+            })}
+          </Script>
+        )}
         <ProductPageClient product={product} />
       </main>
 
