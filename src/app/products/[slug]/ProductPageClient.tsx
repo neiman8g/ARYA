@@ -119,6 +119,7 @@ export default function ProductPageClient({ product }: { product: Product }) {
             >
               {!selectedSize ? "Select Size" : added ? "Added ✓" : "Pre-Order"}
             </button>
+            <p className="pp-delivery">Expected delivery Fall 2026. Join the waitlist to secure early access pricing.</p>
             <p className="pp-waitlist-cta">
               Not ready? <Link href="/#waitlist" className="pp-waitlist-link">Join the waitlist for launch updates.</Link>
             </p>

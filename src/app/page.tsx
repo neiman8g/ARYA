@@ -136,7 +136,10 @@ function ProductCard({ p, selectedColors, setColor }: ProductCardProps) {
           </div>
         )}
         <div className="p-foot">
-          <div className="p-price">{p.price}<small>USD</small></div>
+          <div className="p-price">
+            <span className="p-price-main">{p.price}<small>USD</small></span>
+            <div className="p-coming">Coming Fall 2026</div>
+          </div>
           <Link href={`/products/${p.slug}`} className="btn-p">
             Select size
           </Link>
@@ -775,18 +778,18 @@ export default function AryaPage() {
           display: flex; flex-direction: column; align-items: center; gap: 10px;
         }
         .p-placeholder-name {
-          font-family: 'Cormorant Garamond', serif; font-size: 12px;
+          font-family: 'Cormorant Garamond', serif; font-size: 18px;
           font-style: italic; color: var(--ink-60); letter-spacing: .06em;
         }
         .p-tag {
           position: absolute; top: 8px; left: 0;
           background: var(--ink); color: var(--sand);
-          font-size: 8px; letter-spacing: .24em; text-transform: uppercase;
-          font-weight: 500; padding: 4px 10px;
+          font-size: 14px; letter-spacing: .18em; text-transform: uppercase;
+          font-weight: 500; padding: 6px 12px;
         }
 
-        .p-info { padding: 14px 16px 18px; }
-        .p-cat { font-size: 10px; letter-spacing: .36em; text-transform: uppercase; color: var(--cognac); font-weight: 600; margin-bottom: 4px; }
+        .p-info { padding: 14px 16px 18px; text-align: center; }
+        .p-cat { font-size: 14px; letter-spacing: .36em; text-transform: uppercase; color: var(--cognac); font-weight: 600; margin-bottom: 4px; }
         .p-name {
           font-family: 'Cormorant Garamond', serif; font-size: 17px; font-weight: 500; color: var(--ink);
           margin-bottom: 10px; text-decoration: none; display: block; transition: color .2s;
@@ -819,8 +822,12 @@ export default function AryaPage() {
           display: flex; justify-content: space-between; align-items: center;
           padding-top: 10px; border-top: 1px solid var(--sand-3);
         }
-        .p-price { font-family: 'Cormorant Garamond', serif; font-size: 18px; color: var(--ink); }
+        .p-price {
+          font-family: 'Cormorant Garamond', serif; font-size: 18px; color: var(--ink);
+          display: flex; flex-direction: column; align-items: center; text-align: center; gap: 6px;
+        }
         .p-price small { font-size: 10px; color: var(--ink-60); letter-spacing: .1em; margin-left: 3px; }
+        .p-coming { font-size: 14px; font-style: italic; color: #8B6A3E; font-weight: 400; letter-spacing: 0; }
 
         .btn-p {
           display: inline-block; text-decoration: none;
@@ -874,6 +881,7 @@ export default function AryaPage() {
         .waitlist { padding: 160px 64px; background: var(--sand-3); position: relative; text-align: center; overflow: hidden; }
         .wl-inner { position: relative; z-index: 2; max-width: 560px; margin: 0 auto; }
         .wl-sub { font-size: 17px; line-height: 1.85; color: var(--ink-80); font-weight: 400; margin-bottom: 52px; }
+        .wl-launch { font-size: 15px; }
         .wl-form { display: flex; max-width: 480px; margin: 0 auto 16px; }
         .wl-input {
           flex: 1; background: var(--sand); border: 1px solid var(--sand-4); border-right: none;
@@ -1269,7 +1277,7 @@ export default function AryaPage() {
           <div className="hero-content">
             <div className="eyebrow">
               <span className="eyebrow-rule" />
-              Persian Craft · California Soul
+              Persian Craft · California Soul · Fall 2026
             </div>
             <h1 className="hero-h1" style={{ fontSize: "clamp(48px, 6.5vw, 88px)" }}>
               Noble by<br /><em>nature.</em>
@@ -1501,7 +1509,7 @@ export default function AryaPage() {
         <div className="wl-inner">
           <div className="label" style={{ justifyContent: "center" }}>Early Access</div>
           <h2 className="display" style={{ marginBottom: 16, fontSize: "clamp(42px,5vw,68px)" }}>Be first.<br /><em>Be noble.</em></h2>
-          <p className="wl-sub">Join the Arya waitlist for early access to the launch collection, founder updates, and pre-order pricing. Men&apos;s and women&apos;s dropping together.</p>
+          <p className="wl-sub">Join the Arya waitlist for early access to the launch collection, founder updates, and pre-order pricing. Men&apos;s and women&apos;s dropping together.<br /><span className="wl-launch">Launching Fall 2026. Your early access is reserved.</span></p>
           {submitted ? (
             <div className="wl-success"><p>You are on the list. We will be in touch.</p></div>
           ) : (
