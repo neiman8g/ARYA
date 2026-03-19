@@ -68,43 +68,43 @@ export function SectionNav({ activeLink }: { activeLink?: ActiveLink }) {
       </button>
       <div className={`sp-mobile-menu ${menuOpen ? "open" : ""}`}>
         <div className="sp-mobile-menu-primaries">
-          <Link href="/collection" className="sp-mobile-menu-cta sp-mobile-menu-cta-primary" onClick={closeMenu} onTouchStart={closeMenu}>
+          <Link href="/collection" className="sp-mobile-menu-cta sp-mobile-menu-cta-primary" onClick={closeMenu}>
             Shop Collection
           </Link>
-          <Link href="/#waitlist" className="sp-mobile-menu-cta sp-mobile-menu-cta-secondary" onClick={closeMenu} onTouchStart={closeMenu}>
+          <Link href="/#waitlist" className="sp-mobile-menu-cta sp-mobile-menu-cta-secondary" onClick={closeMenu}>
             Join Waitlist
           </Link>
         </div>
         <div className="sp-mobile-menu-divider" />
         <div className="sp-links">
-          <Link href="/collection" className={activeLink === "collection" ? "active" : ""} onClick={closeMenu} onTouchStart={closeMenu}>
+          <Link href="/collection" className={activeLink === "collection" ? "active" : ""} onClick={closeMenu}>
             Collection
           </Link>
-          <Link href="/story" className={activeLink === "story" ? "active" : ""} onClick={closeMenu} onTouchStart={closeMenu}>
+          <Link href="/story" className={activeLink === "story" ? "active" : ""} onClick={closeMenu}>
             Story
           </Link>
-          <Link href="/mission" className={activeLink === "mission" ? "active" : ""} onClick={closeMenu} onTouchStart={closeMenu}>
+          <Link href="/mission" className={activeLink === "mission" ? "active" : ""} onClick={closeMenu}>
             Mission
           </Link>
-          <Link href="/fit" className={activeLink === "fit" ? "active" : ""} onClick={closeMenu} onTouchStart={closeMenu}>
+          <Link href="/fit" className={activeLink === "fit" ? "active" : ""} onClick={closeMenu}>
             Fit
           </Link>
-          <Link href="/founder" className={activeLink === "founder" ? "active" : ""} onClick={closeMenu} onTouchStart={closeMenu}>
+          <Link href="/founder" className={activeLink === "founder" ? "active" : ""} onClick={closeMenu}>
             Founders
           </Link>
-          <Link href="/arya-standard" className={activeLink === "arya-standard" ? "active" : ""} onClick={closeMenu} onTouchStart={closeMenu}>
+          <Link href="/arya-standard" className={activeLink === "arya-standard" ? "active" : ""} onClick={closeMenu}>
             The Standard
           </Link>
-          <Link href="/blog" onClick={closeMenu} onTouchStart={closeMenu}>
+          <Link href="/blog" onClick={closeMenu}>
             Journal
           </Link>
-          <Link href="/fit-guide" onClick={closeMenu} onTouchStart={closeMenu}>
+          <Link href="/fit-guide" onClick={closeMenu}>
             Fit Guide
           </Link>
-          <Link href="/faq" onClick={closeMenu} onTouchStart={closeMenu}>
+          <Link href="/faq" onClick={closeMenu}>
             FAQ
           </Link>
-          <Link href="/sustainability" onClick={closeMenu} onTouchStart={closeMenu}>
+          <Link href="/sustainability" onClick={closeMenu}>
             Sustainability
           </Link>
         </div>

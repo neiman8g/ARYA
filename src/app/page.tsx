@@ -512,6 +512,7 @@ export default function AryaPage() {
           opacity: 0; visibility: hidden;
           transition: opacity .35s cubic-bezier(.16,1,.3,1), visibility .35s;
           overflow-y: auto; -webkit-overflow-scrolling: touch;
+          overscroll-behavior-y: contain; touch-action: pan-y;
           padding: max(88px, calc(64px + env(safe-area-inset-top))) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
         }
         .mobile-menu.open { opacity: 1; visibility: visible; }
@@ -1256,8 +1257,15 @@ export default function AryaPage() {
           text-transform: uppercase;
           border: 1px solid var(--cognac);
         }
-        .skip-link:focus {
+        /* Only slide in for keyboard focus. :focus alone matches after some mobile / SPA navigations and covers the header. */
+        .skip-link:focus:not(:focus-visible) {
+          top: -100px;
+          outline: none;
+        }
+        .skip-link:focus-visible {
           top: calc(max(8px, env(safe-area-inset-top)));
+          outline: 2px solid var(--cognac);
+          outline-offset: 3px;
         }
       `}</style>
 
@@ -1272,19 +1280,19 @@ export default function AryaPage() {
       {/* ── MOBILE MENU ── */}
       <div className={`mobile-menu ${menuOpen ? "open" : ""}`}>
         <div className="mobile-menu-primaries">
-          <Link href="/collection" className="mobile-menu-cta mobile-menu-cta-primary" onClick={closeMenu} onTouchStart={closeMenu}>Shop Collection</Link>
-          <a href="/#waitlist" className="mobile-menu-cta btn-waitlist" onClick={closeMenu} onTouchStart={closeMenu}>Join Waitlist</a>
+          <Link href="/collection" className="mobile-menu-cta mobile-menu-cta-primary" onClick={closeMenu}>Shop Collection</Link>
+          <a href="/#waitlist" className="mobile-menu-cta btn-waitlist" onClick={closeMenu}>Join Waitlist</a>
         </div>
         <div className="mobile-menu-divider" />
-        <Link href="/story" onClick={closeMenu} onTouchStart={closeMenu}>Story</Link>
-        <Link href="/fit" onClick={closeMenu} onTouchStart={closeMenu}>Fit</Link>
-        <Link href="/mission" onClick={closeMenu} onTouchStart={closeMenu}>Mission</Link>
-        <Link href="/founder" onClick={closeMenu} onTouchStart={closeMenu}>Founders</Link>
-        <Link href="/arya-standard" onClick={closeMenu} onTouchStart={closeMenu}>The Standard</Link>
-        <Link href="/blog" onClick={closeMenu} onTouchStart={closeMenu}>Journal</Link>
-        <Link href="/fit-guide" onClick={closeMenu} onTouchStart={closeMenu}>Fit Guide</Link>
-        <Link href="/faq" onClick={closeMenu} onTouchStart={closeMenu}>FAQ</Link>
-        <Link href="/sustainability" onClick={closeMenu} onTouchStart={closeMenu}>Sustainability</Link>
+        <Link href="/story" onClick={closeMenu}>Story</Link>
+        <Link href="/fit" onClick={closeMenu}>Fit</Link>
+        <Link href="/mission" onClick={closeMenu}>Mission</Link>
+        <Link href="/founder" onClick={closeMenu}>Founders</Link>
+        <Link href="/arya-standard" onClick={closeMenu}>The Standard</Link>
+        <Link href="/blog" onClick={closeMenu}>Journal</Link>
+        <Link href="/fit-guide" onClick={closeMenu}>Fit Guide</Link>
+        <Link href="/faq" onClick={closeMenu}>FAQ</Link>
+        <Link href="/sustainability" onClick={closeMenu}>Sustainability</Link>
       </div>
 
       {/* ── CART DRAWER ── */}
