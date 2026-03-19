@@ -1,8 +1,20 @@
 /* Shared section page styles - imported by story, mission, fit, collection, founder */
-.section-page { min-height: 100vh; background: var(--arya-sand); color: var(--arya-ink); font-family: 'Jost', sans-serif; }
+.section-page {
+  min-height: 100vh;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  background: var(--arya-sand);
+  color: var(--arya-ink);
+  font-family: 'Jost', sans-serif;
+  overflow-x: hidden;
+}
 /* Match homepage: transparent until scroll, then frosted bar (scroll threshold 60px in SectionNav). */
 .sp-nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
   display: flex; align-items: center; justify-content: space-between;
   padding: 26px 64px; padding-top: max(26px, var(--safe-top));
   background: transparent; border-bottom: 1px solid transparent;
@@ -15,7 +27,15 @@
   border-bottom: 1px solid var(--arya-sand-4);
   box-shadow: 0 1px 20px rgba(30,24,16,.06);
 }
-.sp-logo { text-decoration: none; color: inherit; display: flex; align-items: center; line-height: 0; }
+.sp-logo {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  align-items: center;
+  line-height: 0;
+  min-width: 0;
+  max-width: 100%;
+}
 .sp-links { display: flex; align-items: center; gap: 40px; list-style: none; }
 .sp-links a { font-size: 12px; letter-spacing: .22em; text-transform: uppercase; color: var(--arya-ink-80); text-decoration: none; font-weight: 500; }
 .sp-links a:hover, .sp-links a.active { color: var(--arya-ink); }
@@ -46,18 +66,60 @@
 .sp-mobile-menu-cta-secondary:hover { border-color: var(--arya-cognac); background: var(--arya-sand-2) !important; color: var(--arya-ink) !important; }
 .sp-mobile-menu-divider { width: 40px; height: 1px; background: var(--arya-sand-4); margin: 20px 0; }
 .mission .sp-hamburger { color: rgba(245,239,228,.95); }
-.sp-main { padding: 140px 48px 80px; max-width: 1100px; margin: 0 auto; }
+.sp-main {
+  padding: 140px 48px 80px;
+  max-width: 1100px;
+  margin: 0 auto;
+  width: 100%;
+  box-sizing: border-box;
+  min-width: 0;
+}
 .sp-label { font-size: 11px; letter-spacing: .45em; text-transform: uppercase; color: var(--arya-cognac); font-weight: 600; display: block; margin-bottom: 20px; }
-.sp-foot { padding: 48px; border-top: 1px solid var(--arya-sand-4); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 24px; }
+.sp-foot {
+  padding: 48px;
+  border-top: 1px solid var(--arya-sand-4);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+/* First link is home (not a stray word): matches footer brand treatment. */
+.sp-foot > a:first-of-type {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--arya-cognac);
+  text-decoration: none;
+}
 .sp-foot a { font-size: 14px; color: var(--arya-ink); text-decoration: none; }
-.sp-foot div { display: flex; gap: 28px; }
+.sp-foot div { display: flex; gap: 28px; flex-wrap: wrap; }
 .sp-foot div a { font-size: 12px; letter-spacing: .2em; text-transform: uppercase; color: var(--arya-ink-60); }
 .sp-foot div a:hover { color: var(--arya-ink); }
 .sp-foot p { font-size: 11px; color: var(--arya-ink-60); margin: 0; }
 /* Story page */
-.sp-hero { display: grid; grid-template-columns: 1fr 1.2fr; gap: 80px; align-items: start; }
+.sp-hero {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 80px;
+  align-items: start;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+}
+.sp-hero > * {
+  min-width: 0;
+}
 .sp-hero-img { aspect-ratio: 4/5; position: relative; overflow: hidden; background: var(--arya-sand-3); }
-.sp-hero-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.sp-hero-img img,
+img.sp-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  max-width: 100%;
+}
 .sp-hero-content h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(36px, 4vw, 52px); font-weight: 400; line-height: 1.1; margin: 0 0 28px; }
 .sp-hero-content h1 em { font-style: italic; color: var(--arya-cognac); }
 .sp-hero-content p { font-size: 17px; line-height: 1.85; color: var(--arya-ink-80); margin: 0 0 18px; }
@@ -106,6 +168,8 @@
 .mission-foot { border-color: rgba(245,239,228,.1); }
 .mission-foot a, .mission-foot div a { color: rgba(245,239,228,.6); }
 .mission-foot a:hover, .mission-foot div a:hover { color: rgba(245,239,228,.9); }
+.mission-foot > a:first-of-type { color: #C9A96E; }
+.mission-foot > a:first-of-type:hover { color: rgba(245,239,228,.95); }
 .mission-foot p { color: rgba(245,239,228,.45); }
 
 /* Fit page */
@@ -175,7 +239,8 @@
     min-width: 0;
     flex: 1 1 auto;
     overflow: hidden;
-    max-width: min(100%, calc(100vw - 44px - 80px));
+    /* avoid 100vw + padding horizontal overflow on iOS */
+    max-width: calc(100% - 52px);
   }
   .sp-hamburger {
     display: flex !important;
@@ -205,6 +270,24 @@
   .sp-mobile-menu .sp-links { display: flex; flex-direction: column; align-items: center; gap: 4px; width: 100%; max-width: 280px; }
   .sp-mobile-menu .sp-links a { padding: 14px 20px; min-height: 48px; width: 100%; display: inline-flex; align-items: center; justify-content: center; }
   .mission .sp-mobile-menu { background: rgba(30,24,16,.98); }
+  /* Full-width stacked footer: align-items:center made “Arya” shrink to text and sit oddly. */
+  .sp-foot {
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    text-align: center;
+    gap: 22px;
+  }
+  .sp-foot > div {
+    justify-content: center;
+    gap: 12px 18px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .sp-foot > p {
+    width: 100%;
+    text-align: center;
+  }
 }
 @media (max-width: 768px) {
   .sp-main { padding: 120px 24px 60px; padding-bottom: max(60px, var(--safe-bottom)); }
@@ -212,7 +295,7 @@
   .fit-visual { order: -1; }
   .mission-pillars { grid-template-columns: 1fr; }
   .coll-grid { grid-template-columns: 1fr; }
-  .sp-foot { flex-direction: column; text-align: center; padding: 36px 24px; padding-bottom: max(36px, var(--safe-bottom)); }
+  .sp-foot { padding: 36px 24px; padding-bottom: max(36px, var(--safe-bottom)); }
 }
 
 @media (max-width: 480px) {

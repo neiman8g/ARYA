@@ -1,5 +1,14 @@
 /* Product detail page */
-.arya-page { min-height: 100vh; background: var(--arya-sand); color: var(--arya-ink); font-family: 'Jost', sans-serif; }
+.arya-page {
+  min-height: 100vh;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow-x: hidden;
+  background: var(--arya-sand);
+  color: var(--arya-ink);
+  font-family: 'Jost', sans-serif;
+}
 .p-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 20px 32px; background: rgba(245,239,228,.97); border-bottom: 1px solid var(--arya-sand-4); }
 .p-nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--arya-ink); }
 .p-nav-wordmark { font-size: 14px; letter-spacing: .2em; font-weight: 500; }

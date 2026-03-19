@@ -388,6 +388,9 @@ export default function AryaPage() {
         /* ── NAV ── */
         .nav {
           position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+          width: 100%;
+          max-width: 100%;
+          box-sizing: border-box;
           padding: 26px 64px;
           padding-top: max(26px, env(safe-area-inset-top));
           display: flex; align-items: center; justify-content: space-between;
@@ -1047,7 +1050,7 @@ export default function AryaPage() {
           }
           .nav-logo-link {
             min-width: 0; flex: 1 1 auto; overflow: hidden;
-            max-width: min(100%, calc(100vw - 44px - 80px));
+            max-width: calc(100% - 52px);
           }
           .nav-actions { flex-shrink: 0; }
           .nav-btn { display: none; }
