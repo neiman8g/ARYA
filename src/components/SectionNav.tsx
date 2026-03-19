@@ -2,12 +2,30 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { AryaLogo } from "@/components/AryaLogo";
 
 type ActiveLink = "story" | "mission" | "fit" | "collection" | "founder" | "arya-standard";
 
-export function SectionNav({ activeLink }: { activeLink?: ActiveLink }) {
+type SectionNavProps = {
+  activeLink?: ActiveLink;
+  /** Dark nav text and treatments (mission page on ink background). */
+  theme?: "light" | "dark";
+};
+
+export function SectionNav({ activeLink, theme = "light" }: SectionNavProps) {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [navStuck, setNavStuck] = useState(false);
   const closeMenu = () => setMenuOpen(false);
+
+  useEffect(() => {
+    const onScroll = () => {
+      const over = window.scrollY > 60;
+      setNavStuck((prev) => (prev === over ? prev : over));
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   useEffect(() => {
     document.body.style.overflow = menuOpen ? "hidden" : "";
@@ -16,10 +34,17 @@ export function SectionNav({ activeLink }: { activeLink?: ActiveLink }) {
     };
   }, [menuOpen]);
 
+  const logoMark = "#8B6A3E";
+  const logoText = theme === "dark" ? "#F5EFE4" : "#1E1810";
+
   return (
-    <nav className={`sp-nav ${menuOpen ? "sp-nav-menu-open" : ""}`} role="navigation" aria-label="Main navigation">
+    <nav
+      className={`sp-nav ${navStuck ? "stuck" : ""} ${menuOpen ? "sp-nav-menu-open" : ""}`}
+      role="navigation"
+      aria-label="Main navigation"
+    >
       <Link href="/" className="sp-logo" onClick={closeMenu} aria-label="Arya home">
-        <span className="sp-logo-word">ARYA</span>
+        <AryaLogo size={32} markColor={logoMark} textColor={logoText} />
       </Link>
       <div className="sp-links">
         <Link href="/collection" className={activeLink === "collection" ? "active" : ""}>

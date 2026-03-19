@@ -23,7 +23,7 @@ export default function MissionPage() {
   return (
     <div className="section-page mission">
       <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Jost:wght@400;500;600&display=swap" rel="stylesheet" />
-      <SectionNav activeLink="mission" />
+      <SectionNav activeLink="mission" theme="dark" />
 
       <main className="sp-main mission-main">
         <span className="sp-label">Mission</span>
