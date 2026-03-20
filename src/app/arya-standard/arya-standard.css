@@ -336,6 +336,33 @@
   }
 }
 
+/* Large desktop: long-form pacing (phones / small tablets unchanged) */
+@media (min-width: 1025px) {
+  .std-hero {
+    padding-bottom: 52px;
+    margin-bottom: 52px;
+  }
+  .std-section {
+    margin-bottom: 64px;
+  }
+  .std-section-intro {
+    margin-bottom: 36px;
+  }
+  .std-blends {
+    gap: 28px;
+  }
+  .std-blend-card {
+    padding: 36px 32px;
+  }
+  .std-refusal-grid {
+    gap: 20px;
+  }
+  .std-cta {
+    padding-top: 48px;
+    margin-top: 48px;
+  }
+}
+
 /* Tight mobile (390px and below) */
 @media (max-width: 480px) {
   .std-page .sp-main {

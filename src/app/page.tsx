@@ -247,7 +247,8 @@ export default function AryaPage() {
       (entries) => {
         entries.forEach((e) => e.isIntersecting && e.target.classList.add("visible"));
       },
-      { threshold: 0.12, rootMargin: "0px 0px -5% 0px" }
+      /* No negative bottom inset — short sections at page end never reached 12% visible. */
+      { threshold: 0.08, rootMargin: "0px 0px 0px 0px" }
     );
     sections.forEach((s) => observer.observe(s));
     return () => observer.disconnect();
@@ -760,7 +761,7 @@ export default function AryaPage() {
 
       {/* ── ARYA STANDARD TEASER ── */}
       <section className="std-teaser fade-section" id="arya-standard">
-        <p className="std-teaser-eyebrow">THE ARYA STANDARD —</p>
+        <div className="label">THE ARYA STANDARD</div>
         <h2 className="std-teaser-h">There is a standard behind every decision we make.</h2>
         <p className="std-teaser-p">Every fabric. Every seam. Every fit decision. Held to the same standard that has guided Persian craft for thousands of years. We have nothing to hide and everything to share.</p>
         <Link href="/arya-standard" className="std-teaser-btn">Discover the Standard</Link>
@@ -810,7 +811,7 @@ export default function AryaPage() {
           <p>© 2026 Arya. All rights reserved. Built in Los Angeles.</p>
           <div className="foot-bottom-mark">
             <AryaMark size={16} color="#8B6A3E" />
-            <span>Noble by nature</span>
+            <span>Noble by nature.</span>
           </div>
         </div>
       </footer>

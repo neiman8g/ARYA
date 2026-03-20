@@ -43,7 +43,13 @@ html:has(.arya-home)::-webkit-scrollbar-thumb { background: var(--sand-5); }
   transition: opacity 0.65s cubic-bezier(.16,1,.3,1), transform 0.65s cubic-bezier(.16,1,.3,1);
 }
 .fade-section.visible { opacity: 1; transform: translateY(0); }
-.hero.fade-section { opacity: 1; transform: none; }
+/* Always show: hero + page bottom (observer rootMargin often misses short end sections). */
+.hero.fade-section,
+.std-teaser.fade-section,
+footer.fade-section {
+  opacity: 1;
+  transform: none;
+}
 
 a, button, [role="button"], [type="button"], [type="submit"], .nav-cart-btn, .hamburger, .fit-tab, .coll-tab, .p-quickadd-add, .p-quickadd-sizes button, .p-size-btn, .btn-p, .qty-btn, .wl-submit, .cart-drawer-close {
   cursor: url("data:image/svg+xml,%3Csvg width='32' height='32' viewBox='0 0 100 100' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpolygon points='50,7 93,87 7,87' stroke='%237A5A2F' stroke-width='5' fill='none' stroke-linejoin='miter'/%3E%3Cline x1='27' y1='63' x2='73' y2='63' stroke='%237A5A2F' stroke-width='5'/%3E%3C/svg%3E") 16 2, pointer;
@@ -705,82 +711,86 @@ a:focus-visible, button:focus-visible, input:focus-visible {
 .cart-empty { padding: 48px 20px; text-align: center; }
 .cart-empty p { font-family: var(--font-cormorant), serif; font-style: italic; font-size: 18px; color: var(--ink-60); }
 
-/* ── ARYA STANDARD TEASER (dark band above footer — reference layout) ── */
+/* ── ARYA STANDARD TEASER ── */
 .std-teaser {
-  padding: clamp(72px, 10vw, 120px) 64px;
-  background: #2a2319;
+  padding: 80px 64px;
+  background: #2c2418;
   text-align: center;
 }
-.std-teaser-eyebrow {
-  margin: 0 auto 24px;
-  font-family: var(--font-jost), sans-serif;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.42em;
-  text-transform: uppercase;
-  color: rgba(245, 239, 228, 0.58);
+.std-teaser .label {
+  width: 100%;
+  max-width: 40rem;
+  margin-left: auto;
+  margin-right: auto;
+  justify-content: center;
+  color: rgba(245, 239, 228, 0.6);
+}
+.std-teaser .label::after {
+  background: rgba(245, 239, 228, 0.6);
 }
 .std-teaser .std-teaser-h {
   font-family: var(--font-cormorant), serif;
   font-weight: 400;
-  font-size: clamp(36px, 4.5vw, 56px);
-  line-height: 1.12;
-  color: rgba(245, 239, 228, 0.96);
-  margin: 0 auto 28px;
-  max-width: 18ch;
+  font-size: clamp(32px, 4vw, 48px);
+  line-height: 1.2;
+  color: var(--sand);
+  margin: 0 auto 24px;
+  max-width: 20ch;
 }
 .std-teaser .std-teaser-p {
-  font-family: var(--font-cormorant), serif;
-  font-size: clamp(16px, 1.35vw, 18px);
-  line-height: 1.8;
-  font-weight: 400;
-  color: rgba(245, 239, 228, 0.78);
-  margin: 0 auto 40px;
-  max-width: 42ch;
+  font-size: 17px;
+  line-height: 1.75;
+  color: rgba(245, 239, 228, 0.82);
+  margin: 0 auto 36px;
+  max-width: 44ch;
 }
 .std-teaser .std-teaser-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 16px 36px;
-  min-height: 48px;
+  display: inline-block;
+  padding: 14px 32px;
   font-size: 11px;
-  letter-spacing: 0.28em;
+  letter-spacing: 0.26em;
   text-transform: uppercase;
   color: var(--ink);
   background: var(--sand);
   text-decoration: none;
   font-family: var(--font-jost), sans-serif;
   font-weight: 500;
-  /* Notched bottom-right */
-  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 14px), calc(100% - 14px) 100%, 0 100%);
+  clip-path: polygon(0 0, 100% 0, 100% 75%, 95% 100%, 0 100%);
   transition: background 0.3s, color 0.3s;
 }
-.std-teaser .std-teaser-btn:hover { background: #c9a96e; color: var(--ink); }
+.std-teaser .std-teaser-btn:hover {
+  background: #c9a96e;
+  color: var(--ink);
+}
 @media (max-width: 960px) {
-  .std-teaser { padding: 64px 24px; }
+  .std-teaser { padding: 60px 24px; }
 }
 @media (max-width: 480px) {
   .std-teaser { padding: 56px 20px; }
   .std-teaser .std-teaser-btn {
     min-height: 52px;
-    width: 100%;
-    max-width: 320px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
   }
 }
 
-/* ── FOOTER (slightly darker than std-teaser — 4-col desktop ref) ── */
+/* ── FOOTER ── */
 footer {
-  padding: clamp(64px, 8vw, 96px) 64px 44px;
-  background: #14110c;
-  border-top: 1px solid rgba(245, 239, 228, 0.06);
+  padding: clamp(52px, 6vw, 72px) 64px clamp(24px, 3vw, 32px);
+  background: var(--ink);
 }
 .foot-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 36px;
-  margin-bottom: clamp(48px, 6vw, 72px);
+  gap: 32px;
+  margin-bottom: clamp(24px, 3.5vw, 40px);
   align-items: start;
+  width: 100%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  box-sizing: border-box;
 }
 .foot-col-desktop-only {
   display: none;
@@ -789,32 +799,37 @@ footer {
   .foot-col-desktop-only {
     display: block;
   }
+  /* Content-sized columns + centered cluster (not stretched full width) */
   .foot-grid {
-    grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
-    gap: clamp(40px, 4vw, 72px);
+    grid-template-columns:
+      minmax(0, max-content)
+      minmax(0, max-content)
+      minmax(0, max-content)
+      minmax(0, max-content);
+    justify-content: center;
+    column-gap: clamp(40px, 4.5vw, 64px);
+    row-gap: 40px;
     align-items: start;
   }
 }
 .foot-tagline {
   font-family: var(--font-cormorant), serif;
   font-style: italic;
-  font-size: clamp(16px, 1.3vw, 18px);
-  color: rgba(245, 239, 228, 0.68);
-  line-height: 1.65;
-  margin: 20px 0 28px;
-  max-width: 28ch;
+  font-size: 17px;
+  color: rgba(245, 239, 228, 0.72);
+  line-height: 1.7;
+  margin: 18px 0 24px;
 }
 .foot-social {
   display: flex;
   flex-wrap: wrap;
-  gap: 16px 22px;
+  gap: 14px 18px;
 }
 .foot-social a {
-  font-family: var(--font-jost), sans-serif;
-  font-size: 11px;
-  letter-spacing: 0.26em;
+  font-size: 12px;
+  letter-spacing: 0.28em;
   text-transform: uppercase;
-  color: rgba(245, 239, 228, 0.55);
+  color: rgba(245, 239, 228, 0.6);
   text-decoration: none;
   transition: color 0.3s;
   font-weight: 500;
@@ -822,15 +837,13 @@ footer {
 .foot-social a:hover {
   color: #c9a96e;
 }
-/* Column titles: sans caps */
 .foot-col h5 {
-  font-family: var(--font-jost), sans-serif;
   font-size: 11px;
-  letter-spacing: 0.38em;
+  letter-spacing: 0.4em;
   text-transform: uppercase;
-  color: rgba(245, 239, 228, 0.88);
+  color: rgba(245, 239, 228, 0.9);
   font-weight: 600;
-  margin: 0 0 22px;
+  margin: 0 0 20px;
 }
 .foot-col ul {
   list-style: none;
@@ -838,53 +851,86 @@ footer {
   padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 11px;
 }
-/* List links: serif (ref) */
 .foot-col a {
-  font-family: var(--font-cormorant), serif;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 400;
-  color: rgba(245, 239, 228, 0.62);
+  color: rgba(245, 239, 228, 0.58);
   text-decoration: none;
   transition: color 0.3s;
-  line-height: 1.35;
 }
 .foot-col a:hover {
-  color: rgba(245, 239, 228, 0.95);
+  color: rgba(245, 239, 228, 0.88);
 }
 .foot-bottom {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap;
-  gap: 16px 24px;
-  padding-top: 32px;
-  border-top: 1px solid rgba(245, 239, 228, 0.1);
+  padding-top: clamp(20px, 2.5vw, 28px);
+  border-top: 1px solid rgba(245, 239, 228, 0.08);
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  box-sizing: border-box;
 }
 .foot-bottom p {
-  font-family: var(--font-jost), sans-serif;
-  font-size: 11px;
-  letter-spacing: 0.08em;
-  color: rgba(245, 239, 228, 0.42);
-  margin: 0;
-  line-height: 1.5;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  color: rgba(245, 239, 228, 0.45);
 }
 .foot-bottom-mark {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
 }
 .foot-bottom-mark span {
-  font-family: var(--font-jost), sans-serif;
-  font-size: 10px;
-  letter-spacing: 0.3em;
+  font-size: 11px;
+  letter-spacing: 0.26em;
   text-transform: uppercase;
-  color: rgba(245, 239, 228, 0.48);
+  color: rgba(245, 239, 228, 0.45);
   font-weight: 500;
 }
-.foot-bottom-mark span::after {
-  content: ".";
+
+/* ── Desktop (≥1025): calmer vertical rhythm, teaser tighter, footer breathes at seam ── */
+@media (min-width: 1025px) {
+  .hero-left {
+    padding: 72px 80px 80px;
+  }
+  .std-teaser {
+    padding-top: 52px;
+    padding-bottom: 52px;
+  }
+  .std-teaser .std-teaser-h {
+    margin-bottom: 18px;
+  }
+  .std-teaser .std-teaser-p {
+    margin-bottom: 26px;
+  }
+  footer {
+    padding-top: clamp(76px, 8.5vw, 100px);
+    padding-bottom: clamp(26px, 3vw, 34px);
+  }
+  .ethos,
+  .problem,
+  .fit,
+  .collection,
+  .craft,
+  .founder,
+  .waitlist {
+    padding-top: 120px;
+    padding-bottom: 120px;
+  }
+  .founder {
+    gap: 100px;
+  }
+  .ethos {
+    gap: 100px;
+  }
+  .fit-grid {
+    gap: 100px;
+  }
 }
 
 /* ── Large desktop: limit horizontal stretch on ultra-wide monitors ── */
@@ -987,12 +1033,12 @@ footer {
   .wl-submit, .wl-input { min-height: 52px; }
 
   footer {
-    padding-top: 60px;
-    padding-bottom: 40px;
+    padding-top: 52px;
+    padding-bottom: 32px;
     padding-left: max(28px, env(safe-area-inset-left));
     padding-right: max(28px, env(safe-area-inset-right));
   }
-  .foot-grid { grid-template-columns: 1fr; gap: 36px; }
+  .foot-grid { grid-template-columns: 1fr; gap: 36px; margin-bottom: 32px; }
   .foot-bottom {
     flex-direction: column;
     gap: 14px;
@@ -1047,12 +1093,12 @@ footer {
   .waitlist .display { font-size: clamp(32px, 8vw, 48px) !important; }
 
   footer {
-    padding-top: 56px;
-    padding-bottom: max(32px, env(safe-area-inset-bottom));
+    padding-top: 44px;
+    padding-bottom: max(28px, env(safe-area-inset-bottom));
     padding-left: max(28px, env(safe-area-inset-left));
     padding-right: max(28px, env(safe-area-inset-right));
   }
-  .foot-grid { grid-template-columns: 1fr; gap: 28px; }
+  .foot-grid { grid-template-columns: 1fr; gap: 28px; margin-bottom: 24px; }
   footer .foot-brand {
     display: flex;
     flex-direction: column;

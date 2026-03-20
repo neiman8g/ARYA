@@ -131,18 +131,43 @@
 .pp-legging-mission { margin-top: 18px; font-size: 14px; color: var(--arya-ink-80); }
 .pp-legging-mission a { color: #8B6A3E; text-decoration: underline; text-underline-offset: 3px; }
 
+@media (min-width: 1025px) {
+  .p-main {
+    padding: 132px 48px 96px;
+    max-width: 960px;
+  }
+  .pp-layout {
+    gap: 56px;
+    align-items: start;
+  }
+  .pp-title {
+    font-size: clamp(34px, 2.8vw, 42px);
+  }
+  .pp-crosssell {
+    margin-top: 64px;
+    padding-top: 48px;
+  }
+  .pp-crosssell-grid {
+    gap: 24px;
+  }
+  .p-foot.site-footer-root {
+    padding-top: 48px;
+    padding-bottom: 44px;
+  }
+}
+
 @media (min-width: 1440px) {
   .p-nav {
-    padding-left: max(32px, calc((100vw - 900px) / 2));
-    padding-right: max(32px, calc((100vw - 900px) / 2));
+    padding-left: max(48px, calc((100vw - 960px) / 2));
+    padding-right: max(48px, calc((100vw - 960px) / 2));
   }
   .p-main {
-    padding-left: max(32px, calc((100vw - 900px) / 2));
-    padding-right: max(32px, calc((100vw - 900px) / 2));
+    padding-left: max(48px, calc((100vw - 960px) / 2));
+    padding-right: max(48px, calc((100vw - 960px) / 2));
   }
   .p-foot {
-    padding-left: max(32px, calc((100vw - 900px) / 2));
-    padding-right: max(32px, calc((100vw - 900px) / 2));
+    padding-left: max(48px, calc((100vw - 960px) / 2));
+    padding-right: max(48px, calc((100vw - 960px) / 2));
   }
 }
 

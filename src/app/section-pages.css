@@ -329,11 +329,79 @@ img.sp-img {
   .fit-minis div { flex: 1; min-width: 140px; max-width: 220px; }
 }
 
+/* Desktop (≥1025): align with homepage rhythm — spacing, collection grid, footers */
+@media (min-width: 1025px) {
+  .sp-main {
+    padding: 152px max(56px, calc((100vw - 1120px) / 2)) 92px;
+    max-width: 1120px;
+  }
+  .sp-foot.site-footer-root {
+    padding-top: 52px;
+    padding-bottom: 48px;
+    padding-left: max(56px, calc((100vw - 1120px) / 2));
+    padding-right: max(56px, calc((100vw - 1120px) / 2));
+  }
+  .coll-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+  }
+  .coll-section {
+    margin-bottom: 56px;
+  }
+  .coll-tabs {
+    margin-bottom: 36px;
+  }
+  .sp-copy-section {
+    margin-top: 52px;
+  }
+  .sp-waitlist-cta {
+    margin-top: 64px;
+    padding: 48px 40px;
+  }
+  .faq-section {
+    margin-top: 48px;
+  }
+  .faq-contact {
+    margin-top: 48px;
+    padding-top: 32px;
+  }
+  .fit-guide-cards,
+  .blog-grid {
+    gap: 20px;
+  }
+  .sustainability-grid {
+    gap: 16px;
+  }
+  .fit-guide-links {
+    gap: 16px;
+  }
+  .mission-pillars {
+    gap: 28px;
+    margin: 44px 0 52px;
+  }
+  .pillar {
+    padding: 36px 28px;
+  }
+  .sp-hero,
+  .fit-layout {
+    gap: 72px;
+  }
+}
+
 /* Large desktop: align nav padding with homepage on ultra-wide screens */
 @media (min-width: 1440px) {
   .sp-nav, .sp-nav.stuck {
     padding-left: max(64px, calc((100vw - 1320px) / 2));
     padding-right: max(64px, calc((100vw - 1320px) / 2));
+  }
+  .sp-main {
+    padding-left: max(80px, calc((100vw - 1200px) / 2));
+    padding-right: max(80px, calc((100vw - 1200px) / 2));
+    max-width: 1200px;
+  }
+  .sp-foot.site-footer-root {
+    padding-left: max(48px, calc((100vw - 1200px) / 2));
+    padding-right: max(48px, calc((100vw - 1200px) / 2));
   }
 }
 
