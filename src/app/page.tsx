@@ -476,7 +476,7 @@ export default function AryaPage() {
               <span className="eyebrow-rule" />
               Persian Craft · California Soul · Fall 2026
             </div>
-            <h1 className="sr-only">Premium Athleisure for Athletic Bodies — PFAS-Free Activewear Built in Los Angeles</h1>
+            <h1 className="sr-only">Premium Activewear Engineered for Athletic Bodies — PFAS-Free, Skin-Conscious — Los Angeles</h1>
             <h2 className="hero-h1">
               Noble by<br /><em>nature.</em>
             </h2>

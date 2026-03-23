@@ -53,6 +53,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Arya | Premium Activewear for Athletic Bodies | PFAS-Free | Los Angeles",
     description: "Arya is a premium activewear brand engineered for athletic bodies. No PFAS, no toxic dyes, no virgin synthetics. Persian craft. California soul. Launching Fall 2026.",
+    images: ["https://www.arya.clothing/arya-hero.jpg"],
   },
   twitter: {
     title: "Arya | Premium Activewear for Athletic Bodies | PFAS-Free | Los Angeles",
