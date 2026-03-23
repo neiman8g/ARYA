@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { SectionNav } from "@/components/SectionNav";
-import { SiteFooter } from "@/components/SiteFooter";
+import { HomeBrandedFooter } from "@/components/HomeBrandedFooter";
 
 export const metadata = {
   title: "Journal | Arya | Sustainable Athleisure Stories and Insights",
@@ -35,7 +35,10 @@ const POSTS = [
 export default function BlogIndexPage() {
   return (
     <div className="section-page">
-      <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Jost:wght@400;500;600&display=swap" rel="stylesheet" />
+      <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Jost:wght@400;500;600&display=swap"
+        rel="stylesheet"
+      />
       <SectionNav />
 
       <main className="sp-main blog-main">
@@ -43,17 +46,20 @@ export default function BlogIndexPage() {
         <h1>The Journal.</h1>
         <div className="blog-grid">
           {POSTS.map((post) => (
-            <article key={post.href} className="blog-card">
-              <p className="blog-date">{post.date}</p>
-              <h2>{post.title}</h2>
-              <p>{post.excerpt}</p>
-              <Link href={post.href} className="blog-read">Read more</Link>
-            </article>
+            <Link key={post.href} href={post.href} className="blog-card">
+              <div className="blog-card-visual" aria-hidden />
+              <div className="blog-card-body">
+                <p className="blog-date">{post.date}</p>
+                <h2>{post.title}</h2>
+                <p>{post.excerpt}</p>
+                <span className="blog-read">Read more</span>
+              </div>
+            </Link>
           ))}
         </div>
       </main>
 
-      <SiteFooter />
+      <HomeBrandedFooter />
     </div>
   );
 }

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { SectionNav } from "@/components/SectionNav";
 import { SiteFooter } from "@/components/SiteFooter";
+import { BlogPostHero } from "@/components/BlogPostHero";
 
 export const metadata = {
   title: "What Is NobleFlex? Arya's Proprietary Performance Fabric Explained | Arya Journal",
@@ -14,10 +15,9 @@ export default function WhatIsNobleflexPostPage() {
       <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Jost:wght@400;500;600&display=swap" rel="stylesheet" />
       <SectionNav />
 
-      <main className="sp-main article-main">
-        <span className="sp-label">MATERIALS</span>
+      <main className="sp-main article-main sp-main--hero-first">
+        <BlogPostHero eyebrow="MATERIALS" title="What is NobleFlex?" />
         <p className="article-date">March 2026</p>
-        <h1>What is NobleFlex?</h1>
         <p>NobleFlex is the fabric we built the Noble Legging and Noble Sports Bra from. It is Arya's proprietary performance fabric and it was chosen for one reason: it is the best option available for the body wearing it.</p>
 
         <h2>What NobleFlex does</h2>

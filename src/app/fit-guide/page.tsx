@@ -14,9 +14,13 @@ export default function FitGuidePage() {
       <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Jost:wght@400;500;600&display=swap" rel="stylesheet" />
       <SectionNav />
 
-      <main className="sp-main fit-guide-main">
-        <span className="sp-label">FIT GUIDE</span>
-        <h1>Every pattern starts with the body that moves.</h1>
+      <main className="sp-main fit-guide-main sp-main--hero-first">
+        <header className="sp-page-hero" aria-labelledby="fit-guide-hero-title">
+          <div className="sp-page-hero-inner">
+            <span className="sp-label">FIT GUIDE</span>
+            <h1 id="fit-guide-hero-title">Every pattern starts with the body that moves.</h1>
+          </div>
+        </header>
 
         <section className="sp-copy-section">
           <h2>Why standard sizing fails the athletic body</h2>

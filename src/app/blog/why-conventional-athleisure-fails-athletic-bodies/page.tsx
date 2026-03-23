@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { SectionNav } from "@/components/SectionNav";
 import { SiteFooter } from "@/components/SiteFooter";
+import { BlogPostHero } from "@/components/BlogPostHero";
 
 export const metadata = {
   title: "Why Conventional Athleisure Fails Athletic Bodies | Arya Journal",
@@ -14,10 +15,9 @@ export default function WhyAthleticBodiesPostPage() {
       <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Jost:wght@400;500;600&display=swap" rel="stylesheet" />
       <SectionNav />
 
-      <main className="sp-main article-main">
-        <span className="sp-label">FIT PHILOSOPHY</span>
+      <main className="sp-main article-main sp-main--hero-first">
+        <BlogPostHero eyebrow="FIT PHILOSOPHY" title="Why conventional athleisure fails athletic bodies" />
         <p className="article-date">March 2026</p>
-        <h1>Why conventional athleisure fails athletic bodies</h1>
         <p>If you have spent years buying premium athleisure only to find that the waistband gaps at your back, the legging turns into skinny jeans at the thigh, or the tee fits your shoulders but billows through the torso, you are not the problem. The clothes are.</p>
 
         <h2>The standard body assumption</h2>

@@ -23,8 +23,8 @@ export const PRODUCTS: Product[] = [
     gender: "Women's",
     name: "The Noble Legging",
     price: "$118",
-    desc: "NobleFlex fabric. Four-way stretch, muscle compression, and extended thigh room engineered for the body that moves. XS to 3XL.",
-    specs: ["Extended thigh room", "High-rise waistband", "Persian cotton, silk, nylon blend", "Geometric waistband detail"],
+    desc: "Skin-conscious NobleFlex. No PFAS, no toxic dyes — four-way stretch and compression engineered for athletic builds. XS to 3XL.",
+    specs: ["Extended thigh room", "High-rise waistband", "NobleFlex proprietary blend — see The Arya Standard", "Geometric waistband detail"],
     sizes: ["XS", "S", "M", "L", "XL", "2XL", "3XL"],
     colors: [
       { name: "Ink", hex: "#1E1810" },
@@ -53,8 +53,8 @@ export const PRODUCTS: Product[] = [
     gender: "Women's",
     name: "The Noble Sports Bra",
     price: "$68",
-    desc: "NobleFlex fabric. Medium to high support, four-way stretch, built to pair with the Noble Legging. XS to 3XL.",
-    specs: ["Encapsulation + compression hybrid", "Persian cotton, silk, nylon blend", "Adjustable straps", "Hook-free"],
+    desc: "Skin-conscious NobleFlex. No PFAS, no toxic dyes — medium to high support with four-way stretch. XS to 3XL.",
+    specs: ["Encapsulation + compression hybrid", "NobleFlex proprietary blend — see The Arya Standard", "Adjustable straps", "Hook-free"],
     sizes: ["XS", "S", "M", "L", "XL", "2XL", "3XL"],
     colors: [
       { name: "Ink", hex: "#1E1810" },
@@ -111,8 +111,8 @@ export const PRODUCTS: Product[] = [
     gender: "Men's",
     name: "The Noble Short",
     price: "$98",
-    desc: "NobleDry fabric. Extended thigh room, four-way stretch, built for real movement. S to 3XL.",
-    specs: ["Extended thigh circumference", "Persian cotton, silk, nylon blend", "Geometric waistband detail", "Deep side pockets"],
+    desc: "Skin-conscious NobleDry. No PFAS, no toxic dyes — extended thigh room and four-way stretch. S to 3XL.",
+    specs: ["Extended thigh circumference", "NobleDry proprietary blend — see The Arya Standard", "Geometric waistband detail", "Deep side pockets"],
     sizes: ["S", "M", "L", "XL", "2XL", "3XL"],
     colors: [
       { name: "Ink", hex: "#1E1810" },
@@ -140,8 +140,8 @@ export const PRODUCTS: Product[] = [
     gender: "Men's",
     name: "The Noble Tee",
     price: "$78",
-    desc: "NobleSoft fabric. Silk-like against the skin, naturally odor resistant, no synthetics touching your body. S to 3XL.",
-    specs: ["Extended shoulder and sleeve room", "Persian cotton, silk, nylon blend", "Minimal seam construction"],
+    desc: "Skin-conscious NobleSoft. No PFAS, no toxic dyes — silk-like feel, no synthetics against your skin. S to 3XL.",
+    specs: ["Extended shoulder and sleeve room", "NobleSoft natural blend — see The Arya Standard", "Minimal seam construction"],
     sizes: ["S", "M", "L", "XL", "2XL", "3XL"],
     colors: [
       { name: "Ink", hex: "#1E1810" },

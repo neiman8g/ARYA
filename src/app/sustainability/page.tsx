@@ -41,9 +41,13 @@ export default function SustainabilityPage() {
       <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Jost:wght@400;500;600&display=swap" rel="stylesheet" />
       <SectionNav />
 
-      <main className="sp-main sustainability-main">
-        <span className="sp-label">SUSTAINABILITY</span>
-        <h1>Built with intention. For people and planet.</h1>
+      <main className="sp-main sustainability-main sp-main--hero-first">
+        <header className="sp-page-hero" aria-labelledby="sustainability-hero-title">
+          <div className="sp-page-hero-inner">
+            <span className="sp-label">SUSTAINABILITY</span>
+            <h1 id="sustainability-hero-title">Built with intention. For people and planet.</h1>
+          </div>
+        </header>
 
         <section className="sp-copy-section">
           <h2>Why sustainability matters to Arya</h2>

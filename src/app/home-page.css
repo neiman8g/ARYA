@@ -46,6 +46,7 @@ html:has(.arya-home)::-webkit-scrollbar-thumb { background: var(--sand-5); }
 /* Always show: hero + page bottom (observer rootMargin often misses short end sections). */
 .hero.fade-section,
 .std-teaser.fade-section,
+.skin-health.fade-section,
 footer.fade-section {
   opacity: 1;
   transform: none;
@@ -106,6 +107,7 @@ a:focus-visible, button:focus-visible, input:focus-visible {
   position: absolute; top: 100%; right: 0; min-width: 220px;
   background: var(--sand); border: 1px solid var(--sand-4);
   padding: 10px; display: none; flex-direction: column; gap: 2px; z-index: 120;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 .nav-explore:hover .nav-explore-menu,
 .nav-explore:focus-within .nav-explore-menu { display: flex; }
@@ -564,6 +566,66 @@ a:focus-visible, button:focus-visible, input:focus-visible {
 .btn-p:hover { background: var(--cognac); color: var(--sand); }
 .btn-p:disabled { background: var(--sand-5); cursor: not-allowed; }
 
+/* ── SKIN HEALTH (between collection & story) ── */
+.skin-health {
+  padding: 120px 64px;
+  background: var(--ink);
+  color: rgba(245, 239, 228, 0.92);
+  position: relative;
+  overflow: hidden;
+}
+.skin-health .label {
+  color: rgba(245, 239, 228, 0.55);
+}
+.skin-health .label::after {
+  background: rgba(245, 239, 228, 0.55);
+}
+.skin-health .display {
+  color: rgba(245, 239, 228, 0.96);
+}
+.skin-health .display em {
+  color: #c9a96e;
+}
+.skin-health-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+  margin-top: 44px;
+  max-width: 1100px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.skin-col h3 {
+  font-size: 11px;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  color: #c9a96e;
+  margin: 0 0 16px;
+  font-weight: 600;
+}
+.skin-col p {
+  font-size: 16px;
+  line-height: 1.75;
+  color: rgba(245, 239, 228, 0.72);
+  margin: 0;
+}
+.skin-health-pull {
+  font-family: var(--font-cormorant), serif;
+  font-style: italic;
+  font-size: clamp(19px, 2.1vw, 24px);
+  text-align: center;
+  color: rgba(245, 239, 228, 0.88);
+  margin: 48px auto 0;
+  max-width: 48ch;
+  line-height: 1.55;
+}
+@media (min-width: 1025px) {
+  .skin-health-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px 48px;
+  }
+}
+
 /* ── CRAFT / MISSION ── */
 .craft { padding: 160px 64px; background: var(--ink); position: relative; overflow: hidden; }
 .craft-inner { position: relative; z-index: 2; max-width: 760px; margin: 0 auto; text-align: center; }
@@ -916,6 +978,7 @@ footer {
   .problem,
   .fit,
   .collection,
+  .skin-health,
   .craft,
   .founder,
   .waitlist {
@@ -943,6 +1006,7 @@ footer {
   .problem,
   .fit,
   .collection,
+  .skin-health,
   .craft,
   .founder,
   .waitlist {
@@ -959,22 +1023,8 @@ footer {
   }
 }
 
-/* ── RESPONSIVE: Tablet / phone nav (1024px aligns with SectionNav) ── */
+/* ── RESPONSIVE: Tablet + mobile layout (nav hamburger only ≤768 — see block below) ── */
 @media (max-width: 1024px) {
-  .hamburger { display: flex; flex-shrink: 0; margin-left: auto; }
-  .nav-links { display: none; }
-  .nav, .nav.stuck {
-    padding: 16px 32px; padding-top: max(16px, env(safe-area-inset-top));
-    gap: 10px; min-width: 0; align-items: center;
-  }
-  .nav-logo-link {
-    min-width: 0;
-    flex: 0 1 auto;
-    max-width: calc(100% - 52px);
-  }
-  .nav-actions { flex-shrink: 0; }
-  .nav-btn { display: none; }
-
   .hero {
     grid-template-columns: 1fr;
     grid-template-rows: minmax(50vh, 1fr) auto;
@@ -1009,6 +1059,7 @@ footer {
   .fit-mini { min-width: 0; }
 
   .collection { padding: 60px 24px; }
+  .skin-health { padding: 60px 24px; }
   .coll-sections { grid-template-columns: 1fr; gap: 32px; }
   .coll-sections .coll-section { margin-bottom: 48px; }
   .coll-sections .coll-section:last-child { margin-bottom: 0; }
@@ -1046,6 +1097,91 @@ footer {
     align-items: center;
   }
   .foot-bottom-mark { justify-content: center; }
+}
+
+/* ── Mobile header + hero + single-column products (≤768) ── */
+@media (max-width: 768px) {
+  .hamburger { display: flex; flex-shrink: 0; margin-left: auto; }
+  .nav-links { display: none !important; }
+  .nav, .nav.stuck {
+    padding: 16px 32px; padding-top: max(16px, env(safe-area-inset-top));
+    gap: 10px; min-width: 0; align-items: center;
+  }
+  .nav-logo-link {
+    min-width: 0;
+    flex: 0 1 auto;
+    max-width: calc(100% - 120px);
+  }
+  .nav-actions { flex-shrink: 0; gap: 8px; }
+  .nav-btn { display: none !important; }
+
+  .mobile-menu {
+    justify-content: center;
+    align-items: center;
+    padding-top: max(80px, calc(50vh - 200px));
+  }
+
+  .hero {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    min-height: 0;
+  }
+  .hero-right {
+    order: 1;
+    min-height: 380px;
+    height: 380px;
+    max-height: 380px;
+  }
+  .hero-right-overlay { background: linear-gradient(180deg, transparent 35%, rgba(245,239,228,.5) 100%); }
+  .hero-left {
+    order: 2;
+    padding: 32px 24px 48px;
+  }
+  .hero-ctas {
+    flex-direction: column;
+    width: 100%;
+    gap: 12px;
+  }
+  .hero-ctas a {
+    width: 100%;
+    max-width: none;
+    justify-content: center;
+    min-height: 52px;
+    display: inline-flex;
+    align-items: center;
+    box-sizing: border-box;
+  }
+
+  .collection {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .product-grid {
+    grid-template-columns: 1fr !important;
+    gap: 28px;
+    padding-left: 16px;
+    padding-right: 16px;
+    box-sizing: border-box;
+  }
+  .p-card {
+    min-width: 0;
+    overflow: visible;
+  }
+  .p-info {
+    overflow: visible;
+    padding-bottom: 8px;
+  }
+
+  footer {
+    padding-bottom: max(64px, env(safe-area-inset-bottom));
+    padding-left: max(28px, env(safe-area-inset-left));
+    padding-right: max(28px, env(safe-area-inset-right));
+  }
+  .foot-tagline {
+    padding-left: max(24px, env(safe-area-inset-left));
+    padding-right: 16px;
+    box-sizing: border-box;
+  }
 
   .nav-cart-btn { padding: 12px 20px; min-height: 44px; }
   .qty-btn { width: 36px; height: 36px; min-width: 36px; min-height: 36px; }
@@ -1082,6 +1218,7 @@ footer {
   .fit-mini { padding: 18px 20px; }
 
   .collection { padding: 60px 20px; }
+  .skin-health { padding: 60px 20px; }
   .product-grid .p-card { min-width: 0; }
   .p-color-swatches { gap: 10px; }
   .p-color-swatch {
@@ -1126,14 +1263,6 @@ footer {
   footer .foot-contact li {
     text-align: center;
     width: 100%;
-  }
-}
-@media (max-width: 768px) {
-  .nav-actions { gap: 8px; }
-  footer {
-    padding-bottom: max(32px, env(safe-area-inset-bottom));
-    padding-left: max(28px, env(safe-area-inset-left));
-    padding-right: max(28px, env(safe-area-inset-right));
   }
 }
 

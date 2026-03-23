@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { PRODUCTS } from "@/lib/products";
 import { AryaLogo, AryaMark } from "@/components/AryaLogo";
+import { HomeBrandedFooter } from "@/components/HomeBrandedFooter";
 
 // ─── Brand SVG Components ────────────────────────────────────────────────────
 
@@ -41,12 +42,18 @@ function ProductPlaceholder({ name, patternId }: { name: string; patternId: stri
 
 // ─── Collection card short descriptions (homepage) ───────────────────────────
 const CARD_DESCRIPTIONS: Record<string, string> = {
-  "noble-legging": "NobleFlex fabric. Four-way stretch, muscle compression, and extended thigh room.",
-  "noble-bra": "NobleFlex fabric. Medium to high support, skin conscious construction.",
-  "noble-long-crop": "NobleFlex fabric. Pairs as a set with the Noble Sports Bra.",
-  "noble-short": "NobleDry fabric. Extended thigh room, four-way stretch, built for real movement.",
-  "noble-tee": "NobleSoft fabric. Silk-like feel, no synthetics against your skin.",
-  "noble-pant": "NobleDry fabric. Performance trouser engineered for the body that moves.",
+  "noble-legging":
+    "Skin-conscious NobleFlex fabric. No PFAS, no toxic dyes, no synthetics against your skin. Four-way stretch engineered for athletic builds.",
+  "noble-bra":
+    "Skin-conscious NobleFlex. No PFAS or toxic dyes against your skin. Medium to high support with four-way stretch.",
+  "noble-long-crop":
+    "Skin-conscious NobleFlex. No PFAS, no toxic dyes. Pairs as a set with the Noble Sports Bra — four-way stretch, movement-ready.",
+  "noble-short":
+    "Skin-conscious NobleDry. No PFAS, no toxic dyes. Extended thigh room and four-way stretch for real movement.",
+  "noble-tee":
+    "Skin-conscious NobleSoft. No PFAS, no toxic dyes, no synthetics against your skin. Silk-like feel, naturally odor resistant.",
+  "noble-pant":
+    "Skin-conscious NobleDry. No PFAS, no toxic dyes. Five-pocket performance trouser — four-way stretch for the body that moves.",
 };
 
 function withNobleflexLink(text: string) {
@@ -187,7 +194,7 @@ export default function AryaPage() {
   const pathname = usePathname();
 
   // Scroll spy: highlight nav link for the section in view (homepage only)
-  const sectionIds = ["collection", "ethos", "problem", "fit", "mission", "founder", "waitlist", "arya-standard"];
+  const sectionIds = ["collection", "skin-health", "ethos", "problem", "fit", "mission", "founder", "waitlist", "arya-standard"];
   useEffect(() => {
     if (pathname !== "/") return;
     const onScroll = () => {
@@ -377,6 +384,7 @@ export default function AryaPage() {
           <Link href="/fit-guide" onClick={closeMenu}>Fit Guide</Link>
           <Link href="/faq" onClick={closeMenu}>FAQ</Link>
           <Link href="/sustainability" onClick={closeMenu}>Sustainability</Link>
+          <Link href="/skin-conscious" onClick={closeMenu}>Skin Conscious</Link>
         </div>
       </div>
 
@@ -452,6 +460,7 @@ export default function AryaPage() {
               <Link href="/fit-guide">Fit Guide</Link>
               <Link href="/faq">FAQ</Link>
               <Link href="/sustainability">Sustainability</Link>
+              <Link href="/skin-conscious">Skin Conscious</Link>
             </div>
           </li>
         </ul>
@@ -511,7 +520,17 @@ export default function AryaPage() {
         <div className="ticker-track">
           {[...Array(2)].map((_, i) => (
             <span key={i} style={{ display: "inline-flex" }}>
-              {["Luxury Materials", "Skin Conscious", "Sustainably Minded", "Noble by Nature", "Built for Every Body", "Persian Craft", "California Soul"].map((t, j) => (
+              {[
+                "BUILT FOR EVERY BODY",
+                "PERSIAN CRAFT PHILOSOPHY",
+                "CALIFORNIA SOUL",
+                "NOBILITY IN EVERY THREAD",
+                "SKIN CONSCIOUS",
+                "SUSTAINABLY MINDED",
+                "NO PFAS",
+                "NO TOXIC DYES",
+                "NO COMPROMISES",
+              ].map((t, j) => (
                 <span key={j} className="ticker-item">{t}</span>
               ))}
             </span>
@@ -549,6 +568,37 @@ export default function AryaPage() {
             </div>
           </div>
         </div>
+      </section>
+
+      {/* ── SKIN HEALTH ── */}
+      <section className="skin-health fade-section" id="skin-health">
+        <div className="label">Materials</div>
+        <h2 className="display">
+          What touches your skin <em>matters.</em>
+        </h2>
+        <div className="skin-health-grid">
+          <div className="skin-col">
+            <h3>No PFAS coatings</h3>
+            <p>
+              Forever chemicals have no place in fabric that touches your skin all day. Every Arya material is PFAS-free by design.
+            </p>
+          </div>
+          <div className="skin-col">
+            <h3>No toxic dyes</h3>
+            <p>
+              Conventional dye systems carry compounds that sit against your skin for hours. We refuse every one of them.
+            </p>
+          </div>
+          <div className="skin-col">
+            <h3>No virgin synthetics</h3>
+            <p>
+              Most athleisure is plastic. Petroleum-based fibers that trap heat, irritate skin, and shed microplastics in every wash. Not here.
+            </p>
+          </div>
+        </div>
+        <p className="skin-health-pull">
+          The Arya Standard: if we would not wear it against our own skin, we will not make it.
+        </p>
       </section>
 
       {/* ── ETHOS (Our Story) ── */}
@@ -674,7 +724,7 @@ export default function AryaPage() {
           <div className="craft-pillars">
             {[
               { n: "01", t: "Persian Craft", href: "/story", b: "Persian craft philosophy holds that doing something with complete precision is itself a form of art. Every stitch, every seam, every fit decision at Arya is held to that standard. No shortcuts. No compromises. Built to outlast trends by decades." },
-              { n: "02", t: "Skin Conscious", href: "/sustainability", b: "Every Arya fabric is chosen with your health in mind. No harmful dyes. No toxic synthetics against your body. Materials that feel as good as they perform. Because luxury should never come at the cost of your wellbeing." },
+              { n: "02", t: "Skin Conscious", href: "/skin-conscious", b: "Every Arya fabric is chosen with your health in mind. No harmful dyes. No toxic synthetics against your body. Materials that feel as good as they perform. Because luxury should never come at the cost of your wellbeing." },
               { n: "03", t: "Active Community", href: "/collection", b: "For everyone who lives fully and moves often. Not one sport. Not one body type. Not one image. Clothing that crosses every terrain, every ritual, every version of you." },
               { n: "04", t: "Giving Back", href: "/arya-standard", b: "A portion of every Arya purchase goes toward building schools and athletic centers for children in underserved communities, starting with Iran and growing wherever the need exists. Sport gave our founder his confidence and his mental strength. We believe every child deserves that same opportunity." },
             ].map((p, i) => (
@@ -767,54 +817,7 @@ export default function AryaPage() {
         <Link href="/arya-standard" className="std-teaser-btn">Discover the Standard</Link>
       </section>
 
-      {/* ── FOOTER: original 4-col desktop; Collection + Brand cols hidden ≤1024px ── */}
-      <footer className="fade-section" aria-label="Footer navigation">
-        <div className="foot-grid">
-          <div className="foot-brand">
-            <AryaLogo size={30} markColor="#8B6A3E" textColor="#F5EFE4" />
-            <p className="foot-tagline">Noble materials. Noble fit.<br />Noble purpose.</p>
-            <div className="foot-social">
-              <a href="https://instagram.com/wear_arya" target="_blank" rel="noopener noreferrer">Instagram</a>
-              <a href="https://tiktok.com/@wear_arya" target="_blank" rel="noopener noreferrer">TikTok</a>
-              <a href="mailto:hello@arya.clothing">Email</a>
-            </div>
-          </div>
-          <div className="foot-col foot-col-desktop-only">
-            <h5>Collection</h5>
-            <ul>
-              <li><Link href="/collection">Collection</Link></li>
-            </ul>
-          </div>
-          <div className="foot-col foot-col-desktop-only">
-            <h5>Brand</h5>
-            <ul>
-              <li><Link href="/story">Our Story</Link></li>
-              <li><Link href="/mission">Mission</Link></li>
-              <li><Link href="/founder">Founders</Link></li>
-              <li><Link href="/arya-standard">The Standard</Link></li>
-              <li><Link href="/faq">FAQ</Link></li>
-              <li><Link href="/fit-guide">Fit Guide</Link></li>
-              <li><Link href="/sustainability">Sustainability</Link></li>
-              <li><Link href="/blog">The Journal</Link></li>
-            </ul>
-          </div>
-          <div className="foot-col foot-contact">
-            <h5>Contact</h5>
-            <ul>
-              <li><a href="mailto:hello@arya.clothing">hello@arya.clothing</a></li>
-              <li><a href="mailto:press@arya.clothing">Press</a></li>
-              <li><a href="mailto:wholesale@arya.clothing">Wholesale</a></li>
-            </ul>
-          </div>
-        </div>
-        <div className="foot-bottom">
-          <p>© 2026 Arya. All rights reserved. Built in Los Angeles.</p>
-          <div className="foot-bottom-mark">
-            <AryaMark size={16} color="#8B6A3E" />
-            <span>Noble by nature.</span>
-          </div>
-        </div>
-      </footer>
+      <HomeBrandedFooter />
     </div>
   );
 }

@@ -1,0 +1,16 @@
+---
+description: Arya brand positioning — fit + skin-conscious materials (reference for copy and UX)
+globs:
+  - "**/*.{tsx,ts,md}"
+alwaysApply: false
+---
+
+# Arya positioning (source of truth)
+
+- **Dual hook:** Fit for the athletic body **+** materials that do not poison you doing it.
+- **Why skin health leads:** Fear of PFAS, toxic dyes, and synthetics against the skin is a smaller, more urgent niche than fit alone; it converts faster. Fit is preference — skin health is fear.
+- **White space:** No other premium athleisure brand owns **both** engineered athletic fit **and** skin-conscious, refusal-based materials. (Reference competitors only internally: e.g. strong fit vs. strong sustainability vs. neither.)
+- **Refusal list:** No PFAS, no toxic dyes, no virgin synthetics against the skin — expressed clearly on homepage, `/skin-conscious`, and product copy (skin-first, then performance).
+- **Legal / sourcing:** Do **not** claim Persian-*sourced* materials or imports that imply Iran supply chain; Persian **craft philosophy** is cultural/design, not a fiber origin claim.
+
+When writing UI copy, meta descriptions, or CTAs, default to this intersection unless the user specifies otherwise.

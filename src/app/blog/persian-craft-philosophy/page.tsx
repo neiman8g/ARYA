@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { SectionNav } from "@/components/SectionNav";
 import { SiteFooter } from "@/components/SiteFooter";
+import { BlogPostHero } from "@/components/BlogPostHero";
 
 export const metadata = {
   title: "Persian Craft Philosophy and What It Means for How We Make Clothes | Arya Journal",
@@ -14,10 +15,12 @@ export default function PersianCraftPostPage() {
       <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Jost:wght@400;500;600&display=swap" rel="stylesheet" />
       <SectionNav />
 
-      <main className="sp-main article-main">
-        <span className="sp-label">HERITAGE</span>
+      <main className="sp-main article-main sp-main--hero-first">
+        <BlogPostHero
+          eyebrow="HERITAGE"
+          title="Persian craft philosophy and what it means for how we make clothes"
+        />
         <p className="article-date">March 2026</p>
-        <h1>Persian craft philosophy and what it means for how we make clothes</h1>
         <p>The name Arya comes from the ancient Persian word for noble and honorable. It is the etymological root of the word Iran itself. That name was not chosen for its sound. It was chosen for what it demands.</p>
 
         <h2>What Persian craft philosophy means</h2>
