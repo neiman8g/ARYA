@@ -52,7 +52,7 @@ export default function FounderPage() {
           </div>
           <div className="fit-visual">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/arya-founder.png" alt="Nima and Lucy, Founders of Arya" />
+            <img src="/arya-founder.png" alt="Nima and Lucy — founders of Arya premium athleisure Los Angeles" />
           </div>
         </div>
       </main>

@@ -16,7 +16,7 @@ export const JOURNAL_POSTS: JournalPost[] = [
       "Standard athleisure sizing was built for one silhouette. Here is why athletic bodies are underserved and what true fit engineering changes.",
     date: "March 2026",
     image: "/arya-fit.jpg",
-    imageAlt: "Movement and athletic fit — Arya journal",
+    imageAlt: "Athletic fit activewear engineered for strong quads and broad shoulders",
   },
   {
     slug: "what-is-nobleflex",
@@ -25,7 +25,7 @@ export const JOURNAL_POSTS: JournalPost[] = [
       "NobleFlex is Arya's proprietary performance fabric. Four-way stretch, compression, UV support, and skin conscious engineering.",
     date: "March 2026",
     image: "/arya-hero.jpg",
-    imageAlt: "Arya lifestyle and NobleFlex — journal",
+    imageAlt: "Woman running through desert — premium athleisure for athletic bodies by Arya",
   },
   {
     slug: "persian-craft-philosophy",
@@ -34,7 +34,7 @@ export const JOURNAL_POSTS: JournalPost[] = [
       "How the Persian standard of precision shapes every stitch, seam, and fabric decision at Arya.",
     date: "March 2026",
     image: "/arya-story.jpg",
-    imageAlt: "Heritage and craft — Arya journal",
+    imageAlt: "Arya brand — Persian craft meets California athleisure",
   },
 ];
 

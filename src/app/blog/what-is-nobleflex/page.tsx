@@ -5,7 +5,7 @@ import { BlogPostHero } from "@/components/BlogPostHero";
 import { getJournalPostBySlug } from "@/lib/journal-posts";
 
 export const metadata = {
-  title: "What Is NobleFlex? Arya's Proprietary Performance Fabric Explained | Arya Journal",
+  title: "What is NobleFlex? PFAS-Free Performance Fabric Engineered for Athletic Builds | Arya",
   description:
     "NobleFlex is Arya's proprietary performance fabric. Four-way stretch, muscle compression, UV protection, and skin certified. Here is what makes it different from conventional synthetic fabrics.",
 };

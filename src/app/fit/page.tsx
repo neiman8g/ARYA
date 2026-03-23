@@ -54,7 +54,7 @@ export default function FitPage() {
           </div>
           <div className="fit-visual">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/arya-fit.jpg" alt="Fit and movement" />
+            <img src="/arya-fit.jpg" alt="Athletic fit activewear engineered for strong quads and broad shoulders" />
           </div>
         </div>
       </main>

@@ -47,19 +47,19 @@ const siteUrl =
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: "Arya — Noble by nature | Premium Sustainable Athleisure",
-  description: "Arya is a premium sustainable athleisure brand engineered for the body that moves. Persian craft philosophy meets California living. Skin-conscious fabrics, athletic fit, and giving back. Shop the Noble Collection.",
+  title: "Arya | Premium Athleisure for Athletic Bodies | PFAS-Free | Los Angeles",
+  description: "Arya is a premium athleisure brand engineered for athletic bodies. No PFAS, no toxic dyes, no virgin synthetics. Built for strong quads, broad shoulders, and bodies that actually move. Persian craft. California soul. Launching Fall 2026.",
   keywords: "sustainable athleisure, premium activewear, athletic fit leggings, skin conscious activewear, sustainable luxury athleisure, Persian American brand, eco friendly athleisure, activewear for athletic bodies, NobleFlex fabric, noble by nature",
   openGraph: {
-    title: "Arya — Noble by nature | Premium Sustainable Athleisure",
-    description: "Arya is a premium sustainable athleisure brand engineered for the body that moves. Persian craft philosophy meets California living. Skin-conscious fabrics, athletic fit, and giving back. Shop the Noble Collection.",
+    title: "Arya | Premium Athleisure for Athletic Bodies | PFAS-Free | Los Angeles",
+    description: "Arya is a premium athleisure brand engineered for athletic bodies. No PFAS, no toxic dyes, no virgin synthetics. Built for strong quads, broad shoulders, and bodies that actually move. Persian craft. California soul. Launching Fall 2026.",
     images: ["/arya-hero.jpg"],
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Arya — Noble by nature | Premium Sustainable Athleisure",
-    description: "Arya is a premium sustainable athleisure brand engineered for the body that moves. Persian craft philosophy meets California living. Skin-conscious fabrics, athletic fit, and giving back. Shop the Noble Collection.",
+    title: "Arya | Premium Athleisure for Athletic Bodies | PFAS-Free | Los Angeles",
+    description: "Arya is a premium athleisure brand engineered for athletic bodies. No PFAS, no toxic dyes, no virgin synthetics. Built for strong quads, broad shoulders, and bodies that actually move. Persian craft. California soul. Launching Fall 2026.",
     images: ["/arya-hero.jpg"],
   },
 };
@@ -85,9 +85,9 @@ export default function RootLayout({
             "@type": "Organization",
             name: "Arya",
             url: "https://www.arya.clothing",
-            logo: "https://www.arya.clothing/arya-hero.jpg",
+            logo: "https://www.arya.clothing/arya-logo.png",
             description:
-              "Premium sustainable athleisure engineered for the body that moves. Persian craft philosophy meets California living.",
+              "Premium athleisure engineered for athletic bodies. PFAS-free, skin-conscious materials. Persian craft. California soul.",
             foundingLocation: "Los Angeles, California",
             sameAs: [
               "https://instagram.com/wear_arya",

@@ -5,7 +5,7 @@ import { BlogPostHero } from "@/components/BlogPostHero";
 import { getJournalPostBySlug } from "@/lib/journal-posts";
 
 export const metadata = {
-  title: "Persian Craft Philosophy and What It Means for How We Make Clothes | Arya Journal",
+  title: "Persian Craft Philosophy and Premium Athleisure | The Arya Standard | Arya",
   description:
     "Persian craft philosophy holds that doing something with complete precision is itself a form of art. Here is how that belief shapes every Arya garment.",
 };

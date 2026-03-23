@@ -365,7 +365,6 @@ export default function AryaPage() {
       <div className={`mobile-menu ${menuOpen ? "open" : ""}`}>
         <div className="mobile-menu-primaries">
           <a href="#waitlist" className="mobile-menu-cta mobile-menu-cta-primary" onClick={closeMenu}>Join Waitlist</a>
-          <Link href="/collection" className="mobile-menu-cta mobile-menu-cta-secondary" onClick={closeMenu}>Shop Collection</Link>
         </div>
         <div className="mobile-menu-divider" />
         <div className="mobile-menu-links">
@@ -477,9 +476,10 @@ export default function AryaPage() {
               <span className="eyebrow-rule" />
               Persian Craft · California Soul · Fall 2026
             </div>
-            <h1 className="hero-h1">
+            <h1 className="sr-only">Premium Athleisure for Athletic Bodies — PFAS-Free Activewear Built in Los Angeles</h1>
+            <h2 className="hero-h1">
               Noble by<br /><em>nature.</em>
-            </h1>
+            </h2>
             <p className="hero-sub">
               Where Persian craft meets California living. Engineered for the body that moves, built for every version of your life.
             </p>
@@ -493,7 +493,7 @@ export default function AryaPage() {
           <WeavePattern id="hero-p" opacity={0.1} color="#8B6A3E" />
           <Image
             src="/arya-hero.jpg"
-            alt="Woman running in desert landscape at golden hour"
+            alt="Woman running through desert — premium athleisure for athletic bodies by Arya"
             className="hero-placeholder"
             priority
             fill
@@ -595,7 +595,7 @@ export default function AryaPage() {
           <div className="ethos-card">
             <Image
               src="/arya-story.jpg"
-              alt="Arya brand story, texture and craft"
+              alt="Arya brand — Persian craft meets California athleisure"
               className="ethos-card-img"
               fill
               sizes="(max-width: 1024px) 100vw, 50vw"
@@ -683,7 +683,7 @@ export default function AryaPage() {
             <div className="fit-main">
               <Image
                 src="/arya-fit.jpg"
-                alt="Fit and movement"
+                alt="Athletic fit activewear engineered for strong quads and broad shoulders"
                 className="fit-section-img"
                 fill
                 sizes="(max-width: 1024px) 100vw, 50vw"
@@ -749,7 +749,7 @@ export default function AryaPage() {
         <div className="f-photo">
           <Image
             src="/arya-founder.png"
-            alt="Nima and Lucy, Founders of Arya"
+            alt="Nima and Lucy — founders of Arya premium athleisure Los Angeles"
             className="founder-photo-img"
             fill
             sizes="(max-width: 1024px) 100vw, 50vw"

@@ -5,7 +5,7 @@ import { BlogPostHero } from "@/components/BlogPostHero";
 import { getJournalPostBySlug } from "@/lib/journal-posts";
 
 export const metadata = {
-  title: "Why Conventional Athleisure Fails Athletic Bodies | Arya Journal",
+  title: "Why Conventional Athleisure Fails Athletic Bodies | Strong Thighs, Broad Shoulders | Arya",
   description:
     "Standard athleisure sizing was built for one silhouette. If you have muscular thighs, broad shoulders, or a chest that moves, the clothes were never designed for you. Here is why.",
 };

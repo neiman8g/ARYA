@@ -30,7 +30,7 @@ export default function StoryPage() {
         <div className="sp-hero">
           <div className="sp-hero-img">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-<img src="/arya-story.jpg" alt="Arya brand story" className="sp-img" />
+<img src="/arya-story.jpg" alt="Arya brand — Persian craft meets California athleisure" className="sp-img" />
           </div>
           <div className="sp-hero-content">
             <span className="sp-label">Our Story</span>

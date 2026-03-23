@@ -5,9 +5,9 @@ import { HomeBrandedFooter } from "@/components/HomeBrandedFooter";
 import { JOURNAL_POSTS } from "@/lib/journal-posts";
 
 export const metadata = {
-  title: "Journal | Arya | Sustainable Athleisure Stories and Insights",
+  title: "The Journal | Athleisure for Athletic Bodies | Fit, Fabric & Wellness | Arya",
   description:
-    "The Arya Journal. Stories on sustainable materials, movement-friendly design, Persian craft philosophy, and the people building a better standard in athleisure.",
+    "Read about athletic fit engineering, skin-conscious fabrics, PFAS-free activewear, and Persian craft philosophy from the founders of Arya.",
 };
 
 export default function BlogIndexPage() {
