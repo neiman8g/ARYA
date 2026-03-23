@@ -3,6 +3,10 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  /* Fluid horizontal inset: scales with viewport width (wider screens get more breathing room) */
+  --arya-page-gutter: clamp(24px, 4vw + 12px, 120px);
+  /* Upper bound for primary content width on large desktops */
+  --arya-content-max: 1680px;
   --arya-sand: #F5EFE4;
   --arya-sand-2: #EEE6D8;
   --arya-sand-3: #E6DCC9;
@@ -29,6 +33,12 @@
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
+  }
+}
+
+@media (min-width: 1440px) {
+  :root {
+    --arya-page-gutter: clamp(40px, 5vw + 16px, 140px);
   }
 }
 

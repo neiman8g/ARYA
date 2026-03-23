@@ -81,7 +81,7 @@ export default function FitGuidePage() {
 
         <section className="sp-waitlist-cta">
           <h2>Be first. Be noble.</h2>
-          <p>Join the waitlist for early access, founder updates, and pre-order pricing.</p>
+          <p>Join the waitlist for early access and founder updates.</p>
           <Link href="/#waitlist" className="sp-btn">Join Waitlist</Link>
         </section>
       </main>

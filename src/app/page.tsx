@@ -77,7 +77,6 @@ type CartItem = {
   id: string;
   productId: string;
   name: string;
-  price: string;
   size: string;
   color: string;
   qty: number;
@@ -125,10 +124,7 @@ function ProductCard({ p, selectedColors, setColor }: ProductCardProps) {
           </div>
         )}
         <div className="p-foot">
-          <div className="p-price">
-            <span className="p-price-main">{p.price}<small>USD</small></span>
-            <div className="p-coming">Coming Fall 2026</div>
-          </div>
+          <div className="p-coming">Coming Fall 2026</div>
           <Link href={`/products/${p.slug}`} className="btn-p">
             Select size
           </Link>
@@ -329,7 +325,6 @@ export default function AryaPage() {
   const removeFromCart = (id: string) =>
     setCart(prev => prev.filter(i => i.id !== id));
 
-  const cartTotal = cart.reduce((sum, i) => sum + parseInt(i.price.replace("$", ""), 10) * i.qty, 0);
   const cartCount = cart.reduce((sum, i) => sum + i.qty, 0);
 
   const goToCheckout = async () => {
@@ -341,7 +336,7 @@ export default function AryaPage() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          items: cart.map(({ id, name, price, size, color, qty }) => ({ id, name, price, size, color, qty })),
+          items: cart.map(({ id, productId, name, size, color, qty }) => ({ id, productId, name, size, color, qty })),
         }),
       });
       const data = await res.json().catch(() => ({}));
@@ -418,9 +413,6 @@ export default function AryaPage() {
                       <button type="button" className="cart-item-remove" onClick={() => removeFromCart(item.id)}>Remove</button>
                     </div>
                   </div>
-                  <div className="cart-item-price">
-                    {(parseInt(item.price.replace("$", ""), 10) * item.qty).toLocaleString("en-US", { style: "currency", currency: "USD" })}
-                  </div>
                 </div>
               ))
             )}
@@ -428,10 +420,6 @@ export default function AryaPage() {
           {cart.length > 0 && (
             <div className="cart-drawer-footer">
               <p className="cart-preorder-note">Pre-orders ship Spring 2026. Free shipping on all orders.</p>
-              <div className="cart-total">
-                <span>Total</span>
-                <span>{cartTotal.toLocaleString("en-US", { style: "currency", currency: "USD" })}</span>
-              </div>
               {checkoutError && <p className="cart-checkout-error">{checkoutError}</p>}
               <button type="button" className="cart-checkout" onClick={goToCheckout} disabled={checkoutLoading}>
                 {checkoutLoading ? "Redirecting to payment…" : "Checkout Pre-Order"}
@@ -656,11 +644,11 @@ export default function AryaPage() {
             <div className="stat-l">Of athleisure products still made from conventional synthetic materials in 2026</div>
           </div>
           <div className="stat">
-            <div className="stat-n">$176B</div>
+            <div className="stat-n">176B</div>
             <div className="stat-l">Sustainable athleisure market by 2030, doubling in six years</div>
           </div>
           <div className="stat">
-            <div className="stat-n">$415B</div>
+            <div className="stat-n">415B</div>
             <div className="stat-l">Total athleisure market in 2026, premium sustainable is the fastest growing segment</div>
           </div>
           <div className="stat">
@@ -778,13 +766,13 @@ export default function AryaPage() {
         <div className="wl-inner">
           <div className="label" style={{ justifyContent: "center" }}>Early Access</div>
           <h2 className="display" style={{ marginBottom: 16, fontSize: "clamp(42px,5vw,68px)" }}>Be first.<br /><em>Be noble.</em></h2>
-          <p className="wl-sub">Join the Arya waitlist for early access to the launch collection, founder updates, and pre-order pricing. Men&apos;s and women&apos;s dropping together.<br /><span className="wl-launch">Launching Fall 2026. Your early access is reserved.</span></p>
+          <p className="wl-sub">Join the Arya waitlist for early access to the launch collection and founder updates. Men&apos;s and women&apos;s dropping together.<br /><span className="wl-launch">Launching Fall 2026. Your early access is reserved.</span></p>
           {submitted ? (
             <div className="wl-success"><p>You are on the list. We will be in touch.</p></div>
           ) : (
             <>
               {error && <p className="wl-error">{error}</p>}
-              <p className="wl-priority">Waitlist members get first access and exclusive pre-order pricing before the public.</p>
+              <p className="wl-priority">Waitlist members get first access before the public.</p>
               <form className="wl-form" onSubmit={handleSubmit}>
                 <label htmlFor="waitlist-email" className="sr-only">Your email address</label>
                 <input

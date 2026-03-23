@@ -97,8 +97,6 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
               },
               offers: {
                 "@type": "Offer",
-                price: "118",
-                priceCurrency: "USD",
                 availability: "https://schema.org/PreOrder",
               },
             })}

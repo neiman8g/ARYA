@@ -1,36 +1,14 @@
+import Image from "next/image";
 import Link from "next/link";
 import { SectionNav } from "@/components/SectionNav";
 import { HomeBrandedFooter } from "@/components/HomeBrandedFooter";
+import { JOURNAL_POSTS } from "@/lib/journal-posts";
 
 export const metadata = {
   title: "Journal | Arya | Sustainable Athleisure Stories and Insights",
   description:
     "The Arya Journal. Stories on sustainable materials, movement-friendly design, Persian craft philosophy, and the people building a better standard in athleisure.",
 };
-
-const POSTS = [
-  {
-    title: "Why conventional athleisure fails athletic bodies",
-    excerpt:
-      "Standard athleisure sizing was built for one silhouette. Here is why athletic bodies are underserved and what true fit engineering changes.",
-    date: "March 2026",
-    href: "/blog/why-conventional-athleisure-fails-athletic-bodies",
-  },
-  {
-    title: "What is NobleFlex?",
-    excerpt:
-      "NobleFlex is Arya's proprietary performance fabric. Four-way stretch, compression, UV support, and skin conscious engineering.",
-    date: "March 2026",
-    href: "/blog/what-is-nobleflex",
-  },
-  {
-    title: "Persian craft philosophy and what it means for how we make clothes",
-    excerpt:
-      "How the Persian standard of precision shapes every stitch, seam, and fabric decision at Arya.",
-    date: "March 2026",
-    href: "/blog/persian-craft-philosophy",
-  },
-];
 
 export default function BlogIndexPage() {
   return (
@@ -45,9 +23,17 @@ export default function BlogIndexPage() {
         <span className="sp-label">ARYA JOURNAL</span>
         <h1>The Journal.</h1>
         <div className="blog-grid">
-          {POSTS.map((post) => (
-            <Link key={post.href} href={post.href} className="blog-card">
-              <div className="blog-card-visual" aria-hidden />
+          {JOURNAL_POSTS.map((post) => (
+            <Link key={post.slug} href={`/blog/${post.slug}`} className="blog-card">
+              <div className="blog-card-visual">
+                <Image
+                  src={post.image}
+                  alt={post.imageAlt}
+                  fill
+                  className="blog-card-image"
+                  sizes="(max-width: 900px) 100vw, 33vw"
+                />
+              </div>
               <div className="blog-card-body">
                 <p className="blog-date">{post.date}</p>
                 <h2>{post.title}</h2>

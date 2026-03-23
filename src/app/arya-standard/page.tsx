@@ -178,12 +178,12 @@ export default function AryaStandardPage() {
             </p>
             <p>
               Most brands never think about this. They engineer for performance
-              metrics and price points. The question of what sits against your
+              metrics and margins. The question of what sits against your
               skin all day is an afterthought at best.
             </p>
             <p>
               At Arya it is the first question. Before fit. Before performance.
-              Before price. What is this fabric doing to the person wearing it?
+              Before anything else. What is this fabric doing to the person wearing it?
             </p>
             <p>
               We believe skin conscious is the new luxury standard. Not as a

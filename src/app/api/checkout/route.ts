@@ -1,19 +1,15 @@
 import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
+import { PRODUCT_UNIT_PRICE_USD } from "@/lib/product-prices";
 
 export type CheckoutItem = {
   id: string;
+  productId: string;
   name: string;
-  price: string; // e.g. "$118"
   size: string;
   color?: string;
   qty: number;
 };
-
-function parsePrice(price: string): number {
-  const num = parseInt(price.replace(/\$/g, "").trim(), 10);
-  return Number.isNaN(num) ? 0 : num;
-}
 
 export async function POST(request: NextRequest) {
   const stripeSecret = process.env.STRIPE_SECRET_KEY;
@@ -43,13 +39,24 @@ export async function POST(request: NextRequest) {
     );
   }
 
+  for (const item of items) {
+    const unitUsd = PRODUCT_UNIT_PRICE_USD[item.productId];
+    if (unitUsd == null || unitUsd <= 0) {
+      return NextResponse.json(
+        { error: "Invalid cart item" },
+        { status: 400 }
+      );
+    }
+  }
+
   const stripe = new Stripe(stripeSecret);
   const origin = request.headers.get("origin") || process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
   const baseUrl = origin.replace(/\/$/, "");
 
   const line_items: Stripe.Checkout.SessionCreateParams.LineItem[] = items.map(
     (item) => {
-      const unitAmount = parsePrice(item.price) * 100; // cents
+      const unitUsd = PRODUCT_UNIT_PRICE_USD[item.productId]!;
+      const unitAmount = unitUsd * 100; // cents
       return {
         price_data: {
           currency: "usd",

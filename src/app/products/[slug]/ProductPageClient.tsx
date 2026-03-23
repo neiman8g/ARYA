@@ -120,7 +120,7 @@ export default function ProductPageClient({ product }: { product: Product }) {
             >
               {!selectedSize ? "Select Size" : added ? "Added ✓" : "Pre-Order"}
             </button>
-            <p className="pp-delivery">Expected delivery Fall 2026. Join the waitlist to secure early access pricing.</p>
+            <p className="pp-delivery">Expected delivery Fall 2026. Join the waitlist for early access.</p>
             <p className="pp-waitlist-cta">
               Not ready? <Link href="/#waitlist" className="pp-waitlist-link">Join the waitlist for launch updates.</Link>
             </p>
@@ -130,7 +130,6 @@ export default function ProductPageClient({ product }: { product: Product }) {
           <div className="pp-cat">{product.gender}</div>
           <h1 className="pp-title">{product.name}</h1>
           {product.oneLine && <p className="pp-oneline">{textWithFabricLinks(product.oneLine)}</p>}
-          <p className="pp-price">{product.price} <small>USD</small></p>
           {product.fabricStory && product.features ? (
             <>
               <p className="pp-fabric">
@@ -168,7 +167,6 @@ export default function ProductPageClient({ product }: { product: Product }) {
                     <AryaMark size={40} color="#8B6A3E" />
                   </div>
                   <span className="pp-crosssell-name">{p.name}</span>
-                  <span className="pp-crosssell-price">{p.price}</span>
                 </Link>
               );
             })}

@@ -17,13 +17,18 @@
 .p-nav-links a:hover { color: var(--arya-ink); }
 .p-nav-cta { background: var(--arya-ink) !important; color: var(--arya-sand) !important; padding: 8px 20px !important; }
 .p-nav-cta:hover { background: var(--arya-cognac) !important; }
-.p-main { padding: 120px 32px 80px; max-width: 900px; margin: 0 auto; }
+.p-main {
+  padding: 120px var(--arya-page-gutter) 80px;
+  max-width: min(var(--arya-content-max), 100%);
+  margin: 0 auto;
+  box-sizing: border-box;
+}
 .p-back { font-size: 12px; letter-spacing: .2em; text-transform: uppercase; color: var(--arya-ink-60); text-decoration: none; margin-bottom: 32px; display: inline-block; }
 .p-back:hover { color: var(--arya-ink); }
 .p-foot.site-footer-root {
-  padding: 40px 32px;
-  padding-left: max(32px, env(safe-area-inset-left, 0px));
-  padding-right: max(32px, env(safe-area-inset-right, 0px));
+  padding: 40px var(--arya-page-gutter);
+  padding-left: max(var(--arya-page-gutter), env(safe-area-inset-left, 0px));
+  padding-right: max(var(--arya-page-gutter), env(safe-area-inset-right, 0px));
   border-top: 1px solid var(--arya-sand-4);
   display: flex;
   flex-direction: column;
@@ -65,8 +70,20 @@
 }
 .p-foot.site-footer-root .site-footer-copy { font-size: 11px; letter-spacing: .1em; color: var(--arya-ink-60); margin: 0; }
 /* Product detail client component: image + options (color, size, pre-order) together for best UX */
-.pp-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
-.pp-image-options { display: flex; flex-direction: column; gap: 0; position: sticky; top: 100px; }
+.pp-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 48px;
+  align-items: start;
+}
+.pp-image-options {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  position: sticky;
+  top: 100px;
+  min-width: 0;
+}
 .pp-options-stack { padding: 24px 0 0; border-top: 1px solid var(--arya-sand-4); margin-top: 0; }
 .pp-options-stack .pp-color { margin-bottom: 20px; }
 .pp-options-stack .pp-size { margin-bottom: 20px; }
@@ -77,7 +94,10 @@
 .pp-content { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 12px; }
 .pp-name { font-family: var(--font-cormorant), serif; font-size: 18px; font-style: italic; color: var(--arya-ink-60); letter-spacing: .08em; }
 .pp-tag { position: absolute; top: 12px; left: 0; background: var(--arya-ink); color: var(--arya-sand); font-size: 14px; letter-spacing: .18em; text-transform: uppercase; font-weight: 500; padding: 6px 12px; }
-.pp-detail { padding-top: 0; }
+.pp-detail {
+  padding-top: 0;
+  min-width: 0;
+}
 .pp-cat { font-size: 11px; letter-spacing: .4em; text-transform: uppercase; color: var(--arya-cognac); font-weight: 600; margin-bottom: 8px; }
 .pp-title { font-family: var(--font-cormorant), serif; font-size: 32px; font-weight: 500; color: var(--arya-ink); margin: 0 0 8px; line-height: 1.2; }
 .pp-oneline { font-size: 15px; line-height: 1.5; color: var(--arya-ink-80); margin: 0 0 16px; font-weight: 500; }
@@ -133,15 +153,33 @@
 
 @media (min-width: 1025px) {
   .p-main {
-    padding: 132px 48px 96px;
-    max-width: 960px;
+    padding: 132px var(--arya-page-gutter) 96px;
+    max-width: min(var(--arya-content-max), 100%);
   }
+  /* Story column wider than gallery + buy box (avoids cramped copy at ~1025px) */
   .pp-layout {
-    gap: 56px;
+    grid-template-columns: minmax(0, 45%) minmax(0, 55%);
+    gap: clamp(48px, 5vw, 80px);
     align-items: start;
   }
   .pp-title {
-    font-size: clamp(34px, 2.8vw, 42px);
+    font-size: clamp(34px, 2.6vw, 44px);
+  }
+  .pp-oneline {
+    font-size: 17px;
+    line-height: 1.55;
+    max-width: 52ch;
+  }
+  .pp-fabric,
+  .pp-desc {
+    font-size: 17px;
+    line-height: 1.75;
+    max-width: 58ch;
+  }
+  .pp-features li,
+  .pp-specs li {
+    font-size: 15px;
+    padding: 10px 0;
   }
   .pp-crosssell {
     margin-top: 64px;
@@ -156,18 +194,23 @@
   }
 }
 
-@media (min-width: 1440px) {
-  .p-nav {
-    padding-left: max(48px, calc((100vw - 960px) / 2));
-    padding-right: max(48px, calc((100vw - 960px) / 2));
+@media (min-width: 1280px) {
+  .pp-layout {
+    grid-template-columns: minmax(0, 42%) minmax(0, 58%);
+    gap: clamp(56px, 5vw, 88px);
   }
+}
+
+/* Tablet / small laptop: keep two columns but bias width to the story */
+@media (min-width: 769px) and (max-width: 1024px) {
   .p-main {
-    padding-left: max(48px, calc((100vw - 960px) / 2));
-    padding-right: max(48px, calc((100vw - 960px) / 2));
+    max-width: min(var(--arya-content-max), 100%);
+    padding-left: var(--arya-page-gutter);
+    padding-right: var(--arya-page-gutter);
   }
-  .p-foot {
-    padding-left: max(48px, calc((100vw - 960px) / 2));
-    padding-right: max(48px, calc((100vw - 960px) / 2));
+  .pp-layout {
+    grid-template-columns: minmax(0, 44%) minmax(0, 56%);
+    gap: 36px;
   }
 }
 

@@ -78,7 +78,7 @@ const FAQ_SECTIONS = [
     items: [
       {
         q: "When will Arya ship?",
-        a: "Arya launches Fall 2026. Join the waitlist to receive early access and pre-order pricing before the general public.",
+        a: "Arya launches Fall 2026. Join the waitlist to receive early access before the general public.",
       },
       {
         q: "Can I pre-order now?",
@@ -163,7 +163,7 @@ export default function FAQPage() {
 
         <section className="sp-waitlist-cta">
           <h2>Be first. Be noble.</h2>
-          <p>Join the waitlist for early access, founder updates, and pre-order pricing.</p>
+          <p>Join the waitlist for early access and founder updates.</p>
           <Link href="/#waitlist" className="sp-btn">Join Waitlist</Link>
         </section>
       </main>

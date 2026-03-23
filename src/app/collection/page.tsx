@@ -42,7 +42,6 @@ export default function CollectionPage() {
                 <div className="coll-info">
                   <span className="coll-cat">{p.gender}</span>
                   <span className="coll-name">{p.name}</span>
-                  <span className="coll-price">{p.price}</span>
                   <span className="coll-coming">Coming Fall 2026</span>
                 </div>
               </Link>
@@ -64,7 +63,6 @@ export default function CollectionPage() {
                 <div className="coll-info">
                   <span className="coll-cat">{p.gender}</span>
                   <span className="coll-name">{p.name}</span>
-                  <span className="coll-price">{p.price}</span>
                   <span className="coll-coming">Coming Fall 2026</span>
                 </div>
               </Link>

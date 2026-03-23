@@ -2,6 +2,7 @@ import Link from "next/link";
 import { SectionNav } from "@/components/SectionNav";
 import { SiteFooter } from "@/components/SiteFooter";
 import { BlogPostHero } from "@/components/BlogPostHero";
+import { getJournalPostBySlug } from "@/lib/journal-posts";
 
 export const metadata = {
   title: "What Is NobleFlex? Arya's Proprietary Performance Fabric Explained | Arya Journal",
@@ -10,13 +11,19 @@ export const metadata = {
 };
 
 export default function WhatIsNobleflexPostPage() {
+  const journal = getJournalPostBySlug("what-is-nobleflex");
   return (
     <div className="section-page">
       <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Jost:wght@400;500;600&display=swap" rel="stylesheet" />
       <SectionNav />
 
       <main className="sp-main article-main sp-main--hero-first">
-        <BlogPostHero eyebrow="MATERIALS" title="What is NobleFlex?" />
+        <BlogPostHero
+          eyebrow="MATERIALS"
+          title="What is NobleFlex?"
+          imageSrc={journal?.image}
+          imageAlt={journal?.imageAlt}
+        />
         <p className="article-date">March 2026</p>
         <p>NobleFlex is the fabric we built the Noble Legging and Noble Sports Bra from. It is Arya's proprietary performance fabric and it was chosen for one reason: it is the best option available for the body wearing it.</p>
 
@@ -36,7 +43,7 @@ export default function WhatIsNobleflexPostPage() {
 
         <section className="sp-waitlist-cta">
           <h2>Be first. Be noble.</h2>
-          <p>Join the waitlist for early access, founder updates, and pre-order pricing.</p>
+          <p>Join the waitlist for early access and founder updates.</p>
           <Link href="/#waitlist" className="sp-btn">Join Waitlist</Link>
         </section>
       </main>

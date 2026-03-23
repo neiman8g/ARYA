@@ -16,12 +16,12 @@
   max-width: 100%;
   box-sizing: border-box;
   display: flex; align-items: center; justify-content: space-between;
-  padding: 26px 64px; padding-top: max(26px, var(--safe-top));
+  padding: 26px var(--arya-page-gutter); padding-top: max(26px, var(--safe-top));
   background: transparent; border-bottom: 1px solid transparent;
   transition: all .45s cubic-bezier(.16,1,.3,1);
 }
 .sp-nav.stuck {
-  padding: 14px 64px; padding-top: max(14px, var(--safe-top));
+  padding: 14px var(--arya-page-gutter); padding-top: max(14px, var(--safe-top));
   background: rgba(245,239,228,.97);
   backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--arya-sand-4);
@@ -67,8 +67,8 @@
 .sp-mobile-menu-divider { width: 40px; height: 1px; background: var(--arya-sand-4); margin: 20px 0; }
 .mission .sp-hamburger { color: rgba(245,239,228,.95); }
 .sp-main {
-  padding: 140px 48px 80px;
-  max-width: 1100px;
+  padding: 140px var(--arya-page-gutter) 80px;
+  max-width: min(var(--arya-content-max), 100%);
   margin: 0 auto;
   width: 100%;
   box-sizing: border-box;
@@ -77,9 +77,9 @@
 .sp-label { font-size: 11px; letter-spacing: .45em; text-transform: uppercase; color: var(--arya-cognac); font-weight: 600; display: block; margin-bottom: 20px; }
 /* Shared footer: desktop = classic sp-foot row; mobile = brand + socials + contact */
 .sp-foot.site-footer-root {
-  padding: 48px;
-  padding-left: max(48px, var(--safe-left));
-  padding-right: max(48px, var(--safe-right));
+  padding: 48px var(--arya-page-gutter);
+  padding-left: max(var(--arya-page-gutter), var(--safe-left));
+  padding-right: max(var(--arya-page-gutter), var(--safe-right));
   border-top: 1px solid var(--arya-sand-4);
   display: flex;
   flex-direction: column;
@@ -246,7 +246,7 @@ img.sp-img {
 }
 .mission .sp-cta { background: var(--arya-sand) !important; color: var(--arya-ink) !important; }
 .mission .sp-cta:hover { background: #C9A96E !important; }
-.mission-main { max-width: 760px; margin: 0 auto; text-align: center; }
+.mission-main { max-width: min(760px, 100%); margin: 0 auto; text-align: center; }
 .mission-main .sp-label { color: rgba(245,239,228,.5); }
 .mission-main h1 { font-family: var(--font-cormorant), serif; font-size: clamp(40px, 5vw, 64px); font-weight: 400; line-height: 1.1; margin: 0 0 32px; }
 .mission-main h1 em { font-style: italic; color: #C9A96E; }
@@ -332,14 +332,14 @@ img.sp-img {
 /* Desktop (≥1025): align with homepage rhythm — spacing, collection grid, footers */
 @media (min-width: 1025px) {
   .sp-main {
-    padding: 152px max(56px, calc((100vw - 1120px) / 2)) 92px;
-    max-width: 1120px;
+    padding: 152px var(--arya-page-gutter) 92px;
+    max-width: min(var(--arya-content-max), 100%);
   }
   .sp-foot.site-footer-root {
     padding-top: 52px;
     padding-bottom: 48px;
-    padding-left: max(56px, calc((100vw - 1120px) / 2));
-    padding-right: max(56px, calc((100vw - 1120px) / 2));
+    padding-left: max(var(--arya-page-gutter), var(--safe-left));
+    padding-right: max(var(--arya-page-gutter), var(--safe-right));
   }
   .coll-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -356,7 +356,7 @@ img.sp-img {
   }
   .sp-waitlist-cta {
     margin-top: 64px;
-    padding: 48px 40px;
+    padding: 48px var(--arya-page-gutter);
   }
   .faq-section {
     margin-top: 48px;
@@ -385,23 +385,6 @@ img.sp-img {
   .sp-hero,
   .fit-layout {
     gap: 72px;
-  }
-}
-
-/* Large desktop: align nav padding with homepage on ultra-wide screens */
-@media (min-width: 1440px) {
-  .sp-nav, .sp-nav.stuck {
-    padding-left: max(64px, calc((100vw - 1320px) / 2));
-    padding-right: max(64px, calc((100vw - 1320px) / 2));
-  }
-  .sp-main {
-    padding-left: max(80px, calc((100vw - 1200px) / 2));
-    padding-right: max(80px, calc((100vw - 1200px) / 2));
-    max-width: 1200px;
-  }
-  .sp-foot.site-footer-root {
-    padding-left: max(48px, calc((100vw - 1200px) / 2));
-    padding-right: max(48px, calc((100vw - 1200px) / 2));
   }
 }
 
@@ -561,10 +544,15 @@ img.sp-img {
   box-shadow: 0 12px 40px rgba(30, 24, 16, 0.12);
 }
 .blog-card-visual {
+  position: relative;
   height: 200px;
   min-height: 200px;
   flex-shrink: 0;
+  overflow: hidden;
   background: linear-gradient(165deg, #c4a882 0%, #e8ddd0 100%);
+}
+.blog-card-visual .blog-card-image {
+  object-fit: cover;
 }
 .blog-card-body {
   padding: 20px;
@@ -578,7 +566,7 @@ img.sp-img {
 .blog-card p { font-size: 16px; line-height: 1.65; color: var(--arya-ink-80); margin: 0 0 16px; flex: 1; }
 .blog-read { color: #8B6A3E; text-decoration: none; font-style: italic; font-family: var(--font-cormorant), serif; font-size: 22px; margin-top: auto; }
 .blog-read:hover { text-decoration: underline; text-underline-offset: 3px; }
-.article-main { max-width: 860px; }
+.article-main { max-width: min(860px, 100%); }
 .article-date { font-size: 11px; letter-spacing: .24em; text-transform: uppercase; color: var(--arya-cognac); font-weight: 600; margin: 0 0 10px; }
 .article-main h1 { margin-bottom: 20px; }
 .article-main h2 { font-family: var(--font-cormorant), serif; font-size: clamp(28px, 3vw, 40px); font-weight: 500; color: var(--arya-ink); margin: 28px 0 10px; }
@@ -620,19 +608,14 @@ img.sp-img {
   display: flex;
   align-items: flex-end;
   background: linear-gradient(165deg, #c4a882 0%, #e8ddd0 55%, #f0e8dc 100%);
-  padding: max(120px, calc(72px + var(--safe-top))) max(24px, env(safe-area-inset-right)) 40px max(24px, env(safe-area-inset-left));
+  padding: max(120px, calc(72px + var(--safe-top))) max(var(--arya-page-gutter), env(safe-area-inset-right)) 40px max(var(--arya-page-gutter), env(safe-area-inset-left));
   box-sizing: border-box;
 }
 .sp-page-hero-inner {
   width: 100%;
-  max-width: 1120px;
+  max-width: min(var(--arya-content-max), 100%);
   margin: 0 auto;
   box-sizing: border-box;
-}
-@media (min-width: 1440px) {
-  .sp-page-hero-inner {
-    max-width: 1200px;
-  }
 }
 .sp-page-hero .sp-label {
   margin-bottom: 12px;
@@ -656,8 +639,19 @@ img.sp-img {
   display: flex;
   align-items: flex-end;
   background: linear-gradient(165deg, #c4a882 0%, #e8ddd0 55%, #f5efe4 100%);
-  padding: max(100px, calc(56px + var(--safe-top))) max(24px, env(safe-area-inset-right)) 36px max(24px, env(safe-area-inset-left));
+  padding: max(100px, calc(56px + var(--safe-top))) max(var(--arya-page-gutter), env(safe-area-inset-right)) 36px max(var(--arya-page-gutter), env(safe-area-inset-left));
   box-sizing: border-box;
+}
+.blog-post-hero--image {
+  background: #1e1810;
+}
+.blog-post-hero-media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+.blog-post-hero-img {
+  object-fit: cover;
 }
 @media (min-width: 769px) {
   .blog-post-hero {
@@ -669,14 +663,23 @@ img.sp-img {
 .blog-post-hero-gradient {
   position: absolute;
   inset: 0;
+  z-index: 1;
   background: linear-gradient(180deg, transparent 0%, rgba(30, 24, 16, 0.06) 100%);
   pointer-events: none;
 }
+.blog-post-hero--image .blog-post-hero-gradient {
+  background: linear-gradient(
+    180deg,
+    rgba(30, 24, 16, 0.35) 0%,
+    rgba(30, 24, 16, 0.72) 55%,
+    rgba(30, 24, 16, 0.88) 100%
+  );
+}
 .blog-post-hero-inner {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   width: 100%;
-  max-width: 860px;
+  max-width: min(860px, 100%);
   margin: 0 auto;
   box-sizing: border-box;
 }
@@ -689,6 +692,9 @@ img.sp-img {
   display: block;
   margin-bottom: 10px;
 }
+.blog-post-hero--image .blog-post-hero-eyebrow {
+  color: rgba(201, 169, 110, 0.95);
+}
 .blog-post-hero-title {
   font-family: var(--font-cormorant), serif;
   font-size: clamp(30px, 4vw, 46px);
@@ -697,10 +703,14 @@ img.sp-img {
   color: var(--arya-ink);
   margin: 0;
 }
+.blog-post-hero--image .blog-post-hero-title {
+  color: var(--arya-sand);
+  text-shadow: 0 2px 28px rgba(0, 0, 0, 0.45);
+}
 
 /* Homepage-style footer on /blog (not scoped to .arya-home) */
 .home-branded-footer {
-  padding: clamp(52px, 6vw, 72px) 64px clamp(64px, 5vw, 72px);
+  padding: clamp(52px, 6vw, 72px) var(--arya-page-gutter) clamp(64px, 5vw, 72px);
   background: var(--arya-ink);
   color: rgba(245, 239, 228, 0.92);
 }
@@ -711,7 +721,7 @@ img.sp-img {
   margin-bottom: clamp(24px, 3.5vw, 40px);
   align-items: start;
   width: 100%;
-  max-width: 1200px;
+  max-width: min(var(--arya-content-max), 100%);
   margin-left: auto;
   margin-right: auto;
   box-sizing: border-box;
@@ -789,7 +799,7 @@ img.sp-img {
   align-items: center;
   padding-top: clamp(20px, 2.5vw, 28px);
   border-top: 1px solid rgba(245, 239, 228, 0.08);
-  max-width: 1200px;
+  max-width: min(var(--arya-content-max), 100%);
   margin-left: auto;
   margin-right: auto;
   width: 100%;

@@ -2,6 +2,7 @@ import Link from "next/link";
 import { SectionNav } from "@/components/SectionNav";
 import { SiteFooter } from "@/components/SiteFooter";
 import { BlogPostHero } from "@/components/BlogPostHero";
+import { getJournalPostBySlug } from "@/lib/journal-posts";
 
 export const metadata = {
   title: "Persian Craft Philosophy and What It Means for How We Make Clothes | Arya Journal",
@@ -10,6 +11,7 @@ export const metadata = {
 };
 
 export default function PersianCraftPostPage() {
+  const journal = getJournalPostBySlug("persian-craft-philosophy");
   return (
     <div className="section-page">
       <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Jost:wght@400;500;600&display=swap" rel="stylesheet" />
@@ -19,6 +21,8 @@ export default function PersianCraftPostPage() {
         <BlogPostHero
           eyebrow="HERITAGE"
           title="Persian craft philosophy and what it means for how we make clothes"
+          imageSrc={journal?.image}
+          imageAlt={journal?.imageAlt}
         />
         <p className="article-date">March 2026</p>
         <p>The name Arya comes from the ancient Persian word for noble and honorable. It is the etymological root of the word Iran itself. That name was not chosen for its sound. It was chosen for what it demands.</p>
@@ -40,7 +44,7 @@ export default function PersianCraftPostPage() {
 
         <section className="sp-waitlist-cta">
           <h2>Be first. Be noble.</h2>
-          <p>Join the waitlist for early access, founder updates, and pre-order pricing.</p>
+          <p>Join the waitlist for early access and founder updates.</p>
           <Link href="/#waitlist" className="sp-btn">Join Waitlist</Link>
         </section>
       </main>

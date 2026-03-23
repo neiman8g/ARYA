@@ -5,7 +5,6 @@ export type Product = {
   slug: string;
   gender: string;
   name: string;
-  price: string;
   desc: string;
   specs: string[];
   sizes: string[];
@@ -22,7 +21,6 @@ export const PRODUCTS: Product[] = [
     slug: "noble-legging",
     gender: "Women's",
     name: "The Noble Legging",
-    price: "$118",
     desc: "Skin-conscious NobleFlex. No PFAS, no toxic dyes — four-way stretch and compression engineered for athletic builds. XS to 3XL.",
     specs: ["Extended thigh room", "High-rise waistband", "NobleFlex proprietary blend — see The Arya Standard", "Geometric waistband detail"],
     sizes: ["XS", "S", "M", "L", "XL", "2XL", "3XL"],
@@ -52,7 +50,6 @@ export const PRODUCTS: Product[] = [
     slug: "noble-bra",
     gender: "Women's",
     name: "The Noble Sports Bra",
-    price: "$68",
     desc: "Skin-conscious NobleFlex. No PFAS, no toxic dyes — medium to high support with four-way stretch. XS to 3XL.",
     specs: ["Encapsulation + compression hybrid", "NobleFlex proprietary blend — see The Arya Standard", "Adjustable straps", "Hook-free"],
     sizes: ["XS", "S", "M", "L", "XL", "2XL", "3XL"],
@@ -81,7 +78,6 @@ export const PRODUCTS: Product[] = [
     slug: "noble-long-crop",
     gender: "Women's",
     name: "The Noble Long Crop",
-    price: "$88",
     desc: "NobleFlex fabric. Designed to move with you and pair with the Noble Sports Bra.",
     specs: [],
     sizes: ["XS", "S", "M", "L", "XL", "2XL", "3XL"],
@@ -110,7 +106,6 @@ export const PRODUCTS: Product[] = [
     slug: "noble-short",
     gender: "Men's",
     name: "The Noble Short",
-    price: "$98",
     desc: "Skin-conscious NobleDry. No PFAS, no toxic dyes — extended thigh room and four-way stretch. S to 3XL.",
     specs: ["Extended thigh circumference", "NobleDry proprietary blend — see The Arya Standard", "Geometric waistband detail", "Deep side pockets"],
     sizes: ["S", "M", "L", "XL", "2XL", "3XL"],
@@ -139,7 +134,6 @@ export const PRODUCTS: Product[] = [
     slug: "noble-tee",
     gender: "Men's",
     name: "The Noble Tee",
-    price: "$78",
     desc: "Skin-conscious NobleSoft. No PFAS, no toxic dyes — silk-like feel, no synthetics against your skin. S to 3XL.",
     specs: ["Extended shoulder and sleeve room", "NobleSoft natural blend — see The Arya Standard", "Minimal seam construction"],
     sizes: ["S", "M", "L", "XL", "2XL", "3XL"],
@@ -168,7 +162,6 @@ export const PRODUCTS: Product[] = [
     slug: "noble-pant",
     gender: "Men's",
     name: "The Noble Pant",
-    price: "$128",
     desc: "NobleDry fabric. Five pocket design. Built for the body that moves from the trail to the table.",
     specs: [],
     sizes: ["S", "M", "L", "XL", "2XL", "3XL"],
