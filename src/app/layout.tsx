@@ -56,8 +56,10 @@ export const metadata: Metadata = {
     images: ["https://www.arya.clothing/arya-hero.jpg"],
   },
   twitter: {
+    card: "summary_large_image",
     title: "Arya | Premium Activewear for Athletic Bodies | PFAS-Free | Los Angeles",
     description: "Arya is a premium activewear brand engineered for athletic bodies. No PFAS, no toxic dyes, no virgin synthetics. Persian craft. California soul. Launching Fall 2026.",
+    images: ["https://www.arya.clothing/arya-hero.jpg"],
   },
 };
 
