@@ -1,8 +1,9 @@
 import type { Metadata, Viewport } from "next";
 import Script from "next/script";
-import { Cormorant_Garamond, Geist, Geist_Mono, Jost } from "next/font/google";
+import { Cormorant_Garamond, Geist, Geist_Mono, Inter, Jost } from "next/font/google";
 import "./globals.css";
 import "./home-page.css";
+import { WaitlistPopup } from "@/components/WaitlistPopup";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -26,6 +27,13 @@ const cormorantGaramond = Cormorant_Garamond({
   subsets: ["latin"],
   weight: ["300", "400", "500"],
   style: ["normal", "italic"],
+  display: "swap",
+});
+
+const inter = Inter({
+  variable: "--font-inter",
+  subsets: ["latin"],
+  weight: ["400", "500"],
   display: "swap",
 });
 
@@ -70,10 +78,22 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <Script
+          src="https://static.klaviyo.com/onsite/js/RkkP9u/klaviyo.js?company_id=RkkP9u"
+          strategy="afterInteractive"
+        />
+        <Script id="klaviyo-proxy-init" strategy="afterInteractive">
+          {
+            "!function(){if(!window.klaviyo){window._klOnsite=window._klOnsite||[];try{window.klaviyo=new Proxy({},{get:function(n,i){return\"push\"===i?function(){var n;(n=window._klOnsite).push.apply(n,arguments)}:function(){for(var n=arguments.length,o=new Array(n),w=0;w<n;w++)o[w]=arguments[w];var t=\"function\"==typeof o[o.length-1]?o.pop():void 0,e=new Promise((function(n){window._klOnsite.push([i].concat(o,[function(i){t&&t(i),n(i)}]))}));return e}}})}catch(n){window.klaviyo=window.klaviyo||[],window.klaviyo.push=function(){var n;(n=window._klOnsite).push.apply(n,arguments)}}}}();"
+          }
+        </Script>
+      </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${jost.variable} ${cormorantGaramond.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${jost.variable} ${cormorantGaramond.variable} ${inter.variable} antialiased`}
       >
         {children}
+        <WaitlistPopup />
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-0JCSYYDXMC"
           strategy="afterInteractive"

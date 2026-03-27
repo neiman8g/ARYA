@@ -1,0 +1,205 @@
+/* WaitlistPopup — first-visit email capture (Klaviyo) */
+
+.waitlist-popup-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 220;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  animation: waitlist-popup-fade-in 0.28s ease-out;
+}
+
+@keyframes waitlist-popup-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.waitlist-popup-card {
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+  background: #f5efe4;
+  padding: 48px;
+  border-radius: 2px;
+  box-shadow: 0 24px 48px rgba(30, 24, 16, 0.18);
+}
+
+.waitlist-popup-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: var(--arya-ink, #1e1810);
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.2s;
+}
+
+.waitlist-popup-close:hover {
+  opacity: 0.65;
+}
+
+.waitlist-popup-close:focus-visible {
+  outline: 2px solid var(--arya-cognac, #8b6a3e);
+  outline-offset: 2px;
+}
+
+.waitlist-popup-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.waitlist-popup-mark {
+  margin-bottom: 24px;
+}
+
+.waitlist-popup-headline {
+  font-family: var(--font-cormorant), "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(32px, 5vw, 42px);
+  font-weight: 400;
+  line-height: 1.15;
+  color: var(--arya-ink, #1e1810);
+  margin: 0 0 16px;
+}
+
+.waitlist-popup-headline em {
+  font-style: italic;
+  color: var(--arya-cognac, #8b6a3e);
+}
+
+.waitlist-popup-sub {
+  font-family: var(--font-inter), system-ui, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  color: rgba(30, 24, 16, 0.7);
+  margin: 0 0 28px;
+  max-width: 36em;
+}
+
+.waitlist-popup-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.waitlist-popup-input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 14px 16px;
+  font-family: var(--font-inter), system-ui, sans-serif;
+  font-size: 15px;
+  color: var(--arya-ink, #1e1810);
+  background: #f5efe4;
+  border: 1px solid var(--arya-cognac, #8b6a3e);
+  border-radius: 0;
+}
+
+.waitlist-popup-input::placeholder {
+  color: rgba(30, 24, 16, 0.45);
+}
+
+.waitlist-popup-input:focus {
+  outline: none;
+  border-color: var(--arya-ink, #1e1810);
+  box-shadow: 0 0 0 1px var(--arya-ink, #1e1810);
+}
+
+.waitlist-popup-submit {
+  width: 100%;
+  padding: 16px 20px;
+  border: none;
+  background: var(--arya-ink, #1e1810);
+  color: #f5efe4;
+  font-family: var(--font-jost), system-ui, sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.2s, opacity 0.2s;
+}
+
+.waitlist-popup-submit:hover:not(:disabled) {
+  background: #2c2418;
+}
+
+.waitlist-popup-submit:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.waitlist-popup-submit:focus-visible {
+  outline: 2px solid var(--arya-cognac, #8b6a3e);
+  outline-offset: 2px;
+}
+
+.waitlist-popup-error {
+  font-family: var(--font-inter), system-ui, sans-serif;
+  font-size: 13px;
+  color: #8b2942;
+  margin: 0;
+  text-align: center;
+}
+
+.waitlist-popup-fine {
+  font-family: var(--font-inter), system-ui, sans-serif;
+  font-size: 11px;
+  line-height: 1.5;
+  color: var(--arya-cognac, #8b6a3e);
+  opacity: 0.85;
+  margin: 16px 0 0;
+}
+
+.waitlist-popup-thanks .waitlist-popup-headline {
+  margin-bottom: 12px;
+}
+
+.waitlist-popup-thanks .waitlist-popup-sub {
+  margin-bottom: 0;
+}
+
+@media (max-width: 480px) {
+  .waitlist-popup-overlay {
+    padding: 0 24px;
+  }
+
+  .waitlist-popup-card {
+    padding: 32px 24px;
+  }
+
+  .waitlist-popup-headline {
+    font-size: clamp(26px, 7vw, 34px);
+  }
+
+  .waitlist-popup-sub {
+    font-size: 13px;
+    margin-bottom: 22px;
+  }
+
+  .waitlist-popup-input {
+    font-size: 14px;
+    padding: 12px 14px;
+  }
+
+  .waitlist-popup-fine {
+    font-size: 10px;
+  }
+}
