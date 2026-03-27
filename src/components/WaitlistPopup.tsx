@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { AryaMark } from "@/components/AryaLogo";
 import {
@@ -9,14 +9,51 @@ import {
 } from "@/lib/klaviyo-waitlist";
 import "./waitlist-popup.css";
 
-const STORAGE_KEY = "arya_popup_dismissed";
+/** Legacy: set on successful join in older builds; still treated as permanent opt-out. */
+const STORAGE_DISMISSED_LEGACY = "arya_popup_dismissed";
+const STORAGE_JOINED = "arya_popup_joined";
+const STORAGE_SNOOZE_UNTIL = "arya_popup_snooze_until";
 const DELAY_MS = 20_000;
+const SOFT_DISMISS_SNOOZE_MS = 2 * 60 * 1000;
+
+function isPermanentClose(): boolean {
+  try {
+    if (localStorage.getItem(STORAGE_JOINED) === "true") return true;
+    if (localStorage.getItem(STORAGE_DISMISSED_LEGACY) === "true") return true;
+  } catch {
+    /* ignore */
+  }
+  return false;
+}
 
 function dismissForever() {
   try {
-    localStorage.setItem(STORAGE_KEY, "true");
+    localStorage.setItem(STORAGE_JOINED, "true");
+    localStorage.setItem(STORAGE_DISMISSED_LEGACY, "true");
+    localStorage.removeItem(STORAGE_SNOOZE_UNTIL);
   } catch {
     /* ignore quota / private mode */
+  }
+}
+
+function msUntilPopupFromStorage(): number {
+  try {
+    const raw = localStorage.getItem(STORAGE_SNOOZE_UNTIL);
+    if (!raw) return DELAY_MS;
+    const until = parseInt(raw, 10);
+    if (Number.isNaN(until)) return DELAY_MS;
+    const left = until - Date.now();
+    return left > 0 ? left : DELAY_MS;
+  } catch {
+    return DELAY_MS;
+  }
+}
+
+function setSnoozeFromNow(ms: number) {
+  try {
+    localStorage.setItem(STORAGE_SNOOZE_UNTIL, String(Date.now() + ms));
+  } catch {
+    /* ignore */
   }
 }
 
@@ -27,6 +64,27 @@ export function WaitlistPopup() {
   const [email, setEmail] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
+  const openTimerRef = useRef<number | null>(null);
+
+  const clearOpenTimer = () => {
+    if (openTimerRef.current !== null) {
+      window.clearTimeout(openTimerRef.current);
+      openTimerRef.current = null;
+    }
+  };
+
+  const schedulePopupOpen = (delayMs: number) => {
+    clearOpenTimer();
+    openTimerRef.current = window.setTimeout(() => {
+      openTimerRef.current = null;
+      try {
+        if (isPermanentClose()) return;
+      } catch {
+        return;
+      }
+      setOpen(true);
+    }, delayMs);
+  };
 
   useEffect(() => {
     setMounted(true);
@@ -35,20 +93,16 @@ export function WaitlistPopup() {
   useEffect(() => {
     if (!mounted || typeof window === "undefined") return;
 
-    let cancelled = false;
     try {
-      if (localStorage.getItem(STORAGE_KEY) === "true") return;
+      if (isPermanentClose()) return;
     } catch {
       return;
     }
 
-    const t = window.setTimeout(() => {
-      if (!cancelled) setOpen(true);
-    }, DELAY_MS);
+    schedulePopupOpen(msUntilPopupFromStorage());
 
     return () => {
-      cancelled = true;
-      window.clearTimeout(t);
+      clearOpenTimer();
     };
   }, [mounted]);
 
@@ -60,9 +114,10 @@ export function WaitlistPopup() {
     return () => window.clearTimeout(t);
   }, [submitted, open]);
 
-  const handleClose = () => {
-    dismissForever();
+  const handleSoftDismiss = () => {
+    setSnoozeFromNow(SOFT_DISMISS_SNOOZE_MS);
     setOpen(false);
+    schedulePopupOpen(SOFT_DISMISS_SNOOZE_MS);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -105,7 +160,7 @@ export function WaitlistPopup() {
         <button
           type="button"
           className="waitlist-popup-close"
-          onClick={handleClose}
+          onClick={handleSoftDismiss}
           aria-label="Close"
         >
           ×
@@ -141,6 +196,13 @@ export function WaitlistPopup() {
               )}
               <button type="submit" className="waitlist-popup-submit" disabled={submitting}>
                 {submitting ? "Joining…" : "Join Waitlist"}
+              </button>
+              <button
+                type="button"
+                className="waitlist-popup-decline"
+                onClick={handleSoftDismiss}
+              >
+                No, thank you
               </button>
               <p className="waitlist-popup-fine">No spam. No noise. Just Arya.</p>
             </form>

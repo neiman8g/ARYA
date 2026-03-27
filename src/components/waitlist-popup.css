@@ -151,6 +151,29 @@
   outline-offset: 2px;
 }
 
+.waitlist-popup-decline {
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: none;
+  font-family: var(--font-inter), system-ui, sans-serif;
+  font-size: 12px;
+  color: rgba(30, 24, 16, 0.55);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.waitlist-popup-decline:hover {
+  color: var(--arya-ink, #1e1810);
+}
+
+.waitlist-popup-decline:focus-visible {
+  outline: 2px solid var(--arya-cognac, #8b6a3e);
+  outline-offset: 2px;
+}
+
 .waitlist-popup-error {
   font-family: var(--font-inter), system-ui, sans-serif;
   font-size: 13px;
