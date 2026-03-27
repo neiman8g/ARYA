@@ -24,7 +24,7 @@ export default function FounderPage() {
     <div className="section-page">
       <SectionNav activeLink="founder" />
 
-      <main className="sp-main">
+      <main className="sp-main sp-main--founder">
         <FoundersSection />
       </main>
 

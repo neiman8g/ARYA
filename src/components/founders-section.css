@@ -4,9 +4,37 @@
   background: var(--arya-sand, var(--sand));
 }
 
+/* .hero-h1 / .body-txt live under @scope (.arya-home) in home-page.css — duplicate here so /founder matches the homepage founders block. */
+.founders-section .hero-h1 {
+  font-family: var(--font-cormorant), serif;
+  font-weight: 400;
+  font-size: clamp(52px, 6.5vw, 88px);
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  color: var(--arya-ink, var(--ink));
+  margin-bottom: 24px;
+}
+.founders-section .hero-h1 em {
+  font-style: italic;
+  color: var(--arya-cognac, var(--cognac));
+}
+.founders-section .body-txt {
+  font-size: 17px;
+  line-height: 1.85;
+  color: var(--arya-ink-80, var(--ink-80));
+  font-weight: 400;
+  margin-bottom: 18px;
+}
+
 .founders-s1 {
   padding: 100px var(--arya-page-gutter);
   background: var(--arya-sand, var(--sand));
+}
+
+/* Only on /founder: main uses .sp-main--founder — pull content up under nav */
+.sp-main--founder .founders-s1 {
+  padding-top: 24px;
+  padding-bottom: 88px;
 }
 
 .founders-s1-inner {
@@ -25,13 +53,8 @@
   margin-bottom: 18px;
 }
 
-.founders-s1 .display {
-  margin-bottom: 28px;
-}
-
 .founders-s1 .body-txt {
   text-align: center;
-  margin-bottom: 18px;
 }
 
 .founders-s1 .body-txt:last-child {
@@ -50,7 +73,8 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: clamp(40px, 5vw, 80px);
-  align-items: stretch;
+  /* Photos use a fixed aspect ratio — do not stretch to text column height */
+  align-items: start;
   max-width: min(var(--arya-content-max, 1680px), 100%);
   margin: 0 auto;
   padding: 80px var(--arya-page-gutter);
@@ -60,8 +84,9 @@
 .founders-split-copy {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   min-width: 0;
+  padding-top: 4px;
 }
 
 .founders-name-label {
@@ -86,17 +111,26 @@
   text-align: left;
 }
 
+/* Same frame for both founders — 75% of column width (25% smaller), centered */
 .founders-split-photo {
   position: relative;
-  min-height: 280px;
-  height: 100%;
-  align-self: stretch;
+  width: 75%;
+  margin-left: auto;
+  margin-right: auto;
+  aspect-ratio: 3 / 4;
+  min-height: 0;
   background: var(--arya-sand-3, var(--sand-3));
   overflow: hidden;
 }
 
 .founders-split-photo .founders-img {
   object-fit: cover;
+  object-position: center center;
+}
+
+/* Fill the frame — no letterboxing; tune crop per shot */
+.founders-nima .founders-split-photo .founders-img {
+  object-position: center 32%;
 }
 
 .founders-lucy .founders-split-photo .founders-img {
@@ -119,16 +153,23 @@
     padding: 64px var(--arya-page-gutter);
   }
 
+  .sp-main--founder .founders-s1 {
+    padding-top: 24px;
+  }
+
   .founders-split {
     grid-template-columns: 1fr;
     padding: 48px 0 56px;
     gap: 0;
   }
 
+  /* Stack: 25% smaller than previous 400px; full image via contain */
   .founders-split-photo {
-    height: 400px;
-    min-height: 400px;
-    max-height: 400px;
+    aspect-ratio: auto;
+    width: 75%;
+    height: 300px;
+    min-height: 300px;
+    max-height: 300px;
   }
 
   .founders-nima .founders-split-copy,
@@ -146,12 +187,11 @@
 }
 
 @media (max-width: 480px) {
-  .founders-s1 .display {
-    font-size: clamp(28px, 8vw, 36px);
+  .founders-section .hero-h1 {
+    font-size: clamp(36px, 10vw, 48px) !important;
   }
-
-  .founders-s1 .body-txt {
-    font-size: 16px;
-    line-height: 1.8;
+  .founders-section .body-txt {
+    font-size: 18px;
+    line-height: 1.75;
   }
 }

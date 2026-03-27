@@ -2,14 +2,21 @@ import Image from "next/image";
 import Link from "next/link";
 import "./founders-section.css";
 
-export function FoundersSection() {
+type FoundersSectionProps = {
+  /** Homepage omits the bottom CTAs; /founder keeps them. */
+  showCtas?: boolean;
+};
+
+export function FoundersSection({ showCtas = true }: FoundersSectionProps) {
   return (
     <section className="founders-section fade-section" id="founder">
       <div className="founders-s1">
         <div className="founders-s1-inner">
           <span className="founders-s1-eyebrow">THE FOUNDERS</span>
-          <h2 className="display">
-            We built what didn&apos;t <em>exist.</em>
+          <h2 className="hero-h1">
+            We built what didn&apos;t
+            <br />
+            <em>exist.</em>
           </h2>
           <p className="body-txt">
             Arya was born between two people, two worlds, and one shared belief: that clothing
@@ -96,16 +103,18 @@ export function FoundersSection() {
         </div>
       </div>
 
-      <div className="founders-ctas">
-        <div className="sp-btn-group">
-          <Link href="/collection" className="sp-btn">
-            View Collection
-          </Link>
-          <Link href="/#waitlist" className="btn-waitlist">
-            Join Waitlist
-          </Link>
+      {showCtas ? (
+        <div className="founders-ctas">
+          <div className="sp-btn-group">
+            <Link href="/collection" className="sp-btn">
+              View Collection
+            </Link>
+            <Link href="/#waitlist" className="btn-waitlist">
+              Join Waitlist
+            </Link>
+          </div>
         </div>
-      </div>
+      ) : null}
     </section>
   );
 }

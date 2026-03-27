@@ -6,7 +6,7 @@ import { AryaMark } from "@/components/AryaLogo";
 import "./waitlist-popup.css";
 
 const STORAGE_KEY = "arya_popup_dismissed";
-const DELAY_MS = 45_000;
+const DELAY_MS = 20_000;
 const KLAVIYO_LIST_ID = "YxmBfA";
 const KLAVIYO_COMPANY_ID = "RkkP9u";
 

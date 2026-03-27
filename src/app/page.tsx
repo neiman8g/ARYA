@@ -469,6 +469,7 @@ export default function AryaPage() {
         </div>
       </nav>
 
+      <div className="arya-home-main">
       {/* ── HERO ── */}
       <section className="hero fade-section" id="main-content">
         <div className="hero-left">
@@ -727,7 +728,7 @@ export default function AryaPage() {
         </div>
       </section>
 
-      <FoundersSection />
+      <FoundersSection showCtas={false} />
 
       {/* ── WAITLIST ── */}
       <section className="waitlist fade-section" id="waitlist">
@@ -773,6 +774,7 @@ export default function AryaPage() {
         <p className="std-teaser-p">Every fabric. Every seam. Every fit decision. Held to the same standard that has guided Persian craft for thousands of years. We have nothing to hide and everything to share.</p>
         <Link href="/arya-standard" className="std-teaser-btn">Discover the Standard</Link>
       </section>
+      </div>
 
       <HomeBrandedFooter />
     </div>
