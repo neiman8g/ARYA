@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { PRODUCTS } from "@/lib/products";
+import { subscribeToKlaviyoWaitlist } from "@/lib/klaviyo-waitlist";
 import { AryaLogo, AryaMark } from "@/components/AryaLogo";
 import { FoundersSection } from "@/components/FoundersSection";
 import { HomeBrandedFooter } from "@/components/HomeBrandedFooter";
@@ -273,45 +274,15 @@ export default function AryaPage() {
     }
 
     try {
-      const response = await fetch('https://a.klaviyo.com/client/subscriptions/?company_id=RkkP9u', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'revision': '2023-12-15'
-        },
-        body: JSON.stringify({
-          data: {
-            type: 'subscription',
-            attributes: {
-              profile: {
-                data: {
-                  type: 'profile',
-                  attributes: {
-                    email: emailValue
-                  }
-                }
-              }
-            },
-            relationships: {
-              list: {
-                data: {
-                  type: 'list',
-                  id: 'YxmBfA'
-                }
-              }
-            }
-          }
-        })
-      })
-
-      if (response.ok || response.status === 202) {
-        setSubmitted(true)
-        setEmail('')
+      const ok = await subscribeToKlaviyoWaitlist(emailValue);
+      if (ok) {
+        setSubmitted(true);
+        setEmail("");
       } else {
-        setError('Something went wrong. Please try again.')
+        setError("Something went wrong. Please try again.");
       }
-    } catch (err) {
-      setError('Something went wrong. Please try again.')
+    } catch {
+      setError("Something went wrong. Please try again.");
     } finally {
       setSubmitting(false)
     }

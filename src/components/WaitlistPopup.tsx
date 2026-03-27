@@ -3,12 +3,11 @@
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import { AryaMark } from "@/components/AryaLogo";
+import { subscribeToKlaviyoWaitlist } from "@/lib/klaviyo-waitlist";
 import "./waitlist-popup.css";
 
 const STORAGE_KEY = "arya_popup_dismissed";
 const DELAY_MS = 20_000;
-const KLAVIYO_LIST_ID = "YxmBfA";
-const KLAVIYO_COMPANY_ID = "RkkP9u";
 
 function dismissForever() {
   try {
@@ -16,55 +15,6 @@ function dismissForever() {
   } catch {
     /* ignore quota / private mode */
   }
-}
-
-function submitToKlaviyo(email: string) {
-  try {
-    const w = window as Window & {
-      klaviyo?: { push: (args: unknown[]) => unknown };
-    };
-    w.klaviyo?.push?.([
-      "subscribe",
-      {
-        email,
-        list_id: KLAVIYO_LIST_ID,
-      },
-    ]);
-  } catch {
-    /* queue may not support subscribe shape; client API still runs */
-  }
-}
-
-async function subscribeViaClientApi(email: string) {
-  const response = await fetch(
-    `https://a.klaviyo.com/client/subscriptions/?company_id=${KLAVIYO_COMPANY_ID}`,
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        revision: "2023-12-15",
-      },
-      body: JSON.stringify({
-        data: {
-          type: "subscription",
-          attributes: {
-            profile: {
-              data: {
-                type: "profile",
-                attributes: { email },
-              },
-            },
-          },
-          relationships: {
-            list: {
-              data: { type: "list", id: KLAVIYO_LIST_ID },
-            },
-          },
-        },
-      }),
-    }
-  );
-  return response.ok || response.status === 202;
 }
 
 export function WaitlistPopup() {
@@ -124,8 +74,7 @@ export function WaitlistPopup() {
 
     setSubmitting(true);
     try {
-      submitToKlaviyo(value);
-      const ok = await subscribeViaClientApi(value);
+      const ok = await subscribeToKlaviyoWaitlist(value);
       if (!ok) {
         setError("Something went wrong. Please try again.");
         setSubmitting(false);
