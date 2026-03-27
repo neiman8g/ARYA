@@ -1,0 +1,157 @@
+/* Shared FoundersSection — homepage + /founder (identical) */
+
+.founders-section {
+  background: var(--arya-sand, var(--sand));
+}
+
+.founders-s1 {
+  padding: 100px var(--arya-page-gutter);
+  background: var(--arya-sand, var(--sand));
+}
+
+.founders-s1-inner {
+  max-width: 720px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.founders-s1-eyebrow {
+  display: block;
+  font-size: 11px;
+  letter-spacing: 0.46em;
+  text-transform: uppercase;
+  color: var(--arya-cognac, var(--cognac));
+  font-weight: 600;
+  margin-bottom: 18px;
+}
+
+.founders-s1 .display {
+  margin-bottom: 28px;
+}
+
+.founders-s1 .body-txt {
+  text-align: center;
+  margin-bottom: 18px;
+}
+
+.founders-s1 .body-txt:last-child {
+  margin-bottom: 0;
+}
+
+.founders-rule {
+  height: 1px;
+  background: var(--arya-cognac, var(--cognac));
+  margin: 0;
+  border: none;
+  opacity: 0.85;
+}
+
+.founders-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(40px, 5vw, 80px);
+  align-items: stretch;
+  max-width: min(var(--arya-content-max, 1680px), 100%);
+  margin: 0 auto;
+  padding: 80px var(--arya-page-gutter);
+  background: var(--arya-sand-2, var(--sand-2));
+}
+
+.founders-split-copy {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 0;
+}
+
+.founders-name-label {
+  display: block;
+  font-size: 11px;
+  letter-spacing: 0.46em;
+  text-transform: uppercase;
+  color: var(--arya-cognac, var(--cognac));
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.founders-role {
+  margin: 0 0 22px;
+  font-family: var(--font-jost), sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  color: var(--arya-ink-80, var(--ink-80));
+}
+
+.founders-split-copy .body-txt {
+  text-align: left;
+}
+
+.founders-split-photo {
+  position: relative;
+  min-height: 280px;
+  height: 100%;
+  align-self: stretch;
+  background: var(--arya-sand-3, var(--sand-3));
+  overflow: hidden;
+}
+
+.founders-split-photo .founders-img {
+  object-fit: cover;
+}
+
+.founders-lucy .founders-split-photo .founders-img {
+  object-position: center top;
+}
+
+.founders-ctas {
+  display: flex;
+  justify-content: center;
+  padding: 64px var(--arya-page-gutter) 100px;
+  background: var(--arya-sand-2, var(--sand-2));
+}
+
+.founders-ctas .sp-btn-group {
+  justify-content: center;
+}
+
+@media (max-width: 1024px) {
+  .founders-s1 {
+    padding: 64px var(--arya-page-gutter);
+  }
+
+  .founders-split {
+    grid-template-columns: 1fr;
+    padding: 48px 0 56px;
+    gap: 0;
+  }
+
+  .founders-split-photo {
+    height: 400px;
+    min-height: 400px;
+    max-height: 400px;
+  }
+
+  .founders-nima .founders-split-copy,
+  .founders-lucy .founders-split-copy {
+    padding: 32px 24px 0;
+  }
+
+  .founders-lucy .founders-split-photo {
+    order: -1;
+  }
+
+  .founders-ctas {
+    padding: 48px 24px 64px;
+  }
+}
+
+@media (max-width: 480px) {
+  .founders-s1 .display {
+    font-size: clamp(28px, 8vw, 36px);
+  }
+
+  .founders-s1 .body-txt {
+    font-size: 16px;
+    line-height: 1.8;
+  }
+}

@@ -319,21 +319,7 @@ img.sp-img {
 .coll-price { font-family: var(--font-cormorant), serif; font-size: 18px; color: var(--arya-ink); }
 .coll-coming { font-family: var(--font-cormorant), serif; font-style: italic; font-size: 14px; color: #8B6A3E; text-align: center; margin-top: 2px; }
 
-/* Founder page */
-.founder-bios { margin-top: 0; }
-.founder-bio-block { margin-top: 44px; }
-.founder-bio-block:first-child { margin-top: 48px; }
-.founder-lucy-split {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 80px;
-  align-items: start;
-  margin-top: 44px;
-}
-.founder-lucy-split .fit-visual { width: 100%; max-width: 100%; }
-.founder-sig { display: flex; align-items: center; gap: 18px; margin: 40px 0; padding-top: 28px; border-top: 1px solid var(--arya-sand-4); }
-.f-name { font-family: var(--font-cormorant), serif; font-style: italic; font-size: 22px; color: var(--arya-ink); margin-bottom: 2px; }
-.f-role { font-size: 11px; letter-spacing: .34em; text-transform: uppercase; color: var(--arya-cognac); font-weight: 600; }
+/* Founder page content uses components/FoundersSection + founders-section.css */
 
 @media (min-width: 769px) {
   .fit-minis { flex-direction: row; flex-wrap: wrap; gap: 20px; }
@@ -462,7 +448,6 @@ img.sp-img {
   .sp-main { padding: 120px 24px 60px; padding-bottom: max(60px, var(--safe-bottom)); }
   .sp-hero, .fit-layout { grid-template-columns: 1fr; gap: 48px; }
   .fit-layout > .fit-visual { order: -1; }
-  .founder-lucy-split { grid-template-columns: 1fr; gap: 48px; }
   .mission-pillars { grid-template-columns: 1fr; }
   .coll-grid { grid-template-columns: 1fr; }
   .sp-foot { padding: 36px 24px; padding-bottom: max(64px, var(--safe-bottom)); }
