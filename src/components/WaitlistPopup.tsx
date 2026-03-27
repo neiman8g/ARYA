@@ -3,7 +3,10 @@
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import { AryaMark } from "@/components/AryaLogo";
-import { subscribeToKlaviyoWaitlist } from "@/lib/klaviyo-waitlist";
+import {
+  KLAVIYO_WAITLIST_LIST_ID,
+  subscribeToKlaviyoList,
+} from "@/lib/klaviyo-waitlist";
 import "./waitlist-popup.css";
 
 const STORAGE_KEY = "arya_popup_dismissed";
@@ -74,7 +77,7 @@ export function WaitlistPopup() {
 
     setSubmitting(true);
     try {
-      const ok = await subscribeToKlaviyoWaitlist(value);
+      const ok = await subscribeToKlaviyoList(value, KLAVIYO_WAITLIST_LIST_ID);
       if (!ok) {
         setError("Something went wrong. Please try again.");
         setSubmitting(false);

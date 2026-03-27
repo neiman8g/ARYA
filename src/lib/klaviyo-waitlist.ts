@@ -10,10 +10,13 @@ type KlaviyoWindow = Window & {
 };
 
 /**
- * Identify + track in Klaviyo onsite JS, then subscribe email to the waitlist list via Client Subscriptions API.
+ * Identify + track in Klaviyo onsite JS, then subscribe email to a list via Client Subscriptions API.
  * Returns true if the list subscription request succeeded (2xx / 202).
  */
-export async function subscribeToKlaviyoWaitlist(email: string): Promise<boolean> {
+export async function subscribeToKlaviyoList(
+  email: string,
+  listId: string = KLAVIYO_WAITLIST_LIST_ID
+): Promise<boolean> {
   const trimmed = email.trim();
   if (!trimmed) return false;
 
@@ -48,7 +51,7 @@ export async function subscribeToKlaviyoWaitlist(email: string): Promise<boolean
             },
             relationships: {
               list: {
-                data: { type: "list", id: KLAVIYO_WAITLIST_LIST_ID },
+                data: { type: "list", id: listId },
               },
             },
           },
@@ -60,4 +63,9 @@ export async function subscribeToKlaviyoWaitlist(email: string): Promise<boolean
   } catch {
     return false;
   }
+}
+
+/** Default waitlist list is {@link KLAVIYO_WAITLIST_LIST_ID} (YxmBfA). */
+export async function subscribeToKlaviyoWaitlist(email: string): Promise<boolean> {
+  return subscribeToKlaviyoList(email);
 }
