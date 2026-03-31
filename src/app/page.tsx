@@ -244,6 +244,11 @@ export default function AryaPage() {
   }, [pathname]);
 
   const closeMenu = () => setMenuOpen(false);
+  const openWaitlistPopupMobile = () => {
+    if (typeof window === "undefined") return;
+    if (!window.matchMedia("(max-width: 768px)").matches) return;
+    window.dispatchEvent(new Event("arya:open-waitlist-popup"));
+  };
 
   // Section fade-in on scroll
   useEffect(() => {
@@ -261,6 +266,10 @@ export default function AryaPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    if (typeof window !== "undefined" && window.matchMedia("(max-width: 768px)").matches) {
+      window.dispatchEvent(new Event("arya:open-waitlist-popup"))
+      return
+    }
     setSubmitting(true)
     setError('')
     setEmailInputError("")
@@ -714,6 +723,13 @@ export default function AryaPage() {
             <>
               {error && <p className="wl-error">{error}</p>}
               <p className="wl-priority">Waitlist members get first access before the public.</p>
+              <button
+                type="button"
+                className="wl-mobile-popup-btn"
+                onClick={openWaitlistPopupMobile}
+              >
+                Join Waitlist
+              </button>
               <form className="wl-form" onSubmit={handleSubmit}>
                 <label htmlFor="waitlist-email" className="sr-only">Your email address</label>
                 <input

@@ -86,6 +86,13 @@ export function WaitlistPopup() {
     }, delayMs);
   };
 
+  const openPopupNow = () => {
+    clearOpenTimer();
+    setSubmitted(false);
+    setError("");
+    setOpen(true);
+  };
+
   useEffect(() => {
     setMounted(true);
   }, []);
@@ -113,6 +120,35 @@ export function WaitlistPopup() {
     }, 3000);
     return () => window.clearTimeout(t);
   }, [submitted, open]);
+
+  useEffect(() => {
+    if (!mounted || typeof window === "undefined") return;
+
+    const isMobileViewport = () => window.matchMedia("(max-width: 768px)").matches;
+
+    const onDocumentClick = (event: MouseEvent) => {
+      if (!isMobileViewport()) return;
+      const target = event.target as Element | null;
+      if (!target) return;
+      const link = target.closest("a[href='#waitlist'], a[href='/#waitlist']");
+      if (!link) return;
+
+      event.preventDefault();
+      openPopupNow();
+    };
+
+    const onOpenPopupEvent = () => {
+      if (!isMobileViewport()) return;
+      openPopupNow();
+    };
+
+    document.addEventListener("click", onDocumentClick);
+    window.addEventListener("arya:open-waitlist-popup", onOpenPopupEvent);
+    return () => {
+      document.removeEventListener("click", onDocumentClick);
+      window.removeEventListener("arya:open-waitlist-popup", onOpenPopupEvent);
+    };
+  }, [mounted]);
 
   const handleSoftDismiss = () => {
     setSnoozeFromNow(SOFT_DISMISS_SNOOZE_MS);

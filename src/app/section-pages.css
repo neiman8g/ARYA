@@ -250,6 +250,15 @@ img.sp-img {
 }
 .mission .sp-cta { background: var(--arya-sand) !important; color: var(--arya-ink) !important; }
 .mission .sp-cta:hover { background: #C9A96E !important; }
+.mission .sp-btn {
+  background: var(--arya-sand);
+  color: var(--arya-ink);
+  border: 1px solid #C9A96E;
+}
+.mission .sp-btn:hover {
+  background: #C9A96E;
+  color: var(--arya-ink);
+}
 .mission-main { max-width: min(760px, 100%); margin: 0 auto; text-align: center; }
 .mission-main .sp-label { color: rgba(245,239,228,.5); }
 .mission-main h1 { font-family: var(--font-cormorant), serif; font-size: clamp(40px, 5vw, 64px); font-weight: 400; line-height: 1.1; margin: 0 0 32px; }
