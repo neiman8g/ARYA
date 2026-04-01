@@ -29,12 +29,8 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
+/* Dark mode disabled — ARYA uses a fixed light sand palette across all OS/devices.
+   Without this override, Android/iOS dark mode users would see a flash of #0a0a0a on load. */
 
 @media (min-width: 1440px) {
   :root {

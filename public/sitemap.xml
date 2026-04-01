@@ -1,16 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://www.arya.clothing/</loc></url>
-  <url><loc>https://www.arya.clothing/collection</loc></url>
-  <url><loc>https://www.arya.clothing/story</loc></url>
-  <url><loc>https://www.arya.clothing/mission</loc></url>
-  <url><loc>https://www.arya.clothing/fit</loc></url>
-  <url><loc>https://www.arya.clothing/founder</loc></url>
-  <url><loc>https://www.arya.clothing/arya-standard</loc></url>
-  <url><loc>https://www.arya.clothing/products/noble-legging</loc></url>
-  <url><loc>https://www.arya.clothing/products/noble-bra</loc></url>
-  <url><loc>https://www.arya.clothing/products/noble-long-crop</loc></url>
-  <url><loc>https://www.arya.clothing/products/noble-short</loc></url>
-  <url><loc>https://www.arya.clothing/products/noble-tee</loc></url>
-  <url><loc>https://www.arya.clothing/products/noble-pant</loc></url>
+  <!-- Core pages -->
+  <url><loc>https://www.arya.clothing/</loc><priority>1.0</priority><changefreq>weekly</changefreq></url>
+  <url><loc>https://www.arya.clothing/collection</loc><priority>0.9</priority><changefreq>weekly</changefreq></url>
+  <url><loc>https://www.arya.clothing/story</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.arya.clothing/mission</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.arya.clothing/fit</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.arya.clothing/founder</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.arya.clothing/arya-standard</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <!-- Product pages -->
+  <url><loc>https://www.arya.clothing/products/noble-legging</loc><priority>0.9</priority><changefreq>weekly</changefreq></url>
+  <url><loc>https://www.arya.clothing/products/noble-bra</loc><priority>0.9</priority><changefreq>weekly</changefreq></url>
+  <url><loc>https://www.arya.clothing/products/noble-long-crop</loc><priority>0.9</priority><changefreq>weekly</changefreq></url>
+  <url><loc>https://www.arya.clothing/products/noble-short</loc><priority>0.9</priority><changefreq>weekly</changefreq></url>
+  <url><loc>https://www.arya.clothing/products/noble-tee</loc><priority>0.9</priority><changefreq>weekly</changefreq></url>
+  <url><loc>https://www.arya.clothing/products/noble-pant</loc><priority>0.9</priority><changefreq>weekly</changefreq></url>
+  <!-- Blog / Journal -->
+  <url><loc>https://www.arya.clothing/blog</loc><priority>0.7</priority><changefreq>weekly</changefreq></url>
+  <url><loc>https://www.arya.clothing/blog/why-conventional-athleisure-fails-athletic-bodies</loc><priority>0.6</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.arya.clothing/blog/what-is-nobleflex</loc><priority>0.6</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.arya.clothing/blog/persian-craft-philosophy</loc><priority>0.6</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.arya.clothing/blog/pfas-free-activewear-guide</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.arya.clothing/blog/activewear-for-athletic-bodies</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.arya.clothing/blog/sustainable-activewear-worth-the-investment</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <!-- Secondary pages -->
+  <url><loc>https://www.arya.clothing/faq</loc><priority>0.6</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.arya.clothing/fit-guide</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.arya.clothing/sustainability</loc><priority>0.6</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.arya.clothing/skin-conscious</loc><priority>0.6</priority><changefreq>monthly</changefreq></url>
 </urlset>

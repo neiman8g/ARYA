@@ -120,7 +120,7 @@ a:focus-visible, button:focus-visible, input:focus-visible {
 .nav-explore:focus-within .nav-explore-menu { display: flex; }
 .nav-explore-menu a {
   font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: var(--ink-80);
-  text-decoration: none; padding: 10px 12px; min-height: 40px; display: flex; align-items: center;
+  text-decoration: none; padding: 10px 12px; min-height: 44px; display: flex; align-items: center;
 }
 .nav-explore-menu a:hover { color: var(--ink); background: var(--sand-2); }
 
@@ -564,9 +564,9 @@ a:focus-visible, button:focus-visible, input:focus-visible {
 .p-coming { font-size: 14px; font-style: italic; color: #8B6A3E; font-weight: 400; letter-spacing: 0; }
 
 .btn-p {
-  display: inline-block; text-decoration: none;
+  display: inline-flex; align-items: center; justify-content: center; text-decoration: none;
   font-size: 9px; letter-spacing: .22em; text-transform: uppercase;
-  background: var(--ink); color: var(--sand); border: none; padding: 8px 14px;
+  background: var(--ink); color: var(--sand); border: none; padding: 10px 16px; min-height: 44px;
   cursor: pointer; transition: all .3s; font-family: var(--font-jost), sans-serif; font-weight: 500;
   clip-path: polygon(0 0, 100% 0, 100% 68%, 88% 100%, 0 100%);
 }

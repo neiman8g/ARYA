@@ -285,12 +285,20 @@ export default function AryaPage() {
     return () => observer.disconnect();
   }, []);
 
+  // GA4 event helper
+  const trackEvent = (eventName: string, params?: Record<string, string | number | boolean>) => {
+    if (typeof window !== "undefined" && typeof (window as any).aryaTrack === "function") {
+      (window as any).aryaTrack(eventName, params);
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     if (typeof window !== "undefined" && shouldUseWaitlistPopupNavigation()) {
       window.dispatchEvent(new Event("arya:open-waitlist-popup"))
       return
     }
+    trackEvent("waitlist_form_submit", { source: "inline" });
     setSubmitting(true)
     setError('')
     setEmailInputError("")
@@ -298,12 +306,14 @@ export default function AryaPage() {
     const emailValue = email.trim()
     const validEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailValue)
     if (!validEmail) {
+      trackEvent("waitlist_form_error", { source: "inline", error_type: "invalid_email" });
       setEmailInputError("Please enter a valid email address.")
       setSubmitting(false)
       return
     }
 
     if (isSameAsFirstWaitlistEmail(emailValue)) {
+      trackEvent("waitlist_form_error", { source: "inline", error_type: "duplicate_email" });
       setEmailInputError("That is the same address you already used. Please enter a different email.")
       setSubmitting(false)
       return
@@ -312,15 +322,18 @@ export default function AryaPage() {
     try {
       const ok = await subscribeToKlaviyoWaitlist(emailValue);
       if (ok) {
+        trackEvent("waitlist_signup_success", { source: "inline" });
         recordWaitlistPrimaryEmailIfNeeded(emailValue);
         markWaitlistJoinedInBrowser();
         setAllowAnotherWaitlist(false);
         setSubmitted(true);
         setEmail("");
       } else {
+        trackEvent("waitlist_form_error", { source: "inline", error_type: "api_failure" });
         setError("Something went wrong. Please try again.");
       }
     } catch {
+      trackEvent("waitlist_form_error", { source: "inline", error_type: "exception" });
       setError("Something went wrong. Please try again.");
     } finally {
       setSubmitting(false)
@@ -746,10 +759,10 @@ export default function AryaPage() {
         <div className="wl-inner">
           <div className="label" style={{ justifyContent: "center" }}>Early Access</div>
           <h2 className="display" style={{ marginBottom: 16, fontSize: "clamp(42px,5vw,68px)" }}>Be first.<br /><em>Be noble.</em></h2>
-          <p className="wl-sub">Join the Arya waitlist for early access to the launch collection and founder updates. Men&apos;s and women&apos;s dropping together.<br /><span className="wl-launch">Launching Fall 2026. Your early access is reserved.</span></p>
+          <p className="wl-sub">Join the Arya waitlist for early access to the launch collection, founder pricing, and exclusive updates before anyone else. Men&apos;s and women&apos;s dropping together.<br /><span className="wl-launch">Launching Fall 2026. Founder access is limited.</span></p>
           {submitted && !allowAnotherWaitlist ? (
             <>
-              <div className="wl-success"><p>You are on the list. We will be in touch.</p></div>
+              <div className="wl-success"><p>You&apos;re in. Founder pricing and first access are yours. We&apos;ll be in touch before anyone else.</p></div>
               <button
                 type="button"
                 className="wl-add-another-email"
@@ -770,7 +783,7 @@ export default function AryaPage() {
               <p className="wl-priority">
                 {allowAnotherWaitlist
                   ? "Use a different address than the first one you used on this device."
-                  : "Waitlist members get first access before the public."}
+                  : "Waitlist members get founder pricing and first access before the public."}
               </p>
               <button
                 type="button"

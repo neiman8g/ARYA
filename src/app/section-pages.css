@@ -44,7 +44,7 @@
 .sp-explore-btn:hover { color: var(--arya-ink); }
 .sp-explore-menu { position: absolute; top: 100%; right: 0; min-width: 220px; background: var(--arya-sand); border: 1px solid var(--arya-sand-4); padding: 10px; display: none; flex-direction: column; gap: 2px; z-index: 120; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); }
 .sp-explore:hover .sp-explore-menu, .sp-explore:focus-within .sp-explore-menu { display: flex; }
-.sp-explore-menu a { font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: var(--arya-ink-80); padding: 10px 12px; min-height: 40px; display: flex; align-items: center; }
+.sp-explore-menu a { font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: var(--arya-ink-80); padding: 10px 12px; min-height: 44px; display: flex; align-items: center; }
 .sp-explore-menu a:hover { color: var(--arya-ink); background: var(--arya-sand-2); }
 .sp-actions { display: flex; align-items: center; gap: 10px; }
 .sp-waitlist-btn { font-size: 11px; letter-spacing: .26em; text-transform: uppercase; text-decoration: none; color: var(--arya-ink); border: 1px solid #A08C78; padding: 10px 24px; min-height: 44px; display: inline-flex; align-items: center; justify-content: center; }

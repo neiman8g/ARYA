@@ -21,6 +21,13 @@ import "./waitlist-popup.css";
 const DELAY_MS = 20_000;
 const SOFT_DISMISS_SNOOZE_MS = 2 * 60 * 1000;
 
+// GA4 event tracking helper
+function trackEvent(eventName: string, params?: Record<string, string | number | boolean>) {
+  if (typeof window !== "undefined" && typeof (window as any).aryaTrack === "function") {
+    (window as any).aryaTrack(eventName, params);
+  }
+}
+
 function msUntilPopupFromStorage(): number {
   try {
     const raw = localStorage.getItem(waitlistLocalStorageKeys.snoozeUntil);
@@ -69,11 +76,12 @@ export function WaitlistPopup() {
       } catch {
         return;
       }
+      trackEvent("waitlist_popup_auto_open", { trigger: "timer", delay_ms: delayMs });
       setOpen(true);
     }, delayMs);
   };
 
-  const openPopupNow = () => {
+  const openPopupNow = (trigger = "manual") => {
     clearOpenTimer();
     setError("");
     setEmail("");
@@ -87,6 +95,7 @@ export function WaitlistPopup() {
     } catch {
       setSubmitted(false);
     }
+    trackEvent("waitlist_popup_open", { trigger });
     setOpen(true);
   };
 
@@ -118,6 +127,31 @@ export function WaitlistPopup() {
     return () => window.clearTimeout(t);
   }, [submitted, open, addingAnotherEmail]);
 
+  // Exit-intent trigger (desktop only): when mouse leaves viewport toward top
+  useEffect(() => {
+    if (!mounted || typeof window === "undefined") return;
+    // Only on desktop (no hover on mobile)
+    if (!window.matchMedia("(hover: hover)").matches) return;
+
+    let exitFired = false;
+    const onMouseLeave = (e: MouseEvent) => {
+      if (exitFired || open) return;
+      // Only trigger when mouse leaves through the top of the page
+      if (e.clientY > 5) return;
+      try {
+        if (suppressWaitlistAutoPopup()) return;
+      } catch {
+        return;
+      }
+      exitFired = true;
+      trackEvent("waitlist_popup_open", { trigger: "exit_intent" });
+      setOpen(true);
+    };
+
+    document.addEventListener("mouseleave", onMouseLeave);
+    return () => document.removeEventListener("mouseleave", onMouseLeave);
+  }, [mounted, open]);
+
   useEffect(() => {
     if (!mounted || typeof window === "undefined") return;
 
@@ -146,6 +180,7 @@ export function WaitlistPopup() {
   }, [mounted]);
 
   const handleSoftDismiss = () => {
+    trackEvent("waitlist_popup_dismiss", { method: "soft_dismiss" });
     setSnoozeFromNow(SOFT_DISMISS_SNOOZE_MS);
     setOpen(false);
     schedulePopupOpen(SOFT_DISMISS_SNOOZE_MS);
@@ -169,19 +204,23 @@ export function WaitlistPopup() {
       return;
     }
 
+    trackEvent("waitlist_form_submit", { source: "popup", is_additional: addingAnotherEmail });
     setSubmitting(true);
     try {
       const ok = await subscribeToKlaviyoWaitlist(value);
       if (!ok) {
+        trackEvent("waitlist_form_error", { source: "popup", error_type: "api_failure" });
         setError("Something went wrong. Please try again.");
         setSubmitting(false);
         return;
       }
+      trackEvent("waitlist_signup_success", { source: "popup", is_additional: addingAnotherEmail });
       recordWaitlistPrimaryEmailIfNeeded(value);
       markWaitlistJoinedInBrowser();
       setAddingAnotherEmail(false);
       setSubmitted(true);
     } catch {
+      trackEvent("waitlist_form_error", { source: "popup", error_type: "exception" });
       setError("Something went wrong. Please try again.");
     } finally {
       setSubmitting(false);
@@ -223,8 +262,7 @@ export function WaitlistPopup() {
                 </>
               ) : (
                 <>
-                  Join the waitlist for early access to the launch collection. First access. Pre-order
-                  pricing. Fall 2026.
+                  Early access to the launch collection. Founder pricing. Exclusive updates before anyone else. Fall 2026.
                 </>
               )}
             </p>
@@ -268,9 +306,9 @@ export function WaitlistPopup() {
               <AryaMark size={48} color="#8B6A3E" />
             </div>
             <h2 id="waitlist-popup-title" className="waitlist-popup-headline">
-              You are on the list.
+              You&apos;re in.
             </h2>
-            <p className="waitlist-popup-sub">We will be in touch before anyone else.</p>
+            <p className="waitlist-popup-sub">You&apos;ll hear from us before anyone else. Founder pricing and first access are yours.</p>
             <button
               type="button"
               className="waitlist-popup-add-another"

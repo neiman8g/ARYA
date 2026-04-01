@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Script from "next/script";
 import { SectionNav } from "@/components/SectionNav";
 import { SiteFooter } from "@/components/SiteFooter";
 import { BlogPostHero } from "@/components/BlogPostHero";
@@ -8,6 +9,11 @@ export const metadata = {
   title: "Why Conventional Athleisure Fails Athletic Bodies | Strong Thighs, Broad Shoulders | Arya",
   description:
     "Standard athleisure sizing was built for one silhouette. If you have muscular thighs, broad shoulders, or a chest that moves, the clothes were never designed for you. Here is why.",
+  openGraph: {
+    title: "Why Conventional Athleisure Fails Athletic Bodies | Arya",
+    description: "Standard athleisure sizing was built for one silhouette. If you have muscular thighs, broad shoulders, or a chest that moves, the clothes were never designed for you.",
+    type: "article",
+  },
 };
 
 export default function WhyAthleticBodiesPostPage() {
@@ -17,6 +23,18 @@ export default function WhyAthleticBodiesPostPage() {
       <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Jost:wght@400;500;600&display=swap" rel="stylesheet" />
       <SectionNav />
 
+      <Script id="article-schema" type="application/ld+json" strategy="afterInteractive">
+        {JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Article",
+          headline: "Why Conventional Athleisure Fails Athletic Bodies",
+          description: "Standard athleisure sizing was built for one silhouette. If you have muscular thighs, broad shoulders, or a chest that moves, the clothes were never designed for you.",
+          author: { "@type": "Organization", name: "Arya" },
+          publisher: { "@type": "Organization", name: "Arya", logo: { "@type": "ImageObject", url: "https://www.arya.clothing/arya-logo.png" } },
+          datePublished: "2026-03-01",
+          mainEntityOfPage: "https://www.arya.clothing/blog/why-conventional-athleisure-fails-athletic-bodies",
+        })}
+      </Script>
       <main className="sp-main article-main sp-main--hero-first">
         <BlogPostHero
           eyebrow="FIT PHILOSOPHY"

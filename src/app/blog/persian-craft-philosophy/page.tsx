@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Script from "next/script";
 import { SectionNav } from "@/components/SectionNav";
 import { SiteFooter } from "@/components/SiteFooter";
 import { BlogPostHero } from "@/components/BlogPostHero";
@@ -8,6 +9,11 @@ export const metadata = {
   title: "Persian Craft Philosophy and Premium Athleisure | The Arya Standard | Arya",
   description:
     "Persian craft philosophy holds that doing something with complete precision is itself a form of art. Here is how that belief shapes every Arya garment.",
+  openGraph: {
+    title: "Persian Craft Philosophy and Premium Athleisure | Arya",
+    description: "Persian craft philosophy holds that doing something with complete precision is itself a form of art. Here is how that belief shapes every Arya garment.",
+    type: "article",
+  },
 };
 
 export default function PersianCraftPostPage() {
@@ -16,7 +22,18 @@ export default function PersianCraftPostPage() {
     <div className="section-page">
       <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Jost:wght@400;500;600&display=swap" rel="stylesheet" />
       <SectionNav />
-
+      <Script id="article-schema" type="application/ld+json" strategy="afterInteractive">
+        {JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Article",
+          headline: "Persian Craft Philosophy and Premium Athleisure",
+          description: "Persian craft philosophy holds that doing something with complete precision is itself a form of art. Here is how that belief shapes every Arya garment.",
+          author: { "@type": "Organization", name: "Arya" },
+          publisher: { "@type": "Organization", name: "Arya", logo: { "@type": "ImageObject", url: "https://www.arya.clothing/arya-logo.png" } },
+          datePublished: "2026-03-01",
+          mainEntityOfPage: "https://www.arya.clothing/blog/persian-craft-philosophy",
+        })}
+      </Script>
       <main className="sp-main article-main sp-main--hero-first">
         <BlogPostHero
           eyebrow="HERITAGE"

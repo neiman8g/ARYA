@@ -28,6 +28,11 @@
   position: relative;
   width: 100%;
   max-width: 480px;
+  max-height: calc(100vh - 48px);
+  max-height: calc(100dvh - 48px);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-y: contain;
   background: #f5efe4;
   padding: 48px;
   border-radius: 2px;
@@ -261,5 +266,42 @@
 
   .waitlist-popup-fine {
     font-size: 10px;
+  }
+}
+
+/* Landscape on phones: compact popup so it doesn't overflow the short viewport */
+@media (max-height: 500px) and (orientation: landscape) {
+  .waitlist-popup-card {
+    padding: 24px 20px;
+  }
+
+  .waitlist-popup-mark {
+    margin-bottom: 12px;
+  }
+
+  .waitlist-popup-mark svg {
+    width: 32px;
+    height: 32px;
+  }
+
+  .waitlist-popup-headline {
+    font-size: 24px;
+    margin-bottom: 8px;
+  }
+
+  .waitlist-popup-sub {
+    font-size: 12px;
+    margin-bottom: 14px;
+  }
+
+  .waitlist-popup-form {
+    gap: 10px;
+  }
+}
+
+/* Android Chrome address bar: use dvh when available to avoid content hiding behind it */
+@supports (max-height: 100dvh) {
+  .waitlist-popup-card {
+    max-height: calc(100dvh - 48px);
   }
 }

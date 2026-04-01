@@ -10,6 +10,33 @@ export type JournalPost = {
 
 export const JOURNAL_POSTS: JournalPost[] = [
   {
+    slug: "pfas-free-activewear-guide",
+    title: "The complete guide to PFAS-free activewear in 2026",
+    excerpt:
+      "PFAS forever chemicals are in most activewear. Learn what they are, why they matter for your health, and how to find workout clothes that are truly non-toxic.",
+    date: "April 2026",
+    image: "/arya-hero.jpg",
+    imageAlt: "PFAS-free activewear — skin conscious premium athleisure by Arya",
+  },
+  {
+    slug: "activewear-for-athletic-bodies",
+    title: "Activewear for athletic bodies: why standard sizing does not work",
+    excerpt:
+      "If you have muscular thighs, broad shoulders, or a strong chest, standard activewear was not built for you. Here is what engineered fit looks like.",
+    date: "April 2026",
+    image: "/arya-fit.jpg",
+    imageAlt: "Activewear engineered for athletic bodies with muscular thighs and broad shoulders",
+  },
+  {
+    slug: "sustainable-activewear-worth-the-investment",
+    title: "Is sustainable activewear worth the investment?",
+    excerpt:
+      "The real cost of cheap leggings goes beyond price. Here is why sustainable activewear is worth it for your skin, your wardrobe, and the planet.",
+    date: "April 2026",
+    image: "/arya-story.jpg",
+    imageAlt: "Sustainable activewear investment — Persian craft meets California soul by Arya",
+  },
+  {
     slug: "why-conventional-athleisure-fails-athletic-bodies",
     title: "Why conventional athleisure fails athletic bodies",
     excerpt:

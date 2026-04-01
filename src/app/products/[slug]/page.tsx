@@ -79,29 +79,49 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
 
       <main className="p-main">
         <Link href="/collection" className="p-back">← Collection</Link>
-        {product.slug === "noble-legging" && (
-          <Script
-            id="noble-legging-product-schema"
-            type="application/ld+json"
-            strategy="afterInteractive"
-          >
-            {JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "Product",
-              name: "The Noble Legging",
-              description:
-                "NobleFlex proprietary fabric. Four-way stretch, muscle compression, and extended thigh room engineered for the body that moves. XS to 3XL.",
-              brand: {
-                "@type": "Brand",
-                name: "Arya",
-              },
-              offers: {
-                "@type": "Offer",
-                availability: "https://schema.org/PreOrder",
-              },
-            })}
-          </Script>
-        )}
+        <Script
+          id={`${product.slug}-product-schema`}
+          type="application/ld+json"
+          strategy="afterInteractive"
+        >
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Product",
+            name: product.name,
+            description: product.desc,
+            image: `https://www.arya.clothing/arya-hero.jpg`,
+            brand: {
+              "@type": "Brand",
+              name: "Arya",
+            },
+            offers: {
+              "@type": "Offer",
+              url: `https://www.arya.clothing/products/${product.slug}`,
+              availability: "https://schema.org/PreOrder",
+              priceCurrency: "USD",
+              itemCondition: "https://schema.org/NewCondition",
+            },
+            ...(product.fabric && { material: product.fabric }),
+            ...(product.sizes && {
+              size: product.sizes,
+            }),
+          })}
+        </Script>
+        <Script
+          id={`${product.slug}-breadcrumb-schema`}
+          type="application/ld+json"
+          strategy="afterInteractive"
+        >
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              { "@type": "ListItem", position: 1, name: "Home", item: "https://www.arya.clothing/" },
+              { "@type": "ListItem", position: 2, name: "Collection", item: "https://www.arya.clothing/collection" },
+              { "@type": "ListItem", position: 3, name: product.name, item: `https://www.arya.clothing/products/${product.slug}` },
+            ],
+          })}
+        </Script>
         <ProductPageClient product={product} />
       </main>
 
