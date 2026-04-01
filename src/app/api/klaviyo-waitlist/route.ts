@@ -7,7 +7,7 @@ import { NextRequest, NextResponse } from "next/server";
  *
  * @see https://developers.klaviyo.com/en/reference/subscribe_profiles
  */
-const SERVER_REVISION = process.env.KLAVIYO_API_REVISION ?? "2024-10-15";
+const SERVER_REVISION = process.env.KLAVIYO_API_REVISION ?? "2026-01-15";
 const LIST_ID =
   process.env.KLAVIYO_WAITLIST_LIST_ID ??
   process.env.NEXT_PUBLIC_KLAVIYO_WAITLIST_LIST_ID ??
@@ -17,8 +17,15 @@ function isValidEmail(value: string): boolean {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value?.trim() ?? "");
 }
 
+/** Vercel secrets sometimes include whitespace; users sometimes paste the full `Klaviyo-API-Key x` line. */
+function klaviyoAuthorizationHeader(raw: string): string {
+  const t = raw.trim();
+  if (/^klaviyo-api-key\s+/i.test(t)) return t;
+  return `Klaviyo-API-Key ${t}`;
+}
+
 export async function POST(request: NextRequest) {
-  const apiKey = process.env.KLAVIYO_PRIVATE_API_KEY;
+  const apiKey = process.env.KLAVIYO_PRIVATE_API_KEY?.trim();
   if (!apiKey) {
     return NextResponse.json(
       { error: "Server waitlist fallback is not configured" },
@@ -72,8 +79,9 @@ export async function POST(request: NextRequest) {
       "https://a.klaviyo.com/api/profile-subscription-bulk-create-jobs/",
       {
         method: "POST",
+        cache: "no-store",
         headers: {
-          Authorization: `Klaviyo-API-Key ${apiKey}`,
+          Authorization: klaviyoAuthorizationHeader(apiKey),
           Accept: "application/vnd.api+json",
           "Content-Type": "application/vnd.api+json",
           revision: SERVER_REVISION,
