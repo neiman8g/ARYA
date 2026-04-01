@@ -3,10 +3,11 @@
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { AryaMark } from "@/components/AryaLogo";
+import { subscribeToKlaviyoWaitlist } from "@/lib/klaviyo-waitlist";
 import {
-  KLAVIYO_WAITLIST_LIST_ID,
-  subscribeToKlaviyoList,
-} from "@/lib/klaviyo-waitlist";
+  anchorTargetsHomeWaitlist,
+  shouldUseWaitlistPopupNavigation,
+} from "@/lib/waitlist-popup-trigger";
 import "./waitlist-popup.css";
 
 /** Legacy: set on successful join in older builds; still treated as permanent opt-out. */
@@ -124,28 +125,26 @@ export function WaitlistPopup() {
   useEffect(() => {
     if (!mounted || typeof window === "undefined") return;
 
-    const isMobileViewport = () => window.matchMedia("(max-width: 768px)").matches;
-
     const onDocumentClick = (event: MouseEvent) => {
-      if (!isMobileViewport()) return;
+      if (!shouldUseWaitlistPopupNavigation()) return;
       const target = event.target as Element | null;
-      if (!target) return;
-      const link = target.closest("a[href='#waitlist'], a[href='/#waitlist']");
-      if (!link) return;
+      const link = target?.closest?.("a[href]");
+      if (!link || !(link instanceof HTMLAnchorElement)) return;
+      if (!anchorTargetsHomeWaitlist(link)) return;
 
       event.preventDefault();
       openPopupNow();
     };
 
     const onOpenPopupEvent = () => {
-      if (!isMobileViewport()) return;
+      if (!shouldUseWaitlistPopupNavigation()) return;
       openPopupNow();
     };
 
-    document.addEventListener("click", onDocumentClick);
+    document.addEventListener("click", onDocumentClick, true);
     window.addEventListener("arya:open-waitlist-popup", onOpenPopupEvent);
     return () => {
-      document.removeEventListener("click", onDocumentClick);
+      document.removeEventListener("click", onDocumentClick, true);
       window.removeEventListener("arya:open-waitlist-popup", onOpenPopupEvent);
     };
   }, [mounted]);
@@ -168,7 +167,7 @@ export function WaitlistPopup() {
 
     setSubmitting(true);
     try {
-      const ok = await subscribeToKlaviyoList(value, KLAVIYO_WAITLIST_LIST_ID);
+      const ok = await subscribeToKlaviyoWaitlist(value);
       if (!ok) {
         setError("Something went wrong. Please try again.");
         setSubmitting(false);
@@ -222,6 +221,11 @@ export function WaitlistPopup() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 autoComplete="email"
+                inputMode="email"
+                autoCapitalize="none"
+                autoCorrect="off"
+                spellCheck={false}
+                enterKeyHint="send"
                 aria-invalid={!!error}
                 aria-describedby={error ? "waitlist-popup-err" : undefined}
               />

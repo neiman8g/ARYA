@@ -8,8 +8,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 24px;
+  padding: max(24px, env(safe-area-inset-top, 0px)) max(24px, env(safe-area-inset-right, 0px))
+    max(24px, env(safe-area-inset-bottom, 0px)) max(24px, env(safe-area-inset-left, 0px));
   animation: waitlist-popup-fade-in 0.28s ease-out;
+  touch-action: manipulation;
+  -webkit-overflow-scrolling: touch;
 }
 
 @keyframes waitlist-popup-fade-in {
@@ -33,10 +36,10 @@
 
 .waitlist-popup-close {
   position: absolute;
-  top: 16px;
-  right: 16px;
-  width: 40px;
-  height: 40px;
+  top: max(12px, env(safe-area-inset-top, 0px));
+  right: max(12px, env(safe-area-inset-right, 0px));
+  width: 44px;
+  height: 44px;
   padding: 0;
   border: none;
   background: transparent;
@@ -105,7 +108,8 @@
   box-sizing: border-box;
   padding: 14px 16px;
   font-family: var(--font-inter), system-ui, sans-serif;
-  font-size: 15px;
+  /* 16px avoids iOS Safari zooming the viewport on input focus */
+  font-size: 16px;
   color: var(--arya-ink, #1e1810);
   background: #f5efe4;
   border: 1px solid var(--arya-cognac, #8b6a3e);
@@ -125,6 +129,7 @@
 .waitlist-popup-submit {
   width: 100%;
   padding: 16px 20px;
+  min-height: 48px;
   border: none;
   background: var(--arya-ink, #1e1810);
   color: #f5efe4;
@@ -153,7 +158,8 @@
 
 .waitlist-popup-decline {
   margin: 0;
-  padding: 0;
+  padding: 12px 8px;
+  min-height: 44px;
   border: none;
   background: none;
   font-family: var(--font-inter), system-ui, sans-serif;
@@ -163,6 +169,10 @@
   text-underline-offset: 3px;
   cursor: pointer;
   transition: color 0.2s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  touch-action: manipulation;
 }
 
 .waitlist-popup-decline:hover {
@@ -201,7 +211,8 @@
 
 @media (max-width: 480px) {
   .waitlist-popup-overlay {
-    padding: 0 24px;
+    padding-left: max(24px, env(safe-area-inset-left, 0px));
+    padding-right: max(24px, env(safe-area-inset-right, 0px));
   }
 
   .waitlist-popup-card {
@@ -218,7 +229,6 @@
   }
 
   .waitlist-popup-input {
-    font-size: 14px;
     padding: 12px 14px;
   }
 

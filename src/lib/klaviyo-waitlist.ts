@@ -1,6 +1,13 @@
-/** Klaviyo waitlist list + company (RkkP9u matches onsite script in layout). */
-export const KLAVIYO_COMPANY_ID = "RkkP9u";
-export const KLAVIYO_WAITLIST_LIST_ID = "YxmBfA";
+/**
+ * Single Klaviyo destination for every waitlist signup (web + mobile, any UI).
+ * Defaults: company `RkkP9u`, list `YxmBfA`. Override per deploy via NEXT_PUBLIC_* (same build = same list everywhere).
+ *
+ * All surfaces must call {@link subscribeToKlaviyoWaitlist} only — do not duplicate list/company IDs elsewhere.
+ */
+export const KLAVIYO_COMPANY_ID =
+  process.env.NEXT_PUBLIC_KLAVIYO_COMPANY_ID ?? "RkkP9u";
+export const KLAVIYO_WAITLIST_LIST_ID =
+  process.env.NEXT_PUBLIC_KLAVIYO_WAITLIST_LIST_ID ?? "YxmBfA";
 export const KLAVIYO_API_REVISION = "2023-12-15";
 
 type KlaviyoWindow = Window & {
@@ -10,13 +17,10 @@ type KlaviyoWindow = Window & {
 };
 
 /**
- * Identify + track in Klaviyo onsite JS, then subscribe email to a list via Client Subscriptions API.
- * Returns true if the list subscription request succeeded (2xx / 202).
+ * Identify + track in Klaviyo onsite JS (if loaded), then subscribe the profile to the waitlist
+ * via Klaviyo Client Subscriptions API. Returns true on 2xx / 202.
  */
-export async function subscribeToKlaviyoList(
-  email: string,
-  listId: string = KLAVIYO_WAITLIST_LIST_ID
-): Promise<boolean> {
+export async function subscribeToKlaviyoWaitlist(email: string): Promise<boolean> {
   const trimmed = email.trim();
   if (!trimmed) return false;
 
@@ -31,7 +35,7 @@ export async function subscribeToKlaviyoList(
     }
 
     const response = await fetch(
-      `https://a.klaviyo.com/client/subscriptions/?company_id=${KLAVIYO_COMPANY_ID}`,
+      `https://a.klaviyo.com/client/subscriptions/?company_id=${encodeURIComponent(KLAVIYO_COMPANY_ID)}`,
       {
         method: "POST",
         headers: {
@@ -51,7 +55,7 @@ export async function subscribeToKlaviyoList(
             },
             relationships: {
               list: {
-                data: { type: "list", id: listId },
+                data: { type: "list", id: KLAVIYO_WAITLIST_LIST_ID },
               },
             },
           },
@@ -63,9 +67,4 @@ export async function subscribeToKlaviyoList(
   } catch {
     return false;
   }
-}
-
-/** Default waitlist list is {@link KLAVIYO_WAITLIST_LIST_ID} (YxmBfA). */
-export async function subscribeToKlaviyoWaitlist(email: string): Promise<boolean> {
-  return subscribeToKlaviyoList(email);
 }

@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { PRODUCTS } from "@/lib/products";
 import { subscribeToKlaviyoWaitlist } from "@/lib/klaviyo-waitlist";
+import { shouldUseWaitlistPopupNavigation } from "@/lib/waitlist-popup-trigger";
 import { AryaLogo, AryaMark } from "@/components/AryaLogo";
 import { FoundersSection } from "@/components/FoundersSection";
 import { HomeBrandedFooter } from "@/components/HomeBrandedFooter";
@@ -266,7 +267,7 @@ export default function AryaPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    if (typeof window !== "undefined" && window.matchMedia("(max-width: 768px)").matches) {
+    if (typeof window !== "undefined" && shouldUseWaitlistPopupNavigation()) {
       window.dispatchEvent(new Event("arya:open-waitlist-popup"))
       return
     }

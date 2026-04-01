@@ -1,3 +1,7 @@
+/**
+ * Legacy Resend notification endpoint — not used by the site waitlist UI.
+ * Public signups use Klaviyo client-side via {@link subscribeToKlaviyoWaitlist} in `src/lib/klaviyo-waitlist.ts`.
+ */
 import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
 
