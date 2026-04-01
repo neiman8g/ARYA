@@ -700,6 +700,29 @@ a:focus-visible, button:focus-visible, input:focus-visible {
   min-height: 52px;
 }
 .wl-mobile-popup-btn:hover { border-color: var(--cognac); background: var(--sand-2); }
+
+.wl-add-another-email {
+  display: block;
+  width: 100%;
+  max-width: 360px;
+  margin: 20px auto 0;
+  padding: 14px 24px;
+  min-height: 48px;
+  background: var(--sand);
+  border: 1px solid #A08C78;
+  color: var(--ink);
+  font-family: var(--font-jost), sans-serif;
+  font-weight: 500;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: border-color 0.25s, background 0.25s;
+}
+.wl-add-another-email:hover {
+  border-color: var(--cognac);
+  background: var(--sand-2);
+}
 .wl-error { font-size: 14px; color: var(--cognac); margin-bottom: 12px; }
 .wl-input-error { font-size: 13px; color: #B04343; margin-top: 8px; text-align: left; width: 100%; }
 .wl-note { font-size: 13px; letter-spacing: .08em; color: var(--ink-60); }

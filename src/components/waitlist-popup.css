@@ -184,6 +184,33 @@
   outline-offset: 2px;
 }
 
+.waitlist-popup-add-another {
+  margin-top: 8px;
+  padding: 12px 20px;
+  min-height: 48px;
+  width: 100%;
+  max-width: 280px;
+  border: 1px solid var(--arya-cognac, #8b6a3e);
+  background: transparent;
+  font-family: var(--font-inter), system-ui, sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--arya-ink, #1e1810);
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.waitlist-popup-add-another:hover {
+  background: rgba(139, 106, 62, 0.12);
+}
+
+.waitlist-popup-add-another:focus-visible {
+  outline: 2px solid var(--arya-cognac, #8b6a3e);
+  outline-offset: 2px;
+}
+
 .waitlist-popup-error {
   font-family: var(--font-inter), system-ui, sans-serif;
   font-size: 13px;

@@ -5,6 +5,12 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { PRODUCTS } from "@/lib/products";
 import { subscribeToKlaviyoWaitlist } from "@/lib/klaviyo-waitlist";
+import {
+  isSameAsFirstWaitlistEmail,
+  isWaitlistAlreadyJoinedInBrowser,
+  markWaitlistJoinedInBrowser,
+  recordWaitlistPrimaryEmailIfNeeded,
+} from "@/lib/waitlist-local-storage";
 import { shouldUseWaitlistPopupNavigation } from "@/lib/waitlist-popup-trigger";
 import { AryaLogo, AryaMark } from "@/components/AryaLogo";
 import { FoundersSection } from "@/components/FoundersSection";
@@ -155,6 +161,7 @@ export default function AryaPage() {
   const [checkoutError, setCheckoutError] = useState<string | null>(null);
   const [error, setError] = useState('');
   const [activeSection, setActiveSection] = useState<string>("");
+  const [allowAnotherWaitlist, setAllowAnotherWaitlist] = useState(false);
 
   const womenProducts = useMemo(() => PRODUCTS.filter((p) => p.gender === "Women's"), []);
   const menProducts = useMemo(() => PRODUCTS.filter((p) => p.gender === "Men's"), []);
@@ -244,10 +251,23 @@ export default function AryaPage() {
     });
   }, [pathname]);
 
+  // Restored visit / refresh: if they already joined via popup or this form, show the thank-you block.
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    try {
+      if (isWaitlistAlreadyJoinedInBrowser()) {
+        setSubmitted(true);
+        setAllowAnotherWaitlist(false);
+      }
+    } catch {
+      /* ignore */
+    }
+  }, []);
+
   const closeMenu = () => setMenuOpen(false);
   const openWaitlistPopupMobile = () => {
     if (typeof window === "undefined") return;
-    if (!window.matchMedia("(max-width: 768px)").matches) return;
+    if (!shouldUseWaitlistPopupNavigation()) return;
     window.dispatchEvent(new Event("arya:open-waitlist-popup"));
   };
 
@@ -283,9 +303,18 @@ export default function AryaPage() {
       return
     }
 
+    if (isSameAsFirstWaitlistEmail(emailValue)) {
+      setEmailInputError("That is the same address you already used. Please enter a different email.")
+      setSubmitting(false)
+      return
+    }
+
     try {
       const ok = await subscribeToKlaviyoWaitlist(emailValue);
       if (ok) {
+        recordWaitlistPrimaryEmailIfNeeded(emailValue);
+        markWaitlistJoinedInBrowser();
+        setAllowAnotherWaitlist(false);
         setSubmitted(true);
         setEmail("");
       } else {
@@ -718,12 +747,31 @@ export default function AryaPage() {
           <div className="label" style={{ justifyContent: "center" }}>Early Access</div>
           <h2 className="display" style={{ marginBottom: 16, fontSize: "clamp(42px,5vw,68px)" }}>Be first.<br /><em>Be noble.</em></h2>
           <p className="wl-sub">Join the Arya waitlist for early access to the launch collection and founder updates. Men&apos;s and women&apos;s dropping together.<br /><span className="wl-launch">Launching Fall 2026. Your early access is reserved.</span></p>
-          {submitted ? (
-            <div className="wl-success"><p>You are on the list. We will be in touch.</p></div>
+          {submitted && !allowAnotherWaitlist ? (
+            <>
+              <div className="wl-success"><p>You are on the list. We will be in touch.</p></div>
+              <button
+                type="button"
+                className="wl-add-another-email"
+                onClick={() => {
+                  setAllowAnotherWaitlist(true);
+                  setSubmitted(false);
+                  setEmail("");
+                  setEmailInputError("");
+                  setError("");
+                }}
+              >
+                Add a different email
+              </button>
+            </>
           ) : (
             <>
               {error && <p className="wl-error">{error}</p>}
-              <p className="wl-priority">Waitlist members get first access before the public.</p>
+              <p className="wl-priority">
+                {allowAnotherWaitlist
+                  ? "Use a different address than the first one you used on this device."
+                  : "Waitlist members get first access before the public."}
+              </p>
               <button
                 type="button"
                 className="wl-mobile-popup-btn"

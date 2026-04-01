@@ -5,41 +5,25 @@ import { createPortal } from "react-dom";
 import { AryaMark } from "@/components/AryaLogo";
 import { subscribeToKlaviyoWaitlist } from "@/lib/klaviyo-waitlist";
 import {
+  isSameAsFirstWaitlistEmail,
+  isWaitlistAlreadyJoinedInBrowser,
+  markWaitlistJoinedInBrowser,
+  recordWaitlistPrimaryEmailIfNeeded,
+  suppressWaitlistAutoPopup,
+  waitlistLocalStorageKeys,
+} from "@/lib/waitlist-local-storage";
+import {
   anchorTargetsHomeWaitlist,
   shouldUseWaitlistPopupNavigation,
 } from "@/lib/waitlist-popup-trigger";
 import "./waitlist-popup.css";
 
-/** Legacy: set on successful join in older builds; still treated as permanent opt-out. */
-const STORAGE_DISMISSED_LEGACY = "arya_popup_dismissed";
-const STORAGE_JOINED = "arya_popup_joined";
-const STORAGE_SNOOZE_UNTIL = "arya_popup_snooze_until";
 const DELAY_MS = 20_000;
 const SOFT_DISMISS_SNOOZE_MS = 2 * 60 * 1000;
 
-function isPermanentClose(): boolean {
-  try {
-    if (localStorage.getItem(STORAGE_JOINED) === "true") return true;
-    if (localStorage.getItem(STORAGE_DISMISSED_LEGACY) === "true") return true;
-  } catch {
-    /* ignore */
-  }
-  return false;
-}
-
-function dismissForever() {
-  try {
-    localStorage.setItem(STORAGE_JOINED, "true");
-    localStorage.setItem(STORAGE_DISMISSED_LEGACY, "true");
-    localStorage.removeItem(STORAGE_SNOOZE_UNTIL);
-  } catch {
-    /* ignore quota / private mode */
-  }
-}
-
 function msUntilPopupFromStorage(): number {
   try {
-    const raw = localStorage.getItem(STORAGE_SNOOZE_UNTIL);
+    const raw = localStorage.getItem(waitlistLocalStorageKeys.snoozeUntil);
     if (!raw) return DELAY_MS;
     const until = parseInt(raw, 10);
     if (Number.isNaN(until)) return DELAY_MS;
@@ -52,7 +36,7 @@ function msUntilPopupFromStorage(): number {
 
 function setSnoozeFromNow(ms: number) {
   try {
-    localStorage.setItem(STORAGE_SNOOZE_UNTIL, String(Date.now() + ms));
+    localStorage.setItem(waitlistLocalStorageKeys.snoozeUntil, String(Date.now() + ms));
   } catch {
     /* ignore */
   }
@@ -65,6 +49,8 @@ export function WaitlistPopup() {
   const [email, setEmail] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
+  /** After joining, user can open the form again to add someone else with a different email. */
+  const [addingAnotherEmail, setAddingAnotherEmail] = useState(false);
   const openTimerRef = useRef<number | null>(null);
 
   const clearOpenTimer = () => {
@@ -79,7 +65,7 @@ export function WaitlistPopup() {
     openTimerRef.current = window.setTimeout(() => {
       openTimerRef.current = null;
       try {
-        if (isPermanentClose()) return;
+        if (suppressWaitlistAutoPopup()) return;
       } catch {
         return;
       }
@@ -89,8 +75,18 @@ export function WaitlistPopup() {
 
   const openPopupNow = () => {
     clearOpenTimer();
-    setSubmitted(false);
     setError("");
+    setEmail("");
+    setAddingAnotherEmail(false);
+    try {
+      if (isWaitlistAlreadyJoinedInBrowser()) {
+        setSubmitted(true);
+      } else {
+        setSubmitted(false);
+      }
+    } catch {
+      setSubmitted(false);
+    }
     setOpen(true);
   };
 
@@ -102,7 +98,7 @@ export function WaitlistPopup() {
     if (!mounted || typeof window === "undefined") return;
 
     try {
-      if (isPermanentClose()) return;
+      if (suppressWaitlistAutoPopup()) return;
     } catch {
       return;
     }
@@ -115,12 +111,12 @@ export function WaitlistPopup() {
   }, [mounted]);
 
   useEffect(() => {
-    if (!submitted || !open) return;
+    if (!submitted || !open || addingAnotherEmail) return;
     const t = window.setTimeout(() => {
       setOpen(false);
     }, 3000);
     return () => window.clearTimeout(t);
-  }, [submitted, open]);
+  }, [submitted, open, addingAnotherEmail]);
 
   useEffect(() => {
     if (!mounted || typeof window === "undefined") return;
@@ -158,10 +154,18 @@ export function WaitlistPopup() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
+    if (isWaitlistAlreadyJoinedInBrowser() && !addingAnotherEmail) {
+      setSubmitted(true);
+      return;
+    }
     const value = email.trim();
     const valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
     if (!valid) {
       setError("Please enter a valid email address.");
+      return;
+    }
+    if (isSameAsFirstWaitlistEmail(value)) {
+      setError("That is the same address you already used. Please enter a different email.");
       return;
     }
 
@@ -173,7 +177,9 @@ export function WaitlistPopup() {
         setSubmitting(false);
         return;
       }
-      dismissForever();
+      recordWaitlistPrimaryEmailIfNeeded(value);
+      markWaitlistJoinedInBrowser();
+      setAddingAnotherEmail(false);
       setSubmitted(true);
     } catch {
       setError("Something went wrong. Please try again.");
@@ -210,8 +216,17 @@ export function WaitlistPopup() {
               Be first. <em>Be noble.</em>
             </h2>
             <p className="waitlist-popup-sub">
-              Join the waitlist for early access to the launch collection. First access. Pre-order
-              pricing. Fall 2026.
+              {addingAnotherEmail ? (
+                <>
+                  Add another address for a partner or family member. It must be{' '}
+                  <strong>different from the first email</strong> you used on this device.
+                </>
+              ) : (
+                <>
+                  Join the waitlist for early access to the launch collection. First access. Pre-order
+                  pricing. Fall 2026.
+                </>
+              )}
             </p>
             <form className="waitlist-popup-form" onSubmit={handleSubmit} noValidate>
               <input
@@ -256,6 +271,18 @@ export function WaitlistPopup() {
               You are on the list.
             </h2>
             <p className="waitlist-popup-sub">We will be in touch before anyone else.</p>
+            <button
+              type="button"
+              className="waitlist-popup-add-another"
+              onClick={() => {
+                setError("");
+                setEmail("");
+                setAddingAnotherEmail(true);
+                setSubmitted(false);
+              }}
+            >
+              Add a different email
+            </button>
           </div>
         )}
       </div>
