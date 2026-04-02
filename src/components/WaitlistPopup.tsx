@@ -59,6 +59,17 @@ export function WaitlistPopup() {
   /** After joining, user can open the form again to add someone else with a different email. */
   const [addingAnotherEmail, setAddingAnotherEmail] = useState(false);
   const openTimerRef = useRef<number | null>(null);
+  const openRef = useRef(open);
+  const exitIntentFiredRef = useRef(false);
+
+  useEffect(() => {
+    openRef.current = open;
+  }, [open]);
+
+  // Allow exit-intent again after the popup closes; keep ref true while open so we do not double-fire.
+  useEffect(() => {
+    if (!open) exitIntentFiredRef.current = false;
+  }, [open]);
 
   const clearOpenTimer = () => {
     if (openTimerRef.current !== null) {
@@ -133,9 +144,8 @@ export function WaitlistPopup() {
     // Only on desktop (no hover on mobile)
     if (!window.matchMedia("(hover: hover)").matches) return;
 
-    let exitFired = false;
     const onMouseLeave = (e: MouseEvent) => {
-      if (exitFired || open) return;
+      if (exitIntentFiredRef.current || openRef.current) return;
       // Only trigger when mouse leaves through the top of the page
       if (e.clientY > 5) return;
       try {
@@ -143,14 +153,14 @@ export function WaitlistPopup() {
       } catch {
         return;
       }
-      exitFired = true;
+      exitIntentFiredRef.current = true;
       trackEvent("waitlist_popup_open", { trigger: "exit_intent" });
       setOpen(true);
     };
 
     document.addEventListener("mouseleave", onMouseLeave);
     return () => document.removeEventListener("mouseleave", onMouseLeave);
-  }, [mounted, open]);
+  }, [mounted]);
 
   useEffect(() => {
     if (!mounted || typeof window === "undefined") return;
