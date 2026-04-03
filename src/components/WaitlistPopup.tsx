@@ -18,7 +18,7 @@ import {
 } from "@/lib/waitlist-popup-trigger";
 import "./waitlist-popup.css";
 
-const DELAY_MS = 20_000;
+const DELAY_MS = 10_000;
 const SOFT_DISMISS_SNOOZE_MS = 2 * 60 * 1000;
 
 // GA4 event tracking helper

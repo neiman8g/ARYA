@@ -266,6 +266,14 @@ a:focus-visible, button:focus-visible, input:focus-visible {
 }
 
 .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; }
+.hero-proof {
+  font-family: var(--font-jost), sans-serif;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  color: var(--ink-60);
+  margin-top: 20px;
+  font-weight: 400;
+}
 .hero-cta-note {
   font-family: var(--font-cormorant), serif; font-style: italic; font-size: 17px;
   color: var(--ink-80); font-weight: 400; margin-top: 16px;
@@ -1362,4 +1370,170 @@ a:focus-visible, button:focus-visible, input:focus-visible {
     padding-left: calc(max(28px, env(safe-area-inset-left)) + clamp(24px, 5vw, 96px));
     padding-right: max(28px, env(safe-area-inset-right));
   }
+}
+
+/* ── HERO SCROLL CUE ────────────────────────────────────────────────────────── */
+.hero-scroll-cue {
+  position: absolute;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  animation: fadeInUp 1.2s 2s both;
+}
+.hero-scroll-arrow {
+  display: block;
+  width: 20px;
+  height: 20px;
+  border-right: 1.5px solid var(--cognac);
+  border-bottom: 1.5px solid var(--cognac);
+  transform: rotate(45deg);
+  animation: scrollBounce 2s ease-in-out infinite;
+  opacity: 0.6;
+}
+@keyframes scrollBounce {
+  0%, 100% { transform: rotate(45deg) translateY(0); opacity: 0.6; }
+  50% { transform: rotate(45deg) translateY(8px); opacity: 1; }
+}
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateX(-50%) translateY(10px); }
+  to { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+/* Hide on short mobile hero where it overlaps content */
+@media (max-width: 768px) {
+  .hero-scroll-cue { bottom: 16px; }
+}
+@media (max-width: 480px) {
+  .hero-scroll-cue { display: none; }
+}
+
+/* ── MID-PAGE WAITLIST STRIP (after collection) ─────────────────────────────── */
+.coll-waitlist-strip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 28px 24px;
+  margin-top: 48px;
+  background: var(--sand);
+  border: 1px solid var(--sand-4);
+}
+.coll-waitlist-text {
+  font-family: var(--font-cormorant), serif;
+  font-style: italic;
+  font-size: 17px;
+  color: var(--ink-80);
+  margin: 0;
+}
+.coll-waitlist-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 28px;
+  min-height: 44px;
+  background: var(--ink);
+  color: var(--sand);
+  font-family: var(--font-jost), sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  font-weight: 500;
+  text-decoration: none;
+  border: none;
+  transition: background 0.25s;
+  white-space: nowrap;
+  clip-path: polygon(0 0, 100% 0, 100% 75%, 93% 100%, 0 100%);
+}
+.coll-waitlist-btn:hover {
+  background: var(--cognac);
+}
+@media (max-width: 768px) {
+  .coll-waitlist-strip {
+    flex-direction: column;
+    gap: 12px;
+    text-align: center;
+    padding: 24px 20px;
+    margin-top: 32px;
+  }
+  .coll-waitlist-btn {
+    width: 100%;
+    padding: 14px 24px;
+  }
+}
+
+/* ── STICKY CTA BAR ─────────────────────────────────────────────────────────── */
+.sticky-cta-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 200;
+  transform: translateY(100%);
+  transition: transform 0.35s cubic-bezier(.16,1,.3,1);
+  pointer-events: none;
+}
+.sticky-cta-bar.visible {
+  transform: translateY(0);
+  pointer-events: auto;
+}
+.sticky-cta-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 12px 24px;
+  padding-bottom: max(12px, env(safe-area-inset-bottom, 0px));
+  background: rgba(30,24,16,.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+.sticky-cta-text {
+  font-family: var(--font-cormorant), serif;
+  font-style: italic;
+  font-size: 15px;
+  color: rgba(245,239,228,.88);
+  white-space: nowrap;
+}
+.sticky-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 24px;
+  min-height: 44px;
+  background: var(--cognac);
+  color: #F5EFE4;
+  font-family: var(--font-jost), sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  font-weight: 500;
+  text-decoration: none;
+  border: none;
+  transition: background 0.25s;
+  white-space: nowrap;
+}
+.sticky-cta-btn:hover {
+  background: var(--cognac-lt);
+}
+
+/* Mobile: stack text and button */
+@media (max-width: 480px) {
+  .sticky-cta-inner {
+    flex-direction: column;
+    gap: 8px;
+    padding: 10px 20px;
+    padding-bottom: max(10px, env(safe-area-inset-bottom, 0px));
+  }
+  .sticky-cta-text {
+    font-size: 13px;
+  }
+  .sticky-cta-btn {
+    width: 100%;
+    padding: 12px 20px;
+  }
+}
+
+/* Hide sticky bar when waitlist section is in view (avoid double CTA) */
+.arya-home:has(#waitlist:target) .sticky-cta-bar {
+  transform: translateY(100%) !important;
 }

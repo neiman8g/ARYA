@@ -162,6 +162,7 @@ export default function AryaPage() {
   const [error, setError] = useState('');
   const [activeSection, setActiveSection] = useState<string>("");
   const [allowAnotherWaitlist, setAllowAnotherWaitlist] = useState(false);
+  const [showStickyCta, setShowStickyCta] = useState(false);
 
   const womenProducts = useMemo(() => PRODUCTS.filter((p) => p.gender === "Women's"), []);
   const menProducts = useMemo(() => PRODUCTS.filter((p) => p.gender === "Men's"), []);
@@ -270,6 +271,17 @@ export default function AryaPage() {
     if (!shouldUseWaitlistPopupNavigation()) return;
     window.dispatchEvent(new Event("arya:open-waitlist-popup"));
   };
+
+  // Show sticky CTA bar after scrolling past hero (roughly 1 viewport height)
+  useEffect(() => {
+    const onScroll = () => {
+      const show = window.scrollY > window.innerHeight * 0.6;
+      setShowStickyCta(prev => prev === show ? prev : show);
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   // Section fade-in on scroll
   useEffect(() => {
@@ -506,12 +518,13 @@ export default function AryaPage() {
               Noble by<br /><em>nature.</em>
             </h2>
             <p className="hero-sub">
-              Where Persian craft meets California living. Engineered for the body that moves, built for every version of your life.
+              Premium activewear for athletic bodies. No PFAS. No toxic dyes. No compromise. Launching Fall 2026.
             </p>
             <div className="hero-ctas">
-              <a href="#waitlist" className="btn-dark">Join Waitlist</a>
+              <a href="#waitlist" className="btn-dark">Get Founder Pricing</a>
               <Link href="/collection" className="btn-outline">Preview Collection</Link>
             </div>
+            <p className="hero-proof">Join 200+ founders on the waitlist</p>
           </div>
         </div>
         <div className="hero-right">
@@ -525,6 +538,10 @@ export default function AryaPage() {
             sizes="(max-width: 1024px) 100vw, 50vw"
           />
           <div className="hero-right-overlay" />
+        </div>
+        {/* Scroll cue: subtle animated arrow at bottom of hero */}
+        <div className="hero-scroll-cue" aria-hidden="true">
+          <span className="hero-scroll-arrow" />
         </div>
       </section>
 
@@ -580,6 +597,12 @@ export default function AryaPage() {
               {menProducts.map(p => <ProductCard key={p.id} p={p} selectedColors={selectedColors} setColor={setColor} />)}
             </div>
           </div>
+        </div>
+
+        {/* Mid-page waitlist capture — targets warm leads who browsed products */}
+        <div className="coll-waitlist-strip fade-section">
+          <p className="coll-waitlist-text">Launching Fall 2026. Founder pricing for waitlist members only.</p>
+          <a href="#waitlist" className="coll-waitlist-btn">Get Early Access</a>
         </div>
       </section>
 
@@ -826,6 +849,14 @@ export default function AryaPage() {
       </div>
 
       <HomeBrandedFooter />
+
+      {/* ── STICKY CTA BAR (appears after scrolling past hero) ── */}
+      <div className={`sticky-cta-bar ${showStickyCta && !submitted ? "visible" : ""}`}>
+        <div className="sticky-cta-inner">
+          <span className="sticky-cta-text">Founder pricing ends at launch</span>
+          <a href="#waitlist" className="sticky-cta-btn">Join Waitlist</a>
+        </div>
+      </div>
     </div>
   );
 }
