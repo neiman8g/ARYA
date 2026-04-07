@@ -1,31 +1,83 @@
 @import "tailwindcss";
 
+/* ─── Brand Design Tokens ──────────────────────────────────────────────────── */
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
-  /* Fluid horizontal inset: scales with viewport width (wider screens get more breathing room) */
+
+  /* Layout */
   --arya-page-gutter: clamp(24px, 4vw + 12px, 120px);
-  /* Upper bound for primary content width on large desktops */
   --arya-content-max: 1680px;
+
+  /* Sand palette */
   --arya-sand: #F5EFE4;
   --arya-sand-2: #EEE6D8;
   --arya-sand-3: #E6DCC9;
   --arya-sand-4: #D4C9B4;
   --arya-sand-5: #B8A98F;
+
+  /* Brand accents */
   --arya-cognac: #7A5A2F;
+  --arya-cognac-lt: #9A7040;
+
+  /* Ink (text) scale */
   --arya-ink: #1E1810;
   --arya-ink-80: rgba(30,24,16,.82);
   --arya-ink-60: rgba(30,24,16,.62);
+  --arya-ink-40: rgba(30,24,16,.42);
+  --arya-ink-08: rgba(30,24,16,.05);
+
+  /* Shorthand aliases (used by home-page.css @scope) */
+  --sand: #F5EFE4;
+  --sand-2: #EEE6D8;
+  --sand-3: #E6DCC9;
+  --sand-4: #D4C9B4;
+  --sand-5: #B8A98F;
+  --cognac: #7A5A2F;
+  --cognac-lt: #9A7040;
+  --ink: #1E1810;
+  --ink-80: rgba(30,24,16,.82);
+  --ink-60: rgba(30,24,16,.62);
+  --ink-40: rgba(30,24,16,.42);
+  --ink-08: rgba(30,24,16,.05);
+
+  /* Safe area insets */
   --safe-top: env(safe-area-inset-top, 0px);
   --safe-bottom: env(safe-area-inset-bottom, 0px);
   --safe-left: env(safe-area-inset-left, 0px);
   --safe-right: env(safe-area-inset-right, 0px);
 }
 
+/* ─── Tailwind 4 @theme: register brand tokens as utility classes ────────── */
+/* Enables: bg-sand, text-cognac, border-sand-3, font-display, etc.           */
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+
+  /* Sand palette */
+  --color-sand: #F5EFE4;
+  --color-sand-2: #EEE6D8;
+  --color-sand-3: #E6DCC9;
+  --color-sand-4: #D4C9B4;
+  --color-sand-5: #B8A98F;
+
+  /* Brand accents */
+  --color-cognac: #7A5A2F;
+  --color-cognac-lt: #9A7040;
+
+  /* Ink scale */
+  --color-ink: #1E1810;
+  --color-ink-80: rgba(30,24,16,.82);
+  --color-ink-60: rgba(30,24,16,.62);
+  --color-ink-40: rgba(30,24,16,.42);
+  --color-ink-08: rgba(30,24,16,.05);
+
+  /* Typography */
+  --font-display: var(--font-cormorant), "Cormorant Garamond", Georgia, serif;
+  --font-sans: var(--font-jost), "Jost", system-ui, sans-serif;
+  --font-ui: var(--font-inter), "Inter", system-ui, sans-serif;
   --font-mono: var(--font-geist-mono);
 }
 
@@ -57,13 +109,18 @@ html {
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--arya-sand);
+  color: var(--arya-ink);
+  font-family: var(--font-jost), "Jost", system-ui, sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.6;
   margin: 0;
   width: 100%;
   max-width: 100%;
   overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 /* Waitlist button: light beige, thin warm border, dark text (used for Join Waitlist CTAs) */

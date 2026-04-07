@@ -31,6 +31,8 @@ export default function PersianCraftPostPage() {
           author: { "@type": "Organization", name: "Arya" },
           publisher: { "@type": "Organization", name: "Arya", logo: { "@type": "ImageObject", url: "https://www.arya.clothing/arya-logo.png" } },
           datePublished: "2026-03-01",
+          dateModified: "2026-03-01",
+          image: "https://www.arya.clothing/arya-story.jpg",
           mainEntityOfPage: "https://www.arya.clothing/blog/persian-craft-philosophy",
         })}
       </Script>

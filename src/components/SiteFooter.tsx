@@ -93,6 +93,11 @@ export function SiteFooter({ variant = "section", className = "" }: SiteFooterPr
         </div>
       </div>
 
+      <div className="site-footer-legal" style={{ display: "flex", flexWrap: "wrap", gap: "8px 20px", justifyContent: "center" }}>
+        <Link href="/shipping-returns" style={{ fontSize: "11px", letterSpacing: "0.12em", color: "var(--arya-ink-60)", textDecoration: "none" }}>Shipping &amp; Returns</Link>
+        <Link href="/privacy" style={{ fontSize: "11px", letterSpacing: "0.12em", color: "var(--arya-ink-60)", textDecoration: "none" }}>Privacy</Link>
+        <Link href="/terms" style={{ fontSize: "11px", letterSpacing: "0.12em", color: "var(--arya-ink-60)", textDecoration: "none" }}>Terms</Link>
+      </div>
       <p className="site-footer-copy">© 2026 Arya · Noble by nature.</p>
     </footer>
   );

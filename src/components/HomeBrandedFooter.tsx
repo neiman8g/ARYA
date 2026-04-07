@@ -75,7 +75,7 @@ export function HomeBrandedFooter() {
         </div>
       </div>
       <div className="foot-bottom">
-        <p>© 2026 Arya. All rights reserved. Built in Los Angeles.</p>
+        <p>© 2026 Arya. All rights reserved. Built in Los Angeles. <Link href="/shipping-returns">Shipping &amp; Returns</Link> · <Link href="/privacy">Privacy</Link> · <Link href="/terms">Terms</Link></p>
         <div className="foot-bottom-mark">
           <AryaMark size={16} color="#8B6A3E" />
           <span>Noble by nature.</span>

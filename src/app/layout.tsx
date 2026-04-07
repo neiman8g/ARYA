@@ -55,19 +55,39 @@ const siteUrl =
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: "Arya | Premium Activewear for Athletic Bodies | PFAS-Free | Los Angeles",
+  title: {
+    default: "Arya | Premium Activewear for Athletic Bodies | PFAS-Free | Los Angeles",
+    template: "%s | Arya",
+  },
   description: "Arya is a premium activewear brand engineered for athletic bodies. No PFAS, no toxic dyes, no virgin synthetics. Built for strong quads, broad shoulders, and bodies that move through every version of life. Persian craft. California soul. Launching Fall 2026.",
   keywords: "activewear for athletic bodies, PFAS free activewear, non toxic activewear, activewear for strong thighs, activewear for broad shoulders, Persian American brand, skin conscious activewear, NobleFlex fabric, noble by nature, Los Angeles activewear brand",
+  alternates: {
+    canonical: siteUrl,
+  },
   openGraph: {
     title: "Arya | Premium Activewear for Athletic Bodies | PFAS-Free | Los Angeles",
     description: "Arya is a premium activewear brand engineered for athletic bodies. No PFAS, no toxic dyes, no virgin synthetics. Persian craft. California soul. Launching Fall 2026.",
     images: ["https://www.arya.clothing/arya-hero.jpg"],
+    siteName: "Arya",
+    locale: "en_US",
+    type: "website",
   },
   twitter: {
     card: "summary_large_image",
     title: "Arya | Premium Activewear for Athletic Bodies | PFAS-Free | Los Angeles",
     description: "Arya is a premium activewear brand engineered for athletic bodies. No PFAS, no toxic dyes, no virgin synthetics. Persian craft. California soul. Launching Fall 2026.",
     images: ["https://www.arya.clothing/arya-hero.jpg"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
   },
 };
 
@@ -102,6 +122,24 @@ export default function RootLayout({
               "https://instagram.com/wear_arya",
               "https://tiktok.com/@wear_arya",
             ],
+          })}
+        </Script>
+        <Script id="website-schema" type="application/ld+json" strategy="afterInteractive">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            name: "Arya",
+            url: "https://www.arya.clothing",
+            description:
+              "Premium activewear engineered for athletic bodies. PFAS-free, skin-conscious materials.",
+            publisher: {
+              "@type": "Organization",
+              name: "Arya",
+              logo: {
+                "@type": "ImageObject",
+                url: "https://www.arya.clothing/arya-logo.png",
+              },
+            },
           })}
         </Script>
         <Script id="google-analytics" strategy="afterInteractive">

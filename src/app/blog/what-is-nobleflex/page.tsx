@@ -31,6 +31,8 @@ export default function WhatIsNobleflexPostPage() {
           author: { "@type": "Organization", name: "Arya" },
           publisher: { "@type": "Organization", name: "Arya", logo: { "@type": "ImageObject", url: "https://www.arya.clothing/arya-logo.png" } },
           datePublished: "2026-03-01",
+          dateModified: "2026-03-01",
+          image: "https://www.arya.clothing/arya-hero.jpg",
           mainEntityOfPage: "https://www.arya.clothing/blog/what-is-nobleflex",
         })}
       </Script>

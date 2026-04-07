@@ -1,20 +1,8 @@
+/* Homepage styles — scoped to .arya-home wrapper.
+   Color tokens consolidated in globals.css :root (single source of truth). */
+
 .arya-home, .arya-home *, .arya-home *::before, .arya-home *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html:has(.arya-home) { scroll-behavior: smooth; }
-
-:root {
-  --sand:    #F5EFE4;
-  --sand-2:  #EEE6D8;
-  --sand-3:  #E6DCC9;
-  --sand-4:  #D4C9B4;
-  --sand-5:  #B8A98F;
-  --cognac:  #7A5A2F;
-  --cognac-lt: #9A7040;
-  --ink:     #1E1810;
-  --ink-80:  rgba(30,24,16,.82);
-  --ink-60:  rgba(30,24,16,.62);
-  --ink-40:  rgba(30,24,16,.42);
-  --ink-08:  rgba(30,24,16,.05);
-}
 
 .arya-home {
   margin: 0;

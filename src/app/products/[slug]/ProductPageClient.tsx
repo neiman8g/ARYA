@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { getProductBySlug, type Product } from "@/lib/products";
+import { useCart } from "@/components/commerce/CartProvider";
 
 const CROSS_SELL: Record<string, [string, string]> = {
   "noble-legging": ["noble-bra", "noble-long-crop"],
@@ -61,9 +62,17 @@ export default function ProductPageClient({ product }: { product: Product }) {
   const [selectedSize, setSelectedSize] = useState<string | null>(null);
   const [selectedColor, setSelectedColor] = useState<string>(product.colors?.[0]?.name ?? "");
   const [added, setAdded] = useState(false);
+  const { addToCart } = useCart();
 
   const handleAddToCart = () => {
     if (!selectedSize) return;
+    addToCart({
+      id: `${product.id}-${selectedSize}-${selectedColor}`,
+      productId: product.id,
+      name: product.name,
+      size: selectedSize,
+      color: selectedColor,
+    });
     setAdded(true);
     setTimeout(() => setAdded(false), 2000);
   };
