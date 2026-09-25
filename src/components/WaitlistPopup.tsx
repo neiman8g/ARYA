@@ -5,12 +5,14 @@ import { createPortal } from "react-dom";
 import { AryaMark } from "@/components/AryaLogo";
 import { subscribeToKlaviyoWaitlist } from "@/lib/klaviyo-waitlist";
 import {
+  dismissWaitlistPopup,
   isSameAsFirstWaitlistEmail,
   isWaitlistAlreadyJoinedInBrowser,
+  markWaitlistAutoPopupShown,
   markWaitlistJoinedInBrowser,
+  readWaitlistAutoOpenSnapshot,
   recordWaitlistPrimaryEmailIfNeeded,
-  suppressWaitlistAutoPopup,
-  waitlistLocalStorageKeys,
+  waitlistAutoOpenDelayMs,
 } from "@/lib/waitlist-local-storage";
 import {
   anchorTargetsHomeWaitlist,
@@ -18,35 +20,14 @@ import {
 } from "@/lib/waitlist-popup-trigger";
 import "./waitlist-popup.css";
 
-const DELAY_MS = 10_000;
-const SOFT_DISMISS_SNOOZE_MS = 2 * 60 * 1000;
+type AryaTrackWindow = Window & {
+  aryaTrack?: (eventName: string, params?: Record<string, string | number | boolean>) => void;
+};
 
-// GA4 event tracking helper
 function trackEvent(eventName: string, params?: Record<string, string | number | boolean>) {
-  if (typeof window !== "undefined" && typeof (window as any).aryaTrack === "function") {
-    (window as any).aryaTrack(eventName, params);
-  }
-}
-
-function msUntilPopupFromStorage(): number {
-  try {
-    const raw = localStorage.getItem(waitlistLocalStorageKeys.snoozeUntil);
-    if (!raw) return DELAY_MS;
-    const until = parseInt(raw, 10);
-    if (Number.isNaN(until)) return DELAY_MS;
-    const left = until - Date.now();
-    return left > 0 ? left : DELAY_MS;
-  } catch {
-    return DELAY_MS;
-  }
-}
-
-function setSnoozeFromNow(ms: number) {
-  try {
-    localStorage.setItem(waitlistLocalStorageKeys.snoozeUntil, String(Date.now() + ms));
-  } catch {
-    /* ignore */
-  }
+  if (typeof window === "undefined") return;
+  const track = (window as AryaTrackWindow).aryaTrack;
+  if (typeof track === "function") track(eventName, params);
 }
 
 export function WaitlistPopup() {
@@ -61,14 +42,11 @@ export function WaitlistPopup() {
   const openTimerRef = useRef<number | null>(null);
   const openRef = useRef(open);
   const exitIntentFiredRef = useRef(false);
+  /** Set synchronously so a second timer or exit-intent cannot reopen in the same visit. */
+  const autoOpenClaimedRef = useRef(false);
 
   useEffect(() => {
     openRef.current = open;
-  }, [open]);
-
-  // Allow exit-intent again after the popup closes; keep ref true while open so we do not double-fire.
-  useEffect(() => {
-    if (!open) exitIntentFiredRef.current = false;
   }, [open]);
 
   const clearOpenTimer = () => {
@@ -78,19 +56,16 @@ export function WaitlistPopup() {
     }
   };
 
-  const schedulePopupOpen = (delayMs: number) => {
+  const claimAutomaticOpen = () => {
+    if (autoOpenClaimedRef.current) return false;
+    if (waitlistAutoOpenDelayMs(readWaitlistAutoOpenSnapshot()) == null) return false;
+    autoOpenClaimedRef.current = true;
+    markWaitlistAutoPopupShown();
     clearOpenTimer();
-    openTimerRef.current = window.setTimeout(() => {
-      openTimerRef.current = null;
-      try {
-        if (suppressWaitlistAutoPopup()) return;
-      } catch {
-        return;
-      }
-      trackEvent("waitlist_popup_auto_open", { trigger: "timer", delay_ms: delayMs });
-      setOpen(true);
-    }, delayMs);
+    return true;
   };
+  const claimAutomaticOpenRef = useRef(claimAutomaticOpen);
+  claimAutomaticOpenRef.current = claimAutomaticOpen;
 
   const openPopupNow = (trigger = "manual") => {
     clearOpenTimer();
@@ -117,16 +92,23 @@ export function WaitlistPopup() {
   useEffect(() => {
     if (!mounted || typeof window === "undefined") return;
 
-    try {
-      if (suppressWaitlistAutoPopup()) return;
-    } catch {
+    const delay = waitlistAutoOpenDelayMs(readWaitlistAutoOpenSnapshot());
+    if (delay == null) {
+      autoOpenClaimedRef.current = true;
       return;
     }
 
-    schedulePopupOpen(msUntilPopupFromStorage());
+    const timerId = window.setTimeout(() => {
+      if (openTimerRef.current === timerId) openTimerRef.current = null;
+      if (!claimAutomaticOpenRef.current()) return;
+      trackEvent("waitlist_popup_auto_open", { trigger: "timer", delay_ms: delay });
+      setOpen(true);
+    }, delay);
+    openTimerRef.current = timerId;
 
     return () => {
-      clearOpenTimer();
+      window.clearTimeout(timerId);
+      if (openTimerRef.current === timerId) openTimerRef.current = null;
     };
   }, [mounted]);
 
@@ -148,11 +130,7 @@ export function WaitlistPopup() {
       if (exitIntentFiredRef.current || openRef.current) return;
       // Only trigger when mouse leaves through the top of the page
       if (e.clientY > 5) return;
-      try {
-        if (suppressWaitlistAutoPopup()) return;
-      } catch {
-        return;
-      }
+      if (!claimAutomaticOpenRef.current()) return;
       exitIntentFiredRef.current = true;
       trackEvent("waitlist_popup_open", { trigger: "exit_intent" });
       setOpen(true);
@@ -191,10 +169,23 @@ export function WaitlistPopup() {
 
   const handleSoftDismiss = () => {
     trackEvent("waitlist_popup_dismiss", { method: "soft_dismiss" });
-    setSnoozeFromNow(SOFT_DISMISS_SNOOZE_MS);
+    autoOpenClaimedRef.current = true;
+    exitIntentFiredRef.current = true;
+    dismissWaitlistPopup();
+    clearOpenTimer();
     setOpen(false);
-    schedulePopupOpen(SOFT_DISMISS_SNOOZE_MS);
   };
+  const dismissRef = useRef(handleSoftDismiss);
+  dismissRef.current = handleSoftDismiss;
+
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key === "Escape") dismissRef.current();
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [open]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -240,12 +231,17 @@ export function WaitlistPopup() {
   if (!mounted || !open) return null;
 
   const content = (
-    <div className="waitlist-popup-overlay" role="presentation">
+    <div
+      className="waitlist-popup-overlay"
+      role="presentation"
+      onClick={handleSoftDismiss}
+    >
       <div
         className="waitlist-popup-card"
         role="dialog"
         aria-modal="true"
         aria-labelledby="waitlist-popup-title"
+        onClick={(event) => event.stopPropagation()}
       >
         <button
           type="button"
