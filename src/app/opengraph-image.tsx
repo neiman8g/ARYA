@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "Arya — Noble by nature";
+export const alt = "Arya";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -24,7 +24,6 @@ export default function Image() {
       >
         <img src={logoDataUrl} alt="" width={160} height={160} style={{ marginBottom: 24 }} />
         <div style={{ fontSize: 56, fontWeight: 400, color: "#1E1810", letterSpacing: "0.02em" }}>Arya</div>
-        <div style={{ fontSize: 22, color: "#8B6A3E", marginTop: 8, letterSpacing: "0.12em", textTransform: "uppercase" }}>Noble by nature</div>
       </div>
     ),
     { ...size }

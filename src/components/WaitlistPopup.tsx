@@ -258,7 +258,7 @@ export function WaitlistPopup() {
               <AryaMark size={48} color="#8B6A3E" />
             </div>
             <h2 id="waitlist-popup-title" className="waitlist-popup-headline">
-              Be first. <em>Be noble.</em>
+              Join the waitlist.
             </h2>
             <p className="waitlist-popup-sub">
               {addingAnotherEmail ? (
@@ -268,7 +268,11 @@ export function WaitlistPopup() {
                 </>
               ) : (
                 <>
-                  Early access to the launch collection. Founder pricing. Exclusive updates before anyone else. Fall 2026.
+                  Early access to the launch collection. Founder pricing.
+                  <br />
+                  Launching 2027.
+                  <br />
+                  We&apos;ll tell you the date when we&apos;re certain of it.
                 </>
               )}
             </p>

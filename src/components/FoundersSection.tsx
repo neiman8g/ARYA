@@ -13,11 +13,7 @@ export function FoundersSection({ showCtas = true }: FoundersSectionProps) {
       <div className="founders-s1">
         <div className="founders-s1-inner">
           <span className="founders-s1-eyebrow">THE FOUNDERS</span>
-          <h2 className="hero-h1">
-            We built what didn&apos;t
-            <br />
-            <em>exist.</em>
-          </h2>
+          <h2 className="hero-h1">The founders.</h2>
           <p className="body-txt">
             Arya was born between two people, two worlds, and one shared belief: that clothing
             should make you feel like yourself.
@@ -34,8 +30,7 @@ export function FoundersSection({ showCtas = true }: FoundersSectionProps) {
             its next generation can become.
           </p>
           <p className="body-txt">
-            Together they built Arya. A meeting point between two worlds. The California coast that
-            inspires the lifestyle, and the ancient Persian heritage that shaped the craft.
+            Together they built Arya. Designed in California. Made in Spain.
           </p>
         </div>
       </div>
@@ -57,11 +52,8 @@ export function FoundersSection({ showCtas = true }: FoundersSectionProps) {
           <p className="founders-role">Co-Founder</p>
           <p className="body-txt">
             Nima grew up bigger than the clothes that were supposed to fit him. A state wrestler and
-            football player, he lived in his body in a way most brands never accounted for. Joggers
-            that fit his waist turned into skinny jeans at the thigh. Shirts that fit his shoulders
-            billowed everywhere else. He would go for a run and come back with chafing. The
-            fabrics were not right either. Synthetic polymers that did not breathe, did not last,
-            and did not respect the body wearing them.
+            football player, he spent years in clothes that pulled at the thigh and billowed
+            everywhere else.
           </p>
           <p className="body-txt">
             But it was more than fit. Sport gave him his confidence. At his lowest points, athletics
@@ -79,17 +71,12 @@ export function FoundersSection({ showCtas = true }: FoundersSectionProps) {
           <span className="founders-name-label">LUCY SAGER</span>
           <p className="founders-role">Co-Founder</p>
           <p className="body-txt">
-            Lucy came to Southern California from Florida in 2022 and found a life built around
-            movement, wellness, and intention. Her first Persian New Year with Nima&apos;s family
-            changed something in her. She was taught about the Haft Seen, each element on the table
-            carrying a meaning, a wish, an intention. A culture that treated everything it touched
-            as worth doing beautifully.
+            Lucy came to Southern California from Florida in 2022.
           </p>
           <p className="body-txt">
             Studying to become a family therapist, Lucy&apos;s life work is helping people overcome
             anxiety and rebuild their self worth. She knows the specific discomfort of women&apos;s
-            activewear that rides up, pulls, and makes you self-conscious mid-movement when you
-            should feel free. That problem is personal to her. Fixing it is personal to Arya.
+            activewear that rides up and pulls. That problem is personal to her.
           </p>
         </div>
         <div className="founders-split-photo">

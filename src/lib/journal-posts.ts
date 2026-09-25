@@ -11,39 +11,35 @@ export type JournalPost = {
 export const JOURNAL_POSTS: JournalPost[] = [
   {
     slug: "pfas-free-activewear-guide",
-    title: "The complete guide to PFAS-free activewear in 2026",
-    excerpt:
-      "PFAS forever chemicals are in most activewear. Learn what they are, why they matter for your health, and how to find workout clothes that are truly non-toxic.",
+    title: "NobleFlex, NobleSoft, NobleDry",
+    excerpt: "The three fabrics in the collection, and where each one is used.",
     date: "April 2026",
     image: "/arya-hero.jpg",
-    imageAlt: "PFAS-free activewear — skin conscious premium athleisure by Arya",
+    imageAlt: "Arya",
   },
   {
     slug: "activewear-for-athletic-bodies",
-    title: "Activewear for athletic bodies: why standard sizing does not work",
-    excerpt:
-      "If you have muscular thighs, broad shoulders, or a strong chest, standard activewear was not built for you. Here is what engineered fit looks like.",
+    title: "How Arya sizes",
+    excerpt: "Patterns start from scratch. Women's XS to 3XL. Men's S to 3XL.",
     date: "April 2026",
     image: "/arya-fit.jpg",
-    imageAlt: "Activewear engineered for athletic bodies with muscular thighs and broad shoulders",
+    imageAlt: "Arya fit",
   },
   {
     slug: "sustainable-activewear-worth-the-investment",
     title: "Is sustainable activewear worth the investment?",
-    excerpt:
-      "The real cost of cheap leggings goes beyond price. Here is why sustainable activewear is worth it for your skin, your wardrobe, and the planet.",
+    excerpt: "A $25 legging replaced every four months costs more per year than a $120 legging kept for two.",
     date: "April 2026",
     image: "/arya-story.jpg",
-    imageAlt: "Sustainable activewear investment — Persian craft meets California soul by Arya",
+    imageAlt: "Arya",
   },
   {
     slug: "why-conventional-athleisure-fails-athletic-bodies",
-    title: "Why conventional athleisure fails athletic bodies",
-    excerpt:
-      "Standard athleisure sizing was built for one silhouette. Here is why athletic bodies are underserved and what true fit engineering changes.",
+    title: "Standard sizing",
+    excerpt: "Most brands grade one pattern. Arya cuts women's and men's patterns from scratch.",
     date: "March 2026",
     image: "/arya-fit.jpg",
-    imageAlt: "Athletic fit activewear engineered for strong quads and broad shoulders",
+    imageAlt: "Arya fit",
   },
   {
     slug: "what-is-nobleflex",
@@ -52,16 +48,15 @@ export const JOURNAL_POSTS: JournalPost[] = [
       "NobleFlex is Arya's proprietary performance fabric. Four-way stretch, compression, UV support, and skin conscious engineering.",
     date: "March 2026",
     image: "/arya-hero.jpg",
-    imageAlt: "Woman running through desert — premium athleisure for athletic bodies by Arya",
+    imageAlt: "Arya",
   },
   {
     slug: "persian-craft-philosophy",
-    title: "Persian craft philosophy and what it means for how we make clothes",
-    excerpt:
-      "How the Persian standard of precision shapes every stitch, seam, and fabric decision at Arya.",
+    title: "The name",
+    excerpt: "Arya is Persian for noble.",
     date: "March 2026",
     image: "/arya-story.jpg",
-    imageAlt: "Arya brand — Persian craft meets California athleisure",
+    imageAlt: "Arya",
   },
 ];
 

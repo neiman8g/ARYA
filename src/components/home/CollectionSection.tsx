@@ -6,12 +6,12 @@ import { PRODUCTS } from "@/lib/products";
 import { ProductPlaceholder } from "./HeroSection";
 
 const CARD_DESCRIPTIONS: Record<string, string> = {
-  "noble-legging": "Skin-conscious NobleFlex fabric. No PFAS, no toxic dyes, no synthetics against your skin. Four-way stretch engineered for athletic builds.",
-  "noble-bra": "Skin-conscious NobleFlex. No PFAS or toxic dyes against your skin. Medium to high support with four-way stretch.",
-  "noble-long-crop": "Skin-conscious NobleFlex. No PFAS, no toxic dyes. Pairs as a set with the Noble Sports Bra — four-way stretch, movement-ready.",
-  "noble-short": "Skin-conscious NobleDry. No PFAS, no toxic dyes. Extended thigh room and four-way stretch for real movement.",
-  "noble-tee": "Skin-conscious NobleSoft. No PFAS, no toxic dyes, no synthetics against your skin. Silk-like feel, naturally odor resistant.",
-  "noble-pant": "Skin-conscious NobleDry. No PFAS, no toxic dyes. Five-pocket performance trouser — four-way stretch for the body that moves.",
+  "noble-legging": "NobleFlex. Four-way stretch and a high-rise waistband.",
+  "noble-bra": "NobleFlex. Medium to high support, four-way stretch.",
+  "noble-long-crop": "NobleFlex. Pairs with the Noble Sports Bra.",
+  "noble-short": "NobleDry. Extended thigh room, four-way stretch.",
+  "noble-tee": "NobleSoft. Silk-like feel, odor resistant.",
+  "noble-pant": "NobleDry. Five-pocket trouser, four-way stretch.",
 };
 
 function withNobleflexLink(text: string) {
@@ -68,7 +68,7 @@ function ProductCard({ p, selectedColors, setColor }: ProductCardProps) {
           </div>
         )}
         <div className="p-foot">
-          <div className="p-coming">Coming Fall 2026</div>
+          <div className="p-coming">Launching 2027</div>
           <Link href={`/products/${p.slug}`} className="btn-p">Select size</Link>
         </div>
       </div>
@@ -93,7 +93,7 @@ export function CollectionSection() {
           <div className="label">Launch Collection</div>
           <h2 className="display">The <em>foundation</em> pieces.</h2>
         </div>
-        <p className="coll-note">Engineered from scratch for the body that moves.</p>
+        <p className="coll-note">Cut from scratch.</p>
       </div>
       <div className="coll-tabs">
         <button type="button" className={`coll-tab ${collectionFilter === "all" ? "active" : ""}`} onClick={() => setCollectionFilter("all")}>All</button>
@@ -115,7 +115,7 @@ export function CollectionSection() {
         </div>
       </div>
       <div className="coll-waitlist-strip fade-section">
-        <p className="coll-waitlist-text">Launching Fall 2026. Founder pricing for waitlist members only.</p>
+        <p className="coll-waitlist-text">Launching 2027. Founder pricing for waitlist members.</p>
         <a href="#waitlist" className="coll-waitlist-btn">Get Early Access</a>
       </div>
     </section>

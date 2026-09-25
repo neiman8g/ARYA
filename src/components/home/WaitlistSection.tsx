@@ -95,8 +95,8 @@ export function WaitlistSection() {
       <WeavePattern id="wl-p" opacity={0.05} color="#8B6A3E" />
       <div className="wl-inner">
         <div className="label" style={{ justifyContent: "center" }}>Early Access</div>
-        <h2 className="display" style={{ marginBottom: 16, fontSize: "clamp(42px,5vw,68px)" }}>Be first.<br /><em>Be noble.</em></h2>
-        <p className="wl-sub">Join the Arya waitlist for early access to the launch collection, founder pricing, and exclusive updates before anyone else. Men&apos;s and women&apos;s dropping together.<br /><span className="wl-launch">Launching Fall 2026. Founder access is limited.</span></p>
+        <h2 className="display" style={{ marginBottom: 16, fontSize: "clamp(42px,5vw,68px)" }}>Join the waitlist.</h2>
+        <p className="wl-sub">Early access to the launch collection and founder pricing. Men&apos;s and women&apos;s together.<br /><span className="wl-launch">Launching 2027.</span></p>
         {submitted && !allowAnotherWaitlist ? (
           <>
             <div className="wl-success"><p>You&apos;re in. Founder pricing and first access are yours. We&apos;ll be in touch before anyone else.</p></div>

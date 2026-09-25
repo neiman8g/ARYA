@@ -10,15 +10,13 @@ export function HeroSection() {
         <div className="hero-content">
           <div className="eyebrow">
             <span className="eyebrow-rule" />
-            Persian Craft · California Soul · Fall 2026
+            <span>Designed in California. Made in Spain.</span>
           </div>
-          <h1 className="sr-only">Premium Activewear Engineered for Athletic Bodies — PFAS-Free, Skin-Conscious — Los Angeles</h1>
+          <h1 className="sr-only">You were never the problem. The clothes were.</h1>
           <h2 className="hero-h1">
-            Noble by<br /><em>nature.</em>
+            You were never the problem.<br />The clothes were.
           </h2>
-          <p className="hero-sub">
-            Premium activewear for athletic bodies. No PFAS. No toxic dyes. No compromise. Launching Fall 2026.
-          </p>
+          <p className="hero-sub">Launching 2027.</p>
           <div className="hero-ctas">
             <a href="#waitlist" className="btn-dark">Get Founder Pricing</a>
             <Link href="/collection" className="btn-outline">Preview Collection</Link>
@@ -30,7 +28,7 @@ export function HeroSection() {
         <WeavePattern id="hero-p" opacity={0.1} color="#8B6A3E" />
         <Image
           src="/arya-hero.jpg"
-          alt="Woman running through desert — premium athleisure for athletic bodies by Arya"
+          alt="Arya"
           className="hero-placeholder"
           priority
           fill
@@ -47,9 +45,8 @@ export function HeroSection() {
 
 export function Ticker() {
   const items = [
-    "BUILT FOR EVERY BODY", "PERSIAN CRAFT PHILOSOPHY", "CALIFORNIA SOUL",
-    "NOBILITY IN EVERY THREAD", "SKIN CONSCIOUS", "SUSTAINABLY MINDED",
-    "NO PFAS", "NO TOXIC DYES", "NO COMPROMISES",
+    "DESIGNED IN CALIFORNIA. MADE IN SPAIN.",
+    "SKIN CONSCIOUS",
   ];
   return (
     <div className="ticker fade-section">

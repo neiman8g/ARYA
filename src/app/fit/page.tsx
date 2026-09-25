@@ -4,18 +4,18 @@ import { SiteFooter } from "@/components/SiteFooter";
 
 export const metadata = {
   title: "Fit Philosophy | Arya | Engineered for the Body That Moves",
-  description: "Arya's fit philosophy starts with the body that moves. Extended thigh room, shoulder room, and waistbands that hold. Engineered separately for women and men. XS to 3XL.",
-  keywords: "athletic fit activewear, leggings for muscular thighs, activewear for strong shoulders, engineered athleisure fit, activewear for athletic body, inclusive sizing activewear",
+  description: "Arya patterns start from scratch. Extended thigh room and waistbands that hold. Cut separately for women and men. XS to 3XL.",
+  keywords: "Arya fit, leggings, sizing, XS to 3XL",
   openGraph: {
     title: "Fit Philosophy | Arya | Engineered for the Body That Moves",
-    description: "Arya's fit philosophy starts with the body that moves. Extended thigh room, shoulder room, and waistbands that hold. Engineered separately for women and men. XS to 3XL.",
+    description: "Arya patterns start from scratch. Extended thigh room and waistbands that hold. Cut separately for women and men. XS to 3XL.",
     images: ["/arya-hero.jpg"],
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
     title: "Fit Philosophy | Arya | Engineered for the Body That Moves",
-    description: "Arya's fit philosophy starts with the body that moves. Extended thigh room, shoulder room, and waistbands that hold. Engineered separately for women and men. XS to 3XL.",
+    description: "Arya patterns start from scratch. Extended thigh room and waistbands that hold. Cut separately for women and men. XS to 3XL.",
     images: ["/arya-hero.jpg"],
   },
 };
@@ -30,8 +30,8 @@ export default function FitPage() {
         <div className="fit-layout">
           <div className="fit-content">
             <span className="sp-label">Fit Philosophy</span>
-            <h1>Every pattern starts with<br />the body that <em>moves.</em></h1>
-            <p>Standard sizing was built for a standard body. Arya&apos;s patterns start from scratch, with real bodies and real movement in mind, and the belief that a body that surfs, moves, rides, and lives fully deserves fabric that keeps up.</p>
+            <h1>Every pattern starts from scratch.</h1>
+            <p>Standard sizing was built for a standard body. Arya&apos;s patterns start from scratch.</p>
             <p>Our Women&apos;s and Men&apos;s cuts share the same philosophy: engineered separately for each form, so everyone gets the same standard of fit.</p>
             <div className="fit-specs">
               <h3>Women&apos;s</h3>
@@ -54,7 +54,7 @@ export default function FitPage() {
           </div>
           <div className="fit-visual">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/arya-fit.jpg" alt="Athletic fit activewear engineered for strong quads and broad shoulders" />
+            <img src="/arya-fit.jpg" alt="Arya fit" />
           </div>
         </div>
       </main>

@@ -19,9 +19,9 @@ export default function CollectionPage() {
       <main className="sp-main">
         <span className="sp-label">Launch Collection</span>
         <h1>The <em>foundation</em> pieces.</h1>
-        <div className="coll-launch-banner">Launching Fall 2026 · Early access available now for waitlist members</div>
+        <div className="coll-launch-banner">Launching 2027. Early access for waitlist members.</div>
         <p className="coll-mission-link">What drives Arya&apos;s sustainable luxury? <Link href="/mission">Read our mission.</Link></p>
-        <p className="coll-note">Engineered from scratch for the body that moves.</p>
+        <p className="coll-note">Cut from scratch.</p>
         <div className="coll-tabs">
           <button type="button" className={`coll-tab ${collectionFilter === "all" ? "active" : ""}`} onClick={() => setCollectionFilter("all")}>All</button>
           <button type="button" className={`coll-tab ${collectionFilter === "women" ? "active" : ""}`} onClick={() => setCollectionFilter("women")}>Women&apos;s</button>
@@ -42,7 +42,7 @@ export default function CollectionPage() {
                 <div className="coll-info">
                   <span className="coll-cat">{p.gender}</span>
                   <span className="coll-name">{p.name}</span>
-                  <span className="coll-coming">Coming Fall 2026</span>
+                  <span className="coll-coming">Launching 2027</span>
                 </div>
               </Link>
             ))}
@@ -63,7 +63,7 @@ export default function CollectionPage() {
                 <div className="coll-info">
                   <span className="coll-cat">{p.gender}</span>
                   <span className="coll-name">{p.name}</span>
-                  <span className="coll-coming">Coming Fall 2026</span>
+                  <span className="coll-coming">Launching 2027</span>
                 </div>
               </Link>
             ))}

@@ -27,8 +27,8 @@ export function FitSection() {
       <div className="label">Fit Philosophy</div>
       <div className="fit-grid">
         <div>
-          <h2 className="display" style={{ marginBottom: 28 }}>Every pattern starts with<br />the body that <em>moves.</em></h2>
-          <p className="body-txt">Standard sizing was built for a standard body. Arya&apos;s patterns start from scratch, with real bodies and real movement in mind, and the belief that a body that surfs, moves, rides, and lives fully deserves fabric that keeps up.</p>
+          <h2 className="display" style={{ marginBottom: 28 }}>Every pattern starts from scratch.</h2>
+          <p className="body-txt">Standard sizing was built for a standard body. Arya&apos;s patterns start from scratch.</p>
           <p className="body-txt" style={{ marginBottom: 32 }}>Our Women&apos;s and Men&apos;s cuts share the same philosophy: engineered separately for each form, so everyone gets the same standard of fit.</p>
           <div className="fit-tabs">
             <button type="button" className={`fit-tab ${fitTab === "women" ? "active" : ""}`} onClick={() => setFitTab("women")}>Women&apos;s</button>
@@ -44,7 +44,7 @@ export function FitSection() {
           <div className="fit-main">
             <Image
               src="/arya-fit.jpg"
-              alt="Athletic fit activewear engineered for strong quads and broad shoulders"
+              alt="Arya fit"
               className="fit-section-img"
               fill
               sizes="(max-width: 1024px) 100vw, 50vw"

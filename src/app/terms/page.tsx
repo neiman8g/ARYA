@@ -15,7 +15,7 @@ export default function TermsPage() {
       <main className="sp-main">
         <span className="sp-label">Legal</span>
         <h1>Terms of Service</h1>
-        <p className="coll-note">Effective: Fall 2026 &middot; Last updated: April 2026</p>
+        <p className="coll-note">Effective: 2027 &middot; Last updated: April 2026</p>
 
         <div className="sp-copy-section">
           <h2>1. Agreement</h2>
@@ -24,7 +24,7 @@ export default function TermsPage() {
 
         <div className="sp-copy-section">
           <h2>2. Pre-Orders</h2>
-          <p>All products listed on arya.clothing are currently available for pre-order only. Pre-orders are expected to ship Fall 2026. By placing a pre-order, you understand that:</p>
+          <p>All products listed on arya.clothing are currently available for pre-order only. Pre-orders are expected to ship in 2027. By placing a pre-order, you understand that:</p>
           <p>Your payment will be processed at the time of order. Estimated delivery dates are approximate and subject to change. We will notify you by email if there are any significant delays. You may cancel your pre-order for a full refund at any time before the product ships.</p>
         </div>
 

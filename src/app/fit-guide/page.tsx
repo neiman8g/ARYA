@@ -3,9 +3,8 @@ import { SectionNav } from "@/components/SectionNav";
 import { SiteFooter } from "@/components/SiteFooter";
 
 export const metadata = {
-  title: "Fit Guide | Arya | Engineered for the Body That Moves",
-  description:
-    "Arya patterns start from scratch for the athletic body. Extended thigh room, shoulder room, and waistbands that hold. Discover how Arya fits differently.",
+  title: "Fit Guide | Arya",
+  description: "Patterns start from scratch. Extended thigh room. Women's XS to 3XL. Men's S to 3XL.",
 };
 
 export default function FitGuidePage() {
@@ -18,19 +17,18 @@ export default function FitGuidePage() {
         <header className="sp-page-hero" aria-labelledby="fit-guide-hero-title">
           <div className="sp-page-hero-inner">
             <span className="sp-label">FIT GUIDE</span>
-            <h1 id="fit-guide-hero-title">Every pattern starts with the body that moves.</h1>
+            <h1 id="fit-guide-hero-title">Every pattern starts from scratch.</h1>
           </div>
         </header>
 
         <section className="sp-copy-section">
-          <h2>Why standard sizing fails the athletic body</h2>
-          <p>Standard sizing in the athleisure industry was built around one silhouette. Lean, narrow, and unchallenging. If you have strong quads, broad shoulders, or a chest that moves, you know the problem. The waistband gaps. The fabric pulls at the thigh. The shirt fits the shoulders but billows through the torso. The industry called this a sizing issue. It is not. It is a design failure.</p>
-          <p>Arya was built to correct that failure. Every Arya pattern starts from scratch with the athletic body as the design brief.</p>
+          <h2>Sizing</h2>
+          <p>Standard sizing was built around one silhouette. Arya patterns start from scratch. Women's and men's cuts are separate.</p>
         </section>
 
         <section className="sp-copy-section">
           <h2>The Arya fit philosophy</h2>
-          <p>We engineer separately for women and men because the athletic female body and the athletic male body have different requirements. Both deserve the same uncompromising standard of fit.</p>
+          <p>Women&apos;s and men&apos;s patterns are cut separately.</p>
           <div className="fit-guide-cards">
             <article className="fit-guide-card">
               <h3>Women&apos;s Engineering</h3>
@@ -59,10 +57,10 @@ export default function FitGuidePage() {
 
         <section className="sp-copy-section">
           <h2>How to find your Arya size</h2>
-          <p>Our fit is designed to run true to size for the athletic body. Use these guidelines when choosing your size.</p>
+          <p>Use these guidelines when choosing your size.</p>
           <div className="fit-guide-table">
-            <div>If you have muscular thighs</div><div>Size up one in bottoms</div>
-            <div>If you have broad shoulders</div><div>Size up one in tops</div>
+            <div>If you need more room in the thigh</div><div>Size up one in bottoms</div>
+            <div>If you need more room in tops</div><div>Size up one in tops</div>
             <div>If you are between sizes</div><div>Size up for a relaxed fit, size down for a compression fit</div>
             <div>If you are unsure</div><div>Join the waitlist and we will help you personally</div>
           </div>
@@ -80,7 +78,7 @@ export default function FitGuidePage() {
         </section>
 
         <section className="sp-waitlist-cta">
-          <h2>Be first. Be noble.</h2>
+          <h2>Join the waitlist.</h2>
           <p>Join the waitlist for early access and founder updates.</p>
           <Link href="/#waitlist" className="sp-btn">Join Waitlist</Link>
         </section>

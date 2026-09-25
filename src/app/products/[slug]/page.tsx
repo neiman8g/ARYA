@@ -8,34 +8,34 @@ import ProductPageClient from "./ProductPageClient";
 
 const PRODUCT_META: Record<string, { title: string; description: string; keywords: string }> = {
   "noble-legging": {
-    title: "Women's Athletic Legging for Strong Thighs | PFAS-Free NobleFlex | Arya",
-    description: "Finally a legging engineered for athletic thighs. Arya Noble Legging uses PFAS-free NobleFlex fabric with four-way stretch, butt-lifting construction, and extended thigh room for bodies that actually train.",
-    keywords: "sustainable legging athletic fit, leggings for strong thighs, premium eco friendly leggings, NobleFlex legging, activewear for muscular legs, skin safe leggings, athletic body legging",
+    title: "The Noble Legging | NobleFlex | Arya",
+    description: "NobleFlex. Four-way stretch, high-rise waistband, extended thigh room. XS to 3XL. Launching 2027.",
+    keywords: "Noble Legging, NobleFlex, Arya",
   },
   "noble-bra": {
-    title: "Women's Athletic Sports Bra | Skin-Conscious NobleFlex Fabric | Arya",
-    description: "A sports bra that supports athletic chests without digging in. Arya Noble Sports Bra uses PFAS-free NobleFlex fabric with secure support, adaptive stretch, and skin-conscious comfort for high-movement training.",
-    keywords: "sustainable sports bra athletic support, eco friendly sports bra, skin conscious sports bra, NobleFlex bra, premium activewear bra, sports bra for athletic body",
+    title: "The Noble Sports Bra | NobleFlex | Arya",
+    description: "NobleFlex. Medium to high support, four-way stretch. XS to 3XL. Launching 2027.",
+    keywords: "Noble Sports Bra, NobleFlex, Arya",
   },
   "noble-long-crop": {
-    title: "Women's Athletic Longsleeve Crop Top | PFAS-Free | NobleFlex | Arya",
-    description: "A longsleeve crop that moves with athletic shoulders and lats. Arya Noble Long Crop uses PFAS-free NobleFlex fabric with flexible recovery, breathable comfort, and skin-conscious materials for all-day wear.",
-    keywords: "sustainable athletic crop top, eco friendly long sleeve crop, NobleFlex top, premium activewear set, athletic crop top skin conscious",
+    title: "The Noble Long Crop | NobleFlex | Arya",
+    description: "NobleFlex long sleeve. Pairs with the Noble Sports Bra. XS to 3XL. Launching 2027.",
+    keywords: "Noble Long Crop, NobleFlex, Arya",
   },
   "noble-short": {
-    title: "Men's Athletic Shorts for Muscular Thighs | NobleDry Fabric | Arya",
-    description: "Finally shorts built for muscular thighs without waist compromise. Arya Noble Short uses PFAS-free NobleDry fabric with quick-dry stretch, athletic taper, and skin-conscious construction for hard training days.",
-    keywords: "sustainable athletic shorts, shorts for strong thighs, extended thigh room shorts, NobleDry shorts, premium eco friendly shorts, activewear for muscular legs",
+    title: "The Noble Short | NobleDry | Arya",
+    description: "NobleDry. Extended thigh room, four-way stretch. S to 3XL. Launching 2027.",
+    keywords: "Noble Short, NobleDry, Arya",
   },
   "noble-tee": {
-    title: "Men's Fitted Athletic Tee for Broad Shoulders | NobleSoft Fabric | Arya",
-    description: "A fitted tee for broad shoulders that does not billow at the waist. Arya Noble Tee uses NobleSoft fabric with a smooth natural feel, thermoregulating breathability, and skin-conscious no-synthetic-against-skin comfort.",
-    keywords: "natural performance tee, sustainable athletic tee, no synthetic activewear, NobleSoft tee, skin safe workout shirt, natural fiber athletic top, sustainable men's activewear",
+    title: "The Noble Tee | NobleSoft | Arya",
+    description: "NobleSoft. Silk-like feel, odor resistant. S to 3XL. Launching 2027.",
+    keywords: "Noble Tee, NobleSoft, Arya",
   },
   "noble-pant": {
-    title: "Men's Performance Trouser | Athletic Fit | NobleDry Fabric | Arya",
-    description: "Performance trousers that fit athletic quads and glutes without restricting movement. Arya Noble Pant uses PFAS-free NobleDry fabric with stretch structure, clean tailoring, and skin-conscious comfort from commute to training.",
-    keywords: "sustainable performance trouser, athletic fit pants, NobleDry pant, premium eco friendly jogger, activewear trouser athletic body, sustainable men's pants",
+    title: "The Noble Pant | NobleDry | Arya",
+    description: "NobleDry five-pocket trouser. Four-way stretch. S to 3XL. Launching 2027.",
+    keywords: "Noble Pant, NobleDry, Arya",
   },
 };
 

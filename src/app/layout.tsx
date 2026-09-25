@@ -56,17 +56,17 @@ const siteUrl =
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Arya | Premium Activewear for Athletic Bodies | PFAS-Free | Los Angeles",
+    default: "Arya | Premium Activewear",
     template: "%s | Arya",
   },
-  description: "Arya is a premium activewear brand engineered for athletic bodies. No PFAS, no toxic dyes, no virgin synthetics. Built for strong quads, broad shoulders, and bodies that move through every version of life. Persian craft. California soul. Launching Fall 2026.",
-  keywords: "activewear for athletic bodies, PFAS free activewear, non toxic activewear, activewear for strong thighs, activewear for broad shoulders, Persian American brand, skin conscious activewear, NobleFlex fabric, noble by nature, Los Angeles activewear brand",
+  description: "Arya is a premium activewear brand. Designed in California. Made in Spain. Launching 2027.",
+  keywords: "Arya activewear, NobleFlex, skin conscious activewear, Los Angeles, Spain",
   alternates: {
     canonical: siteUrl,
   },
   openGraph: {
-    title: "Arya | Premium Activewear for Athletic Bodies | PFAS-Free | Los Angeles",
-    description: "Arya is a premium activewear brand engineered for athletic bodies. No PFAS, no toxic dyes, no virgin synthetics. Persian craft. California soul. Launching Fall 2026.",
+    title: "Arya | Premium Activewear",
+    description: "Arya is a premium activewear brand. Designed in California. Made in Spain. Launching 2027.",
     images: ["https://www.arya.clothing/arya-hero.jpg"],
     siteName: "Arya",
     locale: "en_US",
@@ -74,8 +74,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Arya | Premium Activewear for Athletic Bodies | PFAS-Free | Los Angeles",
-    description: "Arya is a premium activewear brand engineered for athletic bodies. No PFAS, no toxic dyes, no virgin synthetics. Persian craft. California soul. Launching Fall 2026.",
+    title: "Arya | Premium Activewear",
+    description: "Arya is a premium activewear brand. Designed in California. Made in Spain. Launching 2027.",
     images: ["https://www.arya.clothing/arya-hero.jpg"],
   },
   robots: {
@@ -116,7 +116,7 @@ export default function RootLayout({
             url: "https://www.arya.clothing",
             logo: "https://www.arya.clothing/arya-logo.png",
             description:
-              "Premium athleisure engineered for athletic bodies. PFAS-free, skin-conscious materials. Persian craft. California soul.",
+              "Premium activewear. Designed in California. Made in Spain. Launching 2027.",
             foundingLocation: "Los Angeles, California",
             sameAs: [
               "https://instagram.com/wear_arya",
@@ -131,7 +131,7 @@ export default function RootLayout({
             name: "Arya",
             url: "https://www.arya.clothing",
             description:
-              "Premium activewear engineered for athletic bodies. PFAS-free, skin-conscious materials.",
+              "Premium activewear. Designed in California. Made in Spain. Launching 2027.",
             publisher: {
               "@type": "Organization",
               name: "Arya",

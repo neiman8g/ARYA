@@ -19,9 +19,9 @@ export default function ShippingReturnsPage() {
 
         <div className="sp-copy-section">
           <h2>Pre-Order Shipping</h2>
-          <p>All current orders are pre-orders for our Fall 2026 launch collection. Here is what to expect:</p>
+          <p>All current orders are pre-orders for the 2027 launch collection. Here is what to expect:</p>
           <p><strong>When will I be charged?</strong> Your card is charged at the time of pre-order to secure your spot.</p>
-          <p><strong>When does it ship?</strong> Pre-orders are expected to ship Fall 2026. We will send you tracking information via email as soon as your order ships.</p>
+          <p><strong>When does it ship?</strong> Pre-orders are expected to ship in 2027. We will send tracking by email when your order ships.</p>
           <p><strong>Shipping cost:</strong> Standard shipping within the United States is complimentary on all orders. International shipping will be available at launch — join our <Link href="/#waitlist" className="fabric-link">waitlist</Link> for updates.</p>
           <p><strong>Delivery time:</strong> Once shipped, domestic orders typically arrive within 5–7 business days.</p>
         </div>

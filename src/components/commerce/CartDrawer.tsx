@@ -55,7 +55,7 @@ export function CartDrawer() {
         </div>
         {cart.length > 0 && (
           <div className="cart-drawer-footer">
-            <p className="cart-preorder-note">Pre-orders ship Fall 2026. Free shipping on all orders.</p>
+            <p className="cart-preorder-note">Pre-orders ship in 2027. Free shipping on all orders.</p>
             {checkoutError && <p className="cart-checkout-error">{checkoutError}</p>}
             <button type="button" className="cart-checkout" onClick={goToCheckout} disabled={checkoutLoading}>
               {checkoutLoading ? "Redirecting to payment…" : "Checkout Pre-Order"}

@@ -7,7 +7,7 @@ import { JOURNAL_POSTS } from "@/lib/journal-posts";
 export const metadata = {
   title: "The Journal | Athleisure for Athletic Bodies | Fit, Fabric & Wellness | Arya",
   description:
-    "Read about athletic fit engineering, skin-conscious fabrics, PFAS-free activewear, and Persian craft philosophy from the founders of Arya.",
+    "Notes on fit, fabrics, and the name. Designed in California. Made in Spain.",
 };
 
 export default function BlogIndexPage() {

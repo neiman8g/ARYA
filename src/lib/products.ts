@@ -21,7 +21,7 @@ export const PRODUCTS: Product[] = [
     slug: "noble-legging",
     gender: "Women's",
     name: "The Noble Legging",
-    desc: "Skin-conscious NobleFlex. No PFAS, no toxic dyes — four-way stretch and compression engineered for athletic builds. XS to 3XL.",
+    desc: "NobleFlex. Four-way stretch and compression. XS to 3XL.",
     specs: ["Extended thigh room", "High-rise waistband", "NobleFlex proprietary blend — see The Arya Standard", "Geometric waistband detail"],
     sizes: ["XS", "S", "M", "L", "XL", "2XL", "3XL"],
     colors: [
@@ -30,16 +30,15 @@ export const PRODUCTS: Product[] = [
       { name: "Sand", hex: "#E6DCC9" },
       { name: "Slate", hex: "#3A5A6E" },
     ],
-    oneLine: "Engineered fit. Skin conscious fabric. Built for the body that moves.",
+    oneLine: "NobleFlex. Four-way stretch. High-rise waistband.",
     fabricStory:
-      "The Noble Legging is built from NobleFlex, Arya's proprietary performance fabric. Designed from scratch for the athletic body. Four-way stretch in every direction. Muscle compression that supports without restricting. A high-rise waistband that holds without digging or rolling. Extended thigh and hip room that finally fits the body that surfs, trains, rides, and lives fully. Learn how we engineer for the athletic body in our fit guide. Skin certified and free from harmful chemicals. Noble from the inside out.",
+      "The Noble Legging is built from NobleFlex. Four-way stretch in every direction. Muscle compression that supports without restricting. A high-rise waistband that holds without digging or rolling. Extended thigh and hip room.",
     features: [
       "NobleFlex proprietary fabric",
       "Four-way stretch with full range of motion",
       "Muscle compression without restriction",
       "UV protection built into the fabric",
-      "Skin certified and free from harmful dyes or chemicals",
-      "Extended thigh and hip room engineered for the body that moves",
+      "Extended thigh and hip room",
       "High-rise waistband that holds without digging or rolling",
       "Sizes XS to 3XL",
     ],
@@ -50,7 +49,7 @@ export const PRODUCTS: Product[] = [
     slug: "noble-bra",
     gender: "Women's",
     name: "The Noble Sports Bra",
-    desc: "Skin-conscious NobleFlex. No PFAS, no toxic dyes — medium to high support with four-way stretch. XS to 3XL.",
+    desc: "NobleFlex. Medium to high support, four-way stretch. XS to 3XL.",
     specs: ["Encapsulation + compression hybrid", "NobleFlex proprietary blend — see The Arya Standard", "Adjustable straps", "Hook-free"],
     sizes: ["XS", "S", "M", "L", "XL", "2XL", "3XL"],
     colors: [
@@ -59,7 +58,7 @@ export const PRODUCTS: Product[] = [
       { name: "Sand", hex: "#E6DCC9" },
       { name: "Slate", hex: "#3A5A6E" },
     ],
-    oneLine: "Skin-conscious support. Built to move with you.",
+    oneLine: "NobleFlex. Medium to high support.",
     fabricStory:
       "The Noble Sports Bra is built from the same NobleFlex fabric as the Noble Legging, designed to be worn as a set or on its own. Medium to high support that stays in place through every movement. Four-way stretch, moisture management, and a construction that respects your skin as much as your performance. Pairs perfectly with the Noble Legging for the complete Noble Set.",
     features: [
@@ -106,7 +105,7 @@ export const PRODUCTS: Product[] = [
     slug: "noble-short",
     gender: "Men's",
     name: "The Noble Short",
-    desc: "Skin-conscious NobleDry. No PFAS, no toxic dyes — extended thigh room and four-way stretch. S to 3XL.",
+    desc: "NobleDry. Extended thigh room, four-way stretch. S to 3XL.",
     specs: ["Extended thigh circumference", "NobleDry proprietary blend — see The Arya Standard", "Geometric waistband detail", "Deep side pockets"],
     sizes: ["S", "M", "L", "XL", "2XL", "3XL"],
     colors: [
@@ -115,9 +114,9 @@ export const PRODUCTS: Product[] = [
       { name: "Sand", hex: "#E6DCC9" },
       { name: "Slate", hex: "#3A5A6E" },
     ],
-    oneLine: "Noble fabric. Engineered thigh room. Built for real movement.",
+    oneLine: "NobleDry. Extended thigh room.",
     fabricStory:
-      "The Noble Short is built from NobleDry, Arya's performance short fabric. Durable, quick-dry, and engineered with extended thigh room for the body that actually trains. Four-way stretch that follows every movement without pulling or bunching. Reinforced seams that hold up to real use. A waistband that stays in place whether you are running, lifting, or sitting down to eat. Built for the full day, not just the workout.",
+      "The Noble Short is built from NobleDry. Durable, quick-dry, with extended thigh room. Four-way stretch. Reinforced seams. A waistband that stays in place.",
     features: [
       "NobleDry proprietary performance fabric",
       "Four-way stretch with full range of motion",
@@ -134,7 +133,7 @@ export const PRODUCTS: Product[] = [
     slug: "noble-tee",
     gender: "Men's",
     name: "The Noble Tee",
-    desc: "Skin-conscious NobleSoft. No PFAS, no toxic dyes — silk-like feel, no synthetics against your skin. S to 3XL.",
+    desc: "NobleSoft. Silk-like feel, odor resistant. S to 3XL.",
     specs: ["Extended shoulder and sleeve room", "NobleSoft natural blend — see The Arya Standard", "Minimal seam construction"],
     sizes: ["S", "M", "L", "XL", "2XL", "3XL"],
     colors: [
@@ -143,16 +142,14 @@ export const PRODUCTS: Product[] = [
       { name: "Sand", hex: "#E6DCC9" },
       { name: "Slate", hex: "#3A5A6E" },
     ],
-    oneLine: "No synthetics. No compromise. Just the finest natural blend against your skin.",
+    oneLine: "NobleSoft. Silk-like feel, odor resistant.",
     fabricStory:
-      "The Noble Tee is made from NobleSoft, Arya's natural performance blend. Silk-like against the skin from the first wear. Naturally odor resistant so it stays fresh through every hour of your day. Thermoregulating so it adapts to your body temperature rather than fighting it. No synthetics touching your skin. A tee that respects what you put on your body as much as it respects how you move in it. Cut for broad shoulders with room through the chest and a length that works from the gym to the table.",
+      "The Noble Tee is made from NobleSoft. Silk-like against the skin from the first wear. Naturally odor resistant. Thermoregulating.",
     features: [
       "NobleSoft proprietary natural blend",
       "Silk-like hand feel from the first wear",
       "Naturally odor resistant",
-      "Thermoregulating adapts to your body temperature",
-      "No synthetics touching your skin",
-      "Cut for broad shoulders with room through the chest",
+      "Thermoregulating",
       "Sizes S to 3XL",
     ],
     fabric: "NobleSoft",
@@ -162,7 +159,7 @@ export const PRODUCTS: Product[] = [
     slug: "noble-pant",
     gender: "Men's",
     name: "The Noble Pant",
-    desc: "NobleDry fabric. Five pocket design. Built for the body that moves from the trail to the table.",
+    desc: "NobleDry. Five-pocket trouser. S to 3XL.",
     specs: [],
     sizes: ["S", "M", "L", "XL", "2XL", "3XL"],
     colors: [
@@ -171,16 +168,16 @@ export const PRODUCTS: Product[] = [
       { name: "Sand", hex: "#E6DCC9" },
       { name: "Slate", hex: "#3A5A6E" },
     ],
-    oneLine: "Noble fabric. Five pocket design. Built for the body that moves from the trail to the table.",
+    oneLine: "NobleDry. Five-pocket trouser.",
     fabricStory:
-      "The Noble Pant is built from NobleDry, Arya's performance fabric. Engineered to live between a jogger and a tailored trouser. Five pocket construction with extended thigh room that accommodates the athletic body without sacrificing the clean lines of a well-made pant. Four-way stretch that moves with you. A waistband that holds without digging. Built for the full day from a morning run to a dinner table without changing.",
+      "The Noble Pant is built from NobleDry. Five-pocket construction with extended thigh room. Four-way stretch. A waistband that holds without digging.",
     features: [
       "NobleDry proprietary performance fabric linked to /arya-standard",
       "Five pocket construction",
       "Four-way stretch with full range of motion",
       "Extended thigh room with no restriction",
       "Waistband that holds through every activity",
-      "Transitions from movement to lifestyle without compromise",
+      "Five-pocket construction",
       "Sizes S to 3XL",
     ],
     fabric: "NobleDry",

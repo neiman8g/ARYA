@@ -6,7 +6,7 @@ import { SiteFooter } from "@/components/SiteFooter";
 export const metadata = {
   title: "FAQ | Arya | Sustainable Athleisure Questions Answered",
   description:
-    "Everything you need to know about Arya sizing, NobleFlex fabric, care instructions, shipping, and pre-order. Premium sustainable athleisure engineered for the body that moves.",
+    "Sizing, fabrics, care, shipping, and launch. Designed in California. Made in Spain. Launching 2027.",
 };
 
 const FAQ_SECTIONS = [
@@ -15,11 +15,11 @@ const FAQ_SECTIONS = [
     items: [
       {
         q: "How does Arya sizing run?",
-        a: "Arya is engineered for the athletic body. Our patterns are built from scratch with extended thigh room, shoulder room, and waistbands that hold. If you are between sizes we recommend sizing up for the legging and down for the tee. Our full size range runs XS to 3XL for women and S to 3XL for men.",
+        a: "Patterns are built from scratch with extended thigh room and waistbands that hold. If you are between sizes, size up for the legging and down for the tee. Women's sizes run XS to 3XL. Men's sizes run S to 3XL.",
       },
       {
-        q: "I have muscular thighs. Will the Noble Legging fit me?",
-        a: "Yes. That is exactly who the Noble Legging is designed for. Standard leggings assume a narrow thigh profile. The Noble Legging is patterned with extended thigh and hip room so it fits the body that actually trains without pulling, bunching, or restricting movement.",
+        q: "Will the Noble Legging fit if I need more thigh room?",
+        a: "The Noble Legging is patterned with extended thigh and hip room so it does not pull or bunch.",
       },
       {
         q: "What if my size is not listed?",
@@ -36,19 +36,19 @@ const FAQ_SECTIONS = [
     items: [
       {
         q: "What is NobleFlex?",
-        a: "NobleFlex is Arya's proprietary performance fabric engineered for the body that moves. It delivers four-way stretch, muscle compression, UV protection, and shape retention that holds after every wash. It is skin certified and free from harmful dyes and chemical treatments.",
+        a: "NobleFlex is Arya's performance fabric. Four-way stretch, muscle compression, UV protection, and shape retention after washing.",
       },
       {
         q: "What is NobleSoft?",
-        a: "NobleSoft is Arya's natural performance blend used in the Noble Tee. Silk-like against the skin from the first wear, naturally odor resistant, and thermoregulating. No petroleum based synthetics touch your skin.",
+        a: "NobleSoft is the blend used in the Noble Tee. Silk-like from the first wear, odor resistant, and thermoregulating.",
       },
       {
         q: "What is NobleDry?",
-        a: "NobleDry is Arya's performance short fabric used in the Noble Short and Noble Pant. Quick-dry, four-way stretch, and engineered with durability for daily training. No PFAS treatments, no harmful chemical finishes.",
+        a: "NobleDry is the fabric used in the Noble Short and Noble Pant. Quick-dry and four-way stretch.",
       },
       {
         q: "Are Arya fabrics safe for sensitive skin?",
-        a: "Yes. Every Arya fabric is skin certified and free from harmful dyes, PFAS coatings, and toxic synthetics. We chose our materials specifically because what touches your skin all day should be held to the highest standard.",
+        a: "Fabric notes are on the Arya Standard page.",
       },
       {
         q: "Are the fabrics sustainable?",
@@ -78,7 +78,7 @@ const FAQ_SECTIONS = [
     items: [
       {
         q: "When will Arya ship?",
-        a: "Arya launches Fall 2026. Join the waitlist to receive early access before the general public.",
+        a: "Launching 2027. Join the waitlist for early access.",
       },
       {
         q: "Can I pre-order now?",
@@ -99,11 +99,11 @@ const FAQ_SECTIONS = [
     items: [
       {
         q: "Who founded Arya?",
-        a: "Arya was founded by Nieman Gougerchian and Lucy Sager in Los Angeles. Nieman is Persian-American, a former state wrestler and football player who spent years unable to find clothes that fit his athletic body. Lucy came from Florida to California and discovered Persian culture through Nieman. Together they built what did not exist. Read the full founder story at arya.clothing/founder.",
+        a: "Arya was founded by Nieman Gougerchian and Lucy Sager in Los Angeles. Designed in California. Made in Spain. The founder page is at arya.clothing/founder.",
       },
       {
         q: "What does Arya mean?",
-        a: "Arya comes from the ancient Persian word for noble and honorable. It is the etymological root of the word Iran itself. The name reflects our core belief that clothing should be worthy of the person wearing it.",
+        a: "Arya is Persian for noble.",
       },
       {
         q: "How does Arya give back?",
@@ -162,7 +162,7 @@ export default function FAQPage() {
         </section>
 
         <section className="sp-waitlist-cta">
-          <h2>Be first. Be noble.</h2>
+          <h2>Join the waitlist.</h2>
           <p>Join the waitlist for early access and founder updates.</p>
           <Link href="/#waitlist" className="sp-btn">Join Waitlist</Link>
         </section>

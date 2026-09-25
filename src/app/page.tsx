@@ -20,9 +20,9 @@ import { HomeBrandedFooter } from "@/components/HomeBrandedFooter";
 //   1. Hero        — Hook (brand promise + CTA)
 //   2. Problem     — WHY existing activewear fails (build desire)
 //   3. Materials   — PROOF (refusal list — what's NOT in our fabric)
-//   4. Fit         — Engineered for athletic bodies
+//   4. Fit         — Patterns cut from scratch
 //   5. Collection  — NOW shop (user is sold)
-//   6. Story       — Brand origin (Persian craft + California soul)
+//   6. Story       — Designed in California. Made in Spain.
 //   7. Mission     — Four pillars
 //   8. Founders    — Trust (Nima & Lucy)
 //   9. Waitlist    — Final conversion

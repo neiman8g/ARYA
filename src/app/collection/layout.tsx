@@ -1,17 +1,17 @@
 export const metadata = {
   title: "The Noble Collection | Arya Sustainable Athleisure",
-  description: "Shop the Arya Noble Collection. Premium sustainable athleisure engineered for the body that moves. Noble Legging, Noble Sports Bra, Noble Tee, Noble Short and more. XS to 3XL.",
-  keywords: "noble legging, noble sports bra, sustainable leggings athletic fit, premium athleisure collection, eco friendly activewear, activewear for strong quads, skin conscious leggings",
+  description: "The Noble Collection. Legging, sports bra, tee, short, and pant. XS to 3XL. Launching 2027.",
+  keywords: "Noble Legging, Noble Sports Bra, Noble Tee, Noble Short, Arya",
   openGraph: {
     title: "The Noble Collection | Arya Sustainable Athleisure",
-    description: "Shop the Arya Noble Collection. Premium sustainable athleisure engineered for the body that moves. Noble Legging, Noble Sports Bra, Noble Tee, Noble Short and more. XS to 3XL.",
+    description: "The Noble Collection. Legging, sports bra, tee, short, and pant. XS to 3XL. Launching 2027.",
     images: ["/arya-hero.jpg"],
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
     title: "The Noble Collection | Arya Sustainable Athleisure",
-    description: "Shop the Arya Noble Collection. Premium sustainable athleisure engineered for the body that moves. Noble Legging, Noble Sports Bra, Noble Tee, Noble Short and more. XS to 3XL.",
+    description: "The Noble Collection. Legging, sports bra, tee, short, and pant. XS to 3XL. Launching 2027.",
     images: ["/arya-hero.jpg"],
   },
 };

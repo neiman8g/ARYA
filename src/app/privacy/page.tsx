@@ -15,7 +15,7 @@ export default function PrivacyPage() {
       <main className="sp-main">
         <span className="sp-label">Legal</span>
         <h1>Privacy Policy</h1>
-        <p className="coll-note">Effective: Fall 2026 &middot; Last updated: April 2026</p>
+        <p className="coll-note">Effective: 2027 &middot; Last updated: April 2026</p>
 
         <div className="sp-copy-section">
           <h2>1. Information We Collect</h2>

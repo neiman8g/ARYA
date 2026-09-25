@@ -19,28 +19,25 @@ const FABRIC_CONTENT: Record<
     heading: "NobleFlex",
     subheading: "Arya's performance fabric",
     description:
-      "NobleFlex is engineered for the body that moves. Four-way stretch in every direction, muscle compression that supports without restricting, and UV protection built into every fiber. Skin certified and free from the harmful dyes and chemicals found in standard synthetic fabrics.",
-    whyHeading: "What most brands use instead",
-    whyBody:
-      "Conventional synthetic fabrics are made from virgin petroleum-based polymers that trap heat, cause skin irritation, and break down into microplastics with every wash. NobleFlex is engineered to a higher standard. Better for your skin. Better for your body. Better for the world you move in.",
+      "Four-way stretch in every direction, muscle compression that supports without restricting, and UV protection built into the fiber.",
+    whyHeading: "In the collection",
+    whyBody: "Used in the Noble Legging and Noble Sports Bra.",
   },
   NobleSoft: {
     heading: "NobleSoft",
     subheading: "Arya's natural performance blend",
     description:
-      "NobleSoft is a natural fiber blend engineered to feel silk-like against your skin from the first wear. Naturally odor resistant so it stays fresh through every hour of your day. Thermoregulating so it works with your body temperature rather than against it. No synthetics touching your skin. Ever.",
-    whyHeading: "What most brands use instead",
-    whyBody:
-      "Most performance tees are made from polyester, a petroleum-based plastic that traps odor, irritates skin, and never biodegrades. NobleSoft contains no petroleum-based synthetics against your skin. It is the natural alternative that performs better and feels better from the first wear.",
+      "A fiber blend with a silk-like hand from the first wear. Odor resistant. Thermoregulating.",
+    whyHeading: "In the collection",
+    whyBody: "Used in the Noble Tee.",
   },
   NobleDry: {
     heading: "NobleDry",
     subheading: "Arya's performance short fabric",
     description:
-      "NobleDry is engineered for real movement. Quick-dry construction, four-way stretch, and durability that holds up to daily training. Lightweight enough for a run, structured enough for the table. Built to perform and built to last.",
-    whyHeading: "What most brands use instead",
-    whyBody:
-      "Standard performance shorts are built from virgin synthetic fabrics that degrade quickly, pill after washing, and are made with chemical finishes that sit against your skin all day. NobleDry is engineered to a higher standard with no harmful chemical treatments and construction that outlasts the alternatives.",
+      "Quick-dry construction and four-way stretch.",
+    whyHeading: "In the collection",
+    whyBody: "Used in the Noble Short and Noble Pant.",
   },
 };
 

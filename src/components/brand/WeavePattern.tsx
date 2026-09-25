@@ -1,4 +1,4 @@
-/** Persian geometric weave pattern — brand signature SVG overlay */
+/** Geometric weave pattern — brand signature SVG overlay */
 export function WeavePattern({ id, color = "#8B6A3E", opacity = 0.08 }: { id: string; color?: string; opacity?: number }) {
   return (
     <svg
