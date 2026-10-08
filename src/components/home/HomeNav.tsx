@@ -1,5 +1,6 @@
 "use client";
 
+import { PREORDER_ENABLED } from "@/lib/preorder";
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -121,10 +122,12 @@ export function HomeNav() {
           </li>
         </ul>
         <div className="nav-actions">
-          <button type="button" className="nav-cart-btn" onClick={() => setCartOpen(true)} aria-label="Open cart">
-            Bag
-            {cartCount > 0 && <span className="nav-cart-count">{cartCount}</span>}
-          </button>
+          {PREORDER_ENABLED && (
+            <button type="button" className="nav-cart-btn" onClick={() => setCartOpen(true)} aria-label="Open cart">
+              Bag
+              {cartCount > 0 && <span className="nav-cart-count">{cartCount}</span>}
+            </button>
+          )}
           <a href="/#waitlist" className="nav-btn btn-waitlist">Join Waitlist</a>
           <button
             type="button"

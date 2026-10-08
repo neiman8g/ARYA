@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { getProductBySlug, type Product } from "@/lib/products";
 import { useCart } from "@/components/commerce/CartProvider";
+import { PREORDER_ENABLED } from "@/lib/preorder";
 
 const CROSS_SELL: Record<string, [string, string]> = {
   "noble-legging": ["noble-bra", "noble-long-crop"],
@@ -84,7 +85,7 @@ export default function ProductPageClient({ product }: { product: Product }) {
         <div className="pp-image-options">
           <div className="pp-visual-wrap">
             <ProductPlaceholder name={product.name} />
-            <div className="pp-tag">Pre-Order</div>
+            {PREORDER_ENABLED && <div className="pp-tag">Pre-Order</div>}
           </div>
           <div className="pp-options-stack">
             {product.colors?.length > 0 && (
@@ -121,14 +122,20 @@ export default function ProductPageClient({ product }: { product: Product }) {
               </div>
               <p className="pp-fit-help">Not sure about sizing? See our <Link href="/fit-guide">fit philosophy</Link>.</p>
             </div>
-            <button
-              type="button"
-              className={`pp-add ${added ? "added" : ""}`}
-              onClick={handleAddToCart}
-              disabled={!selectedSize}
-            >
-              {!selectedSize ? "Select Size" : added ? "Added ✓" : "Pre-Order"}
-            </button>
+            {PREORDER_ENABLED ? (
+              <button
+                type="button"
+                className={`pp-add ${added ? "added" : ""}`}
+                onClick={handleAddToCart}
+                disabled={!selectedSize}
+              >
+                {!selectedSize ? "Select Size" : added ? "Added ✓" : "Pre-Order"}
+              </button>
+            ) : (
+              <Link href="/#waitlist" className="pp-add" style={{ display: "block", textAlign: "center", textDecoration: "none" }}>
+                Join the Waitlist
+              </Link>
+            )}
             <p className="pp-delivery">Expected delivery in 2027. Join the waitlist for early access.</p>
             <p className="pp-waitlist-cta">
               Not ready? <Link href="/#waitlist" className="pp-waitlist-link">Join the waitlist for launch updates.</Link>

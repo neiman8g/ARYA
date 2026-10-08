@@ -42,7 +42,7 @@ function ProductCard({ p, selectedColors, setColor }: ProductCardProps) {
       <Link href={`/products/${p.slug}`} className="p-visual-link">
         <div className="p-visual" data-color={selectedColor}>
           <ProductPlaceholder name={p.name} patternId={`p-place-${p.id}`} />
-          <div className="p-tag">Pre-Order</div>
+          <div className="p-tag">2027</div>
         </div>
       </Link>
       <div className="p-info">

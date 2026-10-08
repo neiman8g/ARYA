@@ -37,7 +37,7 @@ export default function CollectionPage() {
                     <AryaMark size={48} color="#8B6A3E" />
                     <span>{p.name}</span>
                   </div>
-                  <span className="coll-tag">Pre-Order</span>
+                  <span className="coll-tag">2027</span>
                 </div>
                 <div className="coll-info">
                   <span className="coll-cat">{p.gender}</span>
@@ -58,7 +58,7 @@ export default function CollectionPage() {
                     <AryaMark size={48} color="#8B6A3E" />
                     <span>{p.name}</span>
                   </div>
-                  <span className="coll-tag">Pre-Order</span>
+                  <span className="coll-tag">2027</span>
                 </div>
                 <div className="coll-info">
                   <span className="coll-cat">{p.gender}</span>
