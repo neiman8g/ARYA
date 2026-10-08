@@ -45,7 +45,7 @@ export function HeroSection() {
 
 export function Ticker() {
   const items = [
-    "DESIGNED IN CALIFORNIA. MADE IN SPAIN.",
+    "DESIGNED IN CALIFORNIA.",
     "SKIN CONSCIOUS",
   ];
   return (
