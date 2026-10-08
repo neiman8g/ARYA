@@ -26,14 +26,6 @@ export const JOURNAL_POSTS: JournalPost[] = [
     imageAlt: "Arya fit",
   },
   {
-    slug: "sustainable-activewear-worth-the-investment",
-    title: "Is sustainable activewear worth the investment?",
-    excerpt: "A $25 legging replaced every four months costs more per year than a $120 legging kept for two.",
-    date: "April 2026",
-    image: "/arya-story.jpg",
-    imageAlt: "Arya",
-  },
-  {
     slug: "why-conventional-athleisure-fails-athletic-bodies",
     title: "Standard sizing",
     excerpt: "Most brands grade one pattern. Arya cuts women's and men's patterns from scratch.",
@@ -45,17 +37,9 @@ export const JOURNAL_POSTS: JournalPost[] = [
     slug: "what-is-nobleflex",
     title: "What is NobleFlex?",
     excerpt:
-      "NobleFlex is Arya's proprietary performance fabric. Four-way stretch, compression, UV support, and skin conscious engineering.",
+      "NobleFlex is Arya's performance fabric. Four-way stretch, compression, UV support, and skin conscious engineering.",
     date: "March 2026",
     image: "/arya-hero.jpg",
-    imageAlt: "Arya",
-  },
-  {
-    slug: "persian-craft-philosophy",
-    title: "The name",
-    excerpt: "Arya is Persian for noble.",
-    date: "March 2026",
-    image: "/arya-story.jpg",
     imageAlt: "Arya",
   },
 ];

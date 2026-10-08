@@ -4,7 +4,7 @@ import { SiteFooter } from "@/components/SiteFooter";
 
 export const metadata = {
   title: "Skin Conscious | Arya | Materials That Respect Your Skin",
-  description: "NobleFlex, NobleSoft, and NobleDry. Designed in California. Made in Spain.",
+  description: "NobleFlex, NobleSoft, and NobleDry. Designed in California.",
 };
 
 export default function SkinConsciousPage() {

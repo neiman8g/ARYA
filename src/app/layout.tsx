@@ -48,8 +48,10 @@ export const viewport: Viewport = {
 };
 
 // Canonical URL for OG/Twitter previews when shared. Set NEXT_PUBLIC_SITE_URL in production (e.g. https://www.arya.clothing).
+// Production always canonicalizes to the real domain, so preview URLs never leak into search results.
 const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL ||
+  (process.env.VERCEL_ENV === "production" ? "https://www.arya.clothing" : null) ||
   (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : null) ||
   "http://localhost:3000";
 
@@ -59,14 +61,14 @@ export const metadata: Metadata = {
     default: "Arya | Premium Activewear",
     template: "%s | Arya",
   },
-  description: "Arya is a premium activewear brand. Designed in California. Made in Spain. Launching 2027.",
-  keywords: "Arya activewear, NobleFlex, skin conscious activewear, Los Angeles, Spain",
+  description: "Arya is a premium activewear brand. Designed in California. Launching 2027.",
+  keywords: "Arya activewear, NobleFlex, skin conscious activewear, Los Angeles",
   alternates: {
     canonical: siteUrl,
   },
   openGraph: {
     title: "Arya | Premium Activewear",
-    description: "Arya is a premium activewear brand. Designed in California. Made in Spain. Launching 2027.",
+    description: "Arya is a premium activewear brand. Designed in California. Launching 2027.",
     images: ["https://www.arya.clothing/arya-hero.jpg"],
     siteName: "Arya",
     locale: "en_US",
@@ -75,7 +77,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Arya | Premium Activewear",
-    description: "Arya is a premium activewear brand. Designed in California. Made in Spain. Launching 2027.",
+    description: "Arya is a premium activewear brand. Designed in California. Launching 2027.",
     images: ["https://www.arya.clothing/arya-hero.jpg"],
   },
   robots: {
@@ -116,7 +118,7 @@ export default function RootLayout({
             url: "https://www.arya.clothing",
             logo: "https://www.arya.clothing/arya-logo.png",
             description:
-              "Premium activewear. Designed in California. Made in Spain. Launching 2027.",
+              "Premium activewear. Designed in California. Launching 2027.",
             foundingLocation: "Los Angeles, California",
             sameAs: [
               "https://instagram.com/wear_arya",
@@ -131,7 +133,7 @@ export default function RootLayout({
             name: "Arya",
             url: "https://www.arya.clothing",
             description:
-              "Premium activewear. Designed in California. Made in Spain. Launching 2027.",
+              "Premium activewear. Designed in California. Launching 2027.",
             publisher: {
               "@type": "Organization",
               name: "Arya",

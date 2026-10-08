@@ -30,7 +30,7 @@ export function FoundersSection({ showCtas = true }: FoundersSectionProps) {
             its next generation can become.
           </p>
           <p className="body-txt">
-            Together they built Arya. Designed in California. Made in Spain.
+            Together they built Arya. Designed in California.
           </p>
         </div>
       </div>

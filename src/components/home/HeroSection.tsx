@@ -10,7 +10,7 @@ export function HeroSection() {
         <div className="hero-content">
           <div className="eyebrow">
             <span className="eyebrow-rule" />
-            <span>Designed in California. Made in Spain.</span>
+            <span>Designed in California.</span>
           </div>
           <h1 className="sr-only">You were never the problem. The clothes were.</h1>
           <h2 className="hero-h1">
@@ -21,7 +21,7 @@ export function HeroSection() {
             <a href="#waitlist" className="btn-dark">Get Founder Pricing</a>
             <Link href="/collection" className="btn-outline">Preview Collection</Link>
           </div>
-          <p className="hero-proof">Join 200+ founders on the waitlist</p>
+          <p className="hero-proof">First access for the founding list.</p>
         </div>
       </div>
       <div className="hero-right">

@@ -4,18 +4,18 @@ import { SiteFooter } from "@/components/SiteFooter";
 
 export const metadata = {
   title: "Our Story | Arya",
-  description: "Designed in California. Made in Spain.",
-  keywords: "Arya, California, Spain, activewear",
+  description: "Designed in California.",
+  keywords: "Arya, California, activewear",
   openGraph: {
     title: "Our Story | Arya",
-    description: "Designed in California. Made in Spain.",
+    description: "Designed in California.",
     images: ["/arya-hero.jpg"],
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
     title: "Our Story | Arya",
-    description: "Designed in California. Made in Spain.",
+    description: "Designed in California.",
     images: ["/arya-hero.jpg"],
   },
 };
@@ -34,7 +34,7 @@ export default function StoryPage() {
           </div>
           <div className="sp-hero-content">
             <span className="sp-label">Our Story</span>
-            <h1>Designed in California. Made in Spain.</h1>
+            <h1>Designed in California.</h1>
             <p>At Arya, we build garments with care. Materials chosen with intention. Fit refined through wear. Craft without shortcuts.</p>
             <div className="sp-values">
               <div>Built with intention.</div>

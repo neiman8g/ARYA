@@ -99,9 +99,6 @@ export function SectionNav({ activeLink, theme = "light" }: SectionNavProps) {
           <Link href="/faq" onClick={closeMenu}>
             FAQ
           </Link>
-          <Link href="/sustainability" onClick={closeMenu}>
-            Sustainability
-          </Link>
           <Link href="/skin-conscious" onClick={closeMenu}>
             Skin Conscious
           </Link>
@@ -140,7 +137,6 @@ export function SectionNav({ activeLink, theme = "light" }: SectionNavProps) {
               <Link href="/blog">Journal</Link>
               <Link href="/fit-guide">Fit Guide</Link>
               <Link href="/faq">FAQ</Link>
-              <Link href="/sustainability">Sustainability</Link>
               <Link href="/skin-conscious">Skin Conscious</Link>
             </div>
           </div>

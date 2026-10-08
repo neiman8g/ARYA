@@ -94,7 +94,6 @@ export function HomeNav() {
           <Link href="/blog" onClick={closeMenu}>Journal</Link>
           <Link href="/fit-guide" onClick={closeMenu}>Fit Guide</Link>
           <Link href="/faq" onClick={closeMenu}>FAQ</Link>
-          <Link href="/sustainability" onClick={closeMenu}>Sustainability</Link>
           <Link href="/skin-conscious" onClick={closeMenu}>Skin Conscious</Link>
         </div>
       </div>
@@ -117,7 +116,6 @@ export function HomeNav() {
               <Link href="/blog">Journal</Link>
               <Link href="/fit-guide">Fit Guide</Link>
               <Link href="/faq">FAQ</Link>
-              <Link href="/sustainability">Sustainability</Link>
               <Link href="/skin-conscious">Skin Conscious</Link>
             </div>
           </li>
@@ -158,7 +156,7 @@ export function StickyCtaBar() {
   return (
     <div className={`sticky-cta-bar ${show ? "visible" : ""}`}>
       <div className="sticky-cta-inner">
-        <span className="sticky-cta-text">Founder pricing ends at launch</span>
+        <span className="sticky-cta-text">Launching 2027</span>
         <a href="#waitlist" className="sticky-cta-btn">Join Waitlist</a>
       </div>
     </div>

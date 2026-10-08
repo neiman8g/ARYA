@@ -6,7 +6,7 @@ import { SiteFooter } from "@/components/SiteFooter";
 export const metadata = {
   title: "FAQ | Arya | Sustainable Athleisure Questions Answered",
   description:
-    "Sizing, fabrics, care, shipping, and launch. Designed in California. Made in Spain. Launching 2027.",
+    "Sizing, fabrics, care, shipping, and launch. Designed in California. Launching 2027.",
 };
 
 const FAQ_SECTIONS = [
@@ -51,8 +51,8 @@ const FAQ_SECTIONS = [
         a: "Fabric notes are on the Arya Standard page.",
       },
       {
-        q: "Are the fabrics sustainable?",
-        a: "Sustainability is built into every fabric decision at Arya. We chose materials that respect both the person wearing them and the environment they live in. Full details on our materials and sustainability commitments are on The Arya Standard page.",
+        q: "What is the Arya Standard?",
+        a: "Every fabric we approve must be OEKO-TEX 100 certified, free of added PFAS and free of toxic dyes, and must pass our own tests for opacity, compression, recovery and pilling. The full standard is on The Arya Standard page.",
       },
     ],
   },
@@ -99,7 +99,7 @@ const FAQ_SECTIONS = [
     items: [
       {
         q: "Who founded Arya?",
-        a: "Arya was founded by Nieman Gougerchian and Lucy Sager in Los Angeles. Designed in California. Made in Spain. The founder page is at arya.clothing/founder.",
+        a: "Arya was founded by Nieman Gougerchian and Lucy Sager in Los Angeles. Designed in California. The founder page is at arya.clothing/founder.",
       },
       {
         q: "What does Arya mean?",

@@ -22,7 +22,7 @@ export const PRODUCTS: Product[] = [
     gender: "Women's",
     name: "The Noble Legging",
     desc: "NobleFlex. Four-way stretch and compression. XS to 3XL.",
-    specs: ["Extended thigh room", "High-rise waistband", "NobleFlex proprietary blend — see The Arya Standard", "Geometric waistband detail"],
+    specs: ["Extended thigh room", "High-rise waistband", "NobleFlex blend — see The Arya Standard", "Geometric waistband detail"],
     sizes: ["XS", "S", "M", "L", "XL", "2XL", "3XL"],
     colors: [
       { name: "Ink", hex: "#1E1810" },
@@ -34,7 +34,7 @@ export const PRODUCTS: Product[] = [
     fabricStory:
       "The Noble Legging is built from NobleFlex. Four-way stretch in every direction. Muscle compression that supports without restricting. A high-rise waistband that holds without digging or rolling. Extended thigh and hip room.",
     features: [
-      "NobleFlex proprietary fabric",
+      "NobleFlex fabric",
       "Four-way stretch with full range of motion",
       "Muscle compression without restriction",
       "UV protection built into the fabric",
@@ -50,7 +50,7 @@ export const PRODUCTS: Product[] = [
     gender: "Women's",
     name: "The Noble Sports Bra",
     desc: "NobleFlex. Medium to high support, four-way stretch. XS to 3XL.",
-    specs: ["Encapsulation + compression hybrid", "NobleFlex proprietary blend — see The Arya Standard", "Adjustable straps", "Hook-free"],
+    specs: ["Encapsulation + compression hybrid", "NobleFlex blend — see The Arya Standard", "Adjustable straps", "Hook-free"],
     sizes: ["XS", "S", "M", "L", "XL", "2XL", "3XL"],
     colors: [
       { name: "Ink", hex: "#1E1810" },
@@ -62,7 +62,7 @@ export const PRODUCTS: Product[] = [
     fabricStory:
       "The Noble Sports Bra is built from the same NobleFlex fabric as the Noble Legging, designed to be worn as a set or on its own. Medium to high support that stays in place through every movement. Four-way stretch, moisture management, and a construction that respects your skin as much as your performance. Pairs perfectly with the Noble Legging for the complete Noble Set.",
     features: [
-      "NobleFlex proprietary fabric",
+      "NobleFlex fabric",
       "Medium to high support",
       "Four-way stretch that moves in every direction",
       "Moisture management built in",
@@ -90,7 +90,7 @@ export const PRODUCTS: Product[] = [
     fabricStory:
       "The Noble Long Crop is built from the same NobleFlex fabric as the Noble Legging and Noble Sports Bra. Designed as the third piece of the Noble Set, it pairs with the Sports Bra for a complete coordinated look, or wears on its own as a versatile long sleeve top. Four-way stretch, moisture management, and a length that covers and flatters through every movement. From the studio to the street without a second thought.",
     features: [
-      "NobleFlex proprietary fabric linked to /arya-standard",
+      "NobleFlex fabric linked to /arya-standard",
       "Designed to pair with the Noble Sports Bra as a complete set",
       "Four-way stretch with full range of motion",
       "Moisture management built in",
@@ -106,7 +106,7 @@ export const PRODUCTS: Product[] = [
     gender: "Men's",
     name: "The Noble Short",
     desc: "NobleDry. Extended thigh room, four-way stretch. S to 3XL.",
-    specs: ["Extended thigh circumference", "NobleDry proprietary blend — see The Arya Standard", "Geometric waistband detail", "Deep side pockets"],
+    specs: ["Extended thigh circumference", "NobleDry blend — see The Arya Standard", "Geometric waistband detail", "Deep side pockets"],
     sizes: ["S", "M", "L", "XL", "2XL", "3XL"],
     colors: [
       { name: "Ink", hex: "#1E1810" },
@@ -118,7 +118,7 @@ export const PRODUCTS: Product[] = [
     fabricStory:
       "The Noble Short is built from NobleDry. Durable, quick-dry, with extended thigh room. Four-way stretch. Reinforced seams. A waistband that stays in place.",
     features: [
-      "NobleDry proprietary performance fabric",
+      "NobleDry performance fabric",
       "Four-way stretch with full range of motion",
       "Quick-dry construction",
       "Extended thigh room with no restriction and no pulling",
@@ -146,7 +146,7 @@ export const PRODUCTS: Product[] = [
     fabricStory:
       "The Noble Tee is made from NobleSoft. Silk-like against the skin from the first wear. Naturally odor resistant. Thermoregulating.",
     features: [
-      "NobleSoft proprietary natural blend",
+      "NobleSoft blend",
       "Silk-like hand feel from the first wear",
       "Naturally odor resistant",
       "Thermoregulating",
@@ -172,7 +172,7 @@ export const PRODUCTS: Product[] = [
     fabricStory:
       "The Noble Pant is built from NobleDry. Five-pocket construction with extended thigh room. Four-way stretch. A waistband that holds without digging.",
     features: [
-      "NobleDry proprietary performance fabric linked to /arya-standard",
+      "NobleDry performance fabric linked to /arya-standard",
       "Five pocket construction",
       "Four-way stretch with full range of motion",
       "Extended thigh room with no restriction",

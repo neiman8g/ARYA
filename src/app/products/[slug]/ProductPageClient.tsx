@@ -184,7 +184,7 @@ export default function ProductPageClient({ product }: { product: Product }) {
       )}
       {product.slug === "noble-legging" && (
         <p className="pp-legging-mission">
-          Arya is built on a <Link href="/mission">higher standard</Link>. <Link href="/sustainability">Skin conscious</Link>. Sustainably minded. Giving back.
+          Arya is built to a <Link href="/arya-standard">published standard</Link>. Engineered fit. <Link href="/skin-conscious">Nothing on the fabric you would not want against your skin</Link>.
         </p>
       )}
 
