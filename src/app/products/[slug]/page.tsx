@@ -1,131 +1,74 @@
-import Link from "next/link";
-import Script from "next/script";
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { getProductBySlug, PRODUCTS } from "@/lib/products";
-import { SectionNav } from "@/components/SectionNav";
-import { SiteFooter } from "@/components/SiteFooter";
-import ProductPageClient from "./ProductPageClient";
+import { JsonLd } from "@/components/JsonLd";
+import { ProductDetail } from "@/components/ProductDetail";
+import { StandardCertificate } from "@/components/StandardCertificate";
+import { getProduct, PRODUCTS } from "@/lib/products";
+import { SITE_URL, STANDARD_LINE } from "@/lib/site";
 
-const PRODUCT_META: Record<string, { title: string; description: string; keywords: string }> = {
-  "noble-legging": {
-    title: "The Noble Legging | NobleFlex | Arya",
-    description: "NobleFlex. Four-way stretch, high-rise waistband, extended thigh room. XS to 3XL. Launching 2027.",
-    keywords: "Noble Legging, NobleFlex, Arya",
-  },
-  "noble-bra": {
-    title: "The Noble Sports Bra | NobleFlex | Arya",
-    description: "NobleFlex. Medium to high support, four-way stretch. XS to 3XL. Launching 2027.",
-    keywords: "Noble Sports Bra, NobleFlex, Arya",
-  },
-  "noble-long-crop": {
-    title: "The Noble Long Crop | NobleFlex | Arya",
-    description: "NobleFlex long sleeve. Pairs with the Noble Sports Bra. XS to 3XL. Launching 2027.",
-    keywords: "Noble Long Crop, NobleFlex, Arya",
-  },
-  "noble-short": {
-    title: "The Noble Short | NobleDry | Arya",
-    description: "NobleDry. Extended thigh room, four-way stretch. S to 3XL. Launching 2027.",
-    keywords: "Noble Short, NobleDry, Arya",
-  },
-  "noble-tee": {
-    title: "The Noble Tee | NobleSoft | Arya",
-    description: "NobleSoft. Silk-like feel, odor resistant. S to 3XL. Launching 2027.",
-    keywords: "Noble Tee, NobleSoft, Arya",
-  },
-  "noble-pant": {
-    title: "The Noble Pant | NobleDry | Arya",
-    description: "NobleDry five-pocket trouser. Four-way stretch. S to 3XL. Launching 2027.",
-    keywords: "Noble Pant, NobleDry, Arya",
-  },
-};
+type Params = { params: Promise<{ slug: string }> };
 
-export async function generateStaticParams() {
+export function generateStaticParams() {
   return PRODUCTS.map((p) => ({ slug: p.slug }));
 }
 
-export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
-  const { slug } = await params;
-  const product = getProductBySlug(slug);
-  const meta = product ? PRODUCT_META[slug] : null;
-  if (!product || !meta) return {};
+export async function generateMetadata({ params }: Params): Promise<Metadata> {
+  const p = getProduct((await params).slug);
+  if (!p) return {};
   return {
-    title: meta.title,
-    description: meta.description,
-    keywords: meta.keywords,
-    openGraph: {
-      title: meta.title,
-      description: meta.description,
-      images: ["/arya-hero.jpg"],
-      type: "website",
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: meta.title,
-      description: meta.description,
-      images: ["/arya-hero.jpg"],
-    },
+    title: `${p.name} | ${p.searchName}`,
+    description: `${p.description} Made to the Arya Standard: ${STANDARD_LINE}. Arriving 2027.`,
+    alternates: { canonical: `/products/${p.slug}` },
   };
 }
 
-export default async function ProductPage({ params }: { params: Promise<{ slug: string }> }) {
-  const { slug } = await params;
-  const product = getProductBySlug(slug);
-  if (!product) notFound();
-
+export default async function ProductPage({ params }: Params) {
+  const p = getProduct((await params).slug);
+  if (!p) notFound();
+  const url = `${SITE_URL}/products/${p.slug}`;
+  const linePath = p.line === "Women" ? "/women" : "/men";
   return (
-    <div className="arya-page">
-      <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Jost:wght@400;500;600&display=swap" rel="stylesheet" />
-      <SectionNav />
-
-      <main className="p-main">
-        <Link href="/collection" className="p-back">← Collection</Link>
-        <Script
-          id={`${product.slug}-product-schema`}
-          type="application/ld+json"
-          strategy="afterInteractive"
-        >
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "Product",
-            name: product.name,
-            description: product.desc,
-            image: `https://www.arya.clothing/arya-hero.jpg`,
-            brand: {
-              "@type": "Brand",
-              name: "Arya",
-            },
-            offers: {
-              "@type": "Offer",
-              url: `https://www.arya.clothing/products/${product.slug}`,
-              availability: "https://schema.org/PreOrder",
-              priceCurrency: "USD",
-              itemCondition: "https://schema.org/NewCondition",
-            },
-            ...(product.fabric && { material: product.fabric }),
-            ...(product.sizes && {
-              size: product.sizes,
-            }),
-          })}
-        </Script>
-        <Script
-          id={`${product.slug}-breadcrumb-schema`}
-          type="application/ld+json"
-          strategy="afterInteractive"
-        >
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "BreadcrumbList",
-            itemListElement: [
-              { "@type": "ListItem", position: 1, name: "Home", item: "https://www.arya.clothing/" },
-              { "@type": "ListItem", position: 2, name: "Collection", item: "https://www.arya.clothing/collection" },
-              { "@type": "ListItem", position: 3, name: product.name, item: `https://www.arya.clothing/products/${product.slug}` },
-            ],
-          })}
-        </Script>
-        <ProductPageClient product={product} />
-      </main>
-
-      <SiteFooter variant="product" />
-    </div>
+    <>
+      <section className="first">
+        <ProductDetail product={p} />
+      </section>
+      <section className="plaster">
+        <div className="wrap split top">
+          <div className="stack">
+            <p className="caps bronze">Before it ships</p>
+            <h2 className="h-1">What this piece has to meet.</h2>
+            <p className="body">
+              Each line is a test the fabric must pass. Results, the mill and the certificate number are added here once the fabric
+              is locked.
+            </p>
+          </div>
+          <StandardCertificate subject={p.name} />
+        </div>
+      </section>
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "Product",
+          name: p.name,
+          description: p.description,
+          url,
+          category: p.searchName,
+          brand: { "@type": "Brand", name: "ARYA" },
+          color: p.colors.join(", "),
+          size: p.sizes.join(", "),
+        }}
+      />
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          itemListElement: [
+            { "@type": "ListItem", position: 1, name: "ARYA", item: SITE_URL },
+            { "@type": "ListItem", position: 2, name: p.line, item: `${SITE_URL}${linePath}` },
+            { "@type": "ListItem", position: 3, name: p.name, item: url },
+          ],
+        }}
+      />
+    </>
   );
 }

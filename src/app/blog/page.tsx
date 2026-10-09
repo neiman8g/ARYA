@@ -1,51 +1,30 @@
-import Image from "next/image";
+import type { Metadata } from "next";
 import Link from "next/link";
-import { SectionNav } from "@/components/SectionNav";
-import { HomeBrandedFooter } from "@/components/HomeBrandedFooter";
-import { JOURNAL_POSTS } from "@/lib/journal-posts";
+import { POSTS } from "@/lib/journal";
 
-export const metadata = {
-  title: "The Journal | Athleisure for Athletic Bodies | Fit, Fabric & Wellness | Arya",
-  description:
-    "Notes on fit, fabrics, and the name. Designed in California.",
+export const metadata: Metadata = {
+  title: "Journal",
+  description: "Notes from ARYA on fit, fabric and choosing non-toxic activewear without the guesswork.",
+  alternates: { canonical: "/blog" },
 };
 
-export default function BlogIndexPage() {
+export default function JournalPage() {
   return (
-    <div className="section-page">
-      <link
-        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Jost:wght@400;500;600&display=swap"
-        rel="stylesheet"
-      />
-      <SectionNav />
-
-      <main className="sp-main blog-main">
-        <span className="sp-label">ARYA JOURNAL</span>
-        <h1>The Journal.</h1>
-        <div className="blog-grid">
-          {JOURNAL_POSTS.map((post) => (
-            <Link key={post.slug} href={`/blog/${post.slug}`} className="blog-card">
-              <div className="blog-card-visual">
-                <Image
-                  src={post.image}
-                  alt={post.imageAlt}
-                  fill
-                  className="blog-card-image"
-                  sizes="(max-width: 900px) 100vw, 33vw"
-                />
-              </div>
-              <div className="blog-card-body">
-                <p className="blog-date">{post.date}</p>
-                <h2>{post.title}</h2>
-                <p>{post.excerpt}</p>
-                <span className="blog-read">Read more</span>
-              </div>
-            </Link>
-          ))}
-        </div>
-      </main>
-
-      <HomeBrandedFooter />
-    </div>
+    <section className="first">
+      <div className="wrap stack" style={{ gap: 48 }}>
+        <h1 className="h-hero">
+          <span className="kicker">The ARYA Journal</span>
+          Notes, plainly.
+        </h1>
+        {POSTS.map((p) => (
+          <Link key={p.slug} className="post-card" href={`/blog/${p.slug}`}>
+            <span className="caps bronze">{p.date}</span>
+            <h2>{p.title}</h2>
+            <p className="body">{p.excerpt}</p>
+            <span className="link">Read</span>
+          </Link>
+        ))}
+      </div>
+    </section>
   );
 }

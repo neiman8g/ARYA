@@ -1,104 +1,49 @@
+import Image from "next/image";
 import Link from "next/link";
-import { AryaMark } from "@/components/AryaLogo";
+import { SOCIAL } from "@/lib/site";
 
-type SiteFooterProps = {
-  variant?: "section" | "product";
-  /** Extra classes on `<footer>` (e.g. `mission-foot`). */
-  className?: string;
-};
-
-const SECTION_DESKTOP_LINKS = [
-  { href: "/story", label: "Story" },
-  { href: "/mission", label: "Mission" },
-  { href: "/collection", label: "Collection" },
-  { href: "/founder", label: "Founders" },
-  { href: "/arya-standard", label: "The Standard" },
-  { href: "/#waitlist", label: "Waitlist" },
-] as const;
-
-const PRODUCT_DESKTOP_LINKS = [
-  { href: "/story", label: "Our Story" },
-  { href: "/mission", label: "Mission" },
-  { href: "/collection", label: "Collection" },
-  { href: "/founder", label: "Founders" },
-  { href: "/arya-standard", label: "The Standard" },
-  { href: "/blog", label: "The Journal" },
-  { href: "/#waitlist", label: "Waitlist" },
-] as const;
-
-/**
- * Section pages: desktop = original `sp-foot` (Arya + link row + copy).
- * Mobile = brand + socials + contact + copy (no duplicate nav row).
- */
-export function SiteFooter({ variant = "section", className = "" }: SiteFooterProps) {
-  const rootClass =
-    `${variant === "product" ? "p-foot" : "sp-foot"} site-footer-root ${className}`.trim();
-  const links = variant === "product" ? PRODUCT_DESKTOP_LINKS : SECTION_DESKTOP_LINKS;
-
+export function SiteFooter() {
   return (
-    <footer className={rootClass} aria-label="Footer navigation">
-      <div className="site-footer-desktop-classic">
-        {variant === "product" ? (
-          <Link href="/" className="p-foot-logo">
-            <AryaMark size={20} color="#8B6A3E" />
-            <span>Arya</span>
-          </Link>
-        ) : (
-          <Link href="/">Arya</Link>
-        )}
-        <div className={variant === "product" ? "p-foot-links" : ""}>
-          {links.map(({ href, label }) => (
-            <Link key={href} href={href}>
-              {label}
-            </Link>
-          ))}
+    <footer className="site-footer">
+      <div className="wrap foot">
+        <div className="stack" style={{ gap: 14 }}>
+          <Image className="foot-icon" src="/brand/arya-icon.png" alt="ARYA" width={41} height={34} />
+          <p className="soft small">Premium non-toxic activewear. Designed in California.</p>
+        </div>
+        <div>
+          <h2 className="foot-h">Shop</h2>
+          <ul>
+            <li><Link href="/women">Women</Link></li>
+            <li><Link href="/men">Men</Link></li>
+          </ul>
+        </div>
+        <div>
+          <h2 className="foot-h">ARYA</h2>
+          <ul>
+            <li><Link href="/arya-standard">The Standard</Link></li>
+            <li><Link href="/about">About</Link></li>
+            <li><Link href="/blog">Journal</Link></li>
+            <li><Link href="/faq">FAQ</Link></li>
+          </ul>
+        </div>
+        <div>
+          <h2 className="foot-h">Write to us</h2>
+          <ul>
+            <li><a href="mailto:hello@arya.clothing">hello@arya.clothing</a></li>
+            <li><a href="mailto:press@arya.clothing">press@arya.clothing</a></li>
+            <li><a href={SOCIAL.instagram}>Instagram</a></li>
+            <li><a href={SOCIAL.tiktok}>TikTok</a></li>
+          </ul>
         </div>
       </div>
-
-      <div className="site-footer-mobile-rich">
-        <div className="site-footer-mobile-inner">
-          <div className="site-footer-brand">
-            {variant === "product" ? (
-              <Link href="/" className="p-foot-logo">
-                <AryaMark size={20} color="#8B6A3E" />
-                <span>Arya</span>
-              </Link>
-            ) : (
-              <Link href="/">Arya</Link>
-            )}
-            <div className="site-footer-social">
-              <a href="https://instagram.com/wear_arya" target="_blank" rel="noopener noreferrer">
-                Instagram
-              </a>
-              <a href="https://tiktok.com/@wear_arya" target="_blank" rel="noopener noreferrer">
-                TikTok
-              </a>
-              <a href="mailto:hello@arya.clothing">Email</a>
-            </div>
-          </div>
-          <div className="site-footer-contact">
-            <h2 className="site-footer-contact-title">Contact</h2>
-            <ul className="site-footer-contact-list">
-              <li>
-                <a href="mailto:hello@arya.clothing">hello@arya.clothing</a>
-              </li>
-              <li>
-                <a href="mailto:press@arya.clothing">Press</a>
-              </li>
-              <li>
-                <a href="mailto:wholesale@arya.clothing">Wholesale</a>
-              </li>
-            </ul>
-          </div>
-        </div>
+      <div className="wrap legal">
+        <span>&copy; {new Date().getFullYear()} ARYA</span>
+        <span>
+          <Link href="/shipping-returns">Shipping &amp; Returns</Link> &middot; <Link href="/privacy">Privacy</Link> &middot;{" "}
+          <Link href="/terms">Terms</Link>
+        </span>
+        <Image className="legal-mark" src="/brand/arya-wordmark.png" alt="" width={70} height={14} />
       </div>
-
-      <div className="site-footer-legal" style={{ display: "flex", flexWrap: "wrap", gap: "8px 20px", justifyContent: "center" }}>
-        <Link href="/shipping-returns" style={{ fontSize: "11px", letterSpacing: "0.12em", color: "var(--arya-ink-60)", textDecoration: "none" }}>Shipping &amp; Returns</Link>
-        <Link href="/privacy" style={{ fontSize: "11px", letterSpacing: "0.12em", color: "var(--arya-ink-60)", textDecoration: "none" }}>Privacy</Link>
-        <Link href="/terms" style={{ fontSize: "11px", letterSpacing: "0.12em", color: "var(--arya-ink-60)", textDecoration: "none" }}>Terms</Link>
-      </div>
-      <p className="site-footer-copy">© 2026 Arya · Noble by nature.</p>
     </footer>
   );
 }

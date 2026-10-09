@@ -1,64 +1,34 @@
 import type { Metadata } from "next";
-import { SectionNav } from "@/components/SectionNav";
-import { SiteFooter } from "@/components/SiteFooter";
 
 export const metadata: Metadata = {
   title: "Terms of Service",
-  description: "Arya terms of service — the rules and guidelines for using arya.clothing and placing pre-orders.",
-  alternates: { canonical: "https://www.arya.clothing/terms" },
+  description: "The terms for using arya.clothing and joining the ARYA founding list.",
+  alternates: { canonical: "/terms" },
 };
 
 export default function TermsPage() {
   return (
-    <div className="section-page">
-      <SectionNav />
-      <main className="sp-main">
-        <span className="sp-label">Legal</span>
-        <h1>Terms of Service</h1>
-        <p className="coll-note">Effective: 2027 &middot; Last updated: April 2026</p>
-
-        <div className="sp-copy-section">
-          <h2>1. Agreement</h2>
-          <p>By accessing arya.clothing or placing a pre-order, you agree to these terms. If you do not agree, please do not use our site.</p>
-        </div>
-
-        <div className="sp-copy-section">
-          <h2>2. Pre-Orders</h2>
-          <p>All products listed on arya.clothing are currently available for pre-order only. Pre-orders are expected to ship in 2027. By placing a pre-order, you understand that:</p>
-          <p>Your payment will be processed at the time of order. Estimated delivery dates are approximate and subject to change. We will notify you by email if there are any significant delays. You may cancel your pre-order for a full refund at any time before the product ships.</p>
-        </div>
-
-        <div className="sp-copy-section">
-          <h2>3. Pricing</h2>
-          <p>All prices are listed in USD. We reserve the right to adjust pricing at any time. If you have already placed a pre-order, the price at the time of your order will be honored.</p>
-        </div>
-
-        <div className="sp-copy-section">
-          <h2>4. Intellectual Property</h2>
-          <p>All content on arya.clothing — including the Arya name, logo, product names (NobleFlex, NobleSoft, NobleDry), images, and copy — is the property of Arya and may not be reproduced without written permission.</p>
-        </div>
-
-        <div className="sp-copy-section">
-          <h2>5. Limitation of Liability</h2>
-          <p>Arya is provided &ldquo;as is.&rdquo; We are not liable for any indirect, incidental, or consequential damages arising from your use of the site or products.</p>
-        </div>
-
-        <div className="sp-copy-section">
-          <h2>6. Governing Law</h2>
-          <p>These terms are governed by the laws of the State of California. Any disputes shall be resolved in the courts of Los Angeles County, California.</p>
-        </div>
-
-        <div className="sp-copy-section">
-          <h2>7. Changes</h2>
-          <p>We may update these terms from time to time. Continued use of the site after changes constitutes acceptance of the new terms.</p>
-        </div>
-
-        <div className="sp-copy-section">
-          <h2>8. Contact</h2>
-          <p>Questions? Contact us at <a href="mailto:hello@arya.clothing" className="fabric-link">hello@arya.clothing</a>.</p>
-        </div>
-      </main>
-      <SiteFooter variant="section" />
-    </div>
+    <section className="first">
+      <div className="wrap article">
+        <h1 className="h-1"><span className="kicker">Legal</span>Terms of Service</h1>
+        <p className="caps soft">Last updated October 2026</p>
+        <h2>1. Agreement</h2>
+        <p>By using arya.clothing or joining the founding list, you agree to these terms. If you do not agree, please do not use the site.</p>
+        <h2>2. Before launch</h2>
+        <p>ARYA products are not yet for sale. Product details, colors, sizes and prices shown on the site describe the planned 2027 collection and may change before launch. Joining the founding list does not create an order or any obligation to buy.</p>
+        <h2>3. Pricing</h2>
+        <p>Prices are listed in US dollars. Final prices are confirmed when products go on sale.</p>
+        <h2>4. Intellectual property</h2>
+        <p>All content on arya.clothing, including the ARYA name, logo, product names, images and copy, belongs to ARYA and may not be reproduced without written permission.</p>
+        <h2>5. Limitation of liability</h2>
+        <p>The site is provided as is. ARYA is not liable for indirect, incidental or consequential damages arising from your use of the site.</p>
+        <h2>6. Governing law</h2>
+        <p>These terms are governed by the laws of the State of California. Disputes will be resolved in the courts of Los Angeles County, California.</p>
+        <h2>7. Changes</h2>
+        <p>We may update these terms. Continuing to use the site after a change means you accept the updated terms.</p>
+        <h2>8. Contact</h2>
+        <p>Questions? Write to <a href="mailto:hello@arya.clothing">hello@arya.clothing</a>.</p>
+      </div>
+    </section>
   );
 }

@@ -1,13 +1,28 @@
 import type { NextConfig } from "next";
 
+const r = (source: string, destination: string) => ({ source, destination, permanent: true });
+
 const nextConfig: NextConfig = {
   reactCompiler: true,
-  // Retired pages (Decision Log v2.2, 1.5 and 1.7). Permanent redirects keep inbound links and SEO.
+  // Retired and merged pages. Permanent redirects keep old links and search history.
   async redirects() {
     return [
-      { source: "/sustainability", destination: "/arya-standard", permanent: true },
-      { source: "/blog/sustainable-activewear-worth-the-investment", destination: "/blog", permanent: true },
-      { source: "/blog/persian-craft-philosophy", destination: "/story", permanent: true },
+      r("/sustainability", "/arya-standard"),
+      r("/skin-conscious", "/arya-standard"),
+      r("/collection", "/women"),
+      r("/story", "/about"),
+      r("/mission", "/about"),
+      r("/founder", "/about"),
+      r("/fit", "/faq"),
+      r("/fit-guide", "/faq"),
+      r("/blog/sustainable-activewear-worth-the-investment", "/blog"),
+      r("/blog/persian-craft-philosophy", "/about"),
+      r("/blog/what-is-nobleflex", "/arya-standard"),
+      r("/blog/activewear-for-athletic-bodies", "/blog"),
+      r("/blog/why-conventional-athleisure-fails-athletic-bodies", "/blog"),
+      r("/products/noble-short", "/products/noble-short-men"),
+      r("/products/noble-pant", "/products/noble-jogger"),
+      r("/products/noble-long-crop", "/women"),
     ];
   },
 };
