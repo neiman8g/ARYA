@@ -1,60 +1,27 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import { SectionNav } from "@/components/SectionNav";
-import { SiteFooter } from "@/components/SiteFooter";
 
 export const metadata: Metadata = {
   title: "Shipping & Returns",
-  description: "Arya shipping, delivery, returns, and exchanges policy for pre-orders and future orders.",
-  alternates: { canonical: "https://www.arya.clothing/shipping-returns" },
+  description: "ARYA shipping, returns and exchanges: complimentary US shipping, 30 day returns and free size exchanges from launch in 2027.",
+  alternates: { canonical: "/shipping-returns" },
 };
 
 export default function ShippingReturnsPage() {
   return (
-    <div className="section-page">
-      <SectionNav />
-      <main className="sp-main">
-        <span className="sp-label">Policy</span>
-        <h1>Shipping &amp; Returns</h1>
-
-        <div className="sp-copy-section">
-          <h2>Pre-Order Shipping</h2>
-          <p>All current orders are pre-orders for the 2027 launch collection. Here is what to expect:</p>
-          <p><strong>When will I be charged?</strong> Your card is charged at the time of pre-order to secure your spot.</p>
-          <p><strong>When does it ship?</strong> Pre-orders are expected to ship in 2027. We will send tracking by email when your order ships.</p>
-          <p><strong>Shipping cost:</strong> Standard shipping within the United States is complimentary on all orders. International shipping will be available at launch — join our <Link href="/#waitlist" className="fabric-link">waitlist</Link> for updates.</p>
-          <p><strong>Delivery time:</strong> Once shipped, domestic orders typically arrive within 5–7 business days.</p>
-        </div>
-
-        <div className="sp-copy-section">
-          <h2>Pre-Order Cancellation</h2>
-          <p>You may cancel your pre-order at any time before the product ships for a full refund. To cancel, email <a href="mailto:hello@arya.clothing" className="fabric-link">hello@arya.clothing</a> with your order number.</p>
-        </div>
-
-        <div className="sp-copy-section">
-          <h2>Returns &amp; Exchanges</h2>
-          <p>We want you to love what you wear. Once our products ship, we will offer:</p>
-          <p><strong>30-day returns:</strong> Unworn items with tags attached can be returned within 30 days of delivery for a full refund.</p>
-          <p><strong>Exchanges:</strong> Need a different size? We offer free exchanges within 30 days of delivery. Contact us and we will send you the right size.</p>
-          <p><strong>Condition:</strong> Items must be unworn, unwashed, and in original condition with all tags attached.</p>
-        </div>
-
-        <div className="sp-copy-section">
-          <h2>How to Initiate a Return or Exchange</h2>
-          <p>Email <a href="mailto:hello@arya.clothing" className="fabric-link">hello@arya.clothing</a> with your order number and whether you would like a return or exchange. We will respond within 1 business day with a prepaid return label.</p>
-        </div>
-
-        <div className="sp-copy-section">
-          <h2>Refund Processing</h2>
-          <p>Refunds are processed to the original payment method within 5–10 business days of receiving the returned item.</p>
-        </div>
-
-        <div className="sp-waitlist-cta">
-          <h2>Have a question?</h2>
-          <p>Our team is here to help. Check our <Link href="/faq" className="fabric-link">FAQ</Link> or reach out directly at <a href="mailto:hello@arya.clothing" className="fabric-link">hello@arya.clothing</a>.</p>
-        </div>
-      </main>
-      <SiteFooter variant="section" />
-    </div>
+    <section className="first">
+      <div className="wrap article">
+        <h1 className="h-1"><span className="kicker">Policy</span>Shipping &amp; Returns</h1>
+        <p className="lede">ARYA launches in 2027. Nothing is for sale yet, so no one is charged today. Here is how orders will work from launch.</p>
+        <h2>Shipping</h2>
+        <p><strong>Within the United States:</strong> standard shipping is complimentary on every order. Orders usually arrive within 5 to 7 business days of shipping, with tracking by email.</p>
+        <p><strong>International:</strong> we&apos;ll share international options closer to launch.</p>
+        <h2>Returns</h2>
+        <p>Unworn, unwashed items with tags attached can be returned within 30 days of delivery for a full refund to the original payment method, usually within 5 to 10 business days of the return arriving.</p>
+        <h2>Exchanges</h2>
+        <p>Need a different size? Exchanges are free within 30 days of delivery. Write to us and we&apos;ll send the right size.</p>
+        <h2>Starting a return or exchange</h2>
+        <p>Email <a href="mailto:hello@arya.clothing">hello@arya.clothing</a> with your order number. We reply within one business day with a prepaid label.</p>
+      </div>
+    </section>
   );
 }

@@ -1,36 +1,20 @@
-import Link from "next/link";
 import type { Metadata } from "next";
+import Link from "next/link";
 
-export const metadata: Metadata = {
-  title: "Page Not Found",
-};
+export const metadata: Metadata = { title: "Page not found" };
 
 export default function NotFound() {
   return (
-    <div className="min-h-screen bg-sand flex flex-col items-center justify-center px-6 text-center">
-      <span className="text-[11px] font-medium tracking-[.4em] uppercase text-cognac mb-5 font-sans">
-        404
-      </span>
-      <h1 className="font-display text-[clamp(36px,5vw,56px)] font-light leading-[1.1] text-ink mb-4">
-        Page not found
-      </h1>
-      <p className="text-ink-80 text-[17px] leading-relaxed max-w-[44ch] mb-8 font-sans">
-        The page you&apos;re looking for doesn&apos;t exist or has been moved.
-      </p>
-      <div className="flex flex-wrap gap-4 justify-center">
-        <Link
-          href="/"
-          className="inline-flex items-center justify-center px-8 py-3.5 bg-ink text-sand text-[11px] font-medium tracking-[.26em] uppercase no-underline hover:bg-cognac transition-colors duration-200 font-sans"
-        >
-          Back to Home
-        </Link>
-        <Link
-          href="/collection"
-          className="inline-flex items-center justify-center px-8 py-3.5 border border-sand-4 text-ink text-[11px] font-medium tracking-[.26em] uppercase no-underline hover:border-cognac transition-colors duration-200 font-sans"
-        >
-          Shop Collection
-        </Link>
+    <section className="first">
+      <div className="wrap stack" style={{ gap: 24 }}>
+        <h1 className="h-hero"><span className="kicker">404</span>This page has moved on.</h1>
+        <p className="body">The page you were looking for doesn&apos;t exist anymore. Most of the site now lives in a few places.</p>
+        <div className="actions">
+          <Link className="btn solid" href="/">Home</Link>
+          <Link className="btn" href="/women">Women</Link>
+          <Link className="btn" href="/men">Men</Link>
+        </div>
       </div>
-    </div>
+    </section>
   );
 }

@@ -1,137 +1,60 @@
+import type { Metadata } from "next";
 import Link from "next/link";
-import { SectionNav } from "@/components/SectionNav";
-import { SiteFooter } from "@/components/SiteFooter";
-import "./arya-standard.css";
+import { StandardCertificate } from "@/components/StandardCertificate";
 
-export const metadata = {
-  title: "The Arya Standard",
-  description: "NobleFlex, NobleSoft, and NobleDry. Designed in California.",
-  keywords: "Arya Standard, NobleFlex, NobleSoft, NobleDry",
-  openGraph: {
-    title: "The Arya Standard",
-    description: "NobleFlex, NobleSoft, and NobleDry. Designed in California.",
-    images: ["/arya-hero.jpg"],
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "The Arya Standard",
-    description: "NobleFlex, NobleSoft, and NobleDry. Designed in California.",
-    images: ["/arya-hero.jpg"],
-  },
+export const metadata: Metadata = {
+  title: "The Arya Standard: What Non-Toxic Means at ARYA",
+  description:
+    "What makes ARYA non-toxic activewear: every fabric must be OEKO-TEX 100 certified, with no added PFAS and no toxic dyes, and must stay opaque, hold its waistband and keep its shape before it ships.",
+  alternates: { canonical: "/arya-standard" },
 };
 
-const BLENDS = [
-  {
-    name: "NobleFlex",
-    feel: "Four-way stretch.",
-    description:
-      "Used in the Noble Legging and Noble Sports Bra. Four-way stretch, muscle compression, and UV protection. Shape retention after washing.",
-  },
-  {
-    name: "NobleSoft",
-    feel: "Silk-like from the first wear.",
-    description:
-      "Used in the Noble Tee. Odor resistant. Thermoregulating.",
-  },
-  {
-    name: "NobleDry",
-    feel: "Quick-dry. Four-way stretch.",
-    description: "Used in the Noble Short and Noble Pant.",
-  },
-];
-
-const STATS = [
-  {
-    num: "1 in 3",
-    label:
-      "Children in underserved communities lack access to safe athletic facilities",
-  },
-  {
-    num: "Every purchase",
-    label: "A portion of every Arya sale goes directly to this mission",
-  },
-  {
-    num: "Starting now",
-    label: "Building schools and athletic centers beginning with Iran",
-  },
-];
-
-export default function AryaStandardPage() {
+export default function StandardPage() {
   return (
-    <div className="section-page std-page">
-      <link
-        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Jost:wght@400;500;600&display=swap"
-        rel="stylesheet"
-      />
-      <SectionNav activeLink="arya-standard" />
-
-      <main className="sp-main">
-        {/* Section 1: Hero */}
-        <section className="std-hero">
-          <span className="std-eyebrow">THE ARYA STANDARD</span>
-          <h1>The Arya Standard.</h1>
-          <p className="std-subhead">Designed in California.</p>
-        </section>
-
-        {/* Section 2: The Noble Blends */}
-        <section className="std-section">
-          <h2 className="std-section-heading">Our blends.</h2>
-          <div className="std-blends">
-            {BLENDS.map((b) => (
-              <article key={b.name} className="std-blend-card">
-                <h3 className="std-blend-name">{b.name}</h3>
-                <p className="std-blend-feel">{b.feel}</p>
-                <p className="std-blend-desc">{b.description}</p>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        {/* Section 5: Giving back */}
-        <section className="std-section">
-          <h2 className="std-section-heading">Giving back.</h2>
-          <div className="std-giving-body">
-            <p>
-              Arya was built on the belief that sport builds character,
-              confidence, and community. Our founder Nima knows this firsthand.
-              At his lowest points, athletics gave him his mental strength and
-              his sense of self. Lucy, who is studying to become a family
-              therapist, sees every day how confidence built through movement
-              changes lives.
+    <>
+      <section className="first">
+        <div className="wrap split top">
+          <div className="stack">
+            <h1 className="h-hero">
+              <span className="kicker">The Arya Standard</span>
+              Done once. Written down.
+            </h1>
+            <p className="body">
+              Most activewear asks you to trust the label. We publish the test instead. Every fabric is held to the same written
+              standard for fit and for what touches your skin. A fabric that misses a line doesn&apos;t ship, and no line is softened
+              to let one pass.
             </p>
-            <p>We want every child to have that opportunity.</p>
-            <p>
-              A portion of every Arya purchase goes toward building schools for
-              children in underserved communities, starting with Iran and growing
-              wherever the need exists.
+            <p className="body">We tried a natural fiber first. It lost its compression and went sheer at depth. We didn&apos;t ship it.</p>
+            <Link className="link" href="/blog/pfas-free-activewear-guide">How to check any activewear brand</Link>
+          </div>
+          <StandardCertificate />
+        </div>
+      </section>
+      <section className="dark">
+        <div className="wrap stack" style={{ gap: 48 }}>
+          <h2 className="h-1">How a fabric earns its place</h2>
+          <div className="trio">
+            <div><p className="caps">First, the certificate</p><p className="t">OEKO-TEX 100, no added PFAS, no toxic dyes.</p></div>
+            <div><p className="caps">Then, the fit</p><p className="t">Opaque at full squat, a waistband that holds.</p></div>
+            <div><p className="caps">Then, the wear</p><p className="t">Five testers, twenty sessions each.</p></div>
+          </div>
+        </div>
+      </section>
+      <section>
+        <div className="wrap split top">
+          <h2 className="h-1">What non-toxic means here.</h2>
+          <div className="stack">
+            <p className="body">
+              When we call ARYA non-toxic activewear, we mean three checkable things: the fabric carries an OEKO-TEX STANDARD 100
+              certificate, nothing in it was treated with added PFAS, and the dyes are covered by that certificate.
+            </p>
+            <p className="body">
+              We publish the certificate number, the mill and the full fiber content on every product page once the fabric is
+              locked, so you can verify it yourself rather than take our word for it.
             </p>
           </div>
-          <div className="std-stats">
-            {STATS.map((s) => (
-              <div key={s.num} className="std-stat">
-                <div className="std-stat-num">{s.num}</div>
-                <p className="std-stat-label">{s.label}</p>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* Section 6: Bottom CTA */}
-        <section className="std-cta">
-          <h2>The collection.</h2>
-          <div className="std-cta-btns">
-            <Link href="/collection" className="std-cta-btn-primary">
-              View Collection
-            </Link>
-            <Link href="/#waitlist" className="std-cta-btn-secondary">
-              Join Waitlist
-            </Link>
-          </div>
-        </section>
-      </main>
-
-      <SiteFooter />
-    </div>
+        </div>
+      </section>
+    </>
   );
 }
