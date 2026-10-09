@@ -52,9 +52,6 @@ export function HomeBrandedFooter() {
               <Link href="/skin-conscious">Skin Conscious</Link>
             </li>
             <li>
-              <Link href="/sustainability">Sustainability</Link>
-            </li>
-            <li>
               <Link href="/blog">The Journal</Link>
             </li>
           </ul>

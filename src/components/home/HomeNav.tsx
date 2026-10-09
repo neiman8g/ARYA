@@ -1,5 +1,6 @@
 "use client";
 
+import { PREORDER_ENABLED } from "@/lib/preorder";
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -94,7 +95,6 @@ export function HomeNav() {
           <Link href="/blog" onClick={closeMenu}>Journal</Link>
           <Link href="/fit-guide" onClick={closeMenu}>Fit Guide</Link>
           <Link href="/faq" onClick={closeMenu}>FAQ</Link>
-          <Link href="/sustainability" onClick={closeMenu}>Sustainability</Link>
           <Link href="/skin-conscious" onClick={closeMenu}>Skin Conscious</Link>
         </div>
       </div>
@@ -117,16 +117,17 @@ export function HomeNav() {
               <Link href="/blog">Journal</Link>
               <Link href="/fit-guide">Fit Guide</Link>
               <Link href="/faq">FAQ</Link>
-              <Link href="/sustainability">Sustainability</Link>
               <Link href="/skin-conscious">Skin Conscious</Link>
             </div>
           </li>
         </ul>
         <div className="nav-actions">
-          <button type="button" className="nav-cart-btn" onClick={() => setCartOpen(true)} aria-label="Open cart">
-            Bag
-            {cartCount > 0 && <span className="nav-cart-count">{cartCount}</span>}
-          </button>
+          {PREORDER_ENABLED && (
+            <button type="button" className="nav-cart-btn" onClick={() => setCartOpen(true)} aria-label="Open cart">
+              Bag
+              {cartCount > 0 && <span className="nav-cart-count">{cartCount}</span>}
+            </button>
+          )}
           <a href="/#waitlist" className="nav-btn btn-waitlist">Join Waitlist</a>
           <button
             type="button"
@@ -158,7 +159,7 @@ export function StickyCtaBar() {
   return (
     <div className={`sticky-cta-bar ${show ? "visible" : ""}`}>
       <div className="sticky-cta-inner">
-        <span className="sticky-cta-text">Founder pricing ends at launch</span>
+        <span className="sticky-cta-text">Launching 2027</span>
         <a href="#waitlist" className="sticky-cta-btn">Join Waitlist</a>
       </div>
     </div>

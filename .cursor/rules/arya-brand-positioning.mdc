@@ -1,16 +1,33 @@
 ---
-description: Arya brand positioning — fit + skin-conscious materials (reference for copy and UX)
+description: ARYA brand positioning, Decision Log v2.2 (26 Aug 2026). Apply to all copy, meta, and UX.
 globs:
-  - "**/*.{tsx,ts,md}"
-alwaysApply: false
+  - "**/*.{tsx,ts,md,mdx}"
+alwaysApply: true
 ---
 
-# Arya positioning (source of truth)
+# ARYA positioning (source of truth: DECISION-LOG v2.2)
 
-- **Dual hook:** Fit for the athletic body **+** materials that do not poison you doing it.
-- **Why skin health leads:** Fear of PFAS, toxic dyes, and synthetics against the skin is a smaller, more urgent niche than fit alone; it converts faster. Fit is preference — skin health is fear.
-- **White space:** No other premium athleisure brand owns **both** engineered athletic fit **and** skin-conscious, refusal-based materials. (Reference competitors only internally: e.g. strong fit vs. strong sustainability vs. neither.)
-- **Refusal list:** No PFAS, no toxic dyes, no virgin synthetics against the skin — expressed clearly on homepage, `/skin-conscious`, and product copy (skin-first, then performance).
-- **Legal / sourcing:** Do **not** claim Persian-*sourced* materials or imports that imply Iran supply chain; Persian **craft philosophy** is cultural/design, not a fiber origin claim.
+## The brand in one line
+**You do not have to check.** Premium activewear built to a published fit and materials standard, for people who buy the better version of things without making it a statement.
 
-When writing UI copy, meta descriptions, or CTAs, default to this intersection unless the user specifies otherwise.
+Lead line: **"You were never the problem. The clothes were."**
+
+## Customer
+The everyday wealthy buyer. Woman 30 to 50, $200K+ household, already owns Alo and Lululemon and is not impressed. She is buying the end of a decision, not an identity. Never assign her homework.
+
+## Competitive set
+Alo, Vuori, Lululemon. **Never** the eco or sustainable category (Girlfriend Collective, Pangaia, tentree).
+
+## Hard rules for copy
+1. Every material claim is made in **wearer quality**, never planetary benefit. If a line only lands with someone who cares about the environment, cut it.
+2. Banned: "sustainable", "eco", "planet", "no synthetics", "no virgin synthetics", "plastic", "microplastics", "PFAS-Free" as a headline, "proprietary" (fabric is not locked and not proprietary).
+3. No athletic register: no "athletic bodies", "strong quads", "bodies that move", "built for training".
+4. Persian heritage is texture only: the name and the "Noble" product family. No "Persian craft". No etymology above the fold.
+5. Origin: "Designed in California." Do not claim a country of manufacture until it is decided.
+6. No urgency or scarcity devices: no "ends at launch", "limited", "get it before it's gone". State quantities once, as fact.
+7. No unverifiable numbers. Do not state waitlist size unless it is true today.
+8. The standards block, stated once, plainly: OEKO-TEX 100 certified, no added PFAS, no toxic dyes.
+9. Voice: composed, plain, slightly understated. Never technical, evangelical, or athletic.
+
+## Prices (USD)
+Legging $148, Sports Bra $88, Tank $78, Short $94, Legging and Bra set $218. Held permanently, no recurring promotions.

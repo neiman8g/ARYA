@@ -4,18 +4,18 @@ import { SiteFooter } from "@/components/SiteFooter";
 
 export const metadata = {
   title: "Our Mission | Arya",
-  description: "Designed in California. Made in Spain. A portion of every purchase builds schools for children.",
+  description: "Designed in California. A portion of every purchase builds schools for children.",
   keywords: "Arya mission, schools, activewear",
   openGraph: {
     title: "Our Mission | Arya",
-    description: "Designed in California. Made in Spain. A portion of every purchase builds schools for children.",
+    description: "Designed in California. A portion of every purchase builds schools for children.",
     images: ["/arya-hero.jpg"],
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
     title: "Our Mission | Arya",
-    description: "Designed in California. Made in Spain. A portion of every purchase builds schools for children.",
+    description: "Designed in California. A portion of every purchase builds schools for children.",
     images: ["/arya-hero.jpg"],
   },
 };
@@ -29,7 +29,7 @@ export default function MissionPage() {
       <main className="sp-main mission-main">
         <span className="sp-label">Mission</span>
         <h1>Built with purpose.</h1>
-        <p>Designed in California. Made in Spain. Every decision we make, from the fabrics we choose to the communities we invest in, is held to the same standard.</p>
+        <p>Designed in California. Every decision we make, from the fabrics we choose to the communities we invest in, is held to the same standard.</p>
         <p>A portion of every Arya purchase goes toward building schools for children in underserved communities, starting with Iran and growing wherever the need exists.</p>
         <div className="mission-pillars">
           {[

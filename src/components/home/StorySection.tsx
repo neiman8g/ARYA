@@ -25,8 +25,8 @@ export function StorySection() {
       </div>
       <div>
         <div className="label">Our Story</div>
-        <h2 className="display" style={{ marginBottom: 30 }}>Designed in California. Made in Spain.</h2>
-        <p className="body-txt">At Arya, we build garments with care. Materials chosen with intention. <Link href="/fit-guide">Fit</Link> refined through wear. <Link href="/sustainability">Craft</Link> without shortcuts. From <Link href="/arya-standard">NobleFlex</Link> to the final seam, every detail is intentional.</p>
+        <h2 className="display" style={{ marginBottom: 30 }}>Designed in California.</h2>
+        <p className="body-txt">At Arya, we build garments with care. Materials chosen with intention. <Link href="/fit-guide">Fit</Link> refined through wear. <Link href="/arya-standard">Craft</Link> without shortcuts. From <Link href="/arya-standard">NobleFlex</Link> to the final seam, every detail is intentional.</p>
         <div className="ethos-divider" />
         <div className="values">
           <div className="val"><div className="val-b">Built with intention.</div></div>

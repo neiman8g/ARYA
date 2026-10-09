@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
 import { PRODUCT_UNIT_PRICE_USD } from "@/lib/product-prices";
+import { PREORDER_ENABLED } from "@/lib/preorder";
 
 export type CheckoutItem = {
   id: string;
@@ -12,6 +13,9 @@ export type CheckoutItem = {
 };
 
 export async function POST(request: NextRequest) {
+  if (!PREORDER_ENABLED) {
+    return NextResponse.json({ error: "Pre-orders are not open yet" }, { status: 403 });
+  }
   const stripeSecret = process.env.STRIPE_SECRET_KEY;
   if (!stripeSecret) {
     console.error("STRIPE_SECRET_KEY is not set");

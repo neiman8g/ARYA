@@ -15,7 +15,7 @@ export function MissionSection() {
       <div className="craft-inner">
         <div className="label">Mission</div>
         <h2 className="craft-h">Built with purpose.</h2>
-        <p className="craft-body">Every decision we make, from the fabrics we choose to the communities we invest in, is held to the same standard. Designed in California. Made in Spain.</p>
+        <p className="craft-body">Every decision we make, from the fabrics we choose to the communities we invest in, is held to the same standard. Designed in California.</p>
         <div className="craft-pillars">
           {PILLARS.map((p, i) => (
             <div key={i} className="pillar">

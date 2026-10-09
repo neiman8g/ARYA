@@ -5,18 +5,18 @@ import "./arya-standard.css";
 
 export const metadata = {
   title: "The Arya Standard",
-  description: "NobleFlex, NobleSoft, and NobleDry. Designed in California. Made in Spain.",
+  description: "NobleFlex, NobleSoft, and NobleDry. Designed in California.",
   keywords: "Arya Standard, NobleFlex, NobleSoft, NobleDry",
   openGraph: {
     title: "The Arya Standard",
-    description: "NobleFlex, NobleSoft, and NobleDry. Designed in California. Made in Spain.",
+    description: "NobleFlex, NobleSoft, and NobleDry. Designed in California.",
     images: ["/arya-hero.jpg"],
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
     title: "The Arya Standard",
-    description: "NobleFlex, NobleSoft, and NobleDry. Designed in California. Made in Spain.",
+    description: "NobleFlex, NobleSoft, and NobleDry. Designed in California.",
     images: ["/arya-hero.jpg"],
   },
 };
@@ -71,12 +71,12 @@ export default function AryaStandardPage() {
         <section className="std-hero">
           <span className="std-eyebrow">THE ARYA STANDARD</span>
           <h1>The Arya Standard.</h1>
-          <p className="std-subhead">Designed in California. Made in Spain.</p>
+          <p className="std-subhead">Designed in California.</p>
         </section>
 
         {/* Section 2: The Noble Blends */}
         <section className="std-section">
-          <h2 className="std-section-heading">Our proprietary blends.</h2>
+          <h2 className="std-section-heading">Our blends.</h2>
           <div className="std-blends">
             {BLENDS.map((b) => (
               <article key={b.name} className="std-blend-card">
