@@ -44,8 +44,8 @@
     heroVideo.loop = true;
     heroVideo.autoplay = true;
     heroVideo.playsInline = true;
-    heroVideo.poster = base.replace("cove-", "cove-poster-") + ".webp?v=2";
-    sources.forEach(([src, type]) => { const s = document.createElement("source"); s.src = src + "?v=2"; s.type = type; heroVideo.appendChild(s); });
+    heroVideo.poster = base.replace("cove-", "cove-poster-") + ".webp?v=3";
+    sources.forEach(([src, type]) => { const s = document.createElement("source"); s.src = src + "?v=3"; s.type = type; heroVideo.appendChild(s); });
     heroVideo.preload = "auto";
     heroVideo.load();
     heroVideo.addEventListener("playing", () => heroVideo.classList.add("is-playing"), { once: true });
