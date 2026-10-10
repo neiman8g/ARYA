@@ -6,9 +6,11 @@
   <title>ARYA | Premium Activewear, Designed in California</title>
   <meta name="description" content="Premium activewear for him and her. Tailored fit, built to last, made with PFAS free, OEKO-TEX® certified fabric. Don't miss the first drop.">
   <meta name="theme-color" content="#E6DFD3">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/favicon.svg?v=2" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2">
+  <link rel="manifest" href="/site.webmanifest">
   <link rel="canonical" href="https://arya.clothing/">
-  <link rel="icon" type="image/png" sizes="64x64" href="assets/favicon.png">
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="ARYA">
@@ -45,7 +47,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Marcellus&family=Instrument+Sans:wght@400;500&display=swap">
   <link rel="preload" as="image" href="assets/cove-poster-landscape.webp?v=2" media="(min-width: 768px)">
   <link rel="preload" as="image" href="assets/cove-poster-portrait.webp?v=3" media="(max-width: 767px)">
-  <link rel="stylesheet" href="styles.css?v=20">
+  <link rel="stylesheet" href="styles.css?v=22">
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -60,28 +62,28 @@
   </svg>
 
   <header class="site-header" data-header>
+    <a class="announce" href="#first-drop" data-announce>The first drop is limited. <span>Get founding pricing</span></a>
     <nav class="nav" aria-label="Main">
       <a href="#top" class="brand" aria-label="ARYA, home">
         <img class="wordmark wordmark-dark" src="assets/wordmark-espresso.svg?v=2" alt="" width="528" height="116">
         <img class="wordmark wordmark-light" src="assets/wordmark-ivory.svg?v=2" alt="" width="528" height="116">
       </a>
       <ul class="nav-links">
-        <li><a href="#fit">Fit</a></li>
-        <li><a href="#name">The name</a></li>
-        <li><a href="#collection">Collection</a></li>
-        <li><a href="#about">About</a></li>
+        <li><a href="#collection" data-shop="womens">Women</a></li>
+        <li><a href="#collection" data-shop="mens">Men</a></li>
+        <li><a href="#about">Our Story</a></li>
       </ul>
       <a href="#first-drop" class="nav-cta">Don't miss the first drop</a>
       <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" data-menu-toggle>Menu</button>
     </nav>
     <div class="mobile-menu" id="mobile-menu" hidden>
       <ul>
-        <li><a href="#fit">Fit</a></li>
-        <li><a href="#name">The name</a></li>
-        <li><a href="#collection">Collection</a></li>
-        <li><a href="#about">About</a></li>
+        <li><a href="#collection" data-shop="womens">Women</a></li>
+        <li><a href="#collection" data-shop="mens">Men</a></li>
+        <li><a href="#about">Our Story</a></li>
         <li><a href="#first-drop">Don't miss the first drop</a></li>
       </ul>
+      <p class="mobile-menu-foot"><a href="https://www.instagram.com/arya.tnc/" rel="noopener" target="_blank">Instagram</a></p>
     </div>
   </header>
 
@@ -125,18 +127,18 @@
     <!-- THE PROBLEM, AND THREE PROMISES -->
     <section class="manifesto" aria-labelledby="manifesto-title">
       <div class="wrap manifesto-grid">
-        <h2 id="manifesto-title" class="h-statement">Most activewear was built around one body, worn out in a season, and made without telling you what's in it.</h2>
+        <h2 id="manifesto-title" class="h-statement">Most activewear was built around one body, falls apart mid workout, and never tells you what's in it.</h2>
         <dl class="promises">
           <div class="promise">
-            <dt>Tailored fit</dt>
-            <dd>Patterns drafted separately for women's and men's bodies, so the fit is made for yours.</dd>
+            <dt>Tailored fit.</dt>
+            <dd>Patterns drafted from scratch for women's and men's bodies. No gapping waistbands, no pulling at the thighs.</dd>
           </div>
           <div class="promise">
-            <dt>Built to last</dt>
-            <dd>Holds its shape and looks new long after the first wash.</dd>
+            <dt>Built to train in.</dt>
+            <dd>Four way stretch that moves with you and holds its shape, rep after rep. Clean fabric that still performs.</dd>
           </div>
           <div class="promise">
-            <dt>Safe on skin</dt>
+            <dt>Safe on skin.</dt>
             <dd>Made with PFAS free, OEKO-TEX® certified fabric. Nothing on your skin you didn't sign up for.</dd>
           </div>
         </dl>
@@ -303,7 +305,6 @@
         </ul>
         <ul>
           <li><a href="https://www.instagram.com/arya.tnc/" rel="noopener" target="_blank">Instagram</a></li>
-          <li><a href="https://www.tiktok.com/" rel="noopener">TikTok</a></li>
         </ul>
         <ul>
           <li><a href="/shipping-returns">Shipping and returns</a></li>
@@ -315,6 +316,6 @@
     <p class="wrap footer-base">© <span data-year>2026</span> ARYA. Built in Los Angeles.</p>
   </footer>
 
-  <script src="script.js?v=14" defer></script>
+  <script src="script.js?v=16" defer></script>
 </body>
 </html>

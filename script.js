@@ -11,6 +11,7 @@
   const header = $("[data-header]");
   let heroP = reduceMotion ? 1 : 0;
   const heroVideo = $("[data-hero-video]");
+  let lastY = window.scrollY; // used by the header tuck logic
 
   if (!reduceMotion) {
     hero.classList.add("is-scrolly");
@@ -69,13 +70,25 @@
   }
 
   /* ---------- Header: light text over the open image, solid after ---------- */
+  // Past the hero the menu tucks away while scrolling down and returns on any scroll up
   function updateHeader() {
     const heroBottom = hero.getBoundingClientRect().bottom;
     const overHero = heroBottom > header.offsetHeight + 4;
     const onImage = overHero && (reduceMotion || heroP > 0.55);
     header.classList.toggle("on-image", onImage);
     header.classList.toggle("is-solid", !overHero);
+    const y = window.scrollY;
+    const menuOpen = header.classList.contains("menu-open");
+    if (overHero || menuOpen || y < lastY - 6) header.classList.remove("is-tucked");
+    else if (y > lastY + 6) header.classList.add("is-tucked");
+    if (Math.abs(y - lastY) > 6) lastY = y;
   }
+  // Keep the menu visible whenever keyboard focus moves into it
+  header.addEventListener("focusin", () => header.classList.remove("is-tucked"));
+
+  // Announcement bar hides for people who have already signed up
+  const SIGNED_KEY = "arya_signed_up";
+  try { if (localStorage.getItem(SIGNED_KEY)) document.documentElement.classList.add("no-announce"); } catch (_) {}
   window.addEventListener("scroll", updateHeader, { passive: true });
   updateHeader();
 
@@ -285,6 +298,12 @@
     requestMeasure();
   }));
 
+  // Menu links "Women" and "Men" open the collection pre-filtered
+  document.querySelectorAll("[data-shop]").forEach((a) => a.addEventListener("click", () => {
+    const btn = document.querySelector(`.cut-filter [data-filter="${a.dataset.shop}"]`);
+    if (btn) btn.click();
+  }));
+
   // Start on the first piece, centred
   requestAnimationFrame(() => { centre(slides[0], false); measure(); });
 
@@ -382,6 +401,8 @@
         await subscribe(form, address, $$('input[name="interest"]:checked', form).map((i) => i.value));
         form.hidden = true;
         success.hidden = false;
+        try { localStorage.setItem(SIGNED_KEY, "1"); } catch (_) {}
+        document.documentElement.classList.add("no-announce");
         success.focus();
       } catch (err) {
         console.error(err);
