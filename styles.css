@@ -692,3 +692,11 @@ html.no-announce .announce { display: none; }
   .promise { align-content: start; padding: 1.5rem 0 0; border-bottom: 0; border-top: 1px solid var(--rule-strong); }
   .promise dd { font-size: 1.0625rem; line-height: 1.6; }
 }
+
+/* Final audit: alternate tones so fit and collection never merge, and keep the interest choices on one row on phones */
+.collection { background: var(--limestone); }
+.name { background: var(--travertine); }
+.about { background: var(--limestone); }
+@media (max-width: 479px) {
+  .interest legend { float: none; width: 100%; margin: 0 0 0.25rem; }
+}
