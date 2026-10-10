@@ -118,13 +118,13 @@ main:focus { outline: none; }
 }
 .brand { display: inline-flex; align-items: center; gap: 0.8rem; min-height: 44px; text-decoration: none; --mark-bar: var(--bronze); }
 .on-image .brand { --mark-bar: var(--brass); }
-.wordmark { height: 1.35rem; width: auto; }
+.wordmark { height: 1.5rem; width: auto; }
 .wordmark-light { display: none; }
 .site-header.on-image .wordmark-dark { display: none; }
 .site-header.on-image .wordmark-light { display: block; }
 .site-header.menu-open .wordmark-dark { display: block; }
 .site-header.menu-open .wordmark-light { display: none; }
-.site-footer .wordmark { height: 1.6rem; }
+.site-footer .wordmark { height: 1.9rem; }
 
 .nav-links { display: none; gap: 2rem; margin-left: auto; }
 .nav-links a, .nav-cta {
@@ -560,7 +560,7 @@ html.lenis, html.lenis body { height: auto; }
   .origin-grid { align-items: center; }
 }
 .legal-page .nav-cta { white-space: nowrap; }
-@media (max-width: 480px) { .legal-page .nav-cta { padding-inline: 0.75rem; font-size: 0.8125rem; letter-spacing: 0.01em; } .legal-page .wordmark { height: 1.15rem; } }
+@media (max-width: 480px) { .legal-page .nav-cta { padding-inline: 0.75rem; font-size: 0.8125rem; letter-spacing: 0.01em; } .legal-page .wordmark { height: 1.3rem; } }
 
 /* Name + origin, one chapter */
 .origin-text .lede { margin-top: 1.5rem; max-width: 32em; }
