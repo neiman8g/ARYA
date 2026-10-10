@@ -663,13 +663,13 @@ html.no-announce .announce { display: none; }
 .ht-1, .ht-2 { display: none; }
 .ht-a, .ht-b { display: block; }
 .is-scrolly .ht-1, .is-scrolly .ht-2 { display: block; }
-.hero.is-scrolly { height: 320vh; }
+.hero.is-scrolly { height: 290vh; }
 .is-scrolly .hero-window { --q: calc(1 - min(1, var(--p, 0) / 0.6)); }
 .is-scrolly .ht-3 { display: grid; opacity: 1; transform: none; }
 .is-scrolly .ht-a, .is-scrolly .ht-b { grid-area: 1 / 1; align-self: end; }
-.is-scrolly .ht-a { opacity: clamp(0, min((var(--p, 0) - 0.5) * 8, 1 - (var(--p, 0) - 0.7) * 10), 1); }
-.is-scrolly .ht-b { opacity: clamp(0, (var(--p, 0) - 0.78) * 8, 1); }
-.is-scrolly .hero-foot { opacity: clamp(0, (var(--p, 0) - 0.9) * 11, 1); }
+.is-scrolly .ht-a { display: none; } /* the split headline already said it; only "Now you don't." appears on the film */
+.is-scrolly .ht-b { opacity: clamp(0, (var(--p, 0) - 0.6) * 6, 1); }
+.is-scrolly .hero-foot { opacity: clamp(0, (var(--p, 0) - 0.82) * 7, 1); }
 @media (max-width: 767px) { .is-scrolly .ht-3 { max-width: 11ch; } }
 
 /* Sizing pass across 320 to 2560 */
