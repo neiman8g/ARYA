@@ -700,3 +700,6 @@ html.no-announce .announce { display: none; }
 @media (max-width: 479px) {
   .interest legend { float: none; width: 100%; margin: 0 0 0.25rem; }
 }
+
+/* Announcement bar retired: the menu button and the signup section carry the first drop message */
+:root { --announce-h: 0px; }
