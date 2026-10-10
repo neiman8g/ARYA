@@ -110,18 +110,6 @@
     obs.observe(hero); // no link matches #top, so the hero clears the highlight
   }
 
-  /* ---------- Live clocks ---------- */
-  const clocks = $$("[data-clock]");
-  const tick = () => {
-    const now = new Date();
-    clocks.forEach((el) => {
-      el.textContent = new Intl.DateTimeFormat("en-US", { hour: "numeric", minute: "2-digit", timeZone: el.dataset.clock }).format(now) + " now";
-      el.dateTime = now.toISOString();
-    });
-  };
-  tick();
-  setInterval(tick, 30000);
-
   /* ---------- Collection: arch colonnade ---------- */
   const COLORS = {
     cognac: { name: "Cognac", hex: "#8C4A25", ink: "#ECE6DB" },
@@ -303,24 +291,6 @@
   /* ---------- Calm motion across the page ---------- */
   if (!reduceMotion && "IntersectionObserver" in window) {
     document.documentElement.classList.add("motion");
-
-    // Headlines rise in word by word
-    $$("main .h-section, main .h-statement, main .h-display").forEach((h) => {
-      if (h.closest("[hidden]")) return;
-      const words = h.textContent.trim().split(/\s+/);
-      h.setAttribute("aria-label", h.textContent.trim().replace(/\s+/g, " "));
-      h.innerHTML = words.map((w, i) => `<span class="w" aria-hidden="true"><span style="--wi:${i}">${w}</span></span>`).join(" ");
-      h.classList.add("split");
-    });
-
-    const inView = new IntersectionObserver((entries, obs) => {
-      entries.forEach((en) => {
-        if (!en.isIntersecting) return;
-        en.target.classList.add("in");
-        obs.unobserve(en.target);
-      });
-    }, { rootMargin: "0px 0px -12% 0px" });
-    $$(".split").forEach((el) => inView.observe(el));
 
     // Gentle parallax on photographs
     const plx = $$(".arch img, .about-photo img").filter((img) => !img.closest(".hero"));

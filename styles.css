@@ -246,14 +246,9 @@ main:focus { outline: none; }
 
 /* ---------- The name ---------- */
 .name { padding-block: var(--space); background: var(--limestone); }
-.name-grid { display: grid; gap: 2rem; align-items: center; }
 
-@media (min-width: 900px) {
-  .name-grid { grid-template-columns: 7fr 5fr; gap: 5rem; align-items: end; }
-}
 
 /* ---------- Origin ---------- */
-.origin { padding-bottom: var(--space); background: var(--limestone); }
 .origin-grid { display: grid; gap: 3rem; align-items: end; }
 .arch { border-radius: 999px 999px 0 0; overflow: hidden; background: var(--limestone); }
 .arch img { width: 100%; height: 100%; object-fit: cover; }
@@ -262,7 +257,6 @@ main:focus { outline: none; }
 .places { display: grid; gap: 2rem; margin-top: 3rem; border-top: 1px solid var(--rule-strong); padding-top: 2rem; }
 .place p:not(.place-name) { color: var(--text-soft); max-width: 30em; }
 .place-name { font-family: var(--display); font-size: var(--t-h3); line-height: 1.2; margin-bottom: 0.5rem; display: flex; align-items: baseline; gap: 1rem; flex-wrap: wrap; }
-.place-time { font-family: var(--sans); font-size: var(--t-small); color: var(--text-soft); font-variant-numeric: tabular-nums; }
 @media (min-width: 900px) {
   .origin-grid { grid-template-columns: 5fr 7fr; gap: 6rem; }
   .places { grid-template-columns: 1fr 1fr; gap: 3rem; }
@@ -495,12 +489,6 @@ main:focus { outline: none; }
 @media (max-width: 767px) { .hero-window img { object-position: 50% 50%; } }
 
 /* ---------- Calm motion (only when motion is allowed) ---------- */
-.motion .split .w { display: inline-block; overflow: hidden; vertical-align: top; padding-bottom: 0.1em; margin-bottom: -0.1em; }
-.motion .split .w > span {
-  display: inline-block; transform: translateY(108%);
-  transition: transform 1.1s var(--ease); transition-delay: calc(var(--wi) * 45ms);
-}
-.motion .split.in .w > span { transform: none; }
 
 
 /* Room for parallax drift inside framed photos */
@@ -568,10 +556,12 @@ html.lenis, html.lenis body { height: auto; }
 .legal-section a { color: var(--text); }
 
 /* Name + origin read as one chapter: centre each pair and close the doubled gap between them */
-.name { padding-bottom: calc(var(--space) * 0.45); }
 @media (min-width: 900px) {
-  .name-grid { align-items: center; }
   .origin-grid { align-items: center; }
 }
 .legal-page .nav-cta { white-space: nowrap; }
 @media (max-width: 480px) { .legal-page .nav-cta { padding-inline: 0.75rem; font-size: 0.8125rem; letter-spacing: 0.01em; } .legal-page .wordmark { height: 1.15rem; } }
+
+/* Name + origin, one chapter */
+.origin-text .lede { margin-top: 1.5rem; max-width: 32em; }
+.origin-text .places { margin-top: 2.5rem; }
