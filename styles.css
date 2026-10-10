@@ -631,3 +631,28 @@ html.no-announce .announce { display: none; }
 .btn-solid { background: var(--lapis); color: var(--on-lapis); }
 .btn-solid:hover { background: var(--lapis-deep); }
 .notfound-link { min-height: 44px; display: inline-flex; align-items: center; text-underline-offset: 0.35em; }
+
+/* Why ARYA intro: headline with a short paragraph beneath */
+.manifesto-intro .lede { margin-top: 1.5rem; max-width: 30em; color: var(--text-soft); }
+@media (min-width: 1100px) { .manifesto .h-statement { max-width: 14ch; } }
+
+/* Fit, compact: copy and details beside the film */
+.fit-grid { gap: 3rem; }
+.fit .points { margin-top: 2.25rem; display: block; }
+.fit .point { grid-template-columns: 1fr; padding-block: 1.1rem; }
+.sizing-line { margin-top: 1.75rem; color: var(--text-soft); font-size: var(--t-small); letter-spacing: 0.01em; }
+.fit-photo .arch { margin-inline: auto; }
+@media (min-width: 900px) {
+  .fit-grid { grid-template-columns: 1.1fr 0.9fr; gap: 5rem; align-items: center; }
+  .fit .point { grid-template-columns: minmax(12.5rem, auto) 1fr; gap: 1.5rem; align-items: baseline; }
+  .fit-photo .arch { margin-inline: auto 0; }
+}
+@media (min-width: 1100px) { .fit-grid { grid-template-columns: 1.1fr 0.9fr; } }
+
+/* Name now sits beside About: own tone, mirrored layout so the two never read as one block */
+.name { background: var(--limestone); }
+.about { background: var(--travertine); }
+@media (min-width: 900px) {
+  .origin-grid { grid-template-columns: 7fr 5fr; }
+  .origin-figure { order: 2; }
+}

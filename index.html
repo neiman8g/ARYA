@@ -47,7 +47,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Marcellus&family=Instrument+Sans:wght@400;500&display=swap">
   <link rel="preload" as="image" href="assets/cove-poster-landscape.webp?v=2" media="(min-width: 768px)">
   <link rel="preload" as="image" href="assets/cove-poster-portrait.webp?v=3" media="(max-width: 767px)">
-  <link rel="stylesheet" href="styles.css?v=22">
+  <link rel="stylesheet" href="styles.css?v=26">
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -100,14 +100,14 @@
           <video class="hero-video" data-hero-video muted playsinline loop preload="none" aria-hidden="true"></video>
         </div>
 
-        <h1 id="hero-title" class="hero-title">
-          <span class="ht ht-1">You were never</span>
-          <span class="ht ht-2">the problem.</span>
-          <span class="ht ht-3">The clothes were.</span>
+        <h1 id="hero-title" class="hero-title" aria-label="You shouldn't have to choose.">
+          <span class="ht ht-1" aria-hidden="true">You shouldn't</span>
+          <span class="ht ht-2" aria-hidden="true">have to choose.</span>
+          <span class="ht ht-3" aria-hidden="true">You shouldn't have to choose.</span>
         </h1>
 
         <div class="hero-foot">
-          <p>Premium activewear for him and her, designed in California.</p>
+          <p>Premium activewear, made clean and built to train in. For him and her. Designed in California.</p>
           <form class="signup-form hero-form" novalidate data-signup data-source="Website hero" data-klaviyo-company="RkkP9u" data-klaviyo-list="YxmBfA">
             <label for="hero-email" class="visually-hidden">Email address</label>
             <div class="field-row">
@@ -124,22 +124,25 @@
       </div>
     </section>
 
-    <!-- THE PROBLEM, AND THREE PROMISES -->
+    <!-- WHY ARYA: THREE PROMISES -->
     <section class="manifesto" aria-labelledby="manifesto-title">
       <div class="wrap manifesto-grid">
-        <h2 id="manifesto-title" class="h-statement">Most activewear was built around one body, falls apart mid workout, and never tells you what's in it.</h2>
+        <div class="manifesto-intro">
+          <h2 id="manifesto-title" class="h-statement">Beautiful, clean, and made to move.</h2>
+          <p class="lede">Most performance pieces aren't made with your skin in mind. Most clean pieces can't keep up. Ours were made to do both.</p>
+        </div>
         <dl class="promises">
           <div class="promise">
-            <dt>Tailored fit.</dt>
-            <dd>Patterns drafted from scratch for women's and men's bodies. No gapping waistbands, no pulling at the thighs.</dd>
+            <dt>Clean.</dt>
+            <dd>Certified safe on skin and free of PFAS.</dd>
           </div>
           <div class="promise">
             <dt>Built to train in.</dt>
-            <dd>Four way stretch that moves with you and holds its shape, rep after rep. Clean fabric that still performs.</dd>
+            <dd>Four way stretch that holds its shape, rep after rep.</dd>
           </div>
           <div class="promise">
-            <dt>Safe on skin.</dt>
-            <dd>Made with PFAS free, OEKO-TEX® certified fabric. Nothing on your skin you didn't sign up for.</dd>
+            <dt>Done right.</dt>
+            <dd>Every fabric tested before it makes the cut.</dd>
           </div>
         </dl>
       </div>
@@ -149,51 +152,19 @@
     <section class="fit" id="fit" aria-labelledby="fit-title">
       <div class="wrap fit-grid">
         <div class="fit-intro">
-          <h2 id="fit-title" class="h-section">Every pattern starts from scratch.</h2>
-          <ul class="sizing">
-            <li><strong>XXS to XL</strong> women's sizes</li>
-            <li><strong>S to XXL</strong> men's sizes</li>
-            <li><strong>4-way</strong> stretch throughout</li>
-          </ul>
+          <h2 id="fit-title" class="h-section">And it fits like it should.</h2>
+          <p class="lede">Women's and men's patterns drafted separately, from scratch.</p>
+          <dl class="points">
+            <div class="point"><dt>Waistband.</dt><dd>High rise hold without digging or rolling.</dd></div>
+            <div class="point"><dt>Hips and thighs.</dt><dd>Room to move, no squeezing, no pulling.</dd></div>
+            <div class="point"><dt>Inseam.</dt><dd>Stays put through every rep.</dd></div>
+          </dl>
+          <p class="sizing-line">Women's XXS to XL. Men's S to XXL. Four way stretch throughout.</p>
         </div>
 
         <figure class="fit-photo">
           <div class="arch"><video data-fit-video muted playsinline loop preload="none" poster="assets/fit-motion-poster.webp?v=2" aria-label="A woman in dark leggings and a sports bra moves through squats on sunlit stone, then holds a warrior pose in a bright studio."><source src="assets/fit-motion.mp4?v=2" type="video/mp4"></video></div>
         </figure>
-
-        <div class="fit-points">
-          <dl class="points">
-            <div class="point"><dt>Waistband</dt><dd>High-rise hold without digging or rolling.</dd></div>
-            <div class="point"><dt>Hips</dt><dd>Built for hips that move. No squeezing, no gapping.</dd></div>
-            <div class="point"><dt>Thighs</dt><dd>Extended room. No pulling at any depth.</dd></div>
-            <div class="point"><dt>Inseam</dt><dd>True to movement, wherever your day takes you.</dd></div>
-          </dl>
-        </div>
-      </div>
-    </section>
-
-    <!-- THE NAME + ORIGIN -->
-    <section class="name" id="name" aria-labelledby="name-title">
-      <div class="wrap origin-grid">
-        <figure class="origin-figure">
-          <div class="arch">
-            <img src="assets/studio.webp" alt="A sunlit Los Angeles design studio with stacked fabric in sand, cognac, slate and ink beside a dress form." width="1200" height="1600" loading="lazy">
-          </div>
-        </figure>
-        <div class="origin-text">
-          <h2 id="name-title" class="h-display">Arya.</h2>
-          <p class="lede">Arya is the ethos of our company. We did not set out for profit. We set out to build something we could be proud of, the noble way. In Farsi, Arya means noble, and it is the bar we hold every fabric, every fit and every decision to.</p>
-          <div class="places">
-            <div class="place">
-              <p class="place-name">Los Angeles</p>
-              <p>Our studio and fitting room. Every piece is wear tested here before it reaches you.</p>
-            </div>
-            <div class="place">
-              <p class="place-name">Spain</p>
-              <p>Fabric milled in Spain, chosen for how it feels against skin.</p>
-            </div>
-          </div>
-        </div>
       </div>
     </section>
 
@@ -234,6 +205,31 @@
       </div>
 
       <p class="wrap collection-note">Photography arrives with the first drop.</p>
+    </section>
+
+    <!-- THE NAME + ORIGIN -->
+    <section class="name" id="name" aria-labelledby="name-title">
+      <div class="wrap origin-grid">
+        <figure class="origin-figure">
+          <div class="arch">
+            <img src="assets/studio.webp" alt="A sunlit Los Angeles design studio with stacked fabric in sand, cognac, slate and ink beside a dress form." width="1200" height="1600" loading="lazy">
+          </div>
+        </figure>
+        <div class="origin-text">
+          <h2 id="name-title" class="h-display">Arya.</h2>
+          <p class="lede">Arya is the ethos of our company. We did not set out for profit. We set out to build something we could be proud of, the noble way. In Farsi, Arya means noble, and it is the bar we hold every fabric, every fit and every decision to.</p>
+          <div class="places">
+            <div class="place">
+              <p class="place-name">Los Angeles</p>
+              <p>Our studio and fitting room. Every piece is wear tested here before it reaches you.</p>
+            </div>
+            <div class="place">
+              <p class="place-name">Spain</p>
+              <p>Fabric milled in Spain, chosen for how it feels against skin.</p>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- ABOUT -->
@@ -316,6 +312,6 @@
     <p class="wrap footer-base">© <span data-year>2026</span> ARYA. Built in Los Angeles.</p>
   </footer>
 
-  <script src="script.js?v=16" defer></script>
+  <script src="script.js?v=17" defer></script>
 </body>
 </html>

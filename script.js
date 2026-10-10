@@ -131,13 +131,13 @@
     ink:    { name: "Ink",    hex: "#23262C", ink: "#D6C4A3" },
   };
   const PRODUCTS = [
-    { name: "The Noble Sports Bra", cut: "womens", desc: "Medium to high support, four-way stretch.", color: "sand" },
-    { name: "The Noble Legging",    cut: "womens", desc: "Four-way stretch and a high-rise waistband.", color: "cognac" },
-    { name: "The Noble Short",      cut: "womens", desc: "Four-way stretch, cut for her.", color: "slate" },
+    { name: "The Noble Sports Bra", cut: "womens", desc: "Medium to high support, four way stretch.", color: "sand" },
+    { name: "The Noble Legging",    cut: "womens", desc: "Four way stretch and a high rise waistband.", color: "cognac" },
+    { name: "The Noble Short",      cut: "womens", desc: "Four way stretch, cut for her.", color: "slate" },
     { name: "The Noble Slim Tank",  cut: "womens", desc: "A fitted tank that pairs with the Noble Sports Bra.", color: "ink" },
-    { name: "The Noble Tee",        cut: "mens",   desc: "Silk-like feel, odor resistant.", color: "sand" },
-    { name: "The Noble Short",      cut: "mens",   desc: "Extended thigh room, four-way stretch.", color: "ink" },
-    { name: "The Noble Jogger",     cut: "mens",   desc: "A tapered jogger with four-way stretch.", color: "cognac" },
+    { name: "The Noble Tee",        cut: "mens",   desc: "A silky feel that resists odor.", color: "sand" },
+    { name: "The Noble Short",      cut: "mens",   desc: "Extended thigh room, four way stretch.", color: "ink" },
+    { name: "The Noble Jogger",     cut: "mens",   desc: "A tapered jogger with four way stretch.", color: "cognac" },
   ];
   const cutLabel = (c) => (c === "womens" ? "Women's" : "Men's");
 
