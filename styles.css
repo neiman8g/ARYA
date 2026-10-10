@@ -552,3 +552,26 @@ html.lenis, html.lenis body { height: auto; }
 .btn { letter-spacing: 0.03em; }
 .lede, .manifesto-body, .point dd, .place p:not(.place-name) { text-wrap: pretty; }
 .manifesto-body { color: var(--text); }
+
+/* ---------- Legal pages ---------- */
+.legal-page .site-header { position: sticky; }
+.legal-page .nav-cta { display: inline-flex; margin-left: auto; padding-inline: 1rem; }
+.legal { padding-block: clamp(3rem, 2rem + 4vw, 6rem) var(--space); }
+.legal-wrap { max-width: 46rem; }
+.legal .h-section { max-width: none; }
+.legal-updated { margin-top: 0.75rem; font-size: var(--t-small); color: var(--text-soft); }
+.legal-section { margin-top: 2.75rem; padding-top: 2rem; border-top: 1px solid var(--rule); }
+.legal-section h2 { font-family: var(--display); font-weight: 400; font-size: var(--t-h3); line-height: 1.2; margin-bottom: 1rem; }
+.legal-section p { color: var(--text-soft); max-width: 38em; text-wrap: pretty; }
+.legal-section p + p { margin-top: 0.9rem; }
+.legal-section strong { color: var(--text); font-weight: 500; }
+.legal-section a { color: var(--text); }
+
+/* Name + origin read as one chapter: centre each pair and close the doubled gap between them */
+.name { padding-bottom: calc(var(--space) * 0.45); }
+@media (min-width: 900px) {
+  .name-grid { align-items: center; }
+  .origin-grid { align-items: center; }
+}
+.legal-page .nav-cta { white-space: nowrap; }
+@media (max-width: 480px) { .legal-page .nav-cta { padding-inline: 0.75rem; font-size: 0.8125rem; letter-spacing: 0.01em; } .legal-page .wordmark { height: 1.15rem; } }
