@@ -24,7 +24,7 @@
       // ease-in-out so the opening feels deliberate
       const eased = heroP < 0.5 ? 2 * heroP * heroP : 1 - Math.pow(-2 * heroP + 2, 2) / 2;
       hero.style.setProperty("--p", eased.toFixed(4));
-      hero.classList.toggle("is-open", eased > 0.75);
+      hero.classList.toggle("is-open", eased > 0.9);
       updateHeader();
     };
     const onScroll = () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } };

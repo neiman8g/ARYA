@@ -656,3 +656,39 @@ html.no-announce .announce { display: none; }
   .origin-grid { grid-template-columns: 7fr 5fr; }
   .origin-figure { order: 2; }
 }
+
+/* Hero headline: "You shouldn't have to choose." crossfades to "Now you don't.", then the subline.
+   Opacity only, no movement. The arch finishes opening first so the words sit on the film.
+   Without scroll motion both lines simply stack. */
+.ht-1, .ht-2 { display: none; }
+.ht-a, .ht-b { display: block; }
+.is-scrolly .ht-1, .is-scrolly .ht-2 { display: block; }
+.hero.is-scrolly { height: 320vh; }
+.is-scrolly .hero-window { --q: calc(1 - min(1, var(--p, 0) / 0.6)); }
+.is-scrolly .ht-3 { display: grid; opacity: 1; transform: none; }
+.is-scrolly .ht-a, .is-scrolly .ht-b { grid-area: 1 / 1; align-self: end; }
+.is-scrolly .ht-a { opacity: clamp(0, min((var(--p, 0) - 0.5) * 8, 1 - (var(--p, 0) - 0.7) * 10), 1); }
+.is-scrolly .ht-b { opacity: clamp(0, (var(--p, 0) - 0.78) * 8, 1); }
+.is-scrolly .hero-foot { opacity: clamp(0, (var(--p, 0) - 0.9) * 11, 1); }
+@media (max-width: 767px) { .is-scrolly .ht-3 { max-width: 11ch; } }
+
+/* Sizing pass across 320 to 2560 */
+@media (max-width: 767px) { .announce { font-size: 0.8125rem; } }
+@media (max-width: 374px) {
+  .colonnade-bar { grid-template-columns: 1fr; }
+  .colonnade-nav { justify-self: start; }
+}
+@media (min-width: 768px) { .is-scrolly .hero-title { font-size: clamp(3rem, 0.4rem + 4.3vw, 7rem); } }
+.sizing-line { max-width: 40em; }
+@media (min-width: 900px) { .sizing-line { font-size: 0.9375rem; } }
+
+/* Why ARYA on wide screens: headline and paragraph share a row, the three promises get the full width beneath */
+@media (min-width: 900px) {
+  .manifesto-grid { grid-template-columns: 1fr; gap: 3.5rem; align-items: start; }
+  .manifesto-intro { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 4rem; align-items: end; }
+  .manifesto-intro .lede { margin-top: 0; }
+  .manifesto .h-statement { max-width: 14ch; font-size: clamp(2.5rem, 0.6rem + 4vw, 4.25rem); }
+  .promises { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3rem; border-top: 0; align-self: auto; }
+  .promise { align-content: start; padding: 1.5rem 0 0; border-bottom: 0; border-top: 1px solid var(--rule-strong); }
+  .promise dd { font-size: 1.0625rem; line-height: 1.6; }
+}
