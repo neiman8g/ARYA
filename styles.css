@@ -494,10 +494,6 @@ main:focus { outline: none; }
 /* Room for parallax drift inside framed photos */
 .motion .arch img, .motion .about-photo img { scale: 1.12; }
 
-/* Momentum scrolling (Lenis) */
-html.lenis, html.lenis body { height: auto; }
-.lenis.lenis-smooth { scroll-behavior: auto !important; }
-.lenis.lenis-stopped { overflow: hidden; }
 
 /* Hero film: the cove is centred on the gap between the cliffs */
 .hero-video { object-position: 50% 50%; }

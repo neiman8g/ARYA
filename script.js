@@ -308,21 +308,6 @@
     window.addEventListener("scroll", () => { if (!plxTicking) { plxTicking = true; requestAnimationFrame(parallax); } }, { passive: true });
     parallax();
 
-    // Momentum scrolling
-    if (window.Lenis) {
-      const lenis = new window.Lenis({ lerp: 0.085, smoothWheel: true });
-      const raf = (t) => { lenis.raf(t); requestAnimationFrame(raf); };
-      requestAnimationFrame(raf);
-      document.addEventListener("click", (e) => {
-        const a = e.target.closest('a[href^="#"]');
-        if (!a) return;
-        const target = a.getAttribute("href") === "#top" ? 0 : $(a.getAttribute("href"));
-        if (target === null) return;
-        e.preventDefault();
-        lenis.scrollTo(target, { offset: target === 0 ? 0 : -header.offsetHeight, duration: 1.4 });
-        if (target !== 0) target.focus?.({ preventScroll: true });
-      });
-    }
   }
 
   /* ---------- Signup forms (hero + first drop) to Klaviyo ---------- */
