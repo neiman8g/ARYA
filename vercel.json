@@ -1,3 +1,8 @@
 {
-  "cleanUrls": true
+  "cleanUrls": true,
+  "redirects": [
+    { "source": "/ig", "destination": "/?utm_source=instagram&utm_medium=social&utm_campaign=founding_waitlist&utm_content=bio", "permanent": true },
+    { "source": "/tt", "destination": "/?utm_source=tiktok&utm_medium=social&utm_campaign=founding_waitlist&utm_content=bio", "permanent": true },
+    { "source": "/story", "destination": "/?utm_source=instagram&utm_medium=social&utm_campaign=founding_waitlist&utm_content=story", "permanent": true }
+  ]
 }
