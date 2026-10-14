@@ -335,7 +335,7 @@
   const BUTTON = "Don't miss the first drop";
 
   // Attribution: UTM tags from the landing URL, kept for the visit so a refresh does not lose them
-  const UTM_KEYS = ["utm_source", "utm_medium", "utm_campaign"];
+  const UTM_KEYS = ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term"];
   const utm = {};
   const params = new URLSearchParams(window.location.search);
   UTM_KEYS.forEach((k) => {
