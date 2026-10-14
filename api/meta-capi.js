@@ -3,7 +3,7 @@
 // The access token is read from the META_CAPI_TOKEN environment variable and never reaches the browser.
 const crypto = require("crypto");
 
-const PIXEL_ID = "1122507330181079";
+const PIXEL_ID = "2896948614012737";
 const GRAPH_VERSION = "v21.0";
 const EVENTS = new Set(["PageView", "Lead"]);
 const ALLOWED_HOSTS = [/^arya\.clothing$/, /^www\.arya\.clothing$/, /^arya-site-[a-z0-9-]+\.vercel\.app$/, /^localhost$/];
