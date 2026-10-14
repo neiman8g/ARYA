@@ -55,24 +55,13 @@
     var optedOut = !!navigator.globalPrivacyControl;
     try { if (localStorage.getItem("arya_opt_out") === "1") optedOut = true; } catch (e) {}
     var newId = function (name) { return name + "." + Date.now() + "." + Math.random().toString(36).slice(2, 10); };
-    // Mirror an event to the Conversions API route with the same event_id so Meta deduplicates it
-    var relay = function (name, id, email) {
-      try {
-        fetch("/api/meta-capi", {
-          method: "POST", keepalive: true, credentials: "same-origin",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ event_name: name, event_id: id, event_source_url: location.href, email: email })
-        }).catch(function () {});
-      } catch (e) {}
-    };
-    // aryaTrack(name, params, { email, server }) is used by the page scripts; a no op when opted out
+    // aryaTrack(name, params, { email }) is used by the page scripts; a no op when opted out
     window.aryaTrack = function (name, params, opts) {
       if (optedOut || !window.fbq) return;
       opts = opts || {};
       var id = newId(name);
       if (opts.email) fbq("init", PIXEL_ID, { em: opts.email.trim().toLowerCase() });
       fbq("track", name, params || {}, { eventID: id });
-      if (opts.server) relay(name, id, opts.email);
     };
     window.aryaOptedOut = optedOut;
     if (optedOut) return;
@@ -86,7 +75,7 @@
     s.parentNode.insertBefore(t,s)}(window, document,'script',
     'https://connect.facebook.net/en_US/fbevents.js');
     fbq("init", PIXEL_ID);
-    window.aryaTrack("PageView", {}, { server: true });
+    window.aryaTrack("PageView");
   })();
   </script>
 </head>
@@ -352,6 +341,6 @@
     <p class="wrap footer-base">© <span data-year>2026</span> ARYA. Designed in California.</p>
   </footer>
 
-  <script src="script.js?v=20" defer></script>
+  <script src="script.js?v=21" defer></script>
 </body>
 </html>

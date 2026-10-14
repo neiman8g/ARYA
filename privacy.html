@@ -33,24 +33,13 @@
     var optedOut = !!navigator.globalPrivacyControl;
     try { if (localStorage.getItem("arya_opt_out") === "1") optedOut = true; } catch (e) {}
     var newId = function (name) { return name + "." + Date.now() + "." + Math.random().toString(36).slice(2, 10); };
-    // Mirror an event to the Conversions API route with the same event_id so Meta deduplicates it
-    var relay = function (name, id, email) {
-      try {
-        fetch("/api/meta-capi", {
-          method: "POST", keepalive: true, credentials: "same-origin",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ event_name: name, event_id: id, event_source_url: location.href, email: email })
-        }).catch(function () {});
-      } catch (e) {}
-    };
-    // aryaTrack(name, params, { email, server }) is used by the page scripts; a no op when opted out
+    // aryaTrack(name, params, { email }) is used by the page scripts; a no op when opted out
     window.aryaTrack = function (name, params, opts) {
       if (optedOut || !window.fbq) return;
       opts = opts || {};
       var id = newId(name);
       if (opts.email) fbq("init", PIXEL_ID, { em: opts.email.trim().toLowerCase() });
       fbq("track", name, params || {}, { eventID: id });
-      if (opts.server) relay(name, id, opts.email);
     };
     window.aryaOptedOut = optedOut;
     if (optedOut) return;
@@ -64,7 +53,7 @@
     s.parentNode.insertBefore(t,s)}(window, document,'script',
     'https://connect.facebook.net/en_US/fbevents.js');
     fbq("init", PIXEL_ID);
-    window.aryaTrack("PageView", {}, { server: true });
+    window.aryaTrack("PageView");
   })();
   </script>
 </head>
@@ -89,7 +78,7 @@
           <p><strong>Information you provide:</strong> your email address and, if you choose to answer, whether you are shopping for women's or men's pieces. If you email us, we receive your message and email address.</p>
           <p><strong>Information collected with your signup:</strong> the page address you signed up from and any campaign tags in that link (utm_source, utm_medium and utm_campaign), so we know which posts and partners bring people to ARYA.</p>
           <p><strong>Information collected automatically:</strong> like most websites, our hosting provider and the network that serves our fonts receive standard technical information such as your IP address, browser type and device.</p>
-          <p><strong>Meta Pixel and Conversions API:</strong> we use the Meta Pixel, a tool from Meta Platforms, Inc. (the company behind Facebook and Instagram), to measure our ads and show ARYA to people who may be interested. When you visit, it records the pages you view, when you scroll to our collection and when you sign up, along with your IP address, browser and device information and a Meta cookie identifier. When you sign up, your email address is also shared with Meta in hashed (scrambled) form so Meta can match the signup to an ad you saw. We send the same page view and signup events from our server through Meta's Conversions API so they are counted accurately. You can turn this off at any time (see section 6).</p>
+          <p><strong>Meta Pixel and Conversions API:</strong> we use the Meta Pixel, a tool from Meta Platforms, Inc. (the company behind Facebook and Instagram), to measure our ads and show ARYA to people who may be interested. When you visit, it records the pages you view, when you scroll to our collection and when you sign up, along with your IP address, browser and device information and a Meta cookie identifier. When you sign up, your email address is also shared with Meta in hashed (scrambled) form so Meta can match the signup to an ad you saw. Meta also receives these events through its Conversions API so they are counted accurately. You can turn this off at any time (see section 6).</p>
           <p><strong>Klaviyo:</strong> when you sign up, your email address, the form you used, any women's or men's choice, the page address and the campaign tags in your link are sent to Klaviyo, our email provider. Klaviyo also records when you open or click our emails.</p>
         </section>
         <section class="legal-section">

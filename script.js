@@ -400,7 +400,7 @@
       try {
         await subscribe(form, address, $$('input[name="interest"]:checked', form).map((i) => i.value));
         // Meta: Lead fires only after Klaviyo confirms the signup; the email enables advanced matching
-        if (window.aryaTrack) window.aryaTrack("Lead", { content_name: form.dataset.source }, { email: address, server: true });
+        if (window.aryaTrack) window.aryaTrack("Lead", { content_name: form.dataset.source }, { email: address });
         form.hidden = true;
         success.hidden = false;
         try { localStorage.setItem(SIGNED_KEY, "1"); } catch (_) {}
