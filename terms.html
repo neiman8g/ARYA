@@ -25,7 +25,48 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Marcellus&family=Instrument+Sans:wght@400;500&display=swap">
-  <link rel="stylesheet" href="/styles.css?v=33">
+  <link rel="stylesheet" href="/styles.css?v=34">
+  <!-- Meta Pixel. Stays off for visitors who opted out on /privacy or whose browser sends Global Privacy Control. -->
+  <script>
+  (function () {
+    var PIXEL_ID = "1122507330181079";
+    var optedOut = !!navigator.globalPrivacyControl;
+    try { if (localStorage.getItem("arya_opt_out") === "1") optedOut = true; } catch (e) {}
+    var newId = function (name) { return name + "." + Date.now() + "." + Math.random().toString(36).slice(2, 10); };
+    // Mirror an event to the Conversions API route with the same event_id so Meta deduplicates it
+    var relay = function (name, id, email) {
+      try {
+        fetch("/api/meta-capi", {
+          method: "POST", keepalive: true, credentials: "same-origin",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ event_name: name, event_id: id, event_source_url: location.href, email: email })
+        }).catch(function () {});
+      } catch (e) {}
+    };
+    // aryaTrack(name, params, { email, server }) is used by the page scripts; a no op when opted out
+    window.aryaTrack = function (name, params, opts) {
+      if (optedOut || !window.fbq) return;
+      opts = opts || {};
+      var id = newId(name);
+      if (opts.email) fbq("init", PIXEL_ID, { em: opts.email.trim().toLowerCase() });
+      fbq("track", name, params || {}, { eventID: id });
+      if (opts.server) relay(name, id, opts.email);
+    };
+    window.aryaOptedOut = optedOut;
+    if (optedOut) return;
+
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq("init", PIXEL_ID);
+    window.aryaTrack("PageView", {}, { server: true });
+  })();
+  </script>
 </head>
 <body class="legal-page">
   <a class="skip-link" href="#main">Skip to content</a>
@@ -98,6 +139,7 @@
           <li><a href="/shipping-returns">Shipping and returns</a></li>
           <li><a href="/privacy">Privacy</a></li>
           <li><a href="/terms">Terms</a></li>
+          <li><a href="/privacy#do-not-sell">Do Not Sell or Share My Personal Information</a></li>
         </ul>
       </nav>
     </div>

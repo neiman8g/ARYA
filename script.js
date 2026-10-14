@@ -399,6 +399,8 @@
       $(".btn-label", submit).textContent = "Signing you up";
       try {
         await subscribe(form, address, $$('input[name="interest"]:checked', form).map((i) => i.value));
+        // Meta: Lead fires only after Klaviyo confirms the signup; the email enables advanced matching
+        if (window.aryaTrack) window.aryaTrack("Lead", { content_name: form.dataset.source }, { email: address, server: true });
         form.hidden = true;
         success.hidden = false;
         try { localStorage.setItem(SIGNED_KEY, "1"); } catch (_) {}
@@ -414,6 +416,17 @@
       }
     });
   });
+
+  // Meta: ViewContent once, the first time the collection scrolls into view
+  const collectionSection = $("#collection");
+  if (collectionSection && "IntersectionObserver" in window) {
+    const seen = new IntersectionObserver(([en]) => {
+      if (!en.isIntersecting) return;
+      seen.disconnect();
+      if (window.aryaTrack) window.aryaTrack("ViewContent", { content_name: "The foundation pieces", content_category: "Collection" });
+    }, { threshold: 0.25 });
+    seen.observe(collectionSection);
+  }
 
   $("[data-year]").textContent = new Date().getFullYear();
 })();

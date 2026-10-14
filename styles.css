@@ -703,3 +703,7 @@ html.no-announce .announce { display: none; }
 
 /* Announcement bar retired: the menu button and the signup section carry the first drop message */
 :root { --announce-h: 0px; }
+
+/* Privacy: Do Not Sell or Share control */
+.optout-btn { margin: 0.5rem 0 1.75rem; }
+.optout-status:empty { display: none; }
