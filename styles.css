@@ -718,3 +718,6 @@ html.no-announce .announce { display: none; }
 .share-btn:hover { background: #fff; }
 .share-status { margin-top: 0.5rem; font-size: var(--t-small); min-height: 1.4em; }
 .hero-success .share-copy { font-size: var(--t-small); }
+
+/* Social links in the mobile menu */
+.mobile-menu-foot { display: flex; gap: 1.75rem; }
