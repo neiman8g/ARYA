@@ -47,7 +47,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Marcellus&family=Instrument+Sans:wght@400;500&display=swap">
   <link rel="preload" as="image" href="assets/cove-poster-landscape.webp?v=2" media="(min-width: 768px)">
   <link rel="preload" as="image" href="assets/cove-poster-portrait.webp?v=3" media="(max-width: 767px)">
-  <link rel="stylesheet" href="styles.css?v=34">
+  <link rel="stylesheet" href="styles.css?v=35">
   <!-- Meta Pixel. Stays off for visitors who opted out on /privacy or whose browser sends Global Privacy Control. -->
   <script>
   (function () {
@@ -76,6 +76,21 @@
     'https://connect.facebook.net/en_US/fbevents.js');
     fbq("init", PIXEL_ID);
     window.aryaTrack("PageView");
+  })();
+  </script>
+  <!-- Vercel Web Analytics: cookieless visit counts and traffic sources -->
+  <script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
+  <script defer src="/_vercel/insights/script.js"></script>
+  <!-- Microsoft Clarity: heatmaps and session recordings. Set CLARITY_ID to turn it on; stays off for opted out visitors. -->
+  <script>
+  (function () {
+    var CLARITY_ID = "";
+    if (!CLARITY_ID || window.aryaOptedOut) return;
+    (function(c,l,a,r,i,t,y){
+      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+      t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+      y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", CLARITY_ID);
   })();
   </script>
 </head>
@@ -148,7 +163,20 @@
             </div>
             <p id="hero-email-error" class="field-error" role="alert" hidden></p>
           </form>
-          <p class="hero-success" data-success hidden tabindex="-1">You're on the list. Founding pricing is reserved for you.</p>
+          <div class="hero-success" data-success hidden tabindex="-1">
+          <p>You're on the list. Founding pricing is reserved for you.</p>
+          <div class="share" data-share hidden>
+            <p class="share-title">Share ARYA with a friend.</p>
+            <p class="share-copy">Every friend who joins with your personal link is credited to you.</p>
+            <div class="share-row">
+              <label class="visually-hidden" for="share-link-hero">Your personal link</label>
+              <input id="share-link-hero" class="share-link" type="text" readonly data-share-link>
+              <button type="button" class="btn share-btn" data-share-copy>Copy link</button>
+              <button type="button" class="btn share-btn" data-share-native hidden>Share</button>
+            </div>
+            <p class="share-status" data-share-status aria-live="polite"></p>
+          </div>
+        </div>
         </div>
       </div>
     </section>
@@ -304,6 +332,17 @@
         <div class="drop-success" data-success hidden tabindex="-1">
           <p class="h-section">You're on the list.</p>
           <p class="lede">Founding pricing is reserved for you. Watch your inbox.</p>
+          <div class="share" data-share hidden>
+            <p class="share-title">Share ARYA with a friend.</p>
+            <p class="share-copy">Every friend who joins with your personal link is credited to you.</p>
+            <div class="share-row">
+              <label class="visually-hidden" for="share-link-drop">Your personal link</label>
+              <input id="share-link-drop" class="share-link" type="text" readonly data-share-link>
+              <button type="button" class="btn share-btn" data-share-copy>Copy link</button>
+              <button type="button" class="btn share-btn" data-share-native hidden>Share</button>
+            </div>
+            <p class="share-status" data-share-status aria-live="polite"></p>
+          </div>
         </div>
       </div>
       <figure class="drop-photo">
@@ -341,6 +380,6 @@
     <p class="wrap footer-base">© <span data-year>2026</span> ARYA. Designed in California.</p>
   </footer>
 
-  <script src="script.js?v=21" defer></script>
+  <script src="script.js?v=22" defer></script>
 </body>
 </html>

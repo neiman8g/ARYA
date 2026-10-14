@@ -707,3 +707,14 @@ html.no-announce .announce { display: none; }
 /* Privacy: Do Not Sell or Share control */
 .optout-btn { margin: 0.5rem 0 1.75rem; }
 .optout-status:empty { display: none; }
+
+/* Share step after signup */
+.share { margin-top: 1.75rem; max-width: 34rem; }
+.share-title { font-family: var(--display); font-size: var(--t-h3); line-height: 1.2; }
+.share-copy { margin-top: 0.35rem; color: inherit; opacity: 0.85; }
+.share-row { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1rem; }
+.share-link { flex: 1 1 16rem; min-width: 0; min-height: 48px; padding: 0 1rem; border: 1px solid currentColor; background: transparent; color: inherit; font: inherit; font-size: 0.9375rem; }
+.share-btn { min-height: 48px; background: var(--on-lapis); color: var(--lapis); }
+.share-btn:hover { background: #fff; }
+.share-status { margin-top: 0.5rem; font-size: var(--t-small); min-height: 1.4em; }
+.hero-success .share-copy { font-size: var(--t-small); }

@@ -24,7 +24,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Marcellus&family=Instrument+Sans:wght@400;500&display=swap">
-  <link rel="stylesheet" href="/styles.css?v=34">
+  <link rel="stylesheet" href="/styles.css?v=35">
   <!-- Meta Pixel. Stays off for visitors who opted out on /privacy or whose browser sends Global Privacy Control. -->
   <script>
   (function () {
@@ -53,6 +53,21 @@
     'https://connect.facebook.net/en_US/fbevents.js');
     fbq("init", PIXEL_ID);
     window.aryaTrack("PageView");
+  })();
+  </script>
+  <!-- Vercel Web Analytics: cookieless visit counts and traffic sources -->
+  <script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
+  <script defer src="/_vercel/insights/script.js"></script>
+  <!-- Microsoft Clarity: heatmaps and session recordings. Set CLARITY_ID to turn it on; stays off for opted out visitors. -->
+  <script>
+  (function () {
+    var CLARITY_ID = "";
+    if (!CLARITY_ID || window.aryaOptedOut) return;
+    (function(c,l,a,r,i,t,y){
+      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+      t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+      y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", CLARITY_ID);
   })();
   </script>
 </head>

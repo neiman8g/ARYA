@@ -347,9 +347,48 @@
     if (v) utm[k] = v;
   });
 
-  const subscribe = async (form, address, interests) => {
-    const properties = { ...utm, signup_page_url: window.location.href, signup_form: form.dataset.source };
+  // Referrals: ?ref=CODE on the landing URL is remembered for 30 days on this browser
+  const REF_RE = /^[a-z0-9]{8}$/;
+  const SITE_URL = "https://arya.clothing/";
+  let referredBy = null;
+  try {
+    const fromUrl = (params.get("ref") || "").toLowerCase();
+    if (REF_RE.test(fromUrl)) localStorage.setItem("arya_ref", JSON.stringify({ code: fromUrl, at: Date.now() }));
+    const saved = JSON.parse(localStorage.getItem("arya_ref") || "null");
+    if (saved && REF_RE.test(saved.code) && Date.now() - saved.at < 30 * 864e5) referredBy = saved.code;
+  } catch (_) {
+    const fromUrl = (params.get("ref") || "").toLowerCase();
+    if (REF_RE.test(fromUrl)) referredBy = fromUrl;
+  }
+
+  // Each member's code is derived from their email, so signing up twice keeps the same link
+  const ALPHABET = "abcdefghjkmnpqrstuvwxyz23456789";
+  const referralCode = async (address) => {
+    const bytes = new Uint8Array(await crypto.subtle.digest("SHA-256", new TextEncoder().encode("arya:" + address.toLowerCase())));
+    return Array.from(bytes.slice(0, 8), (b) => ALPHABET[b % ALPHABET.length]).join("");
+  };
+  const referralLink = (code) => `${SITE_URL}?ref=${code}&utm_source=referral&utm_medium=friend&utm_campaign=founding_referral`;
+
+  // Credit the friend who shared the link: the event lands on their profile through its external_id
+  const creditReferrer = (form, code) => fetch(`https://a.klaviyo.com/client/events?company_id=${encodeURIComponent(form.dataset.klaviyoCompany)}`, {
+    method: "POST",
+    headers: { "Content-Type": "application/vnd.api+json", revision: "2024-10-15" },
+    body: JSON.stringify({
+      data: {
+        type: "event",
+        attributes: {
+          properties: { referral_code: code, signup_form: form.dataset.source },
+          metric: { data: { type: "metric", attributes: { name: "Referred a Friend" } } },
+          profile: { data: { type: "profile", attributes: { external_id: code } } },
+        },
+      },
+    }),
+  }).catch(() => {});
+
+  const subscribe = async (form, address, interests, code) => {
+    const properties = { ...utm, signup_page_url: window.location.href, signup_form: form.dataset.source, referral_code: code, referral_link: referralLink(code) };
     if (interests.length) properties.waitlist_interest = interests;
+    if (referredBy && referredBy !== code) properties.referred_by = referredBy;
     const res = await fetch(`https://a.klaviyo.com/client/subscriptions?company_id=${encodeURIComponent(form.dataset.klaviyoCompany)}`, {
       method: "POST",
       headers: { "Content-Type": "application/vnd.api+json", revision: "2024-10-15" },
@@ -363,6 +402,7 @@
                 type: "profile",
                 attributes: {
                   email: address,
+                  external_id: code,
                   properties,
                 },
               },
@@ -373,6 +413,32 @@
       }),
     });
     if (!res.ok) throw new Error(`Klaviyo responded ${res.status}`);
+  };
+
+  // Share step shown after a successful signup
+  const showShare = (box, code) => {
+    const share = $("[data-share]", box);
+    if (!share) return;
+    const link = referralLink(code);
+    const input = $("[data-share-link]", share);
+    const status = $("[data-share-status]", share);
+    const native = $("[data-share-native]", share);
+    input.value = link;
+    share.hidden = false;
+    try { localStorage.setItem("arya_my_ref", code); } catch (_) {}
+    $("[data-share-copy]", share).addEventListener("click", async () => {
+      try { await navigator.clipboard.writeText(link); } catch (_) { input.select(); document.execCommand("copy"); }
+      status.textContent = "Link copied.";
+      if (window.aryaTrack) window.aryaTrack("Share", { method: "copy" });
+    });
+    if (navigator.share) {
+      native.hidden = false;
+      native.addEventListener("click", () => {
+        navigator.share({ title: "ARYA", text: "Join me on the ARYA first drop list.", url: link })
+          .then(() => { if (window.aryaTrack) window.aryaTrack("Share", { method: "native" }); })
+          .catch(() => {});
+      });
+    }
   };
 
   $$("[data-signup]").forEach((form) => {
@@ -398,7 +464,10 @@
       submit.setAttribute("aria-busy", "true");
       $(".btn-label", submit).textContent = "Signing you up";
       try {
-        await subscribe(form, address, $$('input[name="interest"]:checked', form).map((i) => i.value));
+        const code = await referralCode(address);
+        await subscribe(form, address, $$('input[name="interest"]:checked', form).map((i) => i.value), code);
+        if (referredBy && referredBy !== code) creditReferrer(form, referredBy);
+        showShare(success, code);
         // Meta: Lead fires only after Klaviyo confirms the signup; the email enables advanced matching
         if (window.aryaTrack) window.aryaTrack("Lead", { content_name: form.dataset.source }, { email: address });
         form.hidden = true;

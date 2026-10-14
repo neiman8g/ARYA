@@ -25,7 +25,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Marcellus&family=Instrument+Sans:wght@400;500&display=swap">
-  <link rel="stylesheet" href="/styles.css?v=34">
+  <link rel="stylesheet" href="/styles.css?v=35">
   <!-- Meta Pixel. Stays off for visitors who opted out on /privacy or whose browser sends Global Privacy Control. -->
   <script>
   (function () {
@@ -56,6 +56,21 @@
     window.aryaTrack("PageView");
   })();
   </script>
+  <!-- Vercel Web Analytics: cookieless visit counts and traffic sources -->
+  <script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
+  <script defer src="/_vercel/insights/script.js"></script>
+  <!-- Microsoft Clarity: heatmaps and session recordings. Set CLARITY_ID to turn it on; stays off for opted out visitors. -->
+  <script>
+  (function () {
+    var CLARITY_ID = "";
+    if (!CLARITY_ID || window.aryaOptedOut) return;
+    (function(c,l,a,r,i,t,y){
+      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+      t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+      y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", CLARITY_ID);
+  })();
+  </script>
 </head>
 <body class="legal-page">
   <a class="skip-link" href="#main">Skip to content</a>
@@ -71,7 +86,7 @@
   <main id="main" class="legal">
     <div class="wrap legal-wrap">
       <h1 class="h-section">Privacy Policy</h1>
-      <p class="legal-updated">Last updated October 13, 2026</p>
+      <p class="legal-updated">Last updated October 14, 2026</p>
         <section class="legal-section">
           <h2>1. Information we collect</h2>
           <p>When you visit arya.clothing or sign up for first access to our first drop, we may collect:</p>
@@ -79,12 +94,14 @@
           <p><strong>Information collected with your signup:</strong> the page address you signed up from and any campaign tags in that link (utm_source, utm_medium and utm_campaign), so we know which posts and partners bring people to ARYA.</p>
           <p><strong>Information collected automatically:</strong> like most websites, our hosting provider and the network that serves our fonts receive standard technical information such as your IP address, browser type and device.</p>
           <p><strong>Meta Pixel and Conversions API:</strong> we use the Meta Pixel, a tool from Meta Platforms, Inc. (the company behind Facebook and Instagram), to measure our ads and show ARYA to people who may be interested. When you visit, it records the pages you view, when you scroll to our collection and when you sign up, along with your IP address, browser and device information and a Meta cookie identifier. When you sign up, your email address is also shared with Meta in hashed (scrambled) form so Meta can match the signup to an ad you saw. Meta also receives these events through its Conversions API so they are counted accurately. You can turn this off at any time (see section 6).</p>
-          <p><strong>Klaviyo:</strong> when you sign up, your email address, the form you used, any women's or men's choice, the page address and the campaign tags in your link are sent to Klaviyo, our email provider. Klaviyo also records when you open or click our emails.</p>
+          <p><strong>Site analytics:</strong> we use Vercel Web Analytics to count visits and see which pages and sources people come from. It does not use cookies and reports only totals, not individual visitors. We may also use Microsoft Clarity, which records how visitors scroll, click and move through the site (with form fields such as your email masked) and creates heatmaps so we can improve the page. Clarity sets cookies (named _clck and _clsk) and is provided by Microsoft Corporation. Clarity stays off if you opt out (see section 6).</p>
+          <p><strong>Referrals:</strong> when you sign up, we create a personal referral link for you. If a friend joins through your link, we record that the referral came from you so we can credit you. If you arrived through a friend's link, we save their referral code in your browser for up to 30 days and add it to your signup.</p>
+          <p><strong>Klaviyo:</strong> when you sign up, your email address, the form you used, any women's or men's choice, the page address, the campaign tags in your link and your referral details are sent to Klaviyo, our email provider. Klaviyo also records when you open or click our emails.</p>
         </section>
         <section class="legal-section">
           <h2>2. How we use your information</h2>
           <p>We use your information to send you updates about ARYA and the first drop, to measure and improve our advertising, to understand which channels people find us through, to improve our website, and to respond to your messages.</p>
-          <p>We do not sell, rent or trade your personal information for money. We share it with the service providers we need to run ARYA: Klaviyo for email, Vercel for hosting and Google Fonts for delivering fonts. We also share the information described above with Meta for advertising. Under California law, sharing information with Meta for ads based on your activity may count as a "sale" or "sharing" of personal information, and you can opt out (see section 6).</p>
+          <p>We do not sell, rent or trade your personal information for money. We share it with the service providers we need to run ARYA: Klaviyo for email, Vercel for hosting and analytics, Microsoft Clarity for site analytics and Google Fonts for delivering fonts. We also share the information described above with Meta for advertising. Under California law, sharing information with Meta for ads based on your activity may count as a "sale" or "sharing" of personal information, and you can opt out (see section 6).</p>
         </section>
         <section class="legal-section">
           <h2>3. Emails and unsubscribing</h2>
@@ -101,7 +118,7 @@
         </section>
         <section class="legal-section" id="do-not-sell">
           <h2>6. Do Not Sell or Share My Personal Information</h2>
-          <p>You can opt out of us sharing your information with Meta for advertising. Once you opt out, the Meta Pixel no longer loads on this site in this browser and we stop sending your visits and signups to Meta. Your choice is saved in this browser, so repeat it on each browser or device you use.</p>
+          <p>You can opt out of us sharing your information with Meta for advertising. Once you opt out, the Meta Pixel and Microsoft Clarity no longer load on this site in this browser and we stop sending your visits and signups to Meta. Your choice is saved in this browser, so repeat it on each browser or device you use.</p>
           <p>We also honor Global Privacy Control. If your browser sends that signal, we treat it as an opt out automatically.</p>
           <p class="optout-status" data-optout-status aria-live="polite"></p>
           <button type="button" class="btn btn-solid optout-btn" data-optout>Opt out of sale and sharing</button>
