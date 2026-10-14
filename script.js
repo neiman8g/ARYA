@@ -425,6 +425,8 @@
     const native = $("[data-share-native]", share);
     input.value = link;
     share.hidden = false;
+    const referredNote = $("[data-share-referred]", share);
+    if (referredNote && referredBy && referredBy !== code) referredNote.hidden = false;
     try { localStorage.setItem("arya_my_ref", code); } catch (_) {}
     $("[data-share-copy]", share).addEventListener("click", async () => {
       try { await navigator.clipboard.writeText(link); } catch (_) { input.select(); document.execCommand("copy"); }
