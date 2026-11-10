@@ -1,6 +1,6 @@
 # ARYA
 
-Pre-launch site for [arya.clothing](https://arya.clothing): premium activewear for him and her, designed in California.
+Pre-launch site for [arya.clothing](https://arya.clothing): premium activewear for him and her, made in Los Angeles.
 
 Plain HTML, CSS and JavaScript. There is no build step.
 
