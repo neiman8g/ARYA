@@ -33,11 +33,11 @@
     update();
   }
 
-  /* ---------- Hero film: the cove loops inside the arch and stays as it opens; pauses once scrolled past ---------- */
+  /* ---------- Hero film: the beach loops inside the arch and stays as it opens; pauses once scrolled past ---------- */
   const saveData = navigator.connection && navigator.connection.saveData;
   if (heroVideo && !reduceMotion && !saveData) {
     // Landscape on desktop, portrait on phones. MP4 first on iOS for reliable inline autoplay.
-    const base = window.matchMedia("(max-width: 767px)").matches ? "assets/cove-portrait" : "assets/cove-landscape";
+    const base = window.matchMedia("(max-width: 767px)").matches ? "assets/malibu-portrait" : "assets/malibu-landscape";
     const iOS = /iP(hone|ad|od)/.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
     const sources = [[base + ".webm", "video/webm"], [base + ".mp4", "video/mp4"]];
     if (iOS) sources.reverse();
@@ -45,8 +45,8 @@
     heroVideo.loop = true;
     heroVideo.autoplay = true;
     heroVideo.playsInline = true;
-    heroVideo.poster = base.replace("cove-", "cove-poster-") + ".webp?v=3";
-    sources.forEach(([src, type]) => { const s = document.createElement("source"); s.src = src + "?v=3"; s.type = type; heroVideo.appendChild(s); });
+    heroVideo.poster = base.replace("malibu-", "malibu-poster-") + ".webp?v=1";
+    sources.forEach(([src, type]) => { const s = document.createElement("source"); s.src = src + "?v=1"; s.type = type; heroVideo.appendChild(s); });
     heroVideo.preload = "auto";
     heroVideo.load();
     heroVideo.addEventListener("playing", () => heroVideo.classList.add("is-playing"), { once: true });

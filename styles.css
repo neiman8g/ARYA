@@ -495,8 +495,8 @@ main:focus { outline: none; }
 .motion .arch img, .motion .about-photo img { scale: 1.12; }
 
 
-/* Hero film: the cove is centred on the gap between the cliffs */
-.hero-video { object-position: 50% 50%; }
+/* Hero film: on desktop, keep the palms and beach house inside the arch */
+@media (min-width: 768px) { .hero-window img, .hero-video { object-position: 40% 50%; } }
 @media (max-width: 899px) {
   .colonnade-bar { grid-template-columns: auto auto; justify-content: space-between; gap: 1.25rem 1rem; }
   .colonnade-nav { gap: 0.25rem; }
